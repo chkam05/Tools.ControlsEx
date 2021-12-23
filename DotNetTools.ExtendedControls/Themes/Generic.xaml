@@ -1,0 +1,32 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local="clr-namespace:chkam05.DotNetTools.ExtendedControls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedButtonIconStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedCheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedComboBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedContextMenuStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedContextMenuItemStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedContextMenuItemIconStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedScrollBarStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedSliderStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedTextBoxStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DotNetTools.ExtendedControls;component/Themes/ExtendedPasswordBoxStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style BasedOn="{StaticResource ExtendedButtonStyle}" TargetType="{x:Type local:ExtendedButton}"/>
+    <Style BasedOn="{StaticResource ExtendedButtonIconStyle}" TargetType="{x:Type local:ExtendedButtonIcon}"/>
+    <Style BasedOn="{StaticResource ExtendedCheckBoxStyle}" TargetType="{x:Type local:ExtendedCheckBox}"/>
+    <Style BasedOn="{StaticResource ExtendedComboBoxStyle}" TargetType="{x:Type local:ExtendedComboBox}"/>
+    <Style BasedOn="{StaticResource ExtendedContextMenuStyle}" TargetType="{x:Type local:ExtendedContextMenu}"/>
+    <Style BasedOn="{StaticResource ExtendedContextMenuItemStyle}" TargetType="{x:Type local:ExtendedContextMenuItem}"/>
+    <Style BasedOn="{StaticResource ExtendedContextMenuItemIconStyle}" TargetType="{x:Type local:ExtendedContextMenuItemIcon}"/>
+    <Style BasedOn="{StaticResource ExtendedScrollBarStyle}" TargetType="{x:Type local:ExtendedScrollBar}"/>
+    <Style BasedOn="{StaticResource ExtendedSliderStyle}" TargetType="{x:Type local:ExtendedSlider}"/>
+    <Style BasedOn="{StaticResource ExtendedTextBoxStyle}" TargetType="{x:Type local:ExtendedTextBox}"/>
+    <Style BasedOn="{StaticResource ExtendedPasswordBoxStyle}" TargetType="{x:Type local:ExtendedPasswordBox}"/>
+
+</ResourceDictionary>
