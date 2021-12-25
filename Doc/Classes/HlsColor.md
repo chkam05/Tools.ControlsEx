@@ -29,16 +29,16 @@ Generally used for changing color lightness.
 
 * <ins>public HslColor(double **a**, double **h**, double **l**, double **s**)</ins>
   
-  **a** - alpha channel of color,
-  **h** - color hue,
-  **l** - color lightness,
-  **s** - color saturation,
+  * **a** - alpha channel of color,
+  * **h** - color hue,
+  * **l** - color lightness,
+  * **s** - color saturation,
 
   <br/>
 
 * <ins>public HslColor(double **h**, double **l**, double **s**)</ins>
   
-  **h** - color hue,
-  **l** - color lightness,
-  **s** - color saturation,
+  * **h** - color hue,
+  * **l** - color lightness,
+  * **s** - color saturation,
 

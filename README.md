@@ -5,17 +5,17 @@ Extended controls for Windows Presentation Foundation environment
 
 ## List of controls:
 
-- **ExtendedButton** 
-- **ExtendedButtonIcon** (*button with PackIcon from MaterialDesignThemes*) 
-- **ExtendedCheckBox** 
-- **ExtendedComboBox** 
-- **ExtendedContextMenu** 
-- **ExtendedContextMenuItem** 
-- **ExtendedContextMenuItemIcon** (*context menu item with PackIcon from MaterialDesignThemes*) 
-- **ExtendedPasswordBox** 
-- **ExtendedScrollBar** 
-- **ExtendedSlider** 
-- **ExtendedTextBox** 
+- **[ExtendedButton](Doc/Controls/ExtendedButton.md)** 
+- **[ExtendedButtonIcon](Doc/Controls/ExtendedButtonIcon.md)** (*button with PackIcon from MaterialDesignThemes*) 
+- **[ExtendedCheckBox](Doc/Controls/ExtendedCheckBox.md)** 
+- **[ExtendedComboBox](Doc/Controls/ExtendedComboBox.md)** 
+- **[ExtendedContextMenu](Doc/Controls/ExtendedContextMenu.md)** 
+- **[ExtendedContextMenuItem](Doc/Controls/ExtendedContextMenuItem.md)** 
+- **[ExtendedContextMenuItemIcon](Doc/Controls/ExtendedContextMenuItemIcon.md)** (*context menu item with PackIcon from MaterialDesignThemes*) 
+- **[ExtendedPasswordBox](Doc/Controls/ExtendedPasswordBox.md)** 
+- **[ExtendedScrollBar](Doc/Controls/ExtendedScrollBar.md)** 
+- **[ExtendedSlider](Doc/Controls/ExtendedSlider.md)** 
+- **[ExtendedTextBox](Doc/Controls/ExtendedTextBox.md)** 
 
 ## List of additional classes (data structures):
 
