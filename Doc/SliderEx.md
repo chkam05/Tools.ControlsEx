@@ -3,9 +3,9 @@ Extended Slider Control inherited from _Slider_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx.SliderEx_  
 
-![SliderEx Examples 1 (Images/SliderEx1.jpg)](../Images/SliderEx1.jpg)  
+![SliderEx Examples 1 (Images/SliderEx1.png)](../Images/SliderEx1.png)  
 
-![SliderEx Examples 2 (Images/SliderEx2.jpg)](../Images/SliderEx2.jpg)  
+![SliderEx Examples 2 (Images/SliderEx2.png)](../Images/SliderEx2.png)  
 
 ### Additional Attributes:
 

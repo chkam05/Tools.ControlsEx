@@ -45,7 +45,7 @@ Inherited from _BaseIndicatorEx_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx.Indicators.CircleSmoothIndicatorEx_  
 
-![IndicatorEx Examples (Images/IndicatorEx.jpg)](../Images/IndicatorEx.jpg)  
+![IndicatorEx Examples (Images/IndicatorEx.png)](../Images/IndicatorEx.png)  
 
 ### Additional Attributes:
 

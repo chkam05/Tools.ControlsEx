@@ -3,7 +3,7 @@ UpDownTextBoxEx Control inherited from _TextBox_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx.UpDownTextBoxEx_  
 
-![UpDownTextBoxEx Examples (Images/UpDownTextBoxEx.jpg)](../Images/UpDownTextBoxEx.jpg)  
+![UpDownTextBoxEx Examples (Images/UpDownTextBoxEx.png)](../Images/UpDownTextBoxEx.png)  
 
 ### Additional Attributes:
 

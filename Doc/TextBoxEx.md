@@ -3,9 +3,9 @@ Extended TextBox Control inherited from _TextBox_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx.TextBoxEx_  
 
-![TextBoxEx Examples 1 (Images/TextBoxEx1.jpg)](../Images/TextBoxEx1.jpg)  
+![TextBoxEx Examples 1 (Images/TextBoxEx1.png)](../Images/TextBoxEx1.png)  
 
-![TextBoxEx Examples 2 (Images/TextBoxEx2.jpg)](../Images/TextBoxEx2.jpg)  
+![TextBoxEx Examples 2 (Images/TextBoxEx2.png)](../Images/TextBoxEx2.png)  
 
 ### Additional Attributes:
 

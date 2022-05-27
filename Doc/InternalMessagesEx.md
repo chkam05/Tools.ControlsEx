@@ -3,7 +3,7 @@ InternalMessagesEx Control inherited from _Frame_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx.InternalMessagesEx_  
 
-![InternalMessageEx Examples Options (Images/InternalMessageHome.jpg)](../Images/InternalMessageHome.jpg)  
+![InternalMessageEx Examples Options (Images/InternalMessageHome.png)](../Images/InternalMessageHome.png)  
 
 ### Additional Attributes:
 
@@ -209,9 +209,9 @@ InternalMessageEx Control inherited from _BaseInternalMessageEx_.
 
 namespace: _chkam05.Tools.ControlsEx.InternalMessages.InternalMessageEx_  
 
-![InternalMessageEx Examples Alert (Images/InternalMessageAlert.jpg)](../Images/InternalMessageAlert.jpg)  
-![InternalMessageEx Examples Info (Images/InternalMessageInfo.jpg)](../Images/InternalMessageInfo.jpg)  
-![InternalMessageEx Examples Question (Images/InternalMessageInfo.jpg)](../Images/InternalMessageInfo.jpg)  
+![InternalMessageEx Examples Alert (Images/InternalMessageAlert.png)](../Images/InternalMessageAlert.png)  
+![InternalMessageEx Examples Info (Images/InternalMessageInfo.png)](../Images/InternalMessageInfo.png)  
+![InternalMessageEx Examples Question (Images/InternalMessageInfo.png)](../Images/InternalMessageInfo.png)  
 
 ### Additional Attributes:
 
@@ -237,8 +237,8 @@ AwaitInternalMessageEx Control inherited from _BaseAwaitInternalMessageEx_.
 
 namespace: _chkam05.Tools.ControlsEx.InternalMessages.AwaitInternalMessageEx_  
 
-![AwaitInternalMessageEx Examples 1 (Images/InternalAwiatMessage1.jpg)](../Images/InternalAwiatMessage1.jpg)  
-![AwaitInternalMessageEx Examples 2 (Images/InternalAwiatMessage2.jpg)](../Images/InternalAwiatMessage2.jpg)  
+![AwaitInternalMessageEx Examples 1 (Images/InternalAwiatMessage1.png)](../Images/InternalAwiatMessage1.png)  
+![AwaitInternalMessageEx Examples 2 (Images/InternalAwiatMessage2.png)](../Images/InternalAwiatMessage2.png)  
 
 ### Additional Attributes:
 
@@ -264,10 +264,10 @@ ProgressInternalMessageEx Control inherited from _BaseProgressInternalMessageEx_
 
 namespace: _chkam05.Tools.ControlsEx.InternalMessages.ProgressInternalMessageEx_  
 
-![ProgressInternalMessageEx Examples 1 (Images/InternalProgressMessage1.jpg)](../Images/InternalProgressMessage1.jpg)  
-![ProgressInternalMessageEx Examples 2 (Images/InternalProgressMessage2.jpg)](../Images/InternalProgressMessage2.jpg)  
-![ProgressInternalMessageEx Examples 2 (Images/InternalProgressMessage3.jpg)](../Images/InternalProgressMessage3.jpg)  
-![ProgressInternalMessageEx Examples 2 (Images/InternalProgressMessage4.jpg)](../Images/InternalProgressMessage4.jpg)  
+![ProgressInternalMessageEx Examples 1 (Images/InternalProgressMessage1.png)](../Images/InternalProgressMessage1.png)  
+![ProgressInternalMessageEx Examples 2 (Images/InternalProgressMessage2.png)](../Images/InternalProgressMessage2.png)  
+![ProgressInternalMessageEx Examples 2 (Images/InternalProgressMessage3.png)](../Images/InternalProgressMessage3.png)  
+![ProgressInternalMessageEx Examples 2 (Images/InternalProgressMessage4.png)](../Images/InternalProgressMessage4.png)  
 
 ### Additional Attributes:
 

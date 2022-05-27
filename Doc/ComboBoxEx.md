@@ -3,9 +3,9 @@ Extended ComboBox Control inherited from _ComboBox_ and _INotifyPropertyChanged_
 
 namespace: _chkam05.Tools.ControlsEx.ComboBoxEx_  
 
-![ComboBoxEx Examples 1 (Images/ComboBoxEx1.jpg)](../Images/ComboBoxEx1.jpg)  
+![ComboBoxEx Examples 1 (Images/ComboBoxEx1.png)](../Images/ComboBoxEx1.png)  
 
-![ComboBoxEx Examples 2 (Images/ComboBoxEx2.jpg)](../Images/ComboBoxEx2.jpg)  
+![ComboBoxEx Examples 2 (Images/ComboBoxEx2.png)](../Images/ComboBoxEx2.png)  
 
 ### Additional Attributes:
 

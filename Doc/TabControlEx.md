@@ -3,7 +3,7 @@ Extended TabControl Control inherited from _TabControl_ and _INotifyPropertyChan
 
 namespace: _chkam05.Tools.ControlsEx.TabControlEx_  
 
-![TabControlEx Examples (Images/TabControlEx.jpg)](../Images/TabControlEx.jpg)  
+![TabControlEx Examples (Images/TabControlEx.png)](../Images/TabControlEx.png)  
 
 ### Additional Attributes:
 

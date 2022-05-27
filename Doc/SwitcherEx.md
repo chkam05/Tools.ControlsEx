@@ -3,7 +3,7 @@ Extended CheckBox Control inherited from _CheckBox_ and _INotifyPropertyChanged_
 
 namespace: _chkam05.Tools.ControlsEx.SwitcherEx_  
 
-![SwitcherEx Examples (Images/SwitcherEx.jpg)](../Images/SwitcherEx.jpg)  
+![SwitcherEx Examples (Images/SwitcherEx.png)](../Images/SwitcherEx.png)  
 
 ### Additional Attributes:
 
