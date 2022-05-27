@@ -3,7 +3,7 @@ Extended Expander Control inherited from _Expander_ and _INotifyPropertyChanged_
 
 namespace: _chkam05.Tools.ControlsEx.ExpanderEx_  
 
-![ExpanderEx Examples (../Images/ExpanderEx.jpg)](../Images/ExpanderEx.jpg)  
+![ExpanderEx Examples (Images/ExpanderEx.jpg)](../Images/ExpanderEx.jpg)  
 
 ### Additional Attributes:
 

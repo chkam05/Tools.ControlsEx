@@ -3,7 +3,7 @@ Extended TextBlock Control inherited from _Control_ and _INotifyPropertyChanged_
 
 namespace: _chkam05.Tools.ControlsEx.TextBlock_  
 
-![TextBlockEx Examples (../Images/TextBlockEx.jpg)](../Images/TextBlockEx.jpg)  
+![TextBlockEx Examples (Images/TextBlockEx.jpg)](../Images/TextBlockEx.jpg)  
 
 ### Additional Attributes:
 
