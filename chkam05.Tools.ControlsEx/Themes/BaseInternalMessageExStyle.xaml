@@ -1,0 +1,180 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:static="clr-namespace:chkam05.Tools.ControlsEx.Static">
+
+    <SolidColorBrush x:Key="BaseInternalMessageEx.Background">White</SolidColorBrush>
+    <SolidColorBrush x:Key="BaseInternalMessageEx.Foreground">Black</SolidColorBrush>
+
+    <Style x:Key="BaseInternalMessageEx.Button" TargetType="{x:Type local:ButtonEx}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="2,0"/>
+        <Setter Property="MinHeight" Value="32"/>
+        <Setter Property="MinWidth" Value="72"/>
+    </Style>
+    
+    <ControlTemplate x:Key="BaseInternalMessageEx.ControlTemplate" TargetType="{x:Type im:BaseInternalMessageEx}">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            MinHeight="192"
+            MinWidth="352"
+            Padding="{TemplateBinding Padding}">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="0,0,0,1"
+                    Grid.Row="0"
+                    Padding="0,0,0,8">
+
+                    <StackPanel
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+
+                        <materialDesign:PackIcon
+                            Foreground="{TemplateBinding Foreground}"
+                            Kind="{TemplateBinding IconKind}"
+                            Height="{TemplateBinding IconHeight}"
+                            Margin="{TemplateBinding IconMargin}"
+                            MaxHeight="{TemplateBinding IconMaxHeight}"
+                            MaxWidth="{TemplateBinding IconMaxWidth}"
+                            MinHeight="{TemplateBinding IconMinHeight}"
+                            MinWidth="{TemplateBinding IconMinWidth}"
+                            Width="{TemplateBinding IconWidth}"/>
+
+                        <TextBlock
+                            Foreground="{TemplateBinding Foreground}"
+                            FontFamily="{TemplateBinding TitleFontFamily}"
+                            FontSize="{TemplateBinding TitleFontSize}"
+                            FontStretch="{TemplateBinding TitleFontStretch}"
+                            FontStyle="{TemplateBinding TitleFontStyle}"
+                            FontWeight="{TemplateBinding TitleFontWeight}"
+                            Text="{TemplateBinding Title}"
+                            VerticalAlignment="Center"/>
+
+                    </StackPanel>
+                    
+                </Border>
+
+                <ContentPresenter
+                    Content="{TemplateBinding Content}"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,8"
+                    VerticalAlignment="Stretch"/>
+
+                <Border
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="0,1,0,0"
+                    Grid.Row="2"
+                    Padding="0,8,0,0">
+
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+
+                        <local:ButtonEx
+                            x:Name="okButton"
+                            Content="OK"
+                            Style="{StaticResource BaseInternalMessageEx.Button}"
+                            Visibility="Collapsed">
+                        </local:ButtonEx>
+
+                        <local:ButtonEx
+                            x:Name="yesButton"
+                            Content="Yes"
+                            Style="{StaticResource BaseInternalMessageEx.Button}"
+                            Visibility="Collapsed">
+                        </local:ButtonEx>
+
+                        <local:ButtonEx
+                            x:Name="noButton"
+                            Content="No"
+                            Style="{StaticResource BaseInternalMessageEx.Button}"
+                            Visibility="Collapsed">
+                        </local:ButtonEx>
+
+                        <local:ButtonEx
+                            x:Name="cancelButton"
+                            Content="Cancel"
+                            Style="{StaticResource BaseInternalMessageEx.Button}"
+                            Visibility="Collapsed">
+                        </local:ButtonEx>
+
+                        <local:ButtonEx
+                            x:Name="hideButton"
+                            Content="Hide"
+                            Style="{StaticResource BaseInternalMessageEx.Button}"
+                            Visibility="Collapsed">
+                        </local:ButtonEx>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+        <ControlTemplate.Triggers>
+
+            <!-- OK Button. -->
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.Ok}">
+                <Setter Property="Visibility" TargetName="okButton" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.OkCancel}">
+                <Setter Property="Visibility" TargetName="okButton" Value="Visible"/>
+            </Trigger>
+
+            <!-- YES Button. -->
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.YesNo}">
+                <Setter Property="Visibility" TargetName="yesButton" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.YesNoCancel}">
+                <Setter Property="Visibility" TargetName="yesButton" Value="Visible"/>
+            </Trigger>
+            
+            <!-- NO Button. -->
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.YesNo}">
+                <Setter Property="Visibility" TargetName="noButton" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.YesNoCancel}">
+                <Setter Property="Visibility" TargetName="noButton" Value="Visible"/>
+            </Trigger>
+
+            <!-- CANCEL Button. -->
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.OkCancel}">
+                <Setter Property="Visibility" TargetName="cancelButton" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="Buttons" Value="{x:Static static:InternalMessageButtons.YesNoCancel}">
+                <Setter Property="Visibility" TargetName="cancelButton" Value="Visible"/>
+            </Trigger>
+
+            <!-- HIDE Button. -->
+            <Trigger Property="AllowHide" Value="True">
+                <Setter Property="Visibility" TargetName="hideButton" Value="Visible"/>
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="BaseInternalMessageExStyle" TargetType="{x:Type im:BaseInternalMessageEx}">
+        <Setter Property="Background" Value="{StaticResource BaseInternalMessageEx.Background}"/>
+        <Setter Property="Foreground" Value="{StaticResource BaseInternalMessageEx.Foreground}"/>
+        <Setter Property="Template" Value="{StaticResource BaseInternalMessageEx.ControlTemplate}"/>
+        <Setter Property="Title" Value="Message Title"/>
+    </Style>
+
+</ResourceDictionary>

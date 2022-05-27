@@ -1,0 +1,132 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.TextBlocksPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- STYLES -->
+            <Style TargetType="{x:Type controlsex:MarqueeTextBlockEx}">
+                <Setter Property="Background" Value="#FFE0E0E0"/>
+                <Setter Property="BorderBrush" Value="#FFC0C0C0"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="Margin" Value="0,0,0,8"/>
+                
+                <Setter Property="MarqueeBouncing" Value="False"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:TextBlockEx}">
+                <Setter Property="Background" Value="#FFE0E0E0"/>
+                <Setter Property="BorderBrush" Value="#FFC0C0C0"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="Margin" Value="0,0,0,8"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <controlsex:ScrollViewerEx>
+
+        <StackPanel
+            HorizontalAlignment="Left"
+            Margin="8"
+            Orientation="Vertical">
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Header1}"
+                Text="TextBlockEx"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of TextBlockEx component with diffrent configuration."/>
+
+            <controlsex:TextBlockEx
+                Text="This is example of static TextBoxEx component."/>
+
+            <controlsex:TextBlockEx
+                IsEnabled="False"
+                Text="This is example of static disabled TextBoxEx component."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of Marquee TextBlockEx component with diffrent configuration."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Marquee from right outside to left outside"/>
+
+            <controlsex:MarqueeTextBlockEx
+                Text="This is example of MarqueeTextBoxEx component."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Marquee from right inside to left outside"/>
+
+            <controlsex:MarqueeTextBlockEx
+                MarqueeStartPosition="RightInside"
+                Text="This is example of MarqueeTextBoxEx component."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Marquee from left inside to left outside"/>
+
+            <controlsex:MarqueeTextBlockEx
+                MarqueeStartPosition="LeftInside"
+                Text="This is example of MarqueeTextBoxEx component."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Marquee from right to left to right"/>
+
+            <controlsex:MarqueeTextBlockEx
+                MarqueeBouncing="True"
+                MarqueeStartPosition="RightInside"
+                MarqueeEndPosition="LeftInside"
+                Text="This is example of MarqueeTextBoxEx component."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Marquee from left to right to left"/>
+
+            <controlsex:MarqueeTextBlockEx
+                MarqueeBouncing="True"
+                MarqueeStartPosition="LeftInside"
+                MarqueeEndPosition="RightInside"
+                Text="This is example of MarqueeTextBoxEx component."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Marquee from left outside to right outside"/>
+
+            <controlsex:MarqueeTextBlockEx
+                MarqueeStartPosition="LeftOutside"
+                MarqueeEndPosition="RightOutside"
+                Text="This is example of MarqueeTextBoxEx component."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Marquee from left inside to right outside"/>
+
+            <controlsex:MarqueeTextBlockEx
+                MarqueeStartPosition="LeftInside"
+                MarqueeEndPosition="RightOutside"
+                Text="This is example of MarqueeTextBoxEx component."/>
+
+        </StackPanel>
+        
+    </controlsex:ScrollViewerEx>
+
+</Page>

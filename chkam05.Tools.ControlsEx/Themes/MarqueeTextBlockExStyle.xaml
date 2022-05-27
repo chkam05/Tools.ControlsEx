@@ -1,0 +1,99 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
+
+    <converters:MarqueeStartPositionConverter x:Key="StartPositionConverter"/>
+    <converters:MarqueeEndPositionConverter x:Key="EndPositionConverter"/>
+
+    <ControlTemplate x:Key="MarqueeTextBlockEx.ControlTemplate" TargetType="{x:Type local:MarqueeTextBlockEx}">
+        <Border
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}">
+
+            <Grid
+                x:Name="grid"
+                Margin="{TemplateBinding Padding}">
+                
+                <Canvas
+                    x:Name="contentCanvas"
+                    ClipToBounds="True"
+                    Height="{Binding ActualHeight, ElementName=contentText}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Width="{Binding ActualWidth, ElementName=grid}">
+
+                    <TextBlock
+                        x:Name="contentText"
+                        Canvas.Left="{Binding TextPosition, RelativeSource={RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}}"
+                        Foreground="{TemplateBinding Foreground}"
+                        Height="Auto"
+                        HorizontalAlignment="Left"
+                        Text="{TemplateBinding Text}"
+                        VerticalAlignment="Center"
+                        Width="Auto">
+
+                        <TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="TextBlock.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard
+                                        Storyboard.TargetName="contentText">
+
+                                        <DoubleAnimation
+                                            BeginTime="0:0:0"
+                                            Storyboard.TargetProperty="(Canvas.Left)"
+                                            AutoReverse="{Binding MarqueeBouncing, RelativeSource={RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}}"
+                                            Duration="{Binding MarqueeDuration, RelativeSource={RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}}"
+                                            RepeatBehavior="Forever">
+
+                                            <DoubleAnimation.From>
+                                                <MultiBinding Converter="{StaticResource StartPositionConverter}">
+                                                    <Binding Path="MarqueeStartPosition" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
+                                                    <Binding ElementName="border" Path="ActualWidth"/>
+                                                    <Binding ElementName="contentText" Path="ActualWidth"/>
+                                                    <Binding Path="WaitForText" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
+                                                </MultiBinding>
+                                            </DoubleAnimation.From>
+
+                                            <DoubleAnimation.To>
+                                                <MultiBinding Converter="{StaticResource EndPositionConverter}">
+                                                    <Binding Path="MarqueeEndPosition" RelativeSource="{RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
+                                                    <Binding ElementName="border" Path="ActualWidth"/>
+                                                    <Binding ElementName="contentText" Path="ActualWidth"/>
+                                                    <Binding Path="WaitForText" RelativeSource="{RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
+                                                </MultiBinding>
+                                            </DoubleAnimation.To>
+
+                                        </DoubleAnimation>
+
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBlock.Triggers>
+
+                    </TextBlock>
+
+                </Canvas>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+
+            <!-- Is Disabled -->
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.56"/>
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="MarqueeTextBlockExStyle" TargetType="{x:Type local:MarqueeTextBlockEx}">
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Template" Value="{StaticResource MarqueeTextBlockEx.ControlTemplate}"/>
+        <Setter Property="Width" Value="Auto"/>
+    </Style>
+
+</ResourceDictionary>

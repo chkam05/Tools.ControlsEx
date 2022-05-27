@@ -1,0 +1,103 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.ButtonsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- STYLES -->
+            <Style TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <controlsex:ScrollViewerEx>
+
+        <StackPanel
+            HorizontalAlignment="Left"
+            Margin="8"
+            Orientation="Vertical">
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Header1}"
+                Text="ButtonEx"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of ButtonEx component with icons and diffrent Content Place configuration."/>
+
+            <StackPanel
+                Orientation="Horizontal">
+
+                <controlsex:ButtonEx
+                    Content="CLICK ME"
+                    IconKind="CursorDefaultClick"/>
+
+                <controlsex:ButtonEx
+                    Content="CLICK ME"
+                    ContentSide="Left"
+                    IconKind="CursorDefaultClick"/>
+
+                <controlsex:ButtonEx
+                    Content="CLICK ME"
+                    ContentSide="Bottom"
+                    IconKind="CursorDefaultClick"/>
+
+                <controlsex:ButtonEx
+                    Content="CLICK ME"
+                    ContentSide="Top"
+                    IconKind="CursorDefaultClick"/>
+
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of ButtonEx component with and without icons."/>
+
+            <StackPanel
+                Orientation="Horizontal">
+
+                <controlsex:ButtonEx
+                    Content="CLICK ME"/>
+
+                <controlsex:ButtonEx
+                    IconKind="CursorDefaultClick"/>
+
+            </StackPanel>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of disabled ButtonEx component with and without icons."/>
+
+            <StackPanel
+                Orientation="Horizontal">
+
+                <controlsex:ButtonEx
+                    Content="CLICK ME"
+                    IsEnabled="False"/>
+
+                <controlsex:ButtonEx
+                    IconKind="CursorDefaultClick"
+                    IsEnabled="False"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+    </controlsex:ScrollViewerEx>
+
+</Page>

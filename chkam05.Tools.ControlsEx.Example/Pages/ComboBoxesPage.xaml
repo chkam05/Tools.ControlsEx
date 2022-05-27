@@ -1,0 +1,76 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.ComboBoxesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    mc:Ignorable="d"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    d:DesignWidth="800">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- STYLES -->
+            <Style TargetType="{x:Type controlsex:ComboBoxEx}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <controlsex:ScrollViewerEx>
+
+        <StackPanel
+            HorizontalAlignment="Left"
+            Margin="8"
+            Orientation="Vertical">
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Header1}"
+                Text="ComboBoxEx &amp; ComboBoxItemEx"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of ComboBoxEx component with diffrent configuration."/>
+
+            <controlsex:ComboBoxEx
+                ItemsSource="{Binding ComboBoxDataContext}"
+                SelectedIndex="32"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of editable ComboBoxEx component."/>
+
+            <controlsex:ComboBoxEx
+                ItemsSource="{Binding ComboBoxDataContext}"
+                IsEditable="True"
+                SelectedIndex="14"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of disabled default and editable ComboBoxEx component."/>
+
+            <controlsex:ComboBoxEx
+                ItemsSource="{Binding ComboBoxDataContext}"
+                IsEnabled="False"
+                SelectedIndex="13"/>
+
+            <controlsex:ComboBoxEx
+                ItemsSource="{Binding ComboBoxDataContext}"
+                IsEditable="True"
+                IsEnabled="False"
+                SelectedIndex="35"/>
+
+        </StackPanel>
+
+    </controlsex:ScrollViewerEx>
+    
+</Page>

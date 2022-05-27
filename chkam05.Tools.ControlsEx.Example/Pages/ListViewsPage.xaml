@@ -1,0 +1,94 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.ListViewsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    mc:Ignorable="d" 
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    d:DesignWidth="800">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ListViewExStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- STYLES -->
+            <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type controlsex:ListViewEx}">
+                <Setter Property="Background" Value="#FFE0E0E0"/>
+                <Setter Property="BorderBrush" Value="#FFC0C0C0"/>
+                <Setter Property="Height" Value="160"/>
+                <Setter Property="Margin" Value="0,0,0,16"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <controlsex:ScrollViewerEx>
+
+        <StackPanel
+            HorizontalAlignment="Left"
+            Margin="8"
+            Orientation="Vertical">
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Header1}"
+                Text="ListViewEx &amp; ListViewItemEx"/>
+
+            <TextBlock
+                Margin="0,4,0,16"
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of ListViewEx component with diffrent ListViewItemEx configuration."/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="ListView"/>
+
+            <controlsex:ListViewEx
+                ItemsSource="{Binding ListViewDataContext}"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="GridView"/>
+
+            <controlsex:ListViewEx
+                ItemsSource="{Binding GridViewDataContext}">
+
+                <controlsex:ListViewEx.View>
+                    <GridView
+                        ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                        <GridView.Columns>
+                            <GridViewColumn Header="Country" Width="128">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Capital" Width="128">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Capital}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </controlsex:ListViewEx.View>
+            </controlsex:ListViewEx>
+
+        </StackPanel>
+
+    </controlsex:ScrollViewerEx>
+    
+</Page>

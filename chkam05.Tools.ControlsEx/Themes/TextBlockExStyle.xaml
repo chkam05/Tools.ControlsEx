@@ -1,0 +1,40 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
+
+    <ControlTemplate x:Key="TextBlockEx.ControlTemplate" TargetType="{x:Type local:TextBlockEx}">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}">
+            
+            <TextBlock
+                Foreground="{TemplateBinding Foreground}"
+                Height="Auto"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                Margin="{TemplateBinding Padding}"
+                Text="{TemplateBinding Text}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                Width="Auto"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            
+            <!-- Is Disabled -->
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.56"/>
+            </Trigger>
+            
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="TextBlockExStyle" TargetType="{x:Type local:TextBlockEx}">
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Template" Value="{StaticResource TextBlockEx.ControlTemplate}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Width" Value="Auto"/>
+    </Style>
+    
+</ResourceDictionary>

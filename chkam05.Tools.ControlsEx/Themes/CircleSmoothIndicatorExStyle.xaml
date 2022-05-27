@@ -1,0 +1,76 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:indicators="clr-namespace:chkam05.Tools.ControlsEx.Indicators">
+
+    <ControlTemplate x:Key="CircleSmoothIndicatorEx.ControlTemplate" TargetType="{x:Type indicators:CircleSmoothIndicatorEx}">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}">
+
+            <Grid
+                Height="{TemplateBinding Height}"
+                HorizontalAlignment="Stretch"
+                Margin="{TemplateBinding Padding}"
+                VerticalAlignment="Stretch"
+                Width="{TemplateBinding Width}">
+
+                <Path
+                    x:Name="path"
+                    Fill="{TemplateBinding Fill}"
+                    Stroke="{TemplateBinding Pen}"
+                    StrokeThickness="{TemplateBinding PenThickness}">
+                    
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathGeometry.Figures>
+                                <PathFigureCollection>
+                                    <PathFigure
+                                        StartPoint="{Binding OuterArcStartPoint, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                        IsClosed="True">
+
+                                        <PathFigure.Segments>
+                                            <PathSegmentCollection>
+                                                <ArcSegment
+                                                    Size="{Binding OuterArcSize, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    RotationAngle="{Binding OuterArcRotationAngle, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    IsLargeArc="{Binding OuterArcLarge, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    SweepDirection="{Binding OuterArcSweepDirection, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    Point="{Binding OuterArcEndPoint, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"/>
+
+                                                <LineSegment
+                                                    Point="{Binding InnerArcStartPoint, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"/>
+
+                                                <ArcSegment
+                                                    Size="{Binding InnerArcSize, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    RotationAngle="{Binding InnerArcRotationAngle, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    IsLargeArc="{Binding InnerArcLarge, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    SweepDirection="{Binding InnerArcSweepDirection, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"
+                                                    Point="{Binding InnerArcEndPoint, RelativeSource={RelativeSource AncestorType={x:Type indicators:CircleSmoothIndicatorEx}}}"/>
+
+                                            </PathSegmentCollection>
+                                        </PathFigure.Segments>
+                                    </PathFigure>
+                                </PathFigureCollection>
+                            </PathGeometry.Figures>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="CircleSmoothIndicatorExStyle" TargetType="{x:Type indicators:CircleSmoothIndicatorEx}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template" Value="{StaticResource CircleSmoothIndicatorEx.ControlTemplate}"/>
+        <Setter Property="Width" Value="32"/>
+    </Style>
+    
+</ResourceDictionary>

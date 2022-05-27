@@ -1,0 +1,280 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.ContextMenusPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- STYLES -->
+            <Style TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controlsex:MenuEx
+            Grid.Row="0">
+
+            <controlsex:MenuItemEx
+                Header="Checkable"
+                IsCheckable="True"/>
+
+            <controlsex:MenuItemEx
+                Header="Default"/>
+
+            <controlsex:MenuItemEx
+                Header="Icon">
+
+                <controlsex:MenuItemEx.Icon>
+                    <Image Source="/Resources/Icons/Windows_32.png"/>
+                </controlsex:MenuItemEx.Icon>
+
+            </controlsex:MenuItemEx>
+
+            <controlsex:MenuItemEx
+                Header="Pack Icon"
+                IconKind="MicrosoftWindows"/>
+
+            <controlsex:MenuItemEx
+                Header="SubMenu">
+
+                <controlsex:MenuItemEx
+                    Header="Default"
+                    InputGestureText="Ctrl+D"/>
+
+                <controlsex:MenuItemEx
+                    Header="Icon"
+                    InputGestureText="Ctrl+I">
+
+                    <controlsex:MenuItemEx.Icon>
+                        <Image Source="/Resources/Icons/Windows_32.png"/>
+                    </controlsex:MenuItemEx.Icon>
+
+                </controlsex:MenuItemEx>
+
+                <controlsex:MenuItemEx
+                    Header="Pack Icon"
+                    IconKind="MicrosoftWindows"
+                    InputGestureText="Ctrl+P"/>
+
+                <controlsex:MenuItemEx
+                    Header="Sub Menu"
+                    InputGestureText="Ctrl+S">
+
+                    <controlsex:MenuItemEx
+                        Header="First SubItem"
+                        IconKind="Numeric1"/>
+
+                    <controlsex:MenuItemEx
+                        Header="Second SubItem"
+                        IconKind="Numeric2"/>
+
+                    <controlsex:MenuItemEx
+                        Header="Third SubItem"
+                        IconKind="Numeric3"/>
+
+                </controlsex:MenuItemEx>
+
+            </controlsex:MenuItemEx>
+
+            <controlsex:MenuItemEx
+                Header="SubMenu Checkable"
+                IconKind="CheckBoxesOutline">
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="Bordered"
+                    Header="Checkable Bordered"
+                    IsCheckable="True"/>
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="CircleBordered"
+                    Header="Checkable Circle Bordered"
+                    IsCheckable="True"/>
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="CircleFilled"
+                    Header="Checkable Circle Filled"
+                    IsCheckable="True"/>
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="Filled"
+                    Header="Checkable Filled"
+                    IsCheckable="True"/>
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="Mixed"
+                    Header="Checkable Mixed"
+                    IsCheckable="True"/>
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="MixedCircle"
+                    Header="Checkable Mixed Circle"
+                    IsCheckable="True"/>
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="MixedCircleReverse"
+                    Header="Checkable Mixed Circle Reverse"
+                    IsCheckable="True"/>
+
+                <controlsex:MenuItemEx
+                    CheckBoxStyle="MixedCircleReverse"
+                    Header="Checkable Mixed Reverse"
+                    IsCheckable="True"/>
+
+            </controlsex:MenuItemEx>
+
+        </controlsex:MenuEx>
+
+        <controlsex:ScrollViewerEx
+            Grid.Row="1">
+
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Text="MenuEx &amp; MenuItemEx"/>
+
+                <TextBlock
+                    Margin="0,4,0,16"
+                    Style="{StaticResource TextBlockStyle.Content}"
+                    Text="Examples of MenuEx component with diffrent MenuItemEx components configuration."/>
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Text="ContextMenuEx &amp; ContextMenuItemEx"/>
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Content}"
+                    Text="Examples of ContextMenuEx component with diffrent ContextMenuItemEx components configuration."/>
+
+                <controlsex:ButtonEx
+                    Content="Click to show ContextMenu"
+                    PreviewMouseDown="OpenContextMenu_Click">
+
+                    <controlsex:ButtonEx.ContextMenu>
+                        <controlsex:ContextMenuEx>
+                            <controlsex:ContextMenuEx.Items>
+
+                                <controlsex:ContextMenuItemEx
+                                    Header="Default"
+                                    InputGestureText="Ctrl+D"/>
+
+                                <controlsex:ContextMenuItemEx
+                                    Header="Icon"
+                                    InputGestureText="Ctrl+I">
+
+                                    <controlsex:ContextMenuItemEx.Icon>
+                                        <Image Source="/Resources/Icons/Windows_32.png"/>
+                                    </controlsex:ContextMenuItemEx.Icon>
+
+                                </controlsex:ContextMenuItemEx>
+
+                                <controlsex:ContextMenuItemEx
+                                    Header="No Shortcut"/>
+
+                                <controlsex:ContextMenuItemEx
+                                    Header="Pack Icon"
+                                    IconKind="MicrosoftWindows"
+                                    InputGestureText="Ctrl+P"/>
+
+                                <controlsex:ContextMenuItemEx
+                                    Header="Sub Menu"
+                                    InputGestureText="Ctrl+S">
+
+                                    <controlsex:ContextMenuItemEx
+                                        Header="First SubItem"
+                                        IconKind="Numeric1"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        Header="Second SubItem"
+                                        IconKind="Numeric2"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        Header="Third SubItem"
+                                        IconKind="Numeric3"/>
+
+                                </controlsex:ContextMenuItemEx>
+
+                                <controlsex:ContextMenuItemEx
+                                    Header="Sub Menu Checkable"
+                                    IconKind="CheckBoxesOutline"
+                                    InputGestureText="Ctrl+C">
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="Bordered"
+                                        Header="Checkable Bordered"
+                                        IsCheckable="True"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="CircleBordered"
+                                        Header="Checkable Circle Bordered"
+                                        IsCheckable="True"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="CircleFilled"
+                                        Header="Checkable Circle Filled"
+                                        IsCheckable="True"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="Filled"
+                                        Header="Checkable Filled"
+                                        IsCheckable="True"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="Mixed"
+                                        Header="Checkable Mixed"
+                                        IsCheckable="True"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="MixedCircle"
+                                        Header="Checkable Mixed Circle"
+                                        IsCheckable="True"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="MixedCircleReverse"
+                                        Header="Checkable Mixed Circle Reverse"
+                                        IsCheckable="True"/>
+
+                                    <controlsex:ContextMenuItemEx
+                                        CheckBoxStyle="MixedReverse"
+                                        Header="Checkable Mixed Reverse"
+                                        IsCheckable="True"/>
+
+                                </controlsex:ContextMenuItemEx>
+
+                            </controlsex:ContextMenuEx.Items>
+                        </controlsex:ContextMenuEx>
+                    </controlsex:ButtonEx.ContextMenu>
+
+                </controlsex:ButtonEx>
+
+            </StackPanel>
+
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+
+</Page>

@@ -1,32 +1,60 @@
-# DotNetTools.ExtendedControls
+# chkam05.Tools.ControlsEx
 Extended controls for Windows Presentation Foundation environment
 
-![control previes (Images/screen_1.jpg)](Images/screen_1.jpg)
+## List of Controls:
 
-## List of controls:
+- **[ButtonEx](Doc/ButtonEx.md)** 
+- **[CheckBoxEx](Doc/CheckBoxEx.md)** 
+- **[ComboBoxEx](Doc/ComboBoxEx.md)** 
+- **[ComboBoxItemEx](Doc/ComboBoxEx.md)** 
+- **[ContextMenuEx](Doc/ContextMenuEx.md)** 
+- **[ContextMenuItemEx](Doc/ContextMenuEx.md)** 
+- **[ExpanderEx](Doc/ExpanderEx.md)** 
+- **[ListViewEx](Doc/ListViewEx.md)** 
+- **[ListViewItemEx](Doc/ListViewEx.md)** 
+- **[MarqueeTextBlockEx](Doc/TextBlockEx.md)** 
+- **[MenuEx](Doc/MenuEx.md)** 
+- **[MenuItemEx](Doc/MenuEx.md)** 
+- **[ScrollBarEx](Doc/ScrollBarEx.md)** 
+- **[ScrollViewerEx](Doc/ScrollViewerEx.md)** 
+- **[SliderEx](Doc/SliderEx.md)** 
+- **[SwitcherEx](Doc/SwitcherEx.md)** 
+- **[TabControlEx](Doc/TabControlEx.md)** 
+- **[TabItemEx](Doc/TabControlEx.md)** 
+- **[TextBlockEx](Doc/TextBlockEx.md)** 
+- **[TextBoxEx](Doc/TextBoxEx.md)** 
+- **[UpDownTextBoxEx](Doc/UpDownTextBoxEx.md)** 
 
-- **[ExtendedButton](Doc/Controls/ExtendedButton.md)** 
-- **[ExtendedButtonIcon](Doc/Controls/ExtendedButtonIcon.md)** (*button with PackIcon from MaterialDesignThemes*) 
-- **[ExtendedCheckBox](Doc/Controls/ExtendedCheckBox.md)** 
-- **[ExtendedComboBox](Doc/Controls/ExtendedComboBox.md)** 
-- **[ExtendedContextMenu](Doc/Controls/ExtendedContextMenu.md)** 
-- **[ExtendedContextMenuItem](Doc/Controls/ExtendedContextMenuItem.md)** 
-- **[ExtendedContextMenuItemIcon](Doc/Controls/ExtendedContextMenuItemIcon.md)** (*context menu item with PackIcon from MaterialDesignThemes*) 
-- **[ExtendedPasswordBox](Doc/Controls/ExtendedPasswordBox.md)** 
-- **[ExtendedScrollBar](Doc/Controls/ExtendedScrollBar.md)** 
-- **[ExtendedSlider](Doc/Controls/ExtendedSlider.md)** 
-- **[ExtendedTextBox](Doc/Controls/ExtendedTextBox.md)** 
+## List of Internal Messages Controls:
 
-## List of additional classes (data structures):
+- **[InternalMessagesEx](Doc/InternalMessagesEx.md)** 
 
-* **[Data.HslColor](Doc/Classes/HlsColor.md)** 
-* **[Data.Static.IconPosition](Doc/Classes/IconPosition.md)** 
-* **[Data.Static.InteractionBehaviour](Doc/Classes/InteractionBehaviour.md)** 
-* **[Data.EventsModels.TextChangeEventArgs](Doc/Classes/TextChangeEventArgs.md)** 
+### Base Controls:
+
+- **[BaseAwaitInternalMessageEx](Doc/InternalMessagesEx.md)** 
+- **[BaseInternalMessageEx](Doc/InternalMessagesEx.md)** 
+- **[BaseProgressInternalMessageEx](Doc/InternalMessagesEx.md)** 
+
+### Interfaces:
+
+- **[IProgressInternalMessageEx](Doc/InternalMessagesEx.md)** 
+
+### Implemented Default Controls:
+
+- **[AwaitInternalMessageEx](Doc/InternalMessagesEx.md)** 
+- **[InternalMessageEx](Doc/InternalMessagesEx.md)** 
+- **[ProgressInternalMessageEx](Doc/InternalMessagesEx.md)** 
+
+## List of Additional Controls:
+
+- **[BaseIndicatorEx](Doc/IndicatorEx.md)** 
+- **[CircleSmoothIndicatorEx](Doc/IndicatorEx.md)** 
 
 ## List of utilities:
 
-* **[BrushColorRetriever](Doc/Utils/BrushColorRetriever.md)**
-* **[ColorConverter](Doc/Utils/ColorConverter.md)**
-* **[ColorShader](Doc/Utils/ColorShader.md)**
-* **[NumericTextValidator](Doc/Utils/NumericTextValidator.md)**
+- **[DispatcherInvokerEx](Doc/DispatcherInvokerEx.md)** 
+- **[MathUtilitiesEx](Doc/MathUtilitiesEx.md)** 
+
+# Related repositories 
+
+materialdesigninxaml: https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit 

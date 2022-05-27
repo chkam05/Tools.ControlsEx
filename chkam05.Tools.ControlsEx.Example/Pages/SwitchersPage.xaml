@@ -1,0 +1,66 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.SwitchersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- STYLES -->
+            <Style TargetType="{x:Type controlsex:SwitcherEx}">
+                <Setter Property="Margin" Value="0,0,0,8"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <controlsex:ScrollViewerEx>
+
+        <StackPanel
+            HorizontalAlignment="Left"
+            Margin="8"
+            Orientation="Vertical">
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Header1}"
+                Text="SwitcherEx"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of SwitcherEx component with diffrent configuration."/>
+
+            <controlsex:SwitcherEx
+                Content="Filled style"/>
+
+            <controlsex:SwitcherEx
+                Content="Outlined style"
+                CheckMarkOutline="True"/>
+
+            <TextBlock
+                Style="{StaticResource TextBlockStyle.Content}"
+                Text="Examples of disabled SwitcherEx component with diffrent configuration."/>
+
+            <controlsex:SwitcherEx
+                Content="Filled style"
+                IsEnabled="False"/>
+
+            <controlsex:SwitcherEx
+                Content="Outlined style"
+                CheckMarkOutline="True"
+                IsEnabled="False"/>
+
+        </StackPanel>
+        
+    </controlsex:ScrollViewerEx>
+
+</Page>

@@ -1,0 +1,30 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
+
+    <SolidColorBrush x:Key="MenuEx.Background">#E0E0E0</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuEx.Foreground">Black</SolidColorBrush>
+
+    <ControlTemplate x:Key="MenuEx.ControlTemplate" TargetType="{x:Type local:MenuEx}">
+        <Border
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            Background="{TemplateBinding Background}"
+            Padding="{TemplateBinding Padding}"
+            SnapsToDevicePixels="true">
+            
+            <ItemsPresenter
+                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+            
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="MenuExStyle" TargetType="{x:Type local:MenuEx}">
+        <Setter Property="Background" Value="{StaticResource MenuEx.Background}"/>
+        <Setter Property="Foreground" Value="{StaticResource MenuEx.Foreground}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template" Value="{StaticResource MenuEx.ControlTemplate}"/>
+    </Style>
+
+</ResourceDictionary>

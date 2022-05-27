@@ -1,0 +1,201 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.InternalMessagesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    mc:Ignorable="d"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    d:DesignWidth="800">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- STYLES -->
+            <Style TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+
+            <Style x:Key="HiddenMessageShowButtonExStyle" TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="4"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding MessageHidden, RelativeSource={RelativeSource AncestorType={x:Type local:InternalMessagesPage}}}" Value="False">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controlsex:ScrollViewerEx
+            Grid.Row="0">
+
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Text="InternalMessagesEx &amp; InternalMessageEx"/>
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Content}"
+                    Text="Examples of InternalMessagesEx component with controls for InternalMessageEx components."/>
+
+                <StackPanel
+                    Margin="0,0,0,16"
+                    Orientation="Horizontal">
+
+                    <controlsex:ButtonEx
+                        Content="Default"
+                        IconKind="InfoCircle"
+                        Click="InfoIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Question"
+                        IconKind="QuestionMarkCircle"
+                        Click="QuestionIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Alert"
+                        IconKind="Alert"
+                        Click="AlertIMButtonEx_Click"/>
+                    
+                    <controlsex:ButtonEx
+                        Content="Error"
+                        IconKind="Error"
+                        Click="ErrorIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Hideable"
+                        IconKind="Hide"
+                        Click="HideableIMButtonEx_Click"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Text="ProgressInternalMessageEx"/>
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Content}"
+                    Text="Examples of ProgressInternalMessageEx components with diffrent configuration."/>
+
+                <StackPanel
+                    Margin="0,0,0,16"
+                    Orientation="Horizontal">
+
+                    <controlsex:ButtonEx
+                        Content="Default"
+                        IconKind="ProgressClock"
+                        Click="ProgressIMButtonEx_Click"/>
+                    
+                    <controlsex:ButtonEx
+                        Content="Cancelable"
+                        IconKind="ProgressClose"
+                        Click="CancelableProgressIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Hideable"
+                        IconKind="ProgressStar"
+                        Click="HideableProgressIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Waiting"
+                        IconKind="ProgressClock"
+                        Click="KeepAliveProgressIMButtonEx_Click"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Text="AwaitInternalMessageEx"/>
+
+                <TextBlock
+                    Style="{StaticResource TextBlockStyle.Content}"
+                    Text="Examples of AwaitInternalMessageEx components with diffrent configuration."/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <controlsex:ButtonEx
+                        Content="Default"
+                        IconKind="ProgressClock"
+                        Click="AwaitIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Cancelable"
+                        IconKind="ProgressClose"
+                        Click="CancelableAwaitIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Hideable"
+                        IconKind="ProgressStar"
+                        Click="HideableAwaitIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Waiting"
+                        IconKind="ProgressClock"
+                        Click="KeepAliveAwaitIMButtonEx_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </controlsex:ScrollViewerEx>
+
+        <Grid
+            Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                Margin="4,0"
+                Orientation="Horizontal">
+
+                <controlsex:TextBlockEx
+                    Text="Last message result: "/>
+
+                <controlsex:TextBlockEx
+                    FontWeight="Bold"
+                    Text="{Binding LastResult}"/>
+
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="1"
+                Orientation="Horizontal">
+
+                <controlsex:ButtonEx
+                    Content="Show hidden"
+                    Style="{StaticResource HiddenMessageShowButtonExStyle}"
+                    Click="ShowMessageButtonEx_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+
+</Page>
