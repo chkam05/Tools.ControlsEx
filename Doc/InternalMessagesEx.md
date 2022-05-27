@@ -118,7 +118,7 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages.IProgressInternalMessageEx
 ### Methods: 
 
 | Type  | Name                 | Parameters                        | Description |
-|:---- :|:--------------------:|:---------------------------------:|:------------|
+|:-----:|:--------------------:|:---------------------------------:|:------------|
 | void  | InvokeProgressChange | double progress                   | Method for send progress update to user interface.  |
 | void  | InvokeFinish         | InternalMessageResult forceResult | Ivoke finish progress.  |
 
@@ -162,7 +162,7 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages.BaseAwaitInternalMessageEx
 ### Additional Methods: 
 
 | Type  | Name                 | Parameters                        | Description |
-|:---- :|:--------------------:|:---------------------------------:|:------------|
+|:-----:|:--------------------:|:---------------------------------:|:------------|
 | void  | InvokeProgressChange | double progress                   | Method for send progress update to user interface.  |
 | void  | InvokeFinish         | InternalMessageResult forceResult | Ivoke finish progress.  |
 
@@ -199,7 +199,7 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages.BaseProgressInternalMessag
 ### Additional Methods: 
 
 | Type  | Name                 | Parameters                        | Description |
-|:---- :|:--------------------:|:---------------------------------:|:------------|
+|:-----:|:--------------------:|:---------------------------------:|:------------|
 | void  | InvokeProgressChange | double progress                   | Method for send progress update to user interface.  |
 | void  | InvokeFinish         | InternalMessageResult forceResult | Ivoke finish progress.  |
 
