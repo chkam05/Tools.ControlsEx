@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>chkam05.Tools.ControlsEx</id>
+    <version>2.0.0</version>
+    <title>ControlsEx</title>
+    <authors>Kamil Karpinski</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/chkam05/Tools.ControlsEx</projectUrl>
+    <description>Library with Extended Controls for WPF</description>
+    <releaseNotes>* Recreated Extended Controls from beginning. 
+	* An Extended Frame component has been implemented to support internal messages. 
+	* Implemented Internal Messages. 
+	* Implemented Indicators. </releaseNotes>
+    <copyright>Copyright © Kamil Karpiński 2022</copyright>
+    <tags>chkam05 Tools Controls ControleEx</tags>
+  </metadata>
+</package>
