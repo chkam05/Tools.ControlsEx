@@ -1,5 +1,6 @@
 # chkam05.Tools.ControlsEx
-Extended controls for Windows Presentation Foundation environment
+Extended controls for Windows Presentation Foundation environment  
+Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05.Tools.ControlsEx/)  
 
 ## List of Controls:
 
