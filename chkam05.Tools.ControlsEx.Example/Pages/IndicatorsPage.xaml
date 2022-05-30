@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=ControlsEx"
-    xmlns:indicators="clr-namespace:chkam05.Tools.ControlsEx.Indicators;assembly=ControlsEx"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:indicators="clr-namespace:chkam05.Tools.ControlsEx.Indicators;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     mc:Ignorable="d"
     
