@@ -16,5 +16,11 @@
 	* Implemented Indicators. </releaseNotes>
     <copyright>Copyright © Kamil Karpiński 2022</copyright>
     <tags>chkam05 Tools Controls ControleEx</tags>
+	<readme>docs\README.md</readme>
   </metadata>
+  <files>
+    <file src="..\README.md" target="docs\" />
+    <file src="..\Doc\*" target="docs\Doc\" />
+    <file src="..\Images\*" target="docs\Images\" />
+  </files>
 </package>
