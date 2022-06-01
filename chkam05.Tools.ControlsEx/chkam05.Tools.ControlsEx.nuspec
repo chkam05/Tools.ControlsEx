@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>chkam05.Tools.ControlsEx</id>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <title>ControlsEx</title>
     <authors>Kamil Karpinski</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -10,10 +10,7 @@
     <!-- <icon>icon.png</icon> -->
     <projectUrl>https://github.com/chkam05/Tools.ControlsEx</projectUrl>
     <description>Library with Extended Controls for WPF</description>
-    <releaseNotes>* Recreated Extended Controls from beginning. 
-	* An Extended Frame component has been implemented to support internal messages. 
-	* Implemented Internal Messages. 
-	* Implemented Indicators. </releaseNotes>
+    <releaseNotes>* Fixed problem with "Could not load file or assembly ControlsEx, Culture=neutral" </releaseNotes>
     <copyright>Copyright © Kamil Karpiński 2022</copyright>
     <tags>chkam05 Tools Controls ControleEx</tags>
 	<readme>docs\README.md</readme>
