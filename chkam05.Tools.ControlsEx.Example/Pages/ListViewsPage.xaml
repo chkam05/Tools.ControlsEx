@@ -15,8 +15,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ListViewExStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!-- STYLES -->

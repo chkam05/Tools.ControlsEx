@@ -4,9 +4,9 @@
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ListViewItemExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <SolidColorBrush x:Key="ListViewEx.Foreground" Color="Black"/>

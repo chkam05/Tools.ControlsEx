@@ -6,38 +6,38 @@
     xmlns:indicators="clr-namespace:chkam05.Tools.ControlsEx.Indicators">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ButtonExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/CheckBoxExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ComboBoxExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ComboBoxItemExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ContextMenuExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ContextMenuItemExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ExpanderExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/InternalMessagesExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ListViewExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ListViewItemExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/MarqueeTextBlockExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/MenuExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/MenuItemExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ScrollBarExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/SliderExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/SwitcherExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/TabControlExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/TabItemExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/TextBlockExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/TextBoxExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/UpDownTextBoxExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CheckBoxExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ExpanderExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessagesExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MarqueeTextBlockExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/SliderExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/SwitcherExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TabControlExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TabItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBlockExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBoxExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownTextBoxExStyle.xaml"/>
 
         <!-- INDICATORS -->
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/BaseIndicatorExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/CircleSmoothIndicatorExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseIndicatorExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CircleSmoothIndicatorExStyle.xaml"/>
 
         <!-- INTERNAL MESSAGES -->
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/BaseAwaitInternalMessageExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/BaseInternalMessageExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/BaseProgressInternalMessageExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseAwaitInternalMessageExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseInternalMessageExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseProgressInternalMessageExStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonExStyle}" TargetType="{x:Type local:ButtonEx}"/>

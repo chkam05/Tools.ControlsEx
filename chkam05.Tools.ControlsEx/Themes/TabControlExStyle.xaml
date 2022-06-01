@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/ControlsEx;component/Themes/TabItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TabItemExStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <converters:CornerRadiusSideConverter x:Key="CornerRadiusSideConverter"/>
