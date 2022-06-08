@@ -30,7 +30,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(HeaderBorderBrush),
             typeof(Brush),
             typeof(ExpanderEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty HeaderForegroundProperty = DependencyProperty.Register(
             nameof(HeaderForeground),

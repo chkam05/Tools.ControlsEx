@@ -17,7 +17,10 @@
     <Window.Resources>
         <ResourceDictionary>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Window}"/>
+
             <!-- DATA CONTEXTS -->
+            
             <DataTemplate x:Key="MainMenu.DataTemplate">
                 <StackPanel
                     Orientation="Horizontal">
@@ -32,6 +35,35 @@
 
                 </StackPanel>
             </DataTemplate>
+            
+            <!-- STYLES -->
+            
+            <Style x:Key="Conf_ButtonExStyle" TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="Background" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_MenuListViewItemExStyle" TargetType="{x:Type controlsex:ListViewItemEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBackground" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBorderBrush" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
 
         </ResourceDictionary>
     </Window.Resources>
@@ -43,17 +75,47 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border
+            Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+            BorderBrush="{Binding Configuration.BorderToolbarColorBrush}"
+            BorderThickness="0,0,0,1"
+            Grid.ColumnSpan="2"
+            Grid.Row="0">
+
+            <StackPanel
+                HorizontalAlignment="Right"
+                Margin="4"
+                Orientation="Horizontal">
+
+                <controlsex:ButtonEx
+                    Content="Settings"
+                    IconKind="Gear"
+                    Style="{StaticResource Conf_ButtonExStyle}"
+                    Click="SettingsButtonEx_Click"/>
+
+            </StackPanel>
+            
+        </Border>
+
         <Frame
             x:Name="ContentFrame"
             Grid.Column="1"
+            Grid.Row="1"
             NavigationUIVisibility="Hidden"/>
 
         <controlsex:ListViewEx
             x:Name="MainMenu"
-            Background="#FFE0E0E0"
-            BorderBrush="#FFC0C0C0"
+            Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+            BorderBrush="{Binding Configuration.BorderToolbarColorBrush}"
             BorderThickness="0,0,1,0"
             Grid.Column="0"
+            Grid.Row="1"
+            ItemContainerStyle="{StaticResource Conf_MenuListViewItemExStyle}"
             ItemsSource="{Binding MenuDataContext.DataContext}"
             ItemTemplate="{StaticResource MainMenu.DataTemplate}"
             SelectionChanged="MainMenu_SelectionChanged"/>

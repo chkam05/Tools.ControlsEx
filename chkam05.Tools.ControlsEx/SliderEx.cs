@@ -49,7 +49,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(TrackBarBorderBrush),
             typeof(Brush),
             typeof(SliderEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty TrackBarBorderThicknessProperty = DependencyProperty.Register(
             nameof(TrackBarBorderThickness),
@@ -83,7 +83,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ThumbBorderBrush),
             typeof(Brush),
             typeof(SliderEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty ThumbMouseOverBackgroundProperty = DependencyProperty.Register(
             nameof(ThumbMouseOverBackground),
@@ -95,7 +95,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ThumbMouseOverBorderBrush),
             typeof(Brush),
             typeof(SliderEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty ThumbDraggingBackgroundProperty = DependencyProperty.Register(
             nameof(ThumbDraggingBackground),
@@ -107,7 +107,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ThumbDraggingBorderBrush),
             typeof(Brush),
             typeof(SliderEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty ThumbBorderThicknessProperty = DependencyProperty.Register(
             nameof(ThumbBorderThickness),

@@ -30,7 +30,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(MouseOverForeground),
             typeof(Brush),
             typeof(ListViewItemEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Black)));
 
         public static readonly DependencyProperty SelectedBackgroundProperty = DependencyProperty.Register(
             nameof(SelectedBackground),
@@ -48,7 +48,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(SelectedForeground),
             typeof(Brush),
             typeof(ListViewItemEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Black)));
 
         public static readonly DependencyProperty SelectedInactiveBackgroundProperty = DependencyProperty.Register(
             nameof(SelectedInactiveBackground),
@@ -66,7 +66,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(SelectedInactiveForeground),
             typeof(Brush),
             typeof(ListViewItemEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Black)));
 
         #endregion Appearance Colors Properties
 

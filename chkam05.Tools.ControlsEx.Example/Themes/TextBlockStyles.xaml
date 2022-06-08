@@ -8,6 +8,12 @@
         <Setter Property="Margin" Value="0,0,0,8"/>
     </Style>
 
+    <Style x:Key="TextBlockStyle.Header2" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="0,0,0,8"/>
+    </Style>
+
     <Style x:Key="TextBlockStyle.Content" TargetType="{x:Type TextBlock}">
         <Setter Property="Margin" Value="0,4"/>
     </Style>

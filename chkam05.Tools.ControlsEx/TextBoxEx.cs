@@ -39,7 +39,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(SelectedBackground),
             typeof(Brush),
             typeof(TextBoxEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty SelectedBorderBrushProperty = DependencyProperty.Register(
             nameof(SelectedBorderBrush),

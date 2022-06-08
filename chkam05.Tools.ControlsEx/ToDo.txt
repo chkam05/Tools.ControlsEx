@@ -1,0 +1,8 @@
+﻿* Colors Palette
+* Colors Palette Picker
+* Colors Picker
+
+* Settings in Example app
+* Apply settings to components
+* Update documentation - by separating components to files and link inherited components
+* Fix some settings (TextBox, missing values)

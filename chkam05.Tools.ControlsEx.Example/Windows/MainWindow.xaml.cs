@@ -1,4 +1,5 @@
-﻿using chkam05.Tools.ControlsEx.Example.Data.Menu;
+﻿using chkam05.Tools.ControlsEx.Example.Data.Config;
+using chkam05.Tools.ControlsEx.Example.Data.Menu;
 using chkam05.Tools.ControlsEx.Example.Pages;
 using chkam05.Tools.ControlsEx.Example.Pages.Base;
 using MaterialDesignThemes.Wpf;
@@ -27,6 +28,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
 
         private const string MAINMENU_BUTTONS_ITEM = "Buttons";
         private const string MAINMENU_CHECKBOXS_ITEM = "CheckBoxes";
+        private const string MAINMENU_COLORSPALETTE_ITEM = "ColorsPalette";
         private const string MAINMENU_COMBOBOXS_ITEM = "ComboBoxes";
         private const string MAINMENU_CONTEXTMENUS_ITEM = "ContextMenus";
         private const string MAINMENU_EXPANDERS_ITEM = "Expanders";
@@ -43,6 +45,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
 
         //  VARIABLES
 
+        public Configuration Configuration { get; private set; }
         public MenuDataContext MenuDataContext { get; private set; }
         public PagesManager PagesManager { get; private set; }
 
@@ -56,6 +59,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         public MainWindow()
         {
             //  Setup data containers.
+            Configuration = Configuration.Instance;
             SetupMainMenu();
 
             //  Initialize interface components.
@@ -66,6 +70,19 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         }
 
         #endregion CLASS METHODS
+
+        #region INTERACTION METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking settings button. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void SettingsButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            PagesManager.LoadSinglePage(new SettingsPage());
+        }
+
+        #endregion INTERACTION METHODS
 
         #region MAIN MENU METHODS
 
@@ -91,6 +108,10 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
 
                         case MAINMENU_CHECKBOXS_ITEM:
                             PagesManager.LoadSinglePage(new CheckBoxesPage());
+                            break;
+
+                        case MAINMENU_COLORSPALETTE_ITEM:
+                            PagesManager.LoadSinglePage(new ColorsPalettePage());
                             break;
 
                         case MAINMENU_COMBOBOXS_ITEM:
@@ -158,6 +179,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
             {
                 new MenuItem(MAINMENU_BUTTONS_ITEM, PackIconKind.Button),
                 new MenuItem(MAINMENU_CHECKBOXS_ITEM, PackIconKind.CheckboxesMarkedOutline),
+                new MenuItem(MAINMENU_COLORSPALETTE_ITEM, PackIconKind.Palette),
                 new MenuItem(MAINMENU_COMBOBOXS_ITEM, PackIconKind.ChevronDoubleDown),
                 new MenuItem(MAINMENU_CONTEXTMENUS_ITEM, PackIconKind.MenuOpen),
                 new MenuItem(MAINMENU_EXPANDERS_ITEM, PackIconKind.ArrowExpandDown),

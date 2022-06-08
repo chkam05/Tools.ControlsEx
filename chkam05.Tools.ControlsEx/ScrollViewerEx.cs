@@ -24,7 +24,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ScrollBarBackground),
             typeof(Brush),
             typeof(ScrollViewerEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty ScrollBarThumbBackgroundProperty = DependencyProperty.Register(
             nameof(ScrollBarThumbBackground),
@@ -36,7 +36,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ScrollBarThumbBorderBrush),
             typeof(Brush),
             typeof(ScrollViewerEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty ScrollBarMouseOverThumbBackgroundProperty = DependencyProperty.Register(
             nameof(ScrollBarMouseOverThumbBackground),
@@ -48,7 +48,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ScrollBarMouseOverThumbBorderBrush),
             typeof(Brush),
             typeof(ScrollViewerEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty ScrollBarDraggingThumbBackgroundProperty = DependencyProperty.Register(
             nameof(ScrollBarDraggingThumbBackground),
@@ -60,13 +60,13 @@ namespace chkam05.Tools.ControlsEx
             nameof(ScrollBarDraggingThumbBorderBrush),
             typeof(Brush),
             typeof(ScrollViewerEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty ScrollBarsCornerBackgroundProperty = DependencyProperty.Register(
             nameof(ScrollBarsCornerBackground),
             typeof(Brush),
             typeof(ScrollViewerEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         #endregion Appearance Colors Properties
 

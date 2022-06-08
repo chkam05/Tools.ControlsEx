@@ -40,5 +40,10 @@ namespace chkam05.Tools.ControlsEx.Events
         /// <returns> True - allow next frame; False - otherwise. </returns>
         public delegate bool IndicatorAnimationFrameUpdate(object sender);
 
+        /// <summary> Method invoked after changing color selection in ColorsPaletteEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Colors Palette Selection Changed Event Arguments. </param>
+        public delegate void ColorsPalleteSelectionChanged(object sender, ColorsPaletteSelectionChangedEventArgs e);
+
     }
 }

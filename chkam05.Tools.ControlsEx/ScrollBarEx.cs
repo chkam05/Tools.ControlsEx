@@ -24,7 +24,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ThumbBorderBrush),
             typeof(Brush),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty MouseOverThumbBackgroundProperty = DependencyProperty.Register(
             nameof(MouseOverThumbBackground),
@@ -36,7 +36,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(MouseOverThumbBorderBrush),
             typeof(Brush),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty DraggingThumbBackgroundProperty = DependencyProperty.Register(
             nameof(DraggingThumbBackground),
@@ -48,7 +48,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(DraggingThumbBorderBrush),
             typeof(Brush),
             typeof(ScrollBarEx),
-            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         #endregion Appearance Colors Properties
 

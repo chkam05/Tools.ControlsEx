@@ -1,0 +1,136 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
+
+    <converters:ColorSolidColorBrushConverter x:Key="ColorSolidColorBrushConverter"/>
+
+    <SolidColorBrush x:Key="ColorsPaletteEx.Background">#10000000</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorsPaletteEx.BorderBrush">#FF0078D7</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorsPaletteEx.Foreground">Black</SolidColorBrush>
+
+    <Style x:Key="ColorsPaletteEx.ItemStyle" TargetType="{x:Type local:ListViewItemEx}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="{Binding ColorItemCornerRadius, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="Height" Value="{Binding ColorItemHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="Margin" Value="{Binding ColorItemMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="MouseOverBackground" Value="{Binding ColorItemMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding ColorItemMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="Padding" Value="{Binding ColorItemPadding, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="SelectedBackground" Value="{Binding ColorItemSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="SelectedBorderBrush" Value="{Binding ColorItemSelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="SelectedInactiveBackground" Value="{Binding ColorItemSelectedInactiveBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="SelectedInactiveBorderBrush" Value="{Binding ColorItemSelectedInactiveBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+        <Setter Property="Width" Value="{Binding ColorItemWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"/>
+    </Style>
+
+    <DataTemplate x:Key="ColorsPaletteEx.Item.DataTemplate">
+        <Border
+            Background="{Binding Color, Converter={StaticResource ColorSolidColorBrushConverter}}"
+            BorderThickness="0"
+            CornerRadius="{Binding ColorItemCornerRadius, RelativeSource={RelativeSource AncestorType={x:Type local:ColorsPaletteEx}}}"
+            HorizontalAlignment="Stretch"
+            Margin="0"
+            Padding="0"
+            ToolTip="{Binding Name}"
+            VerticalAlignment="Stretch"/>
+    </DataTemplate>
+    
+    <ControlTemplate x:Key="ColorsPaletteEx.ControlTemplate" TargetType="{x:Type local:ColorsPaletteEx}">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            Padding="{TemplateBinding Padding}"
+            Height="Auto">
+
+            <StackPanel
+                Orientation="Vertical">
+
+                <TextBlock
+                    x:Name="historyTitleTextBlock"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    Foreground="{TemplateBinding Foreground}"
+                    Margin="0,0,0,4"
+                    TextAlignment="Left"
+                    Text="{TemplateBinding ColorsHistoryTitle}"
+                    VerticalAlignment="Center"/>
+
+                <local:ListViewEx
+                    x:Name="historyColorsListView"
+                    ItemContainerStyle="{StaticResource ColorsPaletteEx.ItemStyle}"
+                    ItemTemplate="{StaticResource ColorsPaletteEx.Item.DataTemplate}"
+                    ItemsSource="{TemplateBinding ColorsHistory}"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.PanningMode="Both"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    
+                    <local:ListViewEx.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel
+                            Margin="0,0,0,0"
+                            Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </local:ListViewEx.ItemsPanel>
+                </local:ListViewEx>
+
+                <TextBlock
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontStretch="{TemplateBinding FontStretch}"
+                    FontStyle="{TemplateBinding FontStyle}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    Foreground="{TemplateBinding Foreground}"
+                    Margin="0,0,0,4"
+                    TextAlignment="Left"
+                    Text="{TemplateBinding Title}"
+                    VerticalAlignment="Center"/>
+
+                <local:ListViewEx
+                    x:Name="colorsListView"
+                    ItemContainerStyle="{StaticResource ColorsPaletteEx.ItemStyle}"
+                    ItemTemplate="{StaticResource ColorsPaletteEx.Item.DataTemplate}"
+                    ItemsSource="{TemplateBinding Colors}"
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.PanningMode="Both"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    
+                    <local:ListViewEx.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel
+                            Margin="0,0,0,0"
+                            Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </local:ListViewEx.ItemsPanel>
+                </local:ListViewEx>
+
+            </StackPanel>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ColorsHistoryEnabled" Value="False">
+                <Setter TargetName="historyTitleTextBlock" Property="Visibility" Value="Collapsed"/>
+                <Setter TargetName="historyColorsListView" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ColorsPaletteExStyle" TargetType="{x:Type local:ColorsPaletteEx}">
+        <Setter Property="Background" Value="{StaticResource ColorsPaletteEx.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ColorsPaletteEx.BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource ColorsPaletteEx.Foreground}"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Template" Value="{StaticResource ColorsPaletteEx.ControlTemplate}"/>
+    </Style>
+
+</ResourceDictionary>
