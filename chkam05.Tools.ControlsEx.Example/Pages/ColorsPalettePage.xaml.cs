@@ -1,4 +1,5 @@
-﻿using System;
+﻿using chkam05.Tools.ControlsEx.Example.Data.Config;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -32,6 +33,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
 
         //  GETTERS & SETTERS
+
+        public Configuration Configuration { get; private set; }
 
         public Brush SelectedColorBrush
         {
@@ -72,6 +75,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <summary> ColorsPalettePage class constructor. </summary>
         public ColorsPalettePage()
         {
+            //  Initialize data containers.
+            Configuration = Configuration.Instance;
+
+            //  Initialize interface components.
             InitializeComponent();
         }
 

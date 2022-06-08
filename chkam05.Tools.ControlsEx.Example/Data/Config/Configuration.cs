@@ -1,8 +1,11 @@
 ﻿using chkam05.Tools.ControlsEx.Colors;
+using chkam05.Tools.ControlsEx.Example.Utilities;
 using chkam05.Tools.ControlsEx.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,7 +60,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             get
             {
                 if (_instance == null)
-                    _instance = new Configuration();
+                    _instance = LoadConfiguration();
 
                 return _instance;
             }
@@ -83,6 +86,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush AccentColorBrush
         {
             get => _accentColorBrush;
@@ -93,6 +97,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush AccentForegroundColorBrush
         {
             get => _accentForegroundColorBrush;
@@ -103,6 +108,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush AccentMouseOverColorBrush
         {
             get => _accentMouseOverColorBrush;
@@ -113,6 +119,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush AccentPressedColorBrush
         {
             get => _accentPressedColorBrush;
@@ -123,6 +130,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush AccentSelectedColorBrush
         {
             get => _accentSelectedColorBrush;
@@ -133,6 +141,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush BackgroundColorBrush
         {
             get => _backgroundColorBrush;
@@ -143,6 +152,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush BackgroundToolbarColorBrush
         {
             get => _backgroundToolbarColorBrush;
@@ -153,6 +163,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush BorderToolbarColorBrush
         {
             get => _borderToolbarColorBrush;
@@ -163,6 +174,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush ForegroundColorBrush
         {
             get => _foregroundColorBrush;
@@ -173,6 +185,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             }
         }
 
+        [JsonIgnore]
         public Brush SelectedInactiveColorBrush
         {
             get => _selectedInactiveColorBrush;
@@ -247,6 +260,52 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
         }
 
         #endregion COLORS UPDATE METHODS
+
+        #region LOAD & SAVE METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Load configuration from file. </summary>
+        /// <returns> Loaded configuration from file or newly created configuration. </returns>
+        private static Configuration LoadConfiguration()
+        {
+            try
+            {
+                var configurationFilePath = ApplicationHelper.Instance.ConfigurationFilePath;
+
+                if (File.Exists(configurationFilePath))
+                {
+                    var serializedData = File.ReadAllText(configurationFilePath);
+                    var loadedConfiguration = JsonConvert.DeserializeObject<Configuration>(serializedData);
+
+                    if (loadedConfiguration != null)
+                        return loadedConfiguration;
+                }
+            }
+            catch (Exception)
+            {
+                //  Could not load configuration from file.
+            }
+
+            return new Configuration();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Save configuration to file. </summary>
+        public void SaveConfiguration()
+        {
+            try
+            {
+                var configurationFilePath = ApplicationHelper.Instance.ConfigurationFilePath;
+                var serializedData = JsonConvert.SerializeObject(this, Formatting.Indented);
+                File.WriteAllText(configurationFilePath, serializedData);
+            }
+            catch (Exception)
+            {
+                //  Could not save configuration to file.
+            }
+        }
+
+        #endregion LOAD & SAVE METHODS
 
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
 

@@ -12,7 +12,9 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     Height="450"
     Title="ControlsEx Example"
-    Width="800">
+    Width="800"
+    Closed="Window_Closed"
+    Loaded="Window_Loaded">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -95,8 +97,15 @@
                 <controlsex:ButtonEx
                     Content="Settings"
                     IconKind="Gear"
+                    Margin="0,0,4,0"
                     Style="{StaticResource Conf_ButtonExStyle}"
                     Click="SettingsButtonEx_Click"/>
+
+                <controlsex:ButtonEx
+                    Content="About"
+                    IconKind="InfoCircle"
+                    Style="{StaticResource Conf_ButtonExStyle}"
+                    Click="AboutButtonEx_Click"/>
 
             </StackPanel>
             

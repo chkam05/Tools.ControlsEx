@@ -22,6 +22,15 @@
 
             <!-- STYLES -->
 
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
             <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
@@ -30,7 +39,7 @@
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
-            <Style x:Key="Conf_ColorsPaletteExStyle" TargetType="{x:Type controlsex:ColorsPaletteEx}">
+            <Style TargetType="{x:Type controlsex:ColorsPaletteEx}">
                 <Setter Property="Background" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -65,16 +74,14 @@
                 <controlsex:ColorsPaletteEx
                     ColorSelectionChanged="ThemeColorsPaletteEx_ColorSelectionChanged"
                     ColorsHistoryEnabled="False"
-                    Colors="{Binding ThemeColors}"
-                    Style="{StaticResource Conf_ColorsPaletteExStyle}"/>
+                    Colors="{Binding ThemeColors}"/>
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Header2}"
                     Text="Accent Color:"/>
 
                 <controlsex:ColorsPaletteEx
-                    ColorSelectionChanged="AccentColorsPaletteEx_ColorSelectionChanged"
-                    Style="{StaticResource Conf_ColorsPaletteExStyle}"/>
+                    ColorSelectionChanged="AccentColorsPaletteEx_ColorSelectionChanged"/>
 
             </StackPanel>
         </controlsex:ScrollViewerEx>

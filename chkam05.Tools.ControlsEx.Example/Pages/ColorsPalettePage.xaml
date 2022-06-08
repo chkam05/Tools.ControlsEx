@@ -19,12 +19,42 @@
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+            
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:ColorsPaletteEx}">
+                <Setter Property="Background" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColorItemMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColorItemSelectedBackground" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColorItemSelectedInactiveBackground" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Margin" Value="0,0,0,16"/>
+            </Style>
 
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -40,11 +70,11 @@
                 Orientation="Vertical">
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
                     Text="ColorsPaletteEx"/>
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Content}"
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Example of ColorsPalleteEx component."/>
 
                 <controlsex:ColorsPaletteEx
@@ -52,7 +82,7 @@
                     Margin="0,0,0,16"/>
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Content}"
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Example of ColorsPalleteEx without recently used colors."/>
 
                 <controlsex:ColorsPaletteEx
@@ -72,19 +102,23 @@
 
                 <Border
                     Background="{Binding SelectedColorBrush}"
-                    BorderBrush="Black"
+                    BorderBrush="{Binding Configuration.BackgroundColorBrush}"
                     BorderThickness="1"
                     Width="64"/>
 
                 <controlsex:TextBlockEx
+                    Foreground="{Binding Configuration.ForegroundColorBrush}"
                     Margin="4,0"
                     Text="Selected color: "/>
 
                 <controlsex:TextBlockEx
+                    Foreground="{Binding Configuration.ForegroundColorBrush}"
                     FontWeight="Bold"
+                    Margin="0,0,4,0"
                     Text="{Binding SelectedColorName}"/>
 
                 <controlsex:TextBlockEx
+                    Foreground="{Binding Configuration.ForegroundColorBrush}"
                     FontWeight="Bold"
                     Text="{Binding SelectedColorCode}"/>
 

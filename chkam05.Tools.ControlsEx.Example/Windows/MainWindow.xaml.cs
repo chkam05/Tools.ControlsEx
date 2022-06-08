@@ -80,6 +80,17 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         private void SettingsButtonEx_Click(object sender, RoutedEventArgs e)
         {
             PagesManager.LoadSinglePage(new SettingsPage());
+            MainMenu.SelectedItem = null;
+        }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking about button. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void AboutButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            PagesManager.LoadSinglePage(new InfoPage());
+            MainMenu.SelectedItem = null;
         }
 
         #endregion INTERACTION METHODS
@@ -196,6 +207,28 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         }
 
         #endregion SETUP METHODS
+
+        #region WINDOW METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked when window is closing. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Event Arguments. </param>
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Configuration.SaveConfiguration();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked when window is loading. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            PagesManager.LoadSinglePage(new InfoPage());
+        }
+
+        #endregion WINDOW METHODS
 
     }
 }

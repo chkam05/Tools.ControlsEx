@@ -1,0 +1,194 @@
+﻿<Page 
+    x:Class="chkam05.Tools.ControlsEx.Example.Pages.InfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
+            <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
+
+        <controlsex:ScrollViewerEx>
+
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="Current Application"/>
+
+                <Grid
+                    Margin="0,0,0,16">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="96" Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Grid.Column="0"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Title:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Name:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Author:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Copyright:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Version:"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding ApplicationTitle}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding ApplicationName}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding ApplicationAuthor}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding ApplicationCopyright}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding ApplicationVersion}"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="Library"/>
+
+                <Grid
+                    Margin="0,0,0,16">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="96" Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Grid.Column="0"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Title:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Name:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Author:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Copyright:"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Version:"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding LibraryTitle}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding LibraryName}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding LibraryAuthor}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding LibraryCopyright}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="{Binding LibraryVersion}"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+    
+</Page>

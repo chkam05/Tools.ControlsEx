@@ -1,8 +1,13 @@
-﻿* Colors Palette
-* Colors Palette Picker
-* Colors Picker
+﻿TO DO:
+* Update documentation
+	- Make separate files for extended components that inherits another extenders.
 
-* Settings in Example app
-* Apply settings to components
-* Update documentation - by separating components to files and link inherited components
-* Fix some settings (TextBox, missing values)
+CORRECTIONS:
+* ButtonEx
+	- Icon margin when content is NULL
+
+CREATE:
+* ColorPaletteInternalMessage
+* OpenFilesInternalMessage
+* SaveFileInternalMessage
+* OpenDirectoryInternalMessage

@@ -8,97 +8,128 @@
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     mc:Ignorable="d"
     
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
+
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
             <Style TargetType="{x:Type controlsex:CheckBoxEx}">
+                <Setter Property="CheckMarkBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Margin" Value="0,0,0,8"/>
+                <Setter Property="MouseOverCheckMarkBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedCheckMarkBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
             
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
+        <controlsex:ScrollViewerEx>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="CheckBoxEx"/>
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of CheckBoxEx component with diffrent CheckBoxStyle configuration."/>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="CheckBoxEx"/>
 
-            <controlsex:CheckBoxEx
-                Content="Bordered style"
-                CheckBoxStyle="Bordered"/>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of CheckBoxEx component with diffrent CheckBoxStyle configuration."/>
 
-            <controlsex:CheckBoxEx
-                Content="Circle bordered style"
-                CheckBoxStyle="CircleBordered"/>
+                <controlsex:CheckBoxEx
+                    Content="Bordered style"
+                    CheckBoxStyle="Bordered"/>
 
-            <controlsex:CheckBoxEx
-                Content="Circle filled style"
-                CheckBoxStyle="CircleFilled"/>
+                <controlsex:CheckBoxEx
+                    Content="Circle bordered style"
+                    CheckBoxStyle="CircleBordered"/>
 
-            <controlsex:CheckBoxEx
-                Content="Filled style"
-                CheckBoxStyle="Filled"/>
+                <controlsex:CheckBoxEx
+                    Content="Circle filled style"
+                    CheckBoxStyle="CircleFilled"/>
 
-            <controlsex:CheckBoxEx
-                Content="Mixed style (this is default style)"
-                CheckBoxStyle="Mixed"/>
+                <controlsex:CheckBoxEx
+                    Content="Filled style"
+                    CheckBoxStyle="Filled"/>
 
-            <controlsex:CheckBoxEx
-                Content="Mixed circle style"
-                CheckBoxStyle="MixedCircle"/>
+                <controlsex:CheckBoxEx
+                    Content="Mixed style (this is default style)"
+                    CheckBoxStyle="Mixed"/>
 
-            <controlsex:CheckBoxEx
-                Content="Mixed circle reverse style"
-                CheckBoxStyle="MixedCircleReverse"/>
+                <controlsex:CheckBoxEx
+                    Content="Mixed circle style"
+                    CheckBoxStyle="MixedCircle"/>
 
-            <controlsex:CheckBoxEx
-                Content="Mixed reverse style"
-                CheckBoxStyle="MixedReverse"/>
+                <controlsex:CheckBoxEx
+                    Content="Mixed circle reverse style"
+                    CheckBoxStyle="MixedCircleReverse"/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of disabled CheckBoxEx component."/>
+                <controlsex:CheckBoxEx
+                    Content="Mixed reverse style"
+                    CheckBoxStyle="MixedReverse"/>
 
-            <controlsex:CheckBoxEx
-                Content="Bordered style"
-                CheckBoxStyle="Bordered"
-                IsEnabled="False"/>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of disabled CheckBoxEx component."/>
 
-            <controlsex:CheckBoxEx
-                Content="Bordered style"
-                CheckBoxStyle="Bordered"
-                IsChecked="True"
-                IsEnabled="False"/>
+                <controlsex:CheckBoxEx
+                    Content="Bordered style"
+                    CheckBoxStyle="Bordered"
+                    IsEnabled="False"/>
 
-            <controlsex:CheckBoxEx
-                Content="Filled style"
-                CheckBoxStyle="Filled"
-                IsEnabled="False"/>
+                <controlsex:CheckBoxEx
+                    Content="Bordered style"
+                    CheckBoxStyle="Bordered"
+                    IsChecked="True"
+                    IsEnabled="False"/>
 
-            <controlsex:CheckBoxEx
-                Content="Filled style"
-                CheckBoxStyle="Filled"
-                IsChecked="True"
-                IsEnabled="False"/>
+                <controlsex:CheckBoxEx
+                    Content="Filled style"
+                    CheckBoxStyle="Filled"
+                    IsEnabled="False"/>
 
-        </StackPanel>
-        
-    </controlsex:ScrollViewerEx>
-    
+                <controlsex:CheckBoxEx
+                    Content="Filled style"
+                    CheckBoxStyle="Filled"
+                    IsChecked="True"
+                    IsEnabled="False"/>
+
+            </StackPanel>
+
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+
 </Page>
