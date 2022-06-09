@@ -4,6 +4,7 @@ using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media;
 using static chkam05.Tools.ControlsEx.Events.Delegates;
 
 
@@ -19,6 +20,28 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
 
         //  DEPENDENCY PROPERTIES
+
+        #region Appearance Properties
+
+        public static readonly DependencyProperty ProgressBarBackgroundProperty = DependencyProperty.Register(
+            nameof(ProgressBarBackground),
+            typeof(Brush),
+            typeof(BaseProgressInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
+
+        public static readonly DependencyProperty ProgressBarBorderBrushProperty = DependencyProperty.Register(
+            nameof(ProgressBarBorderBrush),
+            typeof(Brush),
+            typeof(BaseProgressInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+
+        public static readonly DependencyProperty ProgressBarProgressBrushProperty = DependencyProperty.Register(
+            nameof(ProgressBarProgressBrush),
+            typeof(Brush),
+            typeof(BaseProgressInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+
+        #endregion Appearance Properties
 
         #region ProgressBar Properties
 
@@ -73,6 +96,40 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
 
         //  GETTERS & SETTERS
+
+        #region Appearance
+
+        public Brush ProgressBarBackground
+        {
+            get => (Brush)GetValue(ProgressBarBackgroundProperty);
+            set
+            {
+                SetValue(ProgressBarBackgroundProperty, value);
+                OnPropertyChanged(nameof(ProgressBarBackground));
+            }
+        }
+
+        public Brush ProgressBarBorderBrush
+        {
+            get => (Brush)GetValue(ProgressBarBorderBrushProperty);
+            set
+            {
+                SetValue(ProgressBarBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ProgressBarBorderBrush));
+            }
+        }
+
+        public Brush ProgressBarProgressBrush
+        {
+            get => (Brush)GetValue(ProgressBarProgressBrushProperty);
+            set
+            {
+                SetValue(ProgressBarProgressBrushProperty, value);
+                OnPropertyChanged(nameof(ProgressBarProgressBrush));
+            }
+        }
+
+        #endregion Appearance
 
         #region ProgressBar
 

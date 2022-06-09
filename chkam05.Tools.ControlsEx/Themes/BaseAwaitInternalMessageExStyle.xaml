@@ -10,10 +10,19 @@
     <SolidColorBrush x:Key="BaseAwaitInternalMessageEx.Foreground">Black</SolidColorBrush>
 
     <Style x:Key="BaseAwaitInternalMessageEx.Button" TargetType="{x:Type local:ButtonEx}">
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
         <Setter Property="Margin" Value="2,0"/>
         <Setter Property="MinHeight" Value="32"/>
         <Setter Property="MinWidth" Value="72"/>
+        <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
+        <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseAwaitInternalMessageEx}}}"/>
     </Style>
 
     <ControlTemplate x:Key="BaseAwaitInternalMessageEx.ControlTemplate" TargetType="{x:Type im:BaseAwaitInternalMessageEx}">

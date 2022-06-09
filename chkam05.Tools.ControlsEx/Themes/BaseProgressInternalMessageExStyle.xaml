@@ -10,10 +10,19 @@
     <SolidColorBrush x:Key="BaseProgressInternalMessageEx.Foreground">Black</SolidColorBrush>
 
     <Style x:Key="BaseProgressInternalMessageEx.Button" TargetType="{x:Type local:ButtonEx}">
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
         <Setter Property="Margin" Value="2,0"/>
         <Setter Property="MinHeight" Value="32"/>
         <Setter Property="MinWidth" Value="72"/>
+        <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
     </Style>
 
     <ControlTemplate x:Key="BaseProgressInternalMessageEx.ControlTemplate" TargetType="{x:Type im:BaseProgressInternalMessageEx}">
@@ -87,10 +96,10 @@
                         Orientation="Vertical">
 
                         <ProgressBar
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding ProgressBarBackground}"
+                            BorderBrush="{TemplateBinding ProgressBarBorderBrush}"
                             BorderThickness="1"
-                            Foreground="{TemplateBinding BorderBrush}"
+                            Foreground="{TemplateBinding ProgressBarProgressBrush}"
                             Height="16"
                             HorizontalAlignment="Stretch"
                             Margin="8,8,8,4"

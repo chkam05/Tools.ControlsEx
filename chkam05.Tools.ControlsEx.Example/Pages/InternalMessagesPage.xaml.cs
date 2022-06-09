@@ -156,9 +156,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var message = _mainWindow.InternalMessages.CreateDefaultMessage("Info Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
         }
         
         //  --------------------------------------------------------------------------------
@@ -171,9 +169,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 PackIconKind.QuestionMarkCircle, InternalMessageButtons.YesNo,
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -186,9 +182,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 PackIconKind.Alert, InternalMessageButtons.OkCancel,
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -201,9 +195,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 PackIconKind.Alert, InternalMessageButtons.Ok,
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -218,9 +210,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             message.AllowHide = true;
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
         }
         
         //  --------------------------------------------------------------------------------
@@ -233,10 +223,9 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
-
+            UpdateInternalMessageAppearance(message);
+            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
+            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
             CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();
         }
 
@@ -253,9 +242,9 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
 
             message.AllowCancel = true;
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
+            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
+            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
             message.ProgressCancel += (s, ce) =>
             {
                 if (ce.Result == InternalMessageResult.Cancel)
@@ -276,10 +265,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             message.AllowHide = true;
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
             message.KeepOnScreenCompleted = true;
+            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
+            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
 
             CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();
         }
@@ -297,10 +286,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
 
             message.AllowCancel = true;
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
             message.KeepOnScreenCompleted = true;
+            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
+            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
             message.ProgressCancel += (s, ce) =>
             {
                 if (ce.Result == InternalMessageResult.Cancel)
@@ -320,9 +309,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
             message.IndicatorFill = Configuration.AccentColorBrush;
             message.IndicatorPen = Configuration.AccentColorBrush;
             message.IndicatorPenThickness = new Thickness(1);
@@ -343,9 +330,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50));
 
             message.AllowCancel = true;
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
             message.IndicatorFill = Configuration.AccentColorBrush;
             message.IndicatorPen = Configuration.AccentColorBrush;
             message.IndicatorPenThickness = new Thickness(1);
@@ -369,9 +354,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             message.AllowHide = true;
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
             message.IndicatorFill = Configuration.AccentColorBrush;
             message.IndicatorPen = Configuration.AccentColorBrush;
             message.IndicatorPenThickness = new Thickness(1);
@@ -393,9 +376,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50));
 
             message.AllowCancel = true;
-            message.Background = Configuration.BackgroundColorBrush;
-            message.BorderBrush = Configuration.AccentColorBrush;
-            message.Foreground = Configuration.ForegroundColorBrush;
+            UpdateInternalMessageAppearance(message);
             message.IndicatorFill = Configuration.AccentColorBrush;
             message.IndicatorPen = Configuration.AccentColorBrush;
             message.IndicatorPenThickness = new Thickness(1);
@@ -447,6 +428,29 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         }
 
         #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS
+
+        #region UPDATE METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update Internal Message appearance. </summary>
+        /// <param name="message"> Internal Message. </param>
+        private void UpdateInternalMessageAppearance(BaseInternalMessageEx message)
+        {
+            message.Background = Configuration.BackgroundColorBrush;
+            message.BorderBrush = Configuration.AccentColorBrush;
+            message.Foreground = Configuration.ForegroundColorBrush;
+            message.ButtonBackground = Configuration.AccentColorBrush;
+            message.ButtonBorderBrush = Configuration.AccentColorBrush;
+            message.ButtonForeground = Configuration.AccentForegroundColorBrush;
+            message.ButtonMouseOverBackground = Configuration.AccentMouseOverColorBrush;
+            message.ButtonMouseOverBorderBrush = Configuration.AccentMouseOverColorBrush;
+            message.ButtonMouseOverForeground = Configuration.AccentForegroundColorBrush;
+            message.ButtonPressedBackground = Configuration.AccentPressedColorBrush;
+            message.ButtonPressedBorderBrush = Configuration.AccentPressedColorBrush;
+            message.ButtonPressedForeground = Configuration.AccentForegroundColorBrush;
+        }
+
+        #endregion UPDATE METHODS
 
     }
 }

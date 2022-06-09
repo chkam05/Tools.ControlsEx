@@ -11,8 +11,8 @@ CORRECTIONS:
 	* ContextMenu
 		[ ] Sub menu item style fix
 	* InternalMessages
-		[ ] Button colors
-		[ ] Progressbar colors
+		[v] Button colors (+)
+		[v] Progressbar colors
 	* ListViewEx
 		[v] GridView ScrollBarEx template fix
 		[v] GridView Gripper border fix

@@ -31,6 +31,60 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
+        public static readonly DependencyProperty ButtonBackgroundProperty = DependencyProperty.Register(
+            nameof(ButtonBackground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+
+        public static readonly DependencyProperty ButtonBorderBrushProperty = DependencyProperty.Register(
+            nameof(ButtonBorderBrush),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+
+        public static readonly DependencyProperty ButtonForegroundProperty = DependencyProperty.Register(
+            nameof(ButtonForeground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
+
+        public static readonly DependencyProperty ButtonMouseOverBackgroundProperty = DependencyProperty.Register(
+            nameof(ButtonMouseOverBackground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
+
+        public static readonly DependencyProperty ButtonMouseOverBorderBrushProperty = DependencyProperty.Register(
+            nameof(ButtonMouseOverBorderBrush),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
+
+        public static readonly DependencyProperty ButtonMouseOverForegroundProperty = DependencyProperty.Register(
+            nameof(ButtonMouseOverForeground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
+
+        public static readonly DependencyProperty ButtonPressedBackgroundProperty = DependencyProperty.Register(
+            nameof(ButtonPressedBackground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
+
+        public static readonly DependencyProperty ButtonPressedBorderBrushProperty = DependencyProperty.Register(
+            nameof(ButtonPressedBorderBrush),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
+
+        public static readonly DependencyProperty ButtonPressedForegroundProperty = DependencyProperty.Register(
+            nameof(ButtonPressedForeground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
+
         #endregion Appearance Colors Properties
 
         #region Icon Properties
@@ -131,6 +185,12 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseInternalMessageEx),
             new PropertyMetadata(InternalMessageButtons.Ok));
 
+        public static readonly DependencyProperty ButtonBorderThicknessProperty = DependencyProperty.Register(
+            nameof(ButtonBorderThickness),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new Thickness(0)));
+
         public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(
             nameof(BorderThickness),
             typeof(Thickness),
@@ -179,6 +239,96 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(BorderBrushProperty, value);
                 OnPropertyChanged(nameof(BorderBrush));
+            }
+        }
+
+        public Brush ButtonBackground
+        {
+            get => (Brush)GetValue(ButtonBackgroundProperty);
+            set
+            {
+                SetValue(ButtonBackgroundProperty, value);
+                OnPropertyChanged(nameof(ButtonBackground));
+            }
+        }
+
+        public Brush ButtonBorderBrush
+        {
+            get => (Brush)GetValue(ButtonBorderBrushProperty);
+            set
+            {
+                SetValue(ButtonBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ButtonBorderBrush));
+            }
+        }
+
+        public Brush ButtonForeground
+        {
+            get => (Brush)GetValue(ButtonForegroundProperty);
+            set
+            {
+                SetValue(ButtonForegroundProperty, value);
+                OnPropertyChanged(nameof(ButtonForeground));
+            }
+        }
+
+        public Brush ButtonMouseOverBackground
+        {
+            get => (Brush)GetValue(ButtonMouseOverBackgroundProperty);
+            set
+            {
+                SetValue(ButtonMouseOverBackgroundProperty, value);
+                OnPropertyChanged(nameof(ButtonMouseOverBackground));
+            }
+        }
+
+        public Brush ButtonMouseOverBorderBrush
+        {
+            get => (Brush)GetValue(ButtonMouseOverBorderBrushProperty);
+            set
+            {
+                SetValue(ButtonMouseOverBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ButtonMouseOverBorderBrush));
+            }
+        }
+
+        public Brush ButtonMouseOverForeground
+        {
+            get => (Brush)GetValue(ButtonMouseOverForegroundProperty);
+            set
+            {
+                SetValue(ButtonMouseOverForegroundProperty, value);
+                OnPropertyChanged(nameof(ButtonMouseOverForeground));
+            }
+        }
+
+        public Brush ButtonPressedBackground
+        {
+            get => (Brush)GetValue(ButtonPressedBackgroundProperty);
+            set
+            {
+                SetValue(ButtonPressedBackgroundProperty, value);
+                OnPropertyChanged(nameof(ButtonPressedBackground));
+            }
+        }
+
+        public Brush ButtonPressedBorderBrush
+        {
+            get => (Brush)GetValue(ButtonPressedBorderBrushProperty);
+            set
+            {
+                SetValue(ButtonPressedBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ButtonPressedBorderBrush));
+            }
+        }
+
+        public Brush ButtonPressedForeground
+        {
+            get => (Brush)GetValue(ButtonPressedForegroundProperty);
+            set
+            {
+                SetValue(ButtonPressedForegroundProperty, value);
+                OnPropertyChanged(nameof(ButtonPressedForeground));
             }
         }
 
@@ -329,6 +479,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(AllowHideProperty, value);
                 OnPropertyChanged(nameof(AllowHide));
+            }
+        }
+
+        public Thickness ButtonBorderThickness
+        {
+            get => (Thickness)GetValue(ButtonBorderThicknessProperty);
+            set
+            {
+                SetValue(ButtonBorderThicknessProperty, value);
+                OnPropertyChanged(nameof(ButtonBorderThickness));
             }
         }
 
