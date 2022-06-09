@@ -29,3 +29,37 @@ CREATE:
 	[ ] OpenFilesInternalMessageEx
 	[ ] SaveFileInternalMessageEx
 	[ ] OpenDirectoryInternalMessageEx
+
+Additional infos:
+	* BaseFilesInternalMessageEx
+
+	* OpenFiles
+		- Title
+		- MultiSelect
+		- InitialDirectory
+		- FileName
+		- KeyValuePair<string, string> Extensions
+	* SaveFile
+		- Title
+		- InitialDirectory
+		- FileName
+		- KeyValuePair<string, string> Extensions
+	* OpenDirectory
+		- Title
+		- InitialDirectory
+		- DirectoryName
+
+	[ [ ICON ] [ TITLE ]  ]
+	[ TreeView ][ Files ] ]
+	[  [ OK ] [ CANCEL ]  ]
+
+	* BaseColorInternalMessageEx
+
+	* ColorPaletteInternalMessageEx
+		- Title
+		- RecentlyUsedColors
+
+	* ColorPickerInternalMessageEx
+		- Full Palette
+		- Hue
+		- Options to set RGB and HSL
