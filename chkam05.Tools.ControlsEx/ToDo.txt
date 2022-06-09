@@ -1,13 +1,31 @@
 ﻿TO DO:
-* Update documentation
-	- Make separate files for extended components that inherits another extenders.
+	* Update documentation
+		- Make separate files for extended components that inherits another extenders.
 
 CORRECTIONS:
-* ButtonEx
-	- Icon margin when content is NULL
+	* ButtonEx
+		[v] Icon margin when content is NULL fix
+		[v] Icon positioning fix
+	* ComboBox
+		[v] Button icon color (+)
+	* ContextMenu
+		[ ] Sub menu item style fix
+	* InternalMessages
+		[ ] Button colors
+		[ ] Progressbar colors
+	* ListViewEx
+		[v] GridView ScrollBarEx template fix
+		[v] GridView Gripper border fix
+	* TextBox
+		[v] Underline when text is in edit mode
+	* UpDownTextBox
+		[v] Button Background fix
+		[v] Button Border brush color (+)
+		[v] Underline when text is in edit mode
 
 CREATE:
-* ColorPaletteInternalMessage
-* OpenFilesInternalMessage
-* SaveFileInternalMessage
-* OpenDirectoryInternalMessage
+	[v] ColorPaletteEx (+)
+	[ ] ColorPaletteInternalMessageEx
+	[ ] OpenFilesInternalMessageEx
+	[ ] SaveFileInternalMessageEx
+	[ ] OpenDirectoryInternalMessageEx

@@ -83,6 +83,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderMouseOverBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderMouseOverBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="PART_HeaderGripper" Value="{Binding ColumnHeaderMouseOverBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="HeaderContent" Value="{Binding ColumnHeaderMouseOverForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
             </MultiTrigger>
 
@@ -94,6 +95,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" TargetName="Border" Value="{Binding ColumnHeaderPressedBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="Border" Value="{Binding ColumnHeaderPressedBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="PART_HeaderGripper" Value="{Binding ColumnHeaderPressedBorderBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="HeaderContent" Value="{Binding ColumnHeaderPressedForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewEx}}}"/>
             </MultiTrigger>
 

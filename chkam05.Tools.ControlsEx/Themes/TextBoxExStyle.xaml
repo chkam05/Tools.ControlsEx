@@ -16,14 +16,23 @@
             Padding="{TemplateBinding Padding}"
             SnapsToDevicePixels="True">
 
-            <local:ScrollViewerEx
-                x:Name="PART_ContentHost"
-                Focusable="false"
-                Foreground="{TemplateBinding Foreground}"
-                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                HorizontalScrollBarVisibility="Hidden"
-                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                VerticalScrollBarVisibility="Hidden"/>
+            <Border
+                x:Name="innerBorder"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0,0,0,1"
+                Margin="0"
+                Padding="0">
+                
+                <local:ScrollViewerEx
+                    x:Name="PART_ContentHost"
+                    Focusable="false"
+                    Foreground="{TemplateBinding Foreground}"
+                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    HorizontalScrollBarVisibility="Hidden"
+                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                    VerticalScrollBarVisibility="Hidden"/>
+            </Border>
         </Border>
         <ControlTemplate.Triggers>
 
@@ -43,6 +52,7 @@
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="Background" TargetName="border" Value="{Binding SelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding SelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="innerBorder" Value="{Binding SelectedTextBackground, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
                 <Setter Property="Foreground" TargetName="PART_ContentHost" Value="{Binding SelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxEx}}}"/>
             </Trigger>
 

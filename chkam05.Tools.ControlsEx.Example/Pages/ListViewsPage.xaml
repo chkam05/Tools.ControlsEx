@@ -6,10 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
-    mc:Ignorable="d" 
     
-    DataContext="{Binding RelativeSource={RelativeSource Self}}"
-    d:DesignWidth="800">
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -19,76 +21,129 @@
                 <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+            
             <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type controlsex:ListViewEx}">
-                <Setter Property="Background" Value="#FFE0E0E0"/>
-                <Setter Property="BorderBrush" Value="#FFC0C0C0"/>
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.BorderToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderEmptyBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderEmptyBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderMouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderPressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderPressedBorderBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderPressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Height" Value="160"/>
                 <Setter Property="Margin" Value="0,0,0,16"/>
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
                 <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"/>
             </Style>
 
+            <Style x:Key="Config_ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type controlsex:ListViewItemEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBackground" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBorderBrush" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
+        <controlsex:ScrollViewerEx>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="ListViewEx &amp; ListViewItemEx"/>
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
 
-            <TextBlock
-                Margin="0,4,0,16"
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of ListViewEx component with diffrent ListViewItemEx configuration."/>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="ListViewEx &amp; ListViewItemEx"/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="ListView"/>
+                <TextBlock
+                    Margin="0,4,0,16"
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of ListViewEx component with diffrent ListViewItemEx configuration."/>
 
-            <controlsex:ListViewEx
-                ItemsSource="{Binding ListViewDataContext}"/>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="ListView"/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="GridView"/>
+                <controlsex:ListViewEx
+                    ItemContainerStyle="{StaticResource Config_ListViewItemExStyle}"
+                    ItemsSource="{Binding ListViewDataContext}"/>
 
-            <controlsex:ListViewEx
-                ItemsSource="{Binding GridViewDataContext}">
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="GridView"/>
 
-                <controlsex:ListViewEx.View>
-                    <GridView
-                        ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                        <GridView.Columns>
-                            <GridViewColumn Header="Country" Width="128">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Text="{Binding Name}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Capital" Width="128">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Text="{Binding Capital}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView.Columns>
-                    </GridView>
-                </controlsex:ListViewEx.View>
-            </controlsex:ListViewEx>
+                <controlsex:ListViewEx
+                    ItemContainerStyle="{StaticResource Config_ListViewItemExStyle}"
+                    ItemsSource="{Binding GridViewDataContext}">
 
-        </StackPanel>
+                    <controlsex:ListViewEx.View>
+                        <GridView
+                            ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                            <GridView.Columns>
+                                <GridViewColumn Header="Country" Width="128">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Capital" Width="128">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding Capital}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </controlsex:ListViewEx.View>
+                </controlsex:ListViewEx>
 
-    </controlsex:ScrollViewerEx>
-    
+            </StackPanel>
+
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+
 </Page>

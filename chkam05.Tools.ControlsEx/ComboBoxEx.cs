@@ -32,6 +32,24 @@ namespace chkam05.Tools.ControlsEx
             typeof(ComboBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
+        public static readonly DependencyProperty DropDownIconBrushProperty = DependencyProperty.Register(
+            nameof(DropDownIconBrush),
+            typeof(Brush),
+            typeof(ComboBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
+
+        public static readonly DependencyProperty DropDownMouseOverIconBrushProperty = DependencyProperty.Register(
+            nameof(DropDownMouseOverIconBrush),
+            typeof(Brush),
+            typeof(ComboBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
+
+        public static readonly DependencyProperty DropDownSelectedIconBrushProperty = DependencyProperty.Register(
+            nameof(DropDownSelectedIconBrush),
+            typeof(Brush),
+            typeof(ComboBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
+
         public static readonly DependencyProperty MouseOverBackgroundProperty = DependencyProperty.Register(
             nameof(MouseOverBackground),
             typeof(Brush),
@@ -130,6 +148,36 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(DropDownForegroundProperty, value);
                 OnPropertyChanged(nameof(DropDownForeground));
+            }
+        }
+        
+        public Brush DropDownIconBrush
+        {
+            get => (Brush)GetValue(DropDownIconBrushProperty);
+            set
+            {
+                SetValue(DropDownIconBrushProperty, value);
+                OnPropertyChanged(nameof(DropDownIconBrush));
+            }
+        }
+
+        public Brush DropDownMouseOverIconBrush
+        {
+            get => (Brush)GetValue(DropDownMouseOverIconBrushProperty);
+            set
+            {
+                SetValue(DropDownMouseOverIconBrushProperty, value);
+                OnPropertyChanged(nameof(DropDownMouseOverIconBrush));
+            }
+        }
+
+        public Brush DropDownSelectedIconBrush
+        {
+            get => (Brush)GetValue(DropDownSelectedIconBrushProperty);
+            set
+            {
+                SetValue(DropDownSelectedIconBrushProperty, value);
+                OnPropertyChanged(nameof(DropDownSelectedIconBrush));
             }
         }
 

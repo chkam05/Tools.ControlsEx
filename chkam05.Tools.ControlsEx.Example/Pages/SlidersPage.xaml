@@ -6,9 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    
     mc:Ignorable="d"
     
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -16,324 +19,333 @@
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+            
             <Style TargetType="{x:Type controlsex:SliderEx}">
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Margin" Value="0,0,0,16"/>
+                <Setter Property="Maximum" Value="100"/>
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="SmallChange" Value="1"/>
+                <Setter Property="ThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbDraggingBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbDraggingBorderBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="TicksColorBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="HorizontalCircleThumbSliderExStyle" TargetType="{x:Type controlsex:SliderEx}">
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Margin" Value="0,0,0,16"/>
+                <Setter Property="Maximum" Value="100"/>
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="SmallChange" Value="1"/>
+                <Setter Property="ThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbCornerRadius" Value="8"/>
+                <Setter Property="ThumbDraggingBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbDraggingBorderBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbWidth" Value="12"/>
+                <Setter Property="TicksColorBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="TrackBarHeight" Value="4"/>
             </Style>
 
             <Style x:Key="VerticalSliderExStyle" TargetType="{x:Type controlsex:SliderEx}">
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Orientation" Value="Vertical"/>
                 <Setter Property="Margin" Value="0,0,16,16"/>
+                <Setter Property="Maximum" Value="100"/>
                 <Setter Property="MinHeight" Value="192"/>
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="ThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbDraggingBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbDraggingBorderBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="TicksColorBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="VerticalCircleThumbSliderExStyle" BasedOn="{StaticResource VerticalSliderExStyle}" TargetType="{x:Type controlsex:SliderEx}">
+                <Setter Property="ThumbCornerRadius" Value="8"/>
+                <Setter Property="ThumbHeight" Value="12"/>
             </Style>
 
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx>
-
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="SliderEx &amp; ScrollBarEx"/>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}">
-                Examples of SliderEx with diffrent configuration.
-            </TextBlock>
-
-            <StackPanel
-                Orientation="Vertical">
-
-                <TextBlock
-                    Style="{StaticResource TextBlockStyle.Content}"
-                    Text="SliderEx with square style."/>
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    Value="10"/>
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    TickPlacement="Both"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Orientation="Horizontal"
-                    Padding="4,2"
-                    SmallChange="1"
-                    TrackBarBackground="Transparent"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Orientation="Horizontal"
-                    Padding="4,2"
-                    SmallChange="1"
-                    TickPlacement="Both"
-                    TrackBarBackground="Transparent"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    Orientation="Horizontal"
-                    Padding="4,2"
-                    SmallChange="1"
-                    TrackBarBackground="Transparent"
-                    Value="40"/>
-
-            </StackPanel>
-
-            <StackPanel
-                Orientation="Vertical">
-
-                <TextBlock
-                    Style="{StaticResource TextBlockStyle.Content}"
-                    Text="SliderEx with circle style."/>
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    TrackBarHeight="4"
-                    ThumbCornerRadius="8"
-                    ThumbWidth="12"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    Value="10"/>
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    TrackBarHeight="4"
-                    ThumbCornerRadius="8"
-                    ThumbWidth="12"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    TickPlacement="Both"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    TrackBarHeight="4"
-                    ThumbCornerRadius="8"
-                    ThumbWidth="12"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    TrackBarHeight="4"
-                    ThumbCornerRadius="8"
-                    ThumbWidth="12"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    TrackBarBackground="Transparent"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    TrackBarHeight="4"
-                    ThumbCornerRadius="8"
-                    ThumbWidth="12"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    TickPlacement="Both"
-                    TrackBarBackground="Transparent"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    TrackBarHeight="4"
-                    ThumbCornerRadius="8"
-                    ThumbWidth="12"
-                    Orientation="Horizontal"
-                    SmallChange="1"
-                    TrackBarBackground="Transparent"
-                    Value="40"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Horizontal SliderEx with square style."/>
-
-            <StackPanel
-                Orientation="Horizontal">
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    Value="10"/>
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    TickPlacement="Both"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    TrackBarBackground="Transparent"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    TickPlacement="Both"
-                    TrackBarBackground="Transparent"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    TrackBarBackground="Transparent"
-                    Value="40"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Horizontal SliderEx with circle style."/>
-
-            <StackPanel
-                Orientation="Horizontal">
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    SmallChange="1"
-                    ThumbCornerRadius="8"
-                    ThumbHeight="12"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    Value="10"/>
-
-                <controlsex:SliderEx
-                    Maximum="100"
-                    Minimum="0"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    ThumbCornerRadius="8"
-                    ThumbHeight="12"
-                    TickPlacement="Both"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    ThumbCornerRadius="8"
-                    ThumbHeight="12"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    ThumbCornerRadius="8"
-                    ThumbHeight="12"
-                    TrackBarBackground="Transparent"
-                    Value="20"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    ThumbCornerRadius="8"
-                    ThumbHeight="12"
-                    TickPlacement="Both"
-                    TrackBarBackground="Transparent"
-                    Value="30"/>
-
-                <controlsex:SliderEx
-                    Background="Black"
-                    IsEnabled="False"
-                    Maximum="100"
-                    Minimum="0"
-                    Padding="4,2"
-                    SmallChange="1"
-                    Style="{StaticResource VerticalSliderExStyle}"
-                    ThumbCornerRadius="8"
-                    ThumbHeight="12"
-                    TrackBarBackground="Transparent"
-                    Value="40"/>
-
-            </StackPanel>
-
-        </StackPanel>
-
-    </controlsex:ScrollViewerEx>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
     
+        <controlsex:ScrollViewerEx>
+
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="SliderEx &amp; ScrollBarEx"/>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}">
+                    Examples of SliderEx with diffrent configuration.
+                </TextBlock>
+
+                <StackPanel
+                    Orientation="Vertical">
+
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="SliderEx with square style."/>
+
+                    <controlsex:SliderEx
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="10"/>
+
+                    <controlsex:SliderEx
+                        TickPlacement="Both"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        IsEnabled="False"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        TickPlacement="Both"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        IsEnabled="False"
+                        Padding="4,2"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="40"/>
+
+                </StackPanel>
+
+                <StackPanel
+                    Orientation="Vertical">
+
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="SliderEx with circle style."/>
+
+                    <controlsex:SliderEx
+                        Style="{StaticResource HorizontalCircleThumbSliderExStyle}"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="10"/>
+
+                    <controlsex:SliderEx
+                        Style="{StaticResource HorizontalCircleThumbSliderExStyle}"
+                        TickPlacement="Both"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        IsEnabled="False"
+                        Style="{StaticResource HorizontalCircleThumbSliderExStyle}"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        Style="{StaticResource HorizontalCircleThumbSliderExStyle}"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        Style="{StaticResource HorizontalCircleThumbSliderExStyle}"
+                        TickPlacement="Both"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        IsEnabled="False"
+                        Padding="4,2"
+                        Style="{StaticResource HorizontalCircleThumbSliderExStyle}"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="40"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Horizontal SliderEx with square style."/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <controlsex:SliderEx
+                        Style="{StaticResource VerticalSliderExStyle}"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="10"/>
+
+                    <controlsex:SliderEx
+                        Style="{StaticResource VerticalSliderExStyle}"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TickPlacement="Both"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        IsEnabled="False"
+                        Style="{StaticResource VerticalSliderExStyle}"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        Style="{StaticResource VerticalSliderExStyle}"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        Style="{StaticResource VerticalSliderExStyle}"
+                        TickPlacement="Both"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        IsEnabled="False"
+                        Padding="4,2"
+                        Style="{StaticResource VerticalSliderExStyle}"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="40"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Horizontal SliderEx with circle style."/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <controlsex:SliderEx
+                        Style="{StaticResource VerticalCircleThumbSliderExStyle}"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="10"/>
+
+                    <controlsex:SliderEx
+                        Style="{StaticResource VerticalCircleThumbSliderExStyle}"
+                        TickPlacement="Both"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        IsEnabled="False"
+                        Style="{StaticResource VerticalCircleThumbSliderExStyle}"
+                        TrackBarBackground="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        TrackBarBorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        Style="{StaticResource VerticalCircleThumbSliderExStyle}"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="20"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        Padding="4,2"
+                        Style="{StaticResource VerticalCircleThumbSliderExStyle}"
+                        TickPlacement="Both"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="30"/>
+
+                    <controlsex:SliderEx
+                        Background="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        BorderBrush="{Binding Configuration.BackgroundToolbarColorBrush}"
+                        IsEnabled="False"
+                        Padding="4,2"
+                        Style="{StaticResource VerticalCircleThumbSliderExStyle}"
+                        TrackBarBackground="Transparent"
+                        TrackBarBorderBrush="Transparent"
+                        Value="40"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+
 </Page>

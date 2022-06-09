@@ -8,22 +8,45 @@
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     mc:Ignorable="d"
     
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
+
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
             <Style TargetType="{x:Type controlsex:ExpanderEx}">
-                <Setter Property="Background" Value="#FFE0E0E0"/>
-                <Setter Property="BorderBrush" Value="#FF0078D7"/>
-                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="{Binding Configuration.BorderToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="Header" Value="128"/>
+                <Setter Property="HeaderBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HeaderBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HeaderForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HeaderPadding" Value="4"/>
                 <Setter Property="Margin" Value="0,0,0,8"/>
                 <Setter Property="Padding" Value="8"/>
@@ -32,91 +55,96 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="ExpanderEx"/>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of ExpanderEx component with diffrent configuration."/>
-
-            <controlsex:ExpanderEx
-                Header="Downward expanding">
-
-                <StackPanel
-                    Orientation="Vertical">
-
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Downward expansion test."/>
-
-                </StackPanel>
-
-            </controlsex:ExpanderEx>
+        <controlsex:ScrollViewerEx>
 
             <StackPanel
-                Orientation="Horizontal">
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="ExpanderEx"/>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of ExpanderEx component with diffrent configuration."/>
 
                 <controlsex:ExpanderEx
-                    Header="Expanding to the left"
-                    ExpandDirection="Left">
+                    Header="Downward expanding">
 
                     <StackPanel
                         Orientation="Vertical">
 
                         <TextBlock
-                            Style="{StaticResource TextBlockStyle.Content}"
-                            Text="Left expansion test."/>
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Downward expansion test."/>
+
+                    </StackPanel>
+
+                </controlsex:ExpanderEx>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <controlsex:ExpanderEx
+                        Header="Expanding to the left"
+                        ExpandDirection="Left">
+
+                        <StackPanel
+                            Orientation="Vertical">
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Left expansion test."/>
+
+                        </StackPanel>
+
+                    </controlsex:ExpanderEx>
+
+                </StackPanel>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <controlsex:ExpanderEx
+                        Header="Expanding to the right"
+                        ExpandDirection="Right">
+
+                        <StackPanel
+                            Orientation="Vertical">
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Right expansion test."/>
+
+                        </StackPanel>
+
+                    </controlsex:ExpanderEx>
+
+                </StackPanel>
+
+                <controlsex:ExpanderEx
+                    Header="Upward expanding"
+                    ExpandDirection="Up">
+
+                    <StackPanel
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Upward expansion test."/>
 
                     </StackPanel>
 
                 </controlsex:ExpanderEx>
 
             </StackPanel>
+        </controlsex:ScrollViewerEx>
 
-            <StackPanel
-                Orientation="Horizontal">
+    </Grid>
 
-                <controlsex:ExpanderEx
-                    Header="Expanding to the right"
-                    ExpandDirection="Right">
-
-                    <StackPanel
-                        Orientation="Vertical">
-
-                        <TextBlock
-                            Style="{StaticResource TextBlockStyle.Content}"
-                            Text="Right expansion test."/>
-
-                    </StackPanel>
-
-                </controlsex:ExpanderEx>
-
-            </StackPanel>
-
-            <controlsex:ExpanderEx
-                Header="Upward expanding"
-                ExpandDirection="Up">
-
-                <StackPanel
-                    Orientation="Vertical">
-
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Upward expansion test."/>
-
-                </StackPanel>
-
-            </controlsex:ExpanderEx>
-
-        </StackPanel>
-    </controlsex:ScrollViewerEx>
-    
 </Page>

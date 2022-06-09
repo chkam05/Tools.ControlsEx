@@ -31,6 +31,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(UpDownTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
+        public static readonly DependencyProperty ButtonBorderBrushProperty = DependencyProperty.Register(
+            nameof(ButtonBorderBrush),
+            typeof(Brush),
+            typeof(UpDownTextBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+
         public static readonly DependencyProperty ButtonForegroundProperty = DependencyProperty.Register(
             nameof(ButtonForeground),
             typeof(Brush),
@@ -43,6 +49,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(UpDownTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
 
+        public static readonly DependencyProperty ButtonMouseOverBorderBrushProperty = DependencyProperty.Register(
+            nameof(ButtonMouseOverBorderBrush),
+            typeof(Brush),
+            typeof(UpDownTextBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
+
         public static readonly DependencyProperty ButtonMouseOverForegroundProperty = DependencyProperty.Register(
             nameof(ButtonMouseOverForeground),
             typeof(Brush),
@@ -51,6 +63,12 @@ namespace chkam05.Tools.ControlsEx
 
         public static readonly DependencyProperty ButtonPressedBackgroundProperty = DependencyProperty.Register(
             nameof(ButtonPressedBackground),
+            typeof(Brush),
+            typeof(UpDownTextBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
+        
+        public static readonly DependencyProperty ButtonPressedBorderBrushProperty = DependencyProperty.Register(
+            nameof(ButtonPressedBorderBrush),
             typeof(Brush),
             typeof(UpDownTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
@@ -106,6 +124,12 @@ namespace chkam05.Tools.ControlsEx
         #endregion Appearance Colors Properties
 
         #region Buttons Properties
+
+        public static readonly DependencyProperty ButtonBorderThicknessProperty = DependencyProperty.Register(
+            nameof(ButtonBorderThickness),
+            typeof(Thickness),
+            typeof(UpDownTextBoxEx),
+            new PropertyMetadata(new Thickness(0)));
 
         public static readonly DependencyProperty ButtonHeightProperty = DependencyProperty.Register(
             nameof(ButtonHeight),
@@ -179,6 +203,16 @@ namespace chkam05.Tools.ControlsEx
                 OnPropertyChanged(nameof(ButtonBackground));
             }
         }
+        
+        public Brush ButtonBorderBrush
+        {
+            get => (Brush)GetValue(ButtonBorderBrushProperty);
+            set
+            {
+                SetValue(ButtonBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ButtonBorderBrush));
+            }
+        }
 
         public Brush ButtonForeground
         {
@@ -199,6 +233,16 @@ namespace chkam05.Tools.ControlsEx
                 OnPropertyChanged(nameof(ButtonMouseOverBackground));
             }
         }
+        
+        public Brush ButtonMouseOverBorderBrush
+        {
+            get => (Brush)GetValue(ButtonMouseOverBorderBrushProperty);
+            set
+            {
+                SetValue(ButtonMouseOverBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ButtonMouseOverBorderBrush));
+            }
+        }
 
         public Brush ButtonMouseOverForeground
         {
@@ -217,6 +261,16 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(ButtonPressedBackgroundProperty, value);
                 OnPropertyChanged(nameof(ButtonPressedBackground));
+            }
+        }
+
+        public Brush ButtonPressedBorderBrush
+        {
+            get => (Brush)GetValue(ButtonPressedBorderBrushProperty);
+            set
+            {
+                SetValue(ButtonPressedBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ButtonPressedBorderBrush));
             }
         }
 
@@ -303,6 +357,16 @@ namespace chkam05.Tools.ControlsEx
         #endregion Appearance Colors
 
         #region Buttons
+
+        public Thickness ButtonBorderThickness
+        {
+            get => (Thickness)GetValue(ButtonBorderThicknessProperty);
+            set
+            {
+                SetValue(ButtonBorderThicknessProperty, value);
+                OnPropertyChanged(nameof(ButtonBorderThickness));
+            }
+        }
 
         public double ButtonHeight
         {

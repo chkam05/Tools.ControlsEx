@@ -42,10 +42,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private string _libraryCopyright;
         private string _libraryVersion;
 
+        public Configuration Configuration { get; private set; }
+
 
         //  GETTERS & SETTERS
-
-        public Configuration Configuration { get; private set; }
 
         public string ApplicationTitle
         {

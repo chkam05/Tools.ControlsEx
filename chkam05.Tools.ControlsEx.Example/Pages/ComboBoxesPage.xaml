@@ -17,60 +17,112 @@
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
             <Style TargetType="{x:Type controlsex:ComboBoxEx}">
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownBackground" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownIconBrush" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownMouseOverIconBrush" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownSelectedIconBrush" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="Margin" Value="4"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
-            
+
+            <Style TargetType="{x:Type controlsex:ComboBoxItemEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
+        <controlsex:ScrollViewerEx>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="ComboBoxEx &amp; ComboBoxItemEx"/>
+            <StackPanel
+                    HorizontalAlignment="Left"
+                    Margin="8"
+                    Orientation="Vertical">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of ComboBoxEx component with diffrent configuration."/>
+                <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                        Text="ComboBoxEx &amp; ComboBoxItemEx"/>
 
-            <controlsex:ComboBoxEx
-                ItemsSource="{Binding ComboBoxDataContext}"
-                SelectedIndex="32"/>
+                <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Examples of ComboBoxEx component with diffrent configuration."/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of editable ComboBoxEx component."/>
+                <controlsex:ComboBoxEx
+                        ItemsSource="{Binding ComboBoxDataContext}"
+                        SelectedIndex="32"/>
 
-            <controlsex:ComboBoxEx
-                ItemsSource="{Binding ComboBoxDataContext}"
-                IsEditable="True"
-                SelectedIndex="14"/>
+                <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Examples of editable ComboBoxEx component."/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of disabled default and editable ComboBoxEx component."/>
+                <controlsex:ComboBoxEx
+                        ItemsSource="{Binding ComboBoxDataContext}"
+                        IsEditable="True"
+                        SelectedIndex="14"/>
 
-            <controlsex:ComboBoxEx
-                ItemsSource="{Binding ComboBoxDataContext}"
-                IsEnabled="False"
-                SelectedIndex="13"/>
+                <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Examples of disabled default and editable ComboBoxEx component."/>
 
-            <controlsex:ComboBoxEx
-                ItemsSource="{Binding ComboBoxDataContext}"
-                IsEditable="True"
-                IsEnabled="False"
-                SelectedIndex="35"/>
+                <controlsex:ComboBoxEx
+                        ItemsSource="{Binding ComboBoxDataContext}"
+                        IsEnabled="False"
+                        SelectedIndex="13"/>
 
-        </StackPanel>
+                <controlsex:ComboBoxEx
+                        ItemsSource="{Binding ComboBoxDataContext}"
+                        IsEditable="True"
+                        IsEnabled="False"
+                        SelectedIndex="35"/>
 
-    </controlsex:ScrollViewerEx>
-    
+            </StackPanel>
+
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+
 </Page>

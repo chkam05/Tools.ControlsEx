@@ -25,7 +25,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        //  GETTERS & SETTERS
+        //  VARIABLES
 
         public Configuration Configuration { get; private set; }
 

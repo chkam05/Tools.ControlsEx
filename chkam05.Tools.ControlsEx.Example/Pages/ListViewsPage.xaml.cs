@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Example.Data;
+using chkam05.Tools.ControlsEx.Example.Data.Config;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,6 +31,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         private ObservableCollection<Country> _gridViewDataContext;
         private ObservableCollection<string> _listViewDataContext;
+
+        public Configuration Configuration { get; private set; }
 
 
         //  GETTERS & SETTERS
@@ -63,7 +66,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <summary> ListViewsPage class constructor. </summary>
         public ListViewsPage()
         {
-            //  Setup data containers.
+            //  Initialize data containers.
+            Configuration = Configuration.Instance;
             SetupExampleData();
 
             //  Initialize interface components.

@@ -6,10 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    
     mc:Ignorable="d"
     
-    DataContext="{Binding RelativeSource={RelativeSource Self}}"
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -17,15 +19,53 @@
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
             <Style TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="Background" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="Margin" Value="4"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
             <Style x:Key="HiddenMessageShowButtonExStyle" TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="Background" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HorizontalAlignment" Value="Right"/>
                 <Setter Property="Margin" Value="4"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding MessageHidden, RelativeSource={RelativeSource AncestorType={x:Type local:InternalMessagesPage}}}" Value="False">
                         <Setter Property="IsEnabled" Value="False"/>
@@ -36,7 +76,8 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -52,11 +93,11 @@
                 Orientation="Vertical">
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
                     Text="InternalMessagesEx &amp; InternalMessageEx"/>
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Content}"
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Examples of InternalMessagesEx component with controls for InternalMessageEx components."/>
 
                 <StackPanel
@@ -91,11 +132,11 @@
                 </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
                     Text="ProgressInternalMessageEx"/>
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Content}"
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Examples of ProgressInternalMessageEx components with diffrent configuration."/>
 
                 <StackPanel
@@ -125,11 +166,11 @@
                 </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Header1}"
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
                     Text="AwaitInternalMessageEx"/>
 
                 <TextBlock
-                    Style="{StaticResource TextBlockStyle.Content}"
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Examples of AwaitInternalMessageEx components with diffrent configuration."/>
 
                 <StackPanel

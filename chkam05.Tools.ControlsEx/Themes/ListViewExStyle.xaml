@@ -112,10 +112,6 @@
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="GridViewEx.ScrollViewerExStyle" BasedOn="{StaticResource ScrollViewerExStyle}" TargetType="{x:Type local:ScrollViewerEx}">
-        <Setter Property="Template" Value="{StaticResource GridViewEx.ScrollViewerEx.ControlTemplate}"/>
-    </Style>
-
     <ControlTemplate x:Key="ListViewEx.ControlTemplate" TargetType="{x:Type local:ListViewEx}">
         <Border
             x:Name="border"
@@ -161,7 +157,7 @@
             SnapsToDevicePixels="true">
 
             <local:ScrollViewerEx
-                Style="{StaticResource GridViewEx.ScrollViewerExStyle}">
+                Template="{StaticResource GridViewEx.ScrollViewerEx.ControlTemplate}">
 
                 <ItemsPresenter/>
 

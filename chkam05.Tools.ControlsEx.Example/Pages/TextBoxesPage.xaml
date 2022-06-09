@@ -6,9 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    
     mc:Ignorable="d"
     
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -16,345 +19,381 @@
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+            
             <Style x:Key="HorizontalStackPanelStyle" TargetType="{x:Type StackPanel}">
                 <Setter Property="Margin" Value="0,0,0,8"/>
                 <Setter Property="Orientation" Value="Horizontal"/>
             </Style>
 
             <Style x:Key="PreviewTextBlockStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Margin" Value="8,0"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
 
             <Style TargetType="{x:Type controlsex:TextBoxEx}">
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedTextBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="MinWidth" Value="192"/>
             </Style>
 
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="TextBoxEx"/>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Default TextBoxEx:"/>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of TextBoxEx component with diffrent configuration."/>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Default TextBoxEx:"/>
+        <controlsex:ScrollViewerEx>
 
             <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="defaultTextBox"/>
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=defaultTextBox, Path=Text}"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Disabled TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    IsEnabled="false"
-                    Text="Disabled"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Multiline TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="multilineTextBox"
-                    AcceptsTab="True"
-                    AcceptsReturn="True"
-                    Height="80"
-                    TextWrapping="Wrap"
-                    VerticalContentAlignment="Top"
-                    VerticalScrollBarVisibility="Visible"
-                    Width="192">
-
-                    HELLO WORLD
-                    &#x0A; &#x0D;
-                    This is example of multiline TextBoxEx.
-
-                </controlsex:TextBoxEx>
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="TextBoxEx"/>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=multilineTextBox, Path=Text}"
-                    TextWrapping="Wrap"
-                    VerticalAlignment="Top"
-                    Width="192"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Readonly TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    IsReadOnly="True"
-                    Text="Read Only"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Margin="0,16,0,8"
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of TextBoxEx component with diffrent ConversionType configuration."/>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Boolean TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="booleanTextBox"
-                    ConversionType="Bool"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Default TextBoxEx:"/>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=booleanTextBox, Path=Text}"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Byte TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="byteTextBox"
-                    ConversionType="Byte"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of TextBoxEx component with diffrent configuration."/>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=byteTextBox, Path=Text}"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Default TextBoxEx:"/>
 
-            </StackPanel>
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Char TextBoxEx:"/>
+                    <controlsex:TextBoxEx
+                        x:Name="defaultTextBox"/>
 
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=defaultTextBox, Path=Text}"/>
 
-                <controlsex:TextBoxEx
-                    x:Name="charTextBox"
-                    ConversionType="Char"/>
-
-                <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=charTextBox, Path=Text}"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="DateTime TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="dateTimeTextBox"
-                    ConversionType="DateTime"/>
+                </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=dateTimeTextBox, Path=Text}"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Disabled TextBoxEx:"/>
 
-            </StackPanel>
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Decimal TextBoxEx:"/>
+                    <controlsex:TextBoxEx
+                        IsEnabled="false"
+                        Text="Disabled"/>
 
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="decimalTextBox"
-                    ConversionType="Decimal"/>
+                </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=decimalTextBox, Path=Text}"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Multiline TextBoxEx:"/>
 
-            </StackPanel>
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Double TextBoxEx:"/>
+                    <controlsex:TextBoxEx
+                        x:Name="multilineTextBox"
+                        AcceptsTab="True"
+                        AcceptsReturn="True"
+                        Height="80"
+                        TextWrapping="Wrap"
+                        VerticalContentAlignment="Top"
+                        VerticalScrollBarVisibility="Visible"
+                        Width="192">
 
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
+                        HELLO WORLD
+                        &#x0A; &#x0D;
+                        This is example of multiline TextBoxEx.
 
-                <controlsex:TextBoxEx
-                    x:Name="doubleTextBox"
-                    ConversionType="Double"/>
+                    </controlsex:TextBoxEx>
 
-                <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=doubleTextBox, Path=Text}"/>
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=multilineTextBox, Path=Text}"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top"
+                        Width="192"/>
 
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Float TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="floatTextBox"
-                    ConversionType="Float"/>
+                </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=floatTextBox, Path=Text}"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Readonly TextBoxEx:"/>
 
-            </StackPanel>
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Int TextBoxEx:"/>
+                    <controlsex:TextBoxEx
+                        IsReadOnly="True"
+                        Text="Read Only"/>
 
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="intTextBox"
-                    ConversionType="Int"/>
+                </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=intTextBox, Path=Text}"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Long TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="longTextBox"
-                    ConversionType="Long"/>
+                    Margin="0,16,0,8"
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of TextBoxEx component with diffrent ConversionType configuration."/>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=longTextBox, Path=Text}"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Boolean TextBoxEx:"/>
 
-            </StackPanel>
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Short TextBoxEx:"/>
+                    <controlsex:TextBoxEx
+                        x:Name="booleanTextBox"
+                        ConversionType="Bool"/>
 
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=booleanTextBox, Path=Text}"/>
 
-                <controlsex:TextBoxEx
-                    x:Name="shortTextBox"
-                    ConversionType="Short"/>
-
-                <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=shortTextBox, Path=Text}"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="TimeSpan TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="timeSpanTextBox"
-                    ConversionType="TimeSpan"/>
+                </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=timeSpanTextBox, Path=Text}"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Byte TextBoxEx:"/>
 
-            </StackPanel>
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="UInt TextBoxEx:"/>
+                    <controlsex:TextBoxEx
+                        x:Name="byteTextBox"
+                        ConversionType="Byte"/>
 
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=byteTextBox, Path=Text}"/>
 
-                <controlsex:TextBoxEx
-                    x:Name="uIntTextBox"
-                    ConversionType="UInt"/>
-
-                <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=uIntTextBox, Path=Text}"/>
-
-            </StackPanel>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="UShort TextBoxEx:"/>
-
-            <StackPanel
-                Style="{StaticResource HorizontalStackPanelStyle}">
-
-                <controlsex:TextBoxEx
-                    x:Name="uShortTextBox"
-                    ConversionType="UShort"/>
+                </StackPanel>
 
                 <TextBlock
-                    Style="{StaticResource PreviewTextBlockStyle}"
-                    Text="{Binding ElementName=uShortTextBox, Path=Text}"/>
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Char TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="charTextBox"
+                        ConversionType="Char"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=charTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="DateTime TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="dateTimeTextBox"
+                        ConversionType="DateTime"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=dateTimeTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Decimal TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="decimalTextBox"
+                        ConversionType="Decimal"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=decimalTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Double TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="doubleTextBox"
+                        ConversionType="Double"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=doubleTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Float TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="floatTextBox"
+                        ConversionType="Float"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=floatTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Int TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="intTextBox"
+                        ConversionType="Int"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=intTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Long TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="longTextBox"
+                        ConversionType="Long"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=longTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Short TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="shortTextBox"
+                        ConversionType="Short"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=shortTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="TimeSpan TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="timeSpanTextBox"
+                        ConversionType="TimeSpan"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=timeSpanTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="UInt TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="uIntTextBox"
+                        ConversionType="UInt"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=uIntTextBox, Path=Text}"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="UShort TextBoxEx:"/>
+
+                <StackPanel
+                    Style="{StaticResource HorizontalStackPanelStyle}">
+
+                    <controlsex:TextBoxEx
+                        x:Name="uShortTextBox"
+                        ConversionType="UShort"/>
+
+                    <TextBlock
+                        Style="{StaticResource PreviewTextBlockStyle}"
+                        Text="{Binding ElementName=uShortTextBox, Path=Text}"/>
+
+                </StackPanel>
 
             </StackPanel>
 
-        </StackPanel>
+        </controlsex:ScrollViewerEx>
 
-    </controlsex:ScrollViewerEx>
-    
+    </Grid>
+
 </Page>

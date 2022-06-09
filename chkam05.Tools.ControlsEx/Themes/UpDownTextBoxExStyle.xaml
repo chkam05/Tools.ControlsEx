@@ -8,8 +8,9 @@
     <SolidColorBrush x:Key="UpDownTextBoxEx.Foreground">Black</SolidColorBrush>
 
     <Style x:Key="UpDownTextBoxEx.ButtonExStyle" TargetType="{x:Type local:ButtonEx}">
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
+        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
         <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
         <Setter Property="IconHeight" Value="{Binding ButtonHeight, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
         <Setter Property="IconMargin" Value="0"/>
@@ -17,9 +18,11 @@
         <Setter Property="IconMinWidth" Value="0"/>
         <Setter Property="IconWidth" Value="{Binding ButtonWidth, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
         <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
         <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
         <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
     </Style>
     
@@ -38,17 +41,26 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <local:ScrollViewerEx
-                    x:Name="PART_ContentHost"
-                    Focusable="false"
-                    Foreground="{TemplateBinding Foreground}"
-                    Grid.Column="0"
-                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                    HorizontalScrollBarVisibility="Hidden"
-                    Margin="{TemplateBinding Padding}"
-                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                    VerticalScrollBarVisibility="Hidden"/>
+
+                <Border
+                    x:Name="innerBorder"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,1"
+                    Margin="0"
+                    Padding="0">
+                    
+                    <local:ScrollViewerEx
+                        x:Name="PART_ContentHost"
+                        Focusable="false"
+                        Foreground="{TemplateBinding Foreground}"
+                        Grid.Column="0"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        HorizontalScrollBarVisibility="Hidden"
+                        Margin="{TemplateBinding Padding}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        VerticalScrollBarVisibility="Hidden"/>
+                </Border>
 
                 <Grid
                     Grid.Column="1">
@@ -93,6 +105,7 @@
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="Background" TargetName="border" Value="{Binding SelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding SelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="innerBorder" Value="{Binding SelectedTextBackground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
                 <Setter Property="Foreground" TargetName="PART_ContentHost" Value="{Binding SelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:UpDownTextBoxEx}}}"/>
             </Trigger>
 

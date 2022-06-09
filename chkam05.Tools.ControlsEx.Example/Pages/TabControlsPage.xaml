@@ -6,20 +6,59 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
+    
     mc:Ignorable="d"
     
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
+
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TabItemExStyle" TargetType="{x:Type controlsex:TabItemEx}">
+                <Setter Property="Background" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+            
             <Style TargetType="{x:Type controlsex:TabControlEx}">
-                <Setter Property="Background" Value="#FFE0E0E0"/>
-                <Setter Property="HeaderBackground" Value="#FFC0C0C0"/>
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HeaderBackground" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HeaderBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ItemContainerStyle" Value="{StaticResource Conf_TabItemExStyle}"/>
                 <Setter Property="Margin" Value="0,0,0,8"/>
                 <Setter Property="Padding" Value="8"/>
             </Style>
@@ -27,149 +66,154 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx>
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
+        <controlsex:ScrollViewerEx>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="TabControlEx &amp; TabItemEx"/>
+            <StackPanel
+                HorizontalAlignment="Left"
+                Margin="8"
+                Orientation="Vertical">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Examples of TabControlEx component with TabItemEx."/>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="TabControlEx &amp; TabItemEx"/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Top"/>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of TabControlEx component with TabItemEx."/>
 
-            <controlsex:TabControlEx>
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Top"/>
 
-                <controlsex:TabItemEx
-                    Header="Icon"
-                    IconKind="MicrosoftWindows">
+                <controlsex:TabControlEx>
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item with icon test."/>
+                    <controlsex:TabItemEx
+                        Header="Icon"
+                        IconKind="MicrosoftWindows">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item with icon test."/>
 
-                <controlsex:TabItemEx
-                    Header="No Icon">
+                    </controlsex:TabItemEx>
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item test."/>
+                    <controlsex:TabItemEx
+                        Header="No Icon">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item test."/>
 
-                <controlsex:TabItemEx
-                    Header="Disabled"
-                    IsEnabled="False"/>
+                    </controlsex:TabItemEx>
 
-            </controlsex:TabControlEx>
+                    <controlsex:TabItemEx
+                        Header="Disabled"
+                        IsEnabled="False"/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Left"/>
+                </controlsex:TabControlEx>
 
-            <controlsex:TabControlEx
-                TabStripPlacement="Left">
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Left"/>
 
-                <controlsex:TabItemEx
-                    Header="Icon"
-                    IconKind="MicrosoftWindows">
+                <controlsex:TabControlEx
+                    TabStripPlacement="Left">
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item with icon test."/>
+                    <controlsex:TabItemEx
+                        Header="Icon"
+                        IconKind="MicrosoftWindows">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item with icon test."/>
 
-                <controlsex:TabItemEx
-                    Header="No Icon">
+                    </controlsex:TabItemEx>
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item test."/>
+                    <controlsex:TabItemEx
+                        Header="No Icon">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item test."/>
 
-                <controlsex:TabItemEx
-                    Header="Disabled"
-                    IsEnabled="False"/>
+                    </controlsex:TabItemEx>
 
-            </controlsex:TabControlEx>
+                    <controlsex:TabItemEx
+                        Header="Disabled"
+                        IsEnabled="False"/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Right"/>
+                </controlsex:TabControlEx>
 
-            <controlsex:TabControlEx
-                TabStripPlacement="Right">
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Right"/>
 
-                <controlsex:TabItemEx
-                    Header="Icon"
-                    IconKind="MicrosoftWindows">
+                <controlsex:TabControlEx
+                    TabStripPlacement="Right">
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item with icon test."/>
+                    <controlsex:TabItemEx
+                        Header="Icon"
+                        IconKind="MicrosoftWindows">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item with icon test."/>
 
-                <controlsex:TabItemEx
-                    Header="No Icon">
+                    </controlsex:TabItemEx>
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item test."/>
+                    <controlsex:TabItemEx
+                        Header="No Icon">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item test."/>
 
-                <controlsex:TabItemEx
-                    Header="Disabled"
-                    IsEnabled="False"/>
+                    </controlsex:TabItemEx>
 
-            </controlsex:TabControlEx>
+                    <controlsex:TabItemEx
+                        Header="Disabled"
+                        IsEnabled="False"/>
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Bottom"/>
+                </controlsex:TabControlEx>
 
-            <controlsex:TabControlEx
-                TabStripPlacement="Bottom">
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Bottom"/>
 
-                <controlsex:TabItemEx
-                    Header="Icon"
-                    IconKind="MicrosoftWindows">
+                <controlsex:TabControlEx
+                    TabStripPlacement="Bottom">
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item with icon test."/>
+                    <controlsex:TabItemEx
+                        Header="Icon"
+                        IconKind="MicrosoftWindows">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item with icon test."/>
 
-                <controlsex:TabItemEx
-                    Header="No Icon">
+                    </controlsex:TabItemEx>
 
-                    <TextBlock
-                        Style="{StaticResource TextBlockStyle.Content}"
-                        Text="Tab control item test."/>
+                    <controlsex:TabItemEx
+                        Header="No Icon">
 
-                </controlsex:TabItemEx>
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Tab control item test."/>
 
-                <controlsex:TabItemEx
-                    Header="Disabled"
-                    IsEnabled="False"/>
+                    </controlsex:TabItemEx>
 
-            </controlsex:TabControlEx>
+                    <controlsex:TabItemEx
+                        Header="Disabled"
+                        IsEnabled="False"/>
 
-        </StackPanel>
-    </controlsex:ScrollViewerEx>
-    
+                </controlsex:TabControlEx>
+
+            </StackPanel>
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+
 </Page>

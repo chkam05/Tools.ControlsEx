@@ -31,10 +31,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private string _selectedColorCode = "#00000000";
         private string _selectedColorName = "Transparent";
 
+        public Configuration Configuration { get; private set; }
+
 
         //  GETTERS & SETTERS
-
-        public Configuration Configuration { get; private set; }
 
         public Brush SelectedColorBrush
         {

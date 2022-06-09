@@ -31,10 +31,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         private ObservableCollection<ColorPaletteItem> _themeColors;
 
+        public Configuration Configuration { get; private set; }
+
 
         //  GETTERS & SETTERS
 
-        public Configuration Configuration { get; private set; }
         public ObservableCollection<ColorPaletteItem> ThemeColors
         {
             get => _themeColors;

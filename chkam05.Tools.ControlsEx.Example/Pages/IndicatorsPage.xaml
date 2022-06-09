@@ -9,7 +9,9 @@
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     mc:Ignorable="d"
     
-    d:DesignWidth="800">
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -17,34 +19,64 @@
                 <ResourceDictionary Source="../Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
             <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type indicators:CircleSmoothIndicatorEx}">
+                <Setter Property="Fill" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Pen" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PenThickness" Value="1"/>
+            </Style>
 
         </ResourceDictionary>
     </Page.Resources>
 
-    <controlsex:ScrollViewerEx
-        Grid.Row="0">
+    <Grid
+        Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Margin="8"
-            Orientation="Vertical">
+        <controlsex:ScrollViewerEx
+            Grid.Row="0">
 
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Header1}"
-                Text="IndicatorEx"/>
-
-            <TextBlock
-                Style="{StaticResource TextBlockStyle.Content}"
-                Text="Example of CircleSmoothIndicatorEx component."/>
-
-            <indicators:CircleSmoothIndicatorEx
-                Height="32"
+            <StackPanel
                 HorizontalAlignment="Left"
-                Margin="0,8"
-                Width="32"/>
+                Margin="8"
+                Orientation="Vertical">
 
-        </StackPanel>
-    </controlsex:ScrollViewerEx>
-    
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="IndicatorEx"/>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Example of CircleSmoothIndicatorEx component."/>
+
+                <indicators:CircleSmoothIndicatorEx
+                    Height="32"
+                    HorizontalAlignment="Left"
+                    Margin="0,8"
+                    Width="32"/>
+
+            </StackPanel>
+        </controlsex:ScrollViewerEx>
+
+    </Grid>
+
 </Page>

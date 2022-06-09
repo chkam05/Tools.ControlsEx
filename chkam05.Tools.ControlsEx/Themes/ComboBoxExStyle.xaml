@@ -194,7 +194,7 @@
                     Background="{TemplateBinding BorderBrush}"
                     BorderBrush="Transparent"
                     BorderThickness="0"
-                    Foreground="{TemplateBinding Background}"
+                    Foreground="{TemplateBinding DropDownIconBrush}"
                     Grid.ColumnSpan="2"
                     IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                     Style="{StaticResource ComboBoxEx.ToggleButton}"/>
@@ -220,6 +220,7 @@
             <Trigger Property="IsKeyboardFocusWithin" Value="true">
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownMouseOverIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding MouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </Trigger>
 
@@ -227,6 +228,7 @@
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownMouseOverIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding MouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </Trigger>
             
@@ -238,6 +240,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding SelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding SelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownSelectedIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding SelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </MultiTrigger>
 
@@ -249,6 +252,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownMouseOverIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="TextBlock.Foreground" TargetName="contentPresenter" Value="{Binding MouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </MultiTrigger>
 
@@ -365,7 +369,7 @@
                     Background="{TemplateBinding BorderBrush}"
                     BorderBrush="Transparent"
                     BorderThickness="0"
-                    Foreground="{TemplateBinding Background}"
+                    Foreground="{TemplateBinding DropDownIconBrush}"
                     Grid.ColumnSpan="2"
                     IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                     Style="{StaticResource ComboBoxEx.ToggleButton}"/>
@@ -389,6 +393,7 @@
             <Trigger Property="IsKeyboardFocusWithin" Value="true">
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownMouseOverIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="{Binding MouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </Trigger>
 
@@ -396,6 +401,7 @@
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownMouseOverIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="{Binding MouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </Trigger>
 
@@ -407,6 +413,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding SelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding SelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownSelectedIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="{Binding SelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </MultiTrigger>
 
@@ -418,6 +425,7 @@
                 </MultiTrigger.Conditions>
                 <Setter Property="Background" TargetName="templateBorder" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="BorderBrush" TargetName="templateBorder" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
+                <Setter Property="Foreground" TargetName="toggleButton" Value="{Binding DropDownMouseOverIconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
                 <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="{Binding MouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBoxEx}}}"/>
             </MultiTrigger>
 

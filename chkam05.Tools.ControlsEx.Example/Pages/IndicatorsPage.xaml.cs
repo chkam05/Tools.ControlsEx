@@ -1,5 +1,7 @@
-﻿using System;
+﻿using chkam05.Tools.ControlsEx.Example.Data.Config;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +20,50 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
     /// <summary>
     /// Logika interakcji dla klasy IndicatorsPage.xaml
     /// </summary>
-    public partial class IndicatorsPage : Page
+    public partial class IndicatorsPage : Page, INotifyPropertyChanged
     {
+
+        //  EVENTS
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        //  VARIABLES
+
+        public Configuration Configuration { get; private set; }
+
+
+        //  METHODS
+
+        #region CLASS METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> IndicatorsPage class constructor. </summary>
         public IndicatorsPage()
         {
+            //  Initialize data containers.
+            Configuration = Configuration.Instance;
+
+            //  Initialize interface components.
             InitializeComponent();
         }
+
+        #endregion CLASS METHODS
+
+        #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method for invoking PropertyChangedEventHandler external method. </summary>
+        /// <param name="propertyName"> Changed property name. </param>
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS
+
     }
 }

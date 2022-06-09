@@ -38,15 +38,15 @@
                 VerticalAlignment="Center">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition x:Name="colLeft" Width="*"/>
+                    <ColumnDefinition x:Name="colCenter" Width="auto"/>
+                    <ColumnDefinition x:Name="colRight" Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition x:Name="rowTop" Height="*"/>
+                    <RowDefinition x:Name="rowCenter" Height="auto"/>
+                    <RowDefinition x:Name="rowBottom" Height="*"/>
                 </Grid.RowDefinitions>
 
                 <materialDesign:PackIcon
@@ -58,10 +58,10 @@
                     HorizontalAlignment="Stretch"
                     Kind="{TemplateBinding IconKind}"
                     Margin="{TemplateBinding IconMargin}"
-                    MaxHeight="{TemplateBinding MaxHeight}"
-                    MaxWidth="{TemplateBinding MaxWidth}"
-                    MinHeight="{TemplateBinding MinHeight}"
-                    MinWidth="{TemplateBinding MinWidth}"
+                    MaxHeight="{TemplateBinding IconMaxHeight}"
+                    MaxWidth="{TemplateBinding IconMaxWidth}"
+                    MinHeight="{TemplateBinding IconMinHeight}"
+                    MinWidth="{TemplateBinding IconMinWidth}"
                     Width="{TemplateBinding IconWidth}"
                     VerticalAlignment="Stretch"/>
 
@@ -105,6 +105,7 @@
             <!-- Has No Content. -->
             <Trigger Property="HasContent" Value="False">
                 <Setter TargetName="contentPresenter" Property="Visibility" Value="Collapsed"/>
+                <Setter TargetName="packIcon" Property="Margin" Value="0"/>
             </Trigger>
 
             <!-- Has No Icon. -->
@@ -118,17 +119,59 @@
                 <Setter TargetName="contentPresenter" Property="Grid.Row" Value="1"/>
             </Trigger>
 
+            <!-- ContentSide Left No Content. -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ContentSide" Value="Left"/>
+                    <Condition Property="HasContent" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="packIcon" Property="Margin" Value="4,0,0,0"/>
+            </MultiTrigger>
+
             <!-- ContentSide Top. -->
             <Trigger Property="ContentSide" Value="Top">
                 <Setter TargetName="contentPresenter" Property="Grid.Column" Value="1"/>
                 <Setter TargetName="contentPresenter" Property="Grid.Row" Value="0"/>
             </Trigger>
 
+            <!-- ContentSide Top No Content. -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ContentSide" Value="Top"/>
+                    <Condition Property="HasContent" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="packIcon" Property="Margin" Value="0,4,0,0"/>
+            </MultiTrigger>
+
             <!-- ContentSide Right. -->
+            <Trigger Property="ContentSide" Value="Right">
+                <Setter TargetName="contentPresenter" Property="Grid.Column" Value="2"/>
+                <Setter TargetName="contentPresenter" Property="Grid.Row" Value="1"/>
+            </Trigger>
+
+            <!-- ContentSide Right No Content. -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ContentSide" Value="Right"/>
+                    <Condition Property="HasContent" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="packIcon" Property="Margin" Value="0,0,4,0"/>
+            </MultiTrigger>
+
+            <!-- ContentSide Bottom. -->
             <Trigger Property="ContentSide" Value="Bottom">
                 <Setter TargetName="contentPresenter" Property="Grid.Column" Value="1"/>
                 <Setter TargetName="contentPresenter" Property="Grid.Row" Value="2"/>
             </Trigger>
+
+            <!-- ContentSide Bottom No Content. -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ContentSide" Value="Bottom"/>
+                    <Condition Property="HasContent" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="packIcon" Property="Margin" Value="0,0,0,4"/>
+            </MultiTrigger>
 
         </ControlTemplate.Triggers>
     </ControlTemplate>
