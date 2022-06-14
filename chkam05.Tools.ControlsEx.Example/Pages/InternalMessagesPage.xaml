@@ -118,16 +118,11 @@
                         Content="Alert"
                         IconKind="Alert"
                         Click="AlertIMButtonEx_Click"/>
-                    
+
                     <controlsex:ButtonEx
                         Content="Error"
                         IconKind="Error"
                         Click="ErrorIMButtonEx_Click"/>
-
-                    <controlsex:ButtonEx
-                        Content="Hideable"
-                        IconKind="Hide"
-                        Click="HideableIMButtonEx_Click"/>
 
                 </StackPanel>
 
@@ -198,6 +193,39 @@
 
                 </StackPanel>
 
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="FilesInternalMessageEx"/>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of OpenFilesInternalMessageEx, SaveFilesInternalMessageEx and SelectFolderInternalMessageEx components."/>
+
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <controlsex:ButtonEx
+                        Content="OpenFile"
+                        IconKind="FolderOpen"
+                        Click="OpenFileIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="OpenFiles"
+                        IconKind="FolderOpen"
+                        Click="OpenFilesIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="SaveFile"
+                        IconKind="ContentSaveEdit"
+                        Click="SaveFileIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="SelectFolder"
+                        IconKind="FolderMultiple"
+                        Click="SelectFolderIMButtonEx_Click"/>
+
+                </StackPanel>
+
             </StackPanel>
 
         </controlsex:ScrollViewerEx>
@@ -206,6 +234,7 @@
             Grid.Row="1">
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
@@ -216,16 +245,34 @@
                 Orientation="Horizontal">
 
                 <controlsex:TextBlockEx
+                    Foreground="{Binding Configuration.ForegroundColorBrush}"
                     Text="Last message result: "/>
 
                 <controlsex:TextBlockEx
                     FontWeight="Bold"
+                    Foreground="{Binding Configuration.ForegroundColorBrush}"
                     Text="{Binding LastResult}"/>
 
             </StackPanel>
 
             <StackPanel
                 Grid.Column="1"
+                Margin="4,0"
+                Orientation="Horizontal">
+
+                <controlsex:TextBlockEx
+                    Foreground="{Binding Configuration.ForegroundColorBrush}"
+                    Text="{Binding OptionalKey}"/>
+
+                <controlsex:TextBlockEx
+                    FontWeight="Bold"
+                    Foreground="{Binding Configuration.ForegroundColorBrush}"
+                    Text="{Binding OptionalValue}"/>
+
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="2"
                 Orientation="Horizontal">
 
                 <controlsex:ButtonEx

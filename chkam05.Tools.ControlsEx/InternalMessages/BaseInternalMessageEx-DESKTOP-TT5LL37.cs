@@ -31,77 +31,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
-        public static readonly DependencyProperty ButtonBackgroundProperty = DependencyProperty.Register(
-            nameof(ButtonBackground),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
-
-        public static readonly DependencyProperty ButtonBorderBrushProperty = DependencyProperty.Register(
-            nameof(ButtonBorderBrush),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
-
-        public static readonly DependencyProperty ButtonForegroundProperty = DependencyProperty.Register(
-            nameof(ButtonForeground),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
-
-        public static readonly DependencyProperty ButtonMouseOverBackgroundProperty = DependencyProperty.Register(
-            nameof(ButtonMouseOverBackground),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
-
-        public static readonly DependencyProperty ButtonMouseOverBorderBrushProperty = DependencyProperty.Register(
-            nameof(ButtonMouseOverBorderBrush),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
-
-        public static readonly DependencyProperty ButtonMouseOverForegroundProperty = DependencyProperty.Register(
-            nameof(ButtonMouseOverForeground),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
-
-        public static readonly DependencyProperty ButtonPressedBackgroundProperty = DependencyProperty.Register(
-            nameof(ButtonPressedBackground),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
-
-        public static readonly DependencyProperty ButtonPressedBorderBrushProperty = DependencyProperty.Register(
-            nameof(ButtonPressedBorderBrush),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
-
-        public static readonly DependencyProperty ButtonPressedForegroundProperty = DependencyProperty.Register(
-            nameof(ButtonPressedForeground),
-            typeof(Brush),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
-
         #endregion Appearance Colors Properties
-
-        #region Buttons Properties
-
-        public static readonly DependencyProperty ButtonBorderThicknessProperty = DependencyProperty.Register(
-            nameof(ButtonBorderThickness),
-            typeof(Thickness),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new Thickness(0)));
-
-        public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(
-            nameof(BorderThickness),
-            typeof(Thickness),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new Thickness(1)));
-
-        #endregion Buttons Properties
 
         #region Icon Properties
 
@@ -189,6 +119,24 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion Title Properties
 
+        public static readonly DependencyProperty AllowHideProperty = DependencyProperty.Register(
+            nameof(AllowHide),
+            typeof(bool),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty ButtonsProperty = DependencyProperty.Register(
+            nameof(Buttons),
+            typeof(InternalMessageButtons),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(InternalMessageButtons.Ok));
+
+        public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(
+            nameof(BorderThickness),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new Thickness(1)));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -211,6 +159,13 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         //  EVENTS
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public virtual event InternalMessageClose<InternalMessageCloseEventArgs> MessageClose;
+        public virtual event InternalMessageHide MessageHide;
+
+
+        //  VARIABLES
+
+        private bool _isHidden = false;
 
 
         //  GETTERS & SETTERS
@@ -227,121 +182,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
-        public Brush ButtonBackground
-        {
-            get => (Brush)GetValue(ButtonBackgroundProperty);
-            set
-            {
-                SetValue(ButtonBackgroundProperty, value);
-                OnPropertyChanged(nameof(ButtonBackground));
-            }
-        }
-
-        public Brush ButtonBorderBrush
-        {
-            get => (Brush)GetValue(ButtonBorderBrushProperty);
-            set
-            {
-                SetValue(ButtonBorderBrushProperty, value);
-                OnPropertyChanged(nameof(ButtonBorderBrush));
-            }
-        }
-
-        public Brush ButtonForeground
-        {
-            get => (Brush)GetValue(ButtonForegroundProperty);
-            set
-            {
-                SetValue(ButtonForegroundProperty, value);
-                OnPropertyChanged(nameof(ButtonForeground));
-            }
-        }
-
-        public Brush ButtonMouseOverBackground
-        {
-            get => (Brush)GetValue(ButtonMouseOverBackgroundProperty);
-            set
-            {
-                SetValue(ButtonMouseOverBackgroundProperty, value);
-                OnPropertyChanged(nameof(ButtonMouseOverBackground));
-            }
-        }
-
-        public Brush ButtonMouseOverBorderBrush
-        {
-            get => (Brush)GetValue(ButtonMouseOverBorderBrushProperty);
-            set
-            {
-                SetValue(ButtonMouseOverBorderBrushProperty, value);
-                OnPropertyChanged(nameof(ButtonMouseOverBorderBrush));
-            }
-        }
-
-        public Brush ButtonMouseOverForeground
-        {
-            get => (Brush)GetValue(ButtonMouseOverForegroundProperty);
-            set
-            {
-                SetValue(ButtonMouseOverForegroundProperty, value);
-                OnPropertyChanged(nameof(ButtonMouseOverForeground));
-            }
-        }
-
-        public Brush ButtonPressedBackground
-        {
-            get => (Brush)GetValue(ButtonPressedBackgroundProperty);
-            set
-            {
-                SetValue(ButtonPressedBackgroundProperty, value);
-                OnPropertyChanged(nameof(ButtonPressedBackground));
-            }
-        }
-
-        public Brush ButtonPressedBorderBrush
-        {
-            get => (Brush)GetValue(ButtonPressedBorderBrushProperty);
-            set
-            {
-                SetValue(ButtonPressedBorderBrushProperty, value);
-                OnPropertyChanged(nameof(ButtonPressedBorderBrush));
-            }
-        }
-
-        public Brush ButtonPressedForeground
-        {
-            get => (Brush)GetValue(ButtonPressedForegroundProperty);
-            set
-            {
-                SetValue(ButtonPressedForegroundProperty, value);
-                OnPropertyChanged(nameof(ButtonPressedForeground));
-            }
-        }
-
         #endregion Appearance Colors
-
-        #region Buttons
-
-        public Thickness ButtonBorderThickness
-        {
-            get => (Thickness)GetValue(ButtonBorderThicknessProperty);
-            set
-            {
-                SetValue(ButtonBorderThicknessProperty, value);
-                OnPropertyChanged(nameof(ButtonBorderThickness));
-            }
-        }
-
-        public Thickness BorderThickness
-        {
-            get => (Thickness)GetValue(BorderThicknessProperty);
-            set
-            {
-                SetValue(BorderThicknessProperty, value);
-                OnPropertyChanged(nameof(BorderThickness));
-            }
-        }
-
-        #endregion Buttons
 
         #region Icon
 
@@ -481,6 +322,36 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion Title
 
+        public bool AllowHide
+        {
+            get => (bool)GetValue(AllowHideProperty);
+            set
+            {
+                SetValue(AllowHideProperty, value);
+                OnPropertyChanged(nameof(AllowHide));
+            }
+        }
+
+        public Thickness BorderThickness
+        {
+            get => (Thickness)GetValue(BorderThicknessProperty);
+            set
+            {
+                SetValue(BorderThicknessProperty, value);
+                OnPropertyChanged(nameof(BorderThickness));
+            }
+        }
+
+        public InternalMessageButtons Buttons
+        {
+            get => (InternalMessageButtons)GetValue(ButtonsProperty);
+            set
+            {
+                SetValue(ButtonsProperty, value);
+                OnPropertyChanged(nameof(ButtonsProperty));
+            }
+        }
+
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
@@ -488,6 +359,21 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(CornerRadiusProperty, value);
                 OnPropertyChanged(nameof(CornerRadius));
+            }
+        }
+
+        public bool IsHidden
+        {
+            get => _isHidden;
+            set
+            {
+                _isHidden = AllowHide && value == true ? value : false;
+
+                if (AllowHide || value == false)
+                {
+                    MessageHide?.Invoke(this, new InternalMessageHideEventArgs(_isHidden));
+                    OnPropertyChanged(nameof(INotifyPropertyChanged));
+                }
             }
         }
 
@@ -514,6 +400,71 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         //  METHODS
 
+        #region CLASS METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Static InternalMessageEx class constructor. </summary>
+        static BaseInternalMessageEx()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(BaseInternalMessageEx),
+                new FrameworkPropertyMetadata(typeof(BaseInternalMessageEx)));
+        }
+
+        #endregion CLASS METHODS
+
+        #region INTERACTION METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Ok Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnOkClick(object sender, RoutedEventArgs e)
+        {
+            Result = InternalMessageResult.Ok;
+            MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Yes Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnYesClick(object sender, RoutedEventArgs e)
+        {
+            Result = InternalMessageResult.Yes;
+            MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking No Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnNoClick(object sender, RoutedEventArgs e)
+        {
+            Result = InternalMessageResult.No;
+            MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Cancel Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnCancelClick(object sender, RoutedEventArgs e)
+        {
+            Result = InternalMessageResult.Cancel;
+            MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Hide Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnHideClick(object sender, RoutedEventArgs e)
+        {
+            IsHidden = true;
+        }
+
+        #endregion INTERACTION METHODS
+
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
 
         //  --------------------------------------------------------------------------------
@@ -532,10 +483,25 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         #region TEMPLATE METHODS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> When overridden in a derived class,cis invoked whenever 
+        /// application code or internal processes call ApplyTemplate. </summary>
+        public override void OnApplyTemplate()
+        {
+            //  Apply Template
+            base.OnApplyTemplate();
+
+            ApplyClickMethod(GetButton("okButton"), OnOkClick);
+            ApplyClickMethod(GetButton("yesButton"), OnYesClick);
+            ApplyClickMethod(GetButton("noButton"), OnNoClick);
+            ApplyClickMethod(GetButton("cancelButton"), OnCancelClick);
+            ApplyClickMethod(GetButton("hideButton"), OnHideClick);
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Get ButtonEx from ContentTemplate. </summary>
         /// <param name="buttonName"> ButtonEx name. </param>
         /// <returns> ButtonEx or null. </returns>
-        protected ButtonEx GetButtonEx(string buttonName)
+        protected ButtonEx GetButton(string buttonName)
         {
             return this.Template.FindName(buttonName, this) as ButtonEx;
         }
@@ -544,7 +510,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <summary> Apply Click method on ButtonEx. </summary>
         /// <param name="buttonEx"> ButtonEx. </param>
         /// <param name="eventHandler"> Click method. </param>
-        protected void ApplyButtonExClickMethod(ButtonEx buttonEx, RoutedEventHandler eventHandler)
+        protected void ApplyClickMethod(ButtonEx buttonEx, RoutedEventHandler eventHandler)
         {
             if (buttonEx != null)
                 buttonEx.Click += eventHandler;

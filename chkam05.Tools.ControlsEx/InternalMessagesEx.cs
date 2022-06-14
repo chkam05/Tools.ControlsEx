@@ -68,7 +68,9 @@ namespace chkam05.Tools.ControlsEx
 
         public bool HasHidden
         {
-            get => _loadedMessages.Any(m => m.IsHidden);
+            get => _loadedMessages.Any(m 
+                => m is IHideableInternalMessageEx
+                && ((m as IHideableInternalMessageEx)?.IsHidden ?? false));
         }
 
         public BaseInternalMessageEx Message
@@ -117,7 +119,7 @@ namespace chkam05.Tools.ControlsEx
         /// <returns></returns>
         public InternalMessageEx CreateDefaultMessage(string title, string message, 
             PackIconKind icon = PackIconKind.InfoCircle, InternalMessageButtons buttons = InternalMessageButtons.Ok,
-            InternalMessageClose onClose = null, InternalMessageHide onHide = null)
+            StandardInternalMessageClose onClose = null, InternalMessageHide onHide = null)
         {
             var internalMessage = new InternalMessageEx()
             {
@@ -127,7 +129,11 @@ namespace chkam05.Tools.ControlsEx
                 Title = title,
             };
 
-            LoadCreatedMessage(internalMessage, onClose, onHide);
+            LoadMessage(internalMessage);
+
+            if (onClose != null)
+                internalMessage.MessageClose += onClose;
+
             return internalMessage;
         }
 
@@ -141,17 +147,23 @@ namespace chkam05.Tools.ControlsEx
         /// <returns></returns>
         public ProgressInternalMessageEx CreateDefaultProgressMessage(string title, string message,
             PackIconKind icon = PackIconKind.ProgressClock,
-            InternalMessageClose onClose = null, InternalMessageHide onHide = null)
+            StandardInternalMessageClose onClose = null, InternalMessageHide onHide = null)
         {
             var internalMessage = new ProgressInternalMessageEx()
             {
-                Buttons = InternalMessageButtons.None,
                 IconKind = icon,
                 Message = message,
                 Title = title,
             };
 
-            LoadCreatedMessage(internalMessage, onClose, onHide);
+            LoadMessage(internalMessage);
+
+            if (onClose != null)
+                internalMessage.MessageClose += onClose;
+
+            if (onClose != null)
+                internalMessage.MessageHide += onHide;
+
             return internalMessage;
         }
 
@@ -167,35 +179,48 @@ namespace chkam05.Tools.ControlsEx
         public AwaitInternalMessageEx CreateDefaultAwaitMessage(string title, string message,
             PackIconKind icon = PackIconKind.ProgressClock, 
             IndicatorType indicatorType = IndicatorType.CircleSmoothIndicatorEx,
-            InternalMessageClose onClose = null, InternalMessageHide onHide = null)
+            StandardInternalMessageClose onClose = null, InternalMessageHide onHide = null)
         {
             var internalMessage = new AwaitInternalMessageEx()
             {
-                Buttons = InternalMessageButtons.None,
                 IconKind = icon,
                 Message = message,
                 Title = title,
             };
 
-            LoadCreatedMessage(internalMessage, onClose, onHide);
+            LoadMessage(internalMessage);
+
+            if (onClose != null)
+                internalMessage.MessageClose += onClose;
+
+            if (onClose != null)
+                internalMessage.MessageHide += onHide;
+
             return internalMessage;
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Load created message by method from InternalMessagexEx container. </summary>
-        /// <param name="message"> Created inherited from BaseInternalMessageEx message. </param>
+        /// <summary> Creates default open files message. </summary>
+        /// <param name="title"> Message title. </param>
+        /// <param name="icon"> Message icon. </param>
         /// <param name="onClose"> Method invoked after closing message. </param>
-        /// <param name="onHide"> Method invoked after hiding message. </param>
-        private void LoadCreatedMessage(BaseInternalMessageEx message, 
-            InternalMessageClose onClose = null, InternalMessageHide onHide = null)
+        /// <returns></returns>
+        public OpenFilesInternalMessageEx CreateDefaultOpenFilesMessage(string title, 
+            PackIconKind icon = PackIconKind.FolderOpen, 
+            FilesInternalMessageClose onClose = null)
         {
-            LoadMessage(message);
+            var internalMessage = new OpenFilesInternalMessageEx()
+            {
+                IconKind = icon,
+                Title = title
+            };
+
+            LoadMessage(internalMessage);
 
             if (onClose != null)
-                message.MessageClose += onClose;
+                internalMessage.MessageClose += onClose;
 
-            if (onHide != null)
-                message.MessageHide += onHide;
+            return internalMessage;
         }
 
         #endregion CREATE MESSAGE METHODS
@@ -368,10 +393,12 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> Show last hidden message. </summary>
         public void ShowHidden()
         {
-            var hidden = _loadedMessages.LastOrDefault(m => m.IsHidden);
+            var hidden = _loadedMessages.LastOrDefault(m 
+                => m is IHideableInternalMessageEx 
+                && ((m as IHideableInternalMessageEx)?.IsHidden ?? false));
 
             if (hidden != null)
-                hidden.IsHidden = false;
+                (hidden as IHideableInternalMessageEx).IsHidden = false;
         }
 
         #endregion MESSAGES MANAGEMENT METHODS
@@ -389,8 +416,8 @@ namespace chkam05.Tools.ControlsEx
                 var previousMessage = _loadedMessages[MessageIndex - 1];
 
                 //  Check if previous message was hided and change it.
-                if (previousMessage.IsHidden)
-                    previousMessage.IsHidden = false;
+                if ((previousMessage as IHideableInternalMessageEx)?.IsHidden ?? false)
+                    (previousMessage as IHideableInternalMessageEx).IsHidden = false;
 
                 GoBack();
             }
@@ -419,8 +446,19 @@ namespace chkam05.Tools.ControlsEx
         //  --------------------------------------------------------------------------------
         public void LoadMessage(BaseInternalMessageEx message)
         {
-            message.MessageClose += OnRequestCloseMessage;
-            message.MessageHide += OnRequestHideMessage;
+            var type = message.GetType();
+
+            if (type.IsSubclassOf(typeof(BaseStandardInternalMessageEx)))
+                (message as BaseStandardInternalMessageEx).MessageClose += OnRequestCloseMessage;
+            else if (type.IsSubclassOf(typeof(BaseProgressInternalMessageEx)))
+                (message as BaseProgressInternalMessageEx).MessageClose += OnRequestCloseMessage;
+            else if (type.IsSubclassOf(typeof(BaseAwaitInternalMessageEx)))
+                (message as BaseAwaitInternalMessageEx).MessageClose += OnRequestCloseMessage;
+            else if (type.IsSubclassOf(typeof(BaseFilesInternalMessageEx)))
+                (message as BaseFilesInternalMessageEx).MessageClose += OnRequestCloseMessage;
+
+            if (message is IHideableInternalMessageEx)
+                (message as IHideableInternalMessageEx).MessageHide += OnRequestHideMessage;
 
             _loadedMessages.Add(message);
             base.Navigate(message);

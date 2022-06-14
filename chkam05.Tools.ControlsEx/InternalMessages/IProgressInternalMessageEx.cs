@@ -19,21 +19,11 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         //  VARIABLES
 
         bool AllowCancel { get; set; }
-        bool IsHidden { get; set; }
         bool IsFinished { get; }
         bool KeepOnScreenCompleted { get; set; }
 
-        double ProgressMax { get; set; }
-        double ProgressMin { get; set; }
-        double Progress { get; set; }
-
 
         //  METHODS
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Invoke change progress value. </summary>
-        /// <param name="progress"> New progress value. </param>
-        void InvokeProgressChange(double progress);
 
         //  --------------------------------------------------------------------------------
         /// <summary> Invoke finish method. </summary>

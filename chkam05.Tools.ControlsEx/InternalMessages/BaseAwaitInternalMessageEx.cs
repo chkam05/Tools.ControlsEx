@@ -12,7 +12,7 @@ using static chkam05.Tools.ControlsEx.Events.Delegates;
 
 namespace chkam05.Tools.ControlsEx.InternalMessages
 {
-    public class BaseAwaitInternalMessageEx : BaseInternalMessageEx, IProgressInternalMessageEx, INotifyPropertyChanged
+    public class BaseAwaitInternalMessageEx : BaseInternalMessageEx, IHideableInternalMessageEx, IProgressInternalMessageEx, INotifyPropertyChanged
     {
 
         //  DEPENDENCY PROPERTIES
@@ -57,6 +57,12 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseAwaitInternalMessageEx),
             new PropertyMetadata(false));
 
+        public static readonly DependencyProperty AllowHideProperty = DependencyProperty.Register(
+            nameof(AllowHide),
+            typeof(bool),
+            typeof(BaseAwaitInternalMessageEx),
+            new PropertyMetadata(false));
+
         public static readonly DependencyProperty IsFinishedProperty = DependencyProperty.Register(
             nameof(IsFinished),
             typeof(bool),
@@ -72,15 +78,14 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         //  EVENTS
 
-        public override event InternalMessageClose MessageClose;
-        public virtual event ProgressInternalMessageCancel ProgressCancel;
+        public event StandardInternalMessageClose MessageClose;
+        public event InternalMessageHide MessageHide;
+        public event ProgressInternalMessageCancel ProgressCancel;
 
 
         //  VARIABLES
 
-        private double _progressMax = BaseProgressInternalMessageEx.PROGRESS_MAX;
-        private double _progressMin = BaseProgressInternalMessageEx.PROGRESS_MIN;
-        private double _progress = 0d;
+        private bool _isHidden = false;
 
         public DispatcherInvokerEx DispatcherInvoker { get; private set; }
         public BaseIndicatorEx Indicator { get; private set; } = null;
@@ -147,28 +152,6 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion Indicator
 
-        #region ProgressBar
-
-        public double ProgressMax
-        {
-            get => _progressMax;
-            set => _progressMax = value;
-        }
-
-        public double ProgressMin
-        {
-            get => _progressMin;
-            set => _progressMin = value;
-        }
-
-        public double Progress
-        {
-            get => _progress;
-            set => _progress = Math.Max(Math.Min(value, ProgressMax), ProgressMin);
-        }
-
-        #endregion ProgressBar
-
         private Grid IndicatorContainer
         {
             get => Template.FindName("indicatorContainer", this) as Grid;
@@ -184,6 +167,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
+        public bool AllowHide
+        {
+            get => (bool)GetValue(AllowHideProperty);
+            set
+            {
+                SetValue(AllowHideProperty, value);
+                OnPropertyChanged(nameof(AllowHide));
+            }
+        }
+
         public bool IsFinished
         {
             get => (bool)GetValue(IsFinishedProperty);
@@ -191,6 +184,21 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(IsFinishedProperty, value);
                 OnPropertyChanged(nameof(IsFinished));
+            }
+        }
+
+        public bool IsHidden
+        {
+            get => _isHidden;
+            set
+            {
+                _isHidden = AllowHide && value == true ? value : false;
+
+                if (AllowHide || value == false)
+                {
+                    MessageHide?.Invoke(this, new InternalMessageHideEventArgs(_isHidden));
+                    OnPropertyChanged(nameof(INotifyPropertyChanged));
+                }
             }
         }
 
@@ -227,6 +235,44 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         }
 
         #endregion CLASS METHODS
+
+        #region BUTTONS METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Ok Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected void OnOkClick(object sender, RoutedEventArgs e)
+        {
+            Result = InternalMessageResult.Ok;
+            MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Cancel Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected void OnCancelClick(object sender, RoutedEventArgs e)
+        {
+            Result = InternalMessageResult.Cancel;
+            ProgressCancel?.Invoke(this, new InternalMessageCloseEventArgs(Result));
+
+            RemoveIndicator();
+
+            if (!KeepOnScreenCompleted)
+                MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Hide Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnHideClick(object sender, RoutedEventArgs e)
+        {
+            IsHidden = true;
+        }
+
+        #endregion BUTTONS METHODS
 
         #region COMPONENT METHODS
 
@@ -296,14 +342,6 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         #region INTERACTION METHODS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Invoke change progress value. </summary>
-        /// <param name="progress"> New progress value. </param>
-        public void InvokeProgressChange(double progress)
-        {
-            DispatcherInvoker.TryInvoke(() => { Progress = progress; });
-        }
-
-        //  --------------------------------------------------------------------------------
         /// <summary> Invoke finish method. </summary>
         /// <param name="forceResult"> Forced result value. </param>
         public void InvokeFinish(InternalMessageResult? forceResult = null)
@@ -325,31 +363,6 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             });
         }
 
-        //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after clicking Ok Button. </summary>
-        /// <param name="sender"> Object that invoked method. </param>
-        /// <param name="e"> Routed Event Arguments. </param>
-        protected override void OnOkClick(object sender, RoutedEventArgs e)
-        {
-            Result = InternalMessageResult.Ok;
-            MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after clicking Cancel Button. </summary>
-        /// <param name="sender"> Object that invoked method. </param>
-        /// <param name="e"> Routed Event Arguments. </param>
-        protected override void OnCancelClick(object sender, RoutedEventArgs e)
-        {
-            Result = InternalMessageResult.Cancel;
-            ProgressCancel?.Invoke(this, new InternalMessageCloseEventArgs(Result));
-
-            RemoveIndicator();
-
-            if (!KeepOnScreenCompleted)
-                MessageClose?.Invoke(this, new InternalMessageCloseEventArgs(Result));
-        }
-
         #endregion INTERACTION METHODS
 
         #region TEMPLATE METHODS
@@ -362,9 +375,9 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             //  Apply Template
             base.OnApplyTemplate();
 
-            ApplyClickMethod(GetButton("okButton"), OnOkClick);
-            ApplyClickMethod(GetButton("cancelButton"), OnCancelClick);
-            ApplyClickMethod(GetButton("hideButton"), OnHideClick);
+            ApplyButtonExClickMethod(GetButtonEx("okButton"), OnOkClick);
+            ApplyButtonExClickMethod(GetButtonEx("cancelButton"), OnCancelClick);
+            ApplyButtonExClickMethod(GetButtonEx("hideButton"), OnHideClick);
         }
 
         #endregion TEMPLATE METHODS

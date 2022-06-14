@@ -6,26 +6,26 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:static="clr-namespace:chkam05.Tools.ControlsEx.Static">
 
-    <SolidColorBrush x:Key="BaseInternalMessageEx.Background">White</SolidColorBrush>
-    <SolidColorBrush x:Key="BaseInternalMessageEx.Foreground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="BaseStandardInternalMessageEx.Background">White</SolidColorBrush>
+    <SolidColorBrush x:Key="BaseStandardInternalMessageEx.Foreground">Black</SolidColorBrush>
 
     <Style x:Key="BaseInternalMessageEx.Button" TargetType="{x:Type local:ButtonEx}">
-        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
+        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
         <Setter Property="Margin" Value="2,0"/>
         <Setter Property="MinHeight" Value="32"/>
         <Setter Property="MinWidth" Value="72"/>
-        <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
-        <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
+        <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseStandardInternalMessageEx}}}"/>
     </Style>
-    
-    <ControlTemplate x:Key="BaseInternalMessageEx.ControlTemplate" TargetType="{x:Type im:BaseInternalMessageEx}">
+
+    <ControlTemplate x:Key="BaseStandardInternalMessageEx.ControlTemplate" TargetType="{x:Type im:BaseStandardInternalMessageEx}">
         <Border
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
@@ -123,13 +123,6 @@
                             Visibility="Collapsed">
                         </local:ButtonEx>
 
-                        <local:ButtonEx
-                            x:Name="hideButton"
-                            Content="Hide"
-                            Style="{StaticResource BaseInternalMessageEx.Button}"
-                            Visibility="Collapsed">
-                        </local:ButtonEx>
-
                     </StackPanel>
 
                 </Border>
@@ -171,18 +164,13 @@
                 <Setter Property="Visibility" TargetName="cancelButton" Value="Visible"/>
             </Trigger>
 
-            <!-- HIDE Button. -->
-            <Trigger Property="AllowHide" Value="True">
-                <Setter Property="Visibility" TargetName="hideButton" Value="Visible"/>
-            </Trigger>
-
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="BaseInternalMessageExStyle" TargetType="{x:Type im:BaseInternalMessageEx}">
-        <Setter Property="Background" Value="{StaticResource BaseInternalMessageEx.Background}"/>
-        <Setter Property="Foreground" Value="{StaticResource BaseInternalMessageEx.Foreground}"/>
-        <Setter Property="Template" Value="{StaticResource BaseInternalMessageEx.ControlTemplate}"/>
+    <Style x:Key="BaseStandardInternalMessageExStyle" TargetType="{x:Type im:BaseStandardInternalMessageEx}">
+        <Setter Property="Background" Value="{StaticResource BaseStandardInternalMessageEx.Background}"/>
+        <Setter Property="Foreground" Value="{StaticResource BaseStandardInternalMessageEx.Foreground}"/>
+        <Setter Property="Template" Value="{StaticResource BaseStandardInternalMessageEx.ControlTemplate}"/>
         <Setter Property="Title" Value="Message Title"/>
     </Style>
 

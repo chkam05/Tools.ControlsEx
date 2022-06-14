@@ -53,6 +53,24 @@ Additional infos:
 	[ TreeView ][ Files ] ]
 	[  [ OK ] [ CANCEL ]  ]
 
+	[<-][->][Current Path]
+	[ TREE ][ FILES      ]
+	[ FILE NAME ][ FILE TYPES ]
+
+	* Home
+		* FOLDERS
+		* DRIVES
+
+	Tree:
+		DRIVES
+
+	FileTreeItem
+	FileItem
+	DirectoryItem
+	FileType
+		- Title
+		- Extensions mp3 jpeg *
+
 	* BaseColorInternalMessageEx
 
 	* ColorPaletteInternalMessageEx

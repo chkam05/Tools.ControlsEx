@@ -3,7 +3,7 @@
 
 namespace chkam05.Tools.ControlsEx.InternalMessages
 {
-    public partial class InternalMessageEx : BaseInternalMessageEx
+    public partial class InternalMessageEx : BaseStandardInternalMessageEx
     {
 
         //  DEPENDENCY PROPERTIES
