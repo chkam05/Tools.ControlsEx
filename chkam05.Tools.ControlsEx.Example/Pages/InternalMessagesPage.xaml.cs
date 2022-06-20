@@ -274,8 +274,6 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             UpdateInternalMessageAppearance(message);
-            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
-            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
             CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();
         }
 
@@ -289,12 +287,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
-
             message.AllowCancel = true;
             UpdateInternalMessageAppearance(message);
-            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
-            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
+            var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
+
             message.ProgressCancel += (s, ce) =>
             {
                 if (ce.Result == InternalMessageResult.Cancel)
@@ -315,11 +311,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             message.AllowHide = true;
-            UpdateInternalMessageAppearance(message);
             message.KeepOnScreenCompleted = true;
-            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
-            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
-
+            UpdateInternalMessageAppearance(message);
             CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();
         }
 
@@ -333,13 +326,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
+            message.AllowCancel = true;
+            message.KeepOnScreenCompleted = true;
+            UpdateInternalMessageAppearance(message);
             var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
 
-            message.AllowCancel = true;
-            UpdateInternalMessageAppearance(message);
-            message.KeepOnScreenCompleted = true;
-            message.ProgressBarBorderBrush = Configuration.AccentColorBrush;
-            message.ProgressBarProgressBrush = Configuration.AccentColorBrush;
             message.ProgressCancel += (s, ce) =>
             {
                 if (ce.Result == InternalMessageResult.Cancel)
@@ -360,10 +351,6 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             UpdateInternalMessageAppearance(message);
-            message.IndicatorFill = Configuration.AccentColorBrush;
-            message.IndicatorPen = Configuration.AccentColorBrush;
-            message.IndicatorPenThickness = new Thickness(1);
-
             CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50)).RunWorkerAsync();
         }
 
@@ -546,6 +533,33 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             message.ButtonPressedBackground = Configuration.AccentPressedColorBrush;
             message.ButtonPressedBorderBrush = Configuration.AccentPressedColorBrush;
             message.ButtonPressedForeground = Configuration.AccentForegroundColorBrush;
+
+            if (message.GetType().IsSubclassOf(typeof(BaseProgressInternalMessageEx)))
+            {
+                var progressMessage = (BaseProgressInternalMessageEx)message;
+                progressMessage.ProgressBarBorderBrush = Configuration.AccentColorBrush;
+                progressMessage.ProgressBarProgressBrush = Configuration.AccentColorBrush;
+            }
+
+            if (message.GetType().IsSubclassOf(typeof(BaseAwaitInternalMessageEx)))
+            {
+                var awaitMessage = (BaseAwaitInternalMessageEx)message;
+                awaitMessage.IndicatorFill = Configuration.AccentColorBrush;
+                awaitMessage.IndicatorPen = Configuration.AccentColorBrush;
+                awaitMessage.IndicatorPenThickness = new Thickness(1);
+            }
+
+            if (message.GetType().IsSubclassOf(typeof(BaseFilesInternalMessageEx)))
+            {
+                var filesMessage = (BaseFilesInternalMessageEx)message;
+                filesMessage.TextBoxMouseOverBackground = Configuration.AccentMouseOverColorBrush;
+                filesMessage.TextBoxMouseOverBorderBrush = Configuration.AccentColorBrush;
+                filesMessage.TextBoxMouseOverForeground = Configuration.AccentForegroundColorBrush;
+                filesMessage.TextBoxSelectedBackground = Configuration.BackgroundColorBrush;
+                filesMessage.TextBoxSelectedBorderBrush = Configuration.AccentSelectedColorBrush;
+                filesMessage.TextBoxSelectedForeground = Configuration.ForegroundColorBrush;
+                filesMessage.TextBoxSelectedTextBackground = Configuration.AccentSelectedColorBrush;
+            }
         }
 
         #endregion UPDATE METHODS

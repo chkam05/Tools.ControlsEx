@@ -25,14 +25,44 @@
         <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
     </Style>
 
+    <Style x:Key="BaseFilesInternalMessageEx.NavigationButton" TargetType="{x:Type local:ButtonEx}">
+        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Margin" Value="0,0,2,0"/>
+        <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="Width" Value="26"/>
+    </Style>
+
+    <Style x:Key="BaseFilesInternalMessageEx.TextBox" TargetType="{x:Type local:TextBoxEx}">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBackground" Value="{Binding TextBoxMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding TextBoxMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding TextBoxMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="SelectedBackground" Value="{Binding TextBoxSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="SelectedBorderBrush" Value="{Binding TextBoxSelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="SelectedForeground" Value="{Binding TextBoxSelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="SelectedTextBackground" Value="{Binding TextBoxSelectedTextBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesInternalMessageEx}}}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
     <ControlTemplate x:Key="BaseFilesInternalMessageEx.ControlTemplate" TargetType="{x:Type im:BaseFilesInternalMessageEx}">
         <Border
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
             CornerRadius="{TemplateBinding CornerRadius}"
-            MinHeight="192"
-            MinWidth="352"
+            MinHeight="384"
+            MinWidth="512"
             Padding="{TemplateBinding Padding}">
 
             <Grid>
@@ -49,32 +79,75 @@
                     Grid.Row="0"
                     Padding="0,0,0,8">
 
-                    <StackPanel
-                        HorizontalAlignment="Left"
-                        Orientation="Horizontal">
+                    <Grid>
 
-                        <materialDesign:PackIcon
-                            Foreground="{TemplateBinding Foreground}"
-                            Kind="{TemplateBinding IconKind}"
-                            Height="{TemplateBinding IconHeight}"
-                            Margin="{TemplateBinding IconMargin}"
-                            MaxHeight="{TemplateBinding IconMaxHeight}"
-                            MaxWidth="{TemplateBinding IconMaxWidth}"
-                            MinHeight="{TemplateBinding IconMinHeight}"
-                            MinWidth="{TemplateBinding IconMinWidth}"
-                            Width="{TemplateBinding IconWidth}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <TextBlock
-                            Foreground="{TemplateBinding Foreground}"
-                            FontFamily="{TemplateBinding TitleFontFamily}"
-                            FontSize="{TemplateBinding TitleFontSize}"
-                            FontStretch="{TemplateBinding TitleFontStretch}"
-                            FontStyle="{TemplateBinding TitleFontStyle}"
-                            FontWeight="{TemplateBinding TitleFontWeight}"
-                            Text="{TemplateBinding Title}"
-                            VerticalAlignment="Center"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    </StackPanel>
+                        <StackPanel
+                            Grid.ColumnSpan="2"
+                            Grid.Row="0"
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,8"
+                            Orientation="Horizontal">
+
+                            <materialDesign:PackIcon
+                                Foreground="{TemplateBinding Foreground}"
+                                Kind="{TemplateBinding IconKind}"
+                                Height="{TemplateBinding IconHeight}"
+                                Margin="{TemplateBinding IconMargin}"
+                                MaxHeight="{TemplateBinding IconMaxHeight}"
+                                MaxWidth="{TemplateBinding IconMaxWidth}"
+                                MinHeight="{TemplateBinding IconMinHeight}"
+                                MinWidth="{TemplateBinding IconMinWidth}"
+                                Width="{TemplateBinding IconWidth}"/>
+
+                            <TextBlock
+                                Foreground="{TemplateBinding Foreground}"
+                                FontFamily="{TemplateBinding TitleFontFamily}"
+                                FontSize="{TemplateBinding TitleFontSize}"
+                                FontStretch="{TemplateBinding TitleFontStretch}"
+                                FontStyle="{TemplateBinding TitleFontStyle}"
+                                FontWeight="{TemplateBinding TitleFontWeight}"
+                                Text="{TemplateBinding Title}"
+                                VerticalAlignment="Center"/>
+
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Orientation="Horizontal">
+
+                            <local:ButtonEx
+                                x:Name="backButton"
+                                IconKind="ChevronLeft"
+                                Style="{StaticResource BaseFilesInternalMessageEx.NavigationButton}">
+                            </local:ButtonEx>
+
+                            <local:ButtonEx
+                                x:Name="forwardButton"
+                                IconKind="ChevronRight"
+                                Style="{StaticResource BaseFilesInternalMessageEx.NavigationButton}">
+                            </local:ButtonEx>
+
+                        </StackPanel>
+
+                        <local:TextBoxEx
+                            x:Name="addressTextBox"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Text="{Binding TextBoxAddressText}"
+                            Style="{StaticResource BaseFilesInternalMessageEx.TextBox}"/>
+
+                    </Grid>
 
                 </Border>
 
@@ -91,30 +164,65 @@
                     Grid.Row="2"
                     Padding="0,8,0,0">
 
-                    <StackPanel
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
+                    <Grid>
 
-                        <local:ButtonEx
-                            x:Name="okButton"
-                            Content="Select"
-                            Style="{StaticResource BaseFilesInternalMessageEx.Button}">
-                        </local:ButtonEx>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <local:ButtonEx
-                            x:Name="cancelButton"
-                            Content="Cancel"
-                            Style="{StaticResource BaseFilesInternalMessageEx.Button}">
-                        </local:ButtonEx>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    </StackPanel>
+                        <local:TextBoxEx
+                            x:Name="fileNameTextBox"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Style="{StaticResource BaseFilesInternalMessageEx.TextBox}"
+                            Text="{Binding TextBoxFileNameText}"/>
 
+                        <StackPanel
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Margin="0,8,0,0"
+                            Orientation="Horizontal">
+
+                            <local:ButtonEx
+                                x:Name="okButton"
+                                Content="Select"
+                                Style="{StaticResource BaseFilesInternalMessageEx.Button}">
+                            </local:ButtonEx>
+
+                            <local:ButtonEx
+                                x:Name="cancelButton"
+                                Content="Cancel"
+                                Style="{StaticResource BaseFilesInternalMessageEx.Button}">
+                            </local:ButtonEx>
+
+                        </StackPanel>
+                        
+                    </Grid>
+                    
                 </Border>
 
             </Grid>
 
         </Border>
         <ControlTemplate.Triggers>
+            
+            <!-- CAN GO BACK -->
+            <Trigger Property="CanGoBack" Value="False">
+                <Setter TargetName="backButton" Property="IsEnabled" Value="False"/>
+            </Trigger>
+            
+            <!-- CAN GO FORWARD -->
+            <Trigger Property="CanGoForward" Value="False">
+                <Setter TargetName="forwardButton" Property="IsEnabled" Value="False"/>
+            </Trigger>
+            
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

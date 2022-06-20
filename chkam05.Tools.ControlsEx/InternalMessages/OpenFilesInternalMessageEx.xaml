@@ -4,7 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:data="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages.Data"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     
     mc:Ignorable="d"
     
@@ -13,10 +16,149 @@
     
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     IconKind="FolderOpen"
-    Title="Open Files">
+    Margin="32"
+    Title="Open Files"
+    Loaded="BaseFilesInternalMessageEx_Loaded">
+
+    <local:BaseFilesInternalMessageEx.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemExStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <RelativeSource
+                x:Key="RelativeSelf"
+                AncestorType="{x:Type local:OpenFilesInternalMessageEx}"
+                Mode="FindAncestor"/>
+
+            <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ListViewEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            </Style>
+
+            <Style x:Key="File_ListViewItemExStyle" TargetType="{x:Type controlsex:ListViewItemEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBackground" Value="Transparent"/>
+                <Setter Property="SelectedInactiveBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveForeground" Value="{Binding Foreground, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:TreeViewEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:TreeViewItemEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="ExpanderIconColorBrush" Value="{Binding Foreground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="IsExpanded" Value="True"/>
+                <Setter Property="Margin" Value="0,1"/>
+                <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBackground" Value="Transparent"/>
+                <Setter Property="SelectedInactiveBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveForeground" Value="{Binding Foreground, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <!-- DATA TEMPLATES -->
+
+            <DataTemplate x:Key="File_DataTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Orientation="Horizontal">
+
+                        <materialDesign:PackIcon
+                            Kind="{Binding Icon, Mode=OneWay}"/>
+
+                        <TextBlock
+                            Margin="8,0,0,0"
+                            Text="{Binding Name, Mode=OneWay}"/>
+
+                    </StackPanel>
+                    
+                </Grid>
+            </DataTemplate>
+
+            <HierarchicalDataTemplate x:Key="Tree_DataTemplate" ItemsSource="{Binding Childs}">
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <materialDesign:PackIcon
+                        Kind="{Binding Icon, Mode=OneWay}"/>
+
+                    <TextBlock
+                        Margin="8,0,0,0"
+                        Text="{Binding Name, Mode=OneWay}"/>
+
+                </StackPanel>
+            </HierarchicalDataTemplate>
+            
+        </ResourceDictionary>
+    </local:BaseFilesInternalMessageEx.Resources>
 
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="33.4*"/>
+            <ColumnDefinition Width="66.6*"/>
+        </Grid.ColumnDefinitions>
+
+        <controlsex:TreeViewEx
+            x:Name="directoriesTreeView"
+            Grid.Column="0"
+            ItemTemplate="{StaticResource Tree_DataTemplate}"
+            ItemsSource="{Binding Tree}"
+            Margin="0,0,2,0"
+            PreviewMouseDown="DirectoriesTreeView_PreviewMouseDown"/>
+
+        <controlsex:ListViewEx
+            x:Name="filesListView"
+            Grid.Column="1"
+            ItemContainerStyle="{StaticResource File_ListViewItemExStyle}"
+            ItemTemplate="{StaticResource File_DataTemplate}"
+            ItemsSource="{Binding Files}"
+            Margin="2,0,0,0"
+            PreviewMouseDown="FilesListView_PreviewMouseDown"/>
+
     </Grid>
     
 </local:BaseFilesInternalMessageEx>

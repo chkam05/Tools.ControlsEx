@@ -43,6 +43,11 @@ namespace chkam05.Tools.ControlsEx.Events
         /// <param name="e"> Files Internal Message Close Event Arguments. </param>
         public delegate void FilesInternalMessageClose(object sender, FilesInternalMessageCloseEventArgs e);
 
+        /// <summary> Method invoked after changing directory in FilesInternalMessage. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Files Internal Message Directory Changed Event Arguments. </param>
+        public delegate void FilesInternalMessageDirectoryChanged(object sender, FilesInternalMessageDirectoryChangedEventArgs e);
+
         /// <summary> Method invoked after closing InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>

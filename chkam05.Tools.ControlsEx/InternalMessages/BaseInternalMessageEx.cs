@@ -31,6 +31,10 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
+        #endregion Appearance Colors Properties
+
+        #region Appearance Buttons Colors Properties
+
         public static readonly DependencyProperty ButtonBackgroundProperty = DependencyProperty.Register(
             nameof(ButtonBackground),
             typeof(Brush),
@@ -85,7 +89,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
-        #endregion Appearance Colors Properties
+        #endregion Appearance Buttons Colors Properties
 
         #region Buttons Properties
 
@@ -94,12 +98,6 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(Thickness),
             typeof(BaseInternalMessageEx),
             new PropertyMetadata(new Thickness(0)));
-
-        public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(
-            nameof(BorderThickness),
-            typeof(Thickness),
-            typeof(BaseInternalMessageEx),
-            new PropertyMetadata(new Thickness(1)));
 
         #endregion Buttons Properties
 
@@ -189,6 +187,12 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion Title Properties
 
+        public static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(
+            nameof(BorderThickness),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx),
+            new PropertyMetadata(new Thickness(1)));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -226,6 +230,10 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                 OnPropertyChanged(nameof(BorderBrush));
             }
         }
+
+        #endregion Appearance Colors
+
+        #region Appearance Buttons Colors
 
         public Brush ButtonBackground
         {
@@ -317,7 +325,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
-        #endregion Appearance Colors
+        #endregion Appearance Buttons Colors
 
         #region Buttons
 
@@ -328,16 +336,6 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(ButtonBorderThicknessProperty, value);
                 OnPropertyChanged(nameof(ButtonBorderThickness));
-            }
-        }
-
-        public Thickness BorderThickness
-        {
-            get => (Thickness)GetValue(BorderThicknessProperty);
-            set
-            {
-                SetValue(BorderThicknessProperty, value);
-                OnPropertyChanged(nameof(BorderThickness));
             }
         }
 
@@ -480,6 +478,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         }
 
         #endregion Title
+
+        public Thickness BorderThickness
+        {
+            get => (Thickness)GetValue(BorderThicknessProperty);
+            set
+            {
+                SetValue(BorderThicknessProperty, value);
+                OnPropertyChanged(nameof(BorderThickness));
+            }
+        }
 
         public CornerRadius CornerRadius
         {

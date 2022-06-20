@@ -13,11 +13,14 @@ CORRECTIONS:
 	* InternalMessages
 		[v] Button colors (+)
 		[v] Progressbar colors
+		[ ] Reworked InternalMessages (+/-)
 	* ListViewEx
 		[v] GridView ScrollBarEx template fix
 		[v] GridView Gripper border fix
 	* TextBox
 		[v] Underline when text is in edit mode
+	* TreeViewEx (+)
+		[v] Create component
 	* UpDownTextBox
 		[v] Button Background fix
 		[v] Button Border brush color (+)

@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using static chkam05.Tools.ControlsEx.Events.Delegates;
 
@@ -250,6 +251,15 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && _focused)
+                TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, true));
+
+            base.OnKeyDown(e);
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Method invoked when component lost focus from user. </summary>
         /// <param name="e"> Routed Event Arguments. </param>
         protected override void OnLostFocus(RoutedEventArgs e)
@@ -265,6 +275,8 @@ namespace chkam05.Tools.ControlsEx
                     _lockUpdate = true;
                     Text = correctText;
                 }
+
+                TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, true));
             }
 
             base.OnLostFocus(e);
@@ -303,7 +315,9 @@ namespace chkam05.Tools.ControlsEx
                 _lockUpdate = false;
             }
 
-            TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, _focused));
+            if (!_focused)
+                TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, false));
+
             base.OnTextChanged(e);
         }
 

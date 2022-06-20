@@ -78,6 +78,7 @@
     <Compile Include="Events\Delegates.cs" />
     <Compile Include="Events\FilesInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
+    <Compile Include="Events\FilesInternalMessageDirectoryChangedEventArgs.cs" />
     <Compile Include="Events\InternalMessageHideEventArgs.cs" />
     <Compile Include="Events\TextModifiedEventArgs.cs" />
     <Compile Include="ExpanderEx.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="SliderEx.cs" />
     <Compile Include="Static\CheckBoxStyle.cs" />
     <Compile Include="Static\ContentSide.cs" />
+    <Compile Include="Static\FilesInternalMessageDirectoryChangeMethod.cs" />
     <Compile Include="Static\IndicatorType.cs" />
     <Compile Include="Static\InternalMessageButtons.cs" />
     <Compile Include="Static\InternalMessageResult.cs" />
@@ -141,6 +143,8 @@
     <Compile Include="TabItemEx.cs" />
     <Compile Include="TextBlockEx.cs" />
     <Compile Include="TextBoxEx.cs" />
+    <Compile Include="TreeViewEx.cs" />
+    <Compile Include="TreeViewItemEx.cs" />
     <Compile Include="UpDownTextBoxEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\DispatcherInvokerEx.cs" />
@@ -292,6 +296,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\TextBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TreeViewExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TreeViewItemExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -40,6 +40,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         private const string MAINMENU_TABCONTROLS_ITEM = "TabControls";
         private const string MAINMENU_TEXTBLOCKS_ITEM = "TextBlocks";
         private const string MAINMENU_TEXTBOXES_ITEM = "TextBoxes";
+        private const string MAINMENU_TREEVIEWS_ITEM = "TreeView";
         private const string MAINMENU_UPDOWNTEXTBOXES_ITEM = "UpDownTextBoxes";
 
 
@@ -169,6 +170,10 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                             PagesManager.LoadSinglePage(new TextBoxesPage());
                             break;
 
+                        case MAINMENU_TREEVIEWS_ITEM:
+                            PagesManager.LoadSinglePage(new TreesPage());
+                            break;
+
                         case MAINMENU_UPDOWNTEXTBOXES_ITEM:
                             PagesManager.LoadSinglePage(new UpDownTextBoxesPage());
                             break;
@@ -202,6 +207,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                 new MenuItem(MAINMENU_TABCONTROLS_ITEM, PackIconKind.Tab),
                 new MenuItem(MAINMENU_TEXTBLOCKS_ITEM, PackIconKind.Text),
                 new MenuItem(MAINMENU_TEXTBOXES_ITEM, PackIconKind.TextBox),
+                new MenuItem(MAINMENU_TREEVIEWS_ITEM, PackIconKind.Tree),
                 new MenuItem(MAINMENU_UPDOWNTEXTBOXES_ITEM, PackIconKind.ChevronUpDown),
             });
         }

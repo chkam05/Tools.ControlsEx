@@ -117,6 +117,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(ListViewEx),
             new PropertyMetadata(new Thickness(8, 2, 8, 2)));
 
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+            nameof(CornerRadius),
+            typeof(CornerRadius),
+            typeof(ListViewEx),
+            new PropertyMetadata(new CornerRadius(0)));
+
 
         //  EVENTS
 
@@ -286,6 +292,16 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(ColumnHeaderPaddingProperty, value);
                 OnPropertyChanged(nameof(ColumnHeaderPadding));
+            }
+        }
+
+        public CornerRadius CornerRadius
+        {
+            get => (CornerRadius)GetValue(CornerRadiusProperty);
+            set
+            {
+                SetValue(CornerRadiusProperty, value);
+                OnPropertyChanged(nameof(CornerRadius));
             }
         }
 

@@ -143,6 +143,9 @@
     <Compile Include="Pages\TextBoxesPage.xaml.cs">
       <DependentUpon>TextBoxesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TreesPage.xaml.cs">
+      <DependentUpon>TreesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UpDownTextBoxesPage.xaml.cs">
       <DependentUpon>UpDownTextBoxesPage.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TextBoxesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TreesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

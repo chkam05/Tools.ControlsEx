@@ -29,6 +29,8 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TabItemExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBlockExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBoxExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewItemExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownTextBoxExStyle.xaml"/>
 
         <!-- INDICATORS -->
@@ -87,6 +89,10 @@
     <Style BasedOn="{StaticResource TextBlockExStyle}" TargetType="{x:Type local:TextBlockEx}"/>
     
     <Style BasedOn="{StaticResource TextBoxExStyle}" TargetType="{x:Type local:TextBoxEx}"/>
+
+    <Style BasedOn="{StaticResource TreeViewExStyle}" TargetType="{x:Type local:TreeViewEx}"/>
+
+    <Style BasedOn="{StaticResource TreeViewItemExStyle}" TargetType="{x:Type local:TreeViewItemEx}"/>
 
     <Style BasedOn="{StaticResource UpDownTextBoxExStyle}" TargetType="{x:Type local:UpDownTextBoxEx}"/>
 

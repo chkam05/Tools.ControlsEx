@@ -118,6 +118,7 @@
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
             Background="{TemplateBinding Background}"
+            CornerRadius="{TemplateBinding CornerRadius}"
             SnapsToDevicePixels="true">
 
             <local:ScrollViewerEx
@@ -154,6 +155,7 @@
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
             Background="{TemplateBinding Background}"
+            CornerRadius="{TemplateBinding CornerRadius}"
             SnapsToDevicePixels="true">
 
             <local:ScrollViewerEx
