@@ -205,24 +205,29 @@
                     Orientation="Horizontal">
 
                     <controlsex:ButtonEx
-                        Content="OpenFile"
+                        Content="Open File"
                         IconKind="FolderOpen"
                         Click="OpenFileIMButtonEx_Click"/>
 
                     <controlsex:ButtonEx
-                        Content="OpenFiles"
+                        Content="Open Files"
                         IconKind="FolderOpen"
                         Click="OpenFilesIMButtonEx_Click"/>
 
                     <controlsex:ButtonEx
-                        Content="SaveFile"
+                        Content="Save File"
                         IconKind="ContentSaveEdit"
                         Click="SaveFileIMButtonEx_Click"/>
 
                     <controlsex:ButtonEx
-                        Content="SelectFolder"
+                        Content="Select Folder"
                         IconKind="FolderMultiple"
                         Click="SelectFolderIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Create Folder"
+                        IconKind="FolderAdd"
+                        Click="CreateFolderIMButtonEx_Click"/>
 
                 </StackPanel>
 

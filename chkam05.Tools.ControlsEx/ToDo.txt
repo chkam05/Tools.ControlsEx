@@ -37,44 +37,12 @@ Additional infos:
 	* BaseFilesInternalMessageEx
 
 	* OpenFiles
-		- Title
-		- MultiSelect
-		- InitialDirectory
-		- FileName
-		- KeyValuePair<string, string> Extensions
 	* SaveFile
-		- Title
-		- InitialDirectory
-		- FileName
-		- KeyValuePair<string, string> Extensions
 	* OpenDirectory
-		- Title
-		- InitialDirectory
-		- DirectoryName
 
-	[ [ ICON ] [ TITLE ]  ]
-	[ TreeView ][ Files ] ]
-	[  [ OK ] [ CANCEL ]  ]
+	- Enabling Selection Button
 
-	[<-][->][Current Path]
-	[ TREE ][ FILES      ]
-	[ FILE NAME ][ FILE TYPES ]
 
-	* Home
-		* FOLDERS
-		* DRIVES
-
-	Tree:
-		DRIVES
-
-	FileTreeItem
-	FileItem
-	DirectoryItem
-	FileType
-		- Title
-		- Extensions mp3 jpeg *
-
-	* BaseColorInternalMessageEx
 
 	* ColorPaletteInternalMessageEx
 		- Title

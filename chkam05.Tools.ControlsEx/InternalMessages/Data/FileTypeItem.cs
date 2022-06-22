@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,14 @@ namespace chkam05.Tools.ControlsEx.InternalMessages.Data
 {
     public class FileTypeItem : INotifyPropertyChanged
     {
+
+        //  CONST
+
+        public static readonly string[] AllFilesExtensions = new string[]
+        {
+            ".", "*", "*.*", "*.", ".*"
+        };
+
 
         //  EVENTS
 
@@ -74,6 +83,33 @@ namespace chkam05.Tools.ControlsEx.InternalMessages.Data
         }
 
         #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS
+
+        #region VALIDATION METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Check if file matches the extension criteria. </summary>
+        /// <param name="fileName"> File name. </param>
+        /// <returns> True - file matches the extension criteria; False - otherwise. </returns>
+        public bool ValidateFileName(string fileName)
+        {
+            string fileExt = Path.GetExtension(fileName).ToLower();
+
+            if (Extensions == null || !Extensions.Any())
+                return true;
+
+            foreach (var ext in Extensions)
+            {
+                if (AllFilesExtensions.Contains(ext))
+                    return true;
+
+                if (fileExt == ext.Replace("*", "").ToLower())
+                    return true;
+            }
+
+            return false;
+        }
+
+        #endregion VALIDATION METHODS
 
     }
 }

@@ -3,6 +3,8 @@ using chkam05.Tools.ControlsEx.InternalMessages.Data;
 using chkam05.Tools.ControlsEx.Static;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -83,11 +85,28 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseFilesInternalMessageEx),
             new PropertyMetadata(false));
 
+        public static readonly DependencyProperty FilesTypesProperty = DependencyProperty.Register(
+            nameof(FilesTypes),
+            typeof(ObservableCollection<FileTypeItem>),
+            typeof(BaseFilesInternalMessageEx),
+            new PropertyMetadata(new ObservableCollection<FileTypeItem>(
+                new List<FileTypeItem>()
+                {
+                    new FileTypeItem("All Files", new string[] { "*.*" })
+                }
+            )));
+
         public static readonly DependencyProperty InitialDirectoryProperty = DependencyProperty.Register(
             nameof(InitialDirectory),
             typeof(string),
             typeof(BaseFilesInternalMessageEx),
             new PropertyMetadata(DEFAULT_PATH));
+
+        public static readonly DependencyProperty SelectionTypeProperty = DependencyProperty.Register(
+            nameof(SelectionType),
+            typeof(FilesInternalMessageExSelectionType),
+            typeof(BaseFilesInternalMessageEx),
+            new PropertyMetadata(FilesInternalMessageExSelectionType.SingleSelect));
 
 
         //  EVENTS
@@ -99,7 +118,11 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         //  VARIABLES
 
         private string _currentDirectory = DEFAULT_PATH;
+        private FileTypeItem _fileItemType = null;
         private List<string> _historyForward;
+        private FileItem _selectedFile = null;
+        private ObservableCollection<FileItem> _selectedFiles;
+        private bool _selectionUpdate = false;
         private string _textBoxAddressText = DEFAULT_PATH;
         private string _textBoxFileNameText;
 
@@ -212,7 +235,62 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
+        public FileTypeItem SelectedFileType
+        {
+            get => _fileItemType;
+            private set
+            {
+                _fileItemType = value;
+                OnPropertyChanged(nameof(SelectedFileType));
+            }
+        }
+
+        public FilesInternalMessageExSelectionType SelectionType
+        {
+            get => (FilesInternalMessageExSelectionType)GetValue(SelectionTypeProperty);
+            protected set
+            {
+                SetValue(SelectionTypeProperty, value);
+                OnPropertyChanged(nameof(SelectionType));
+            }
+        }
+
+        //  Data
+
+        public FileItem SelectedFile
+        {
+            get => _selectedFile;
+            protected set
+            {
+                _selectedFile = value;
+                OnPropertyChanged(nameof(SelectedFile));
+                OnSelectionUpdate(false);
+            }
+        }
+
+        public ObservableCollection<FileItem> SelectedFiles
+        {
+            get => _selectedFiles;
+            protected set
+            {
+                _selectedFiles = value != null ? value : new ObservableCollection<FileItem>();
+                _selectedFiles.CollectionChanged += OnSelectionCollectionChanged;
+                OnPropertyChanged(nameof(SelectedFiles));
+                OnSelectionUpdate(true);
+            }
+        }
+
         //  Editable
+
+        public ObservableCollection<FileTypeItem> FilesTypes
+        {
+            get => (ObservableCollection<FileTypeItem>)GetValue(FilesTypesProperty);
+            set
+            {
+                SetValue(FilesTypesProperty, value);
+                OnPropertyChanged(nameof(FilesTypes));
+            }
+        }
 
         public string InitialDirectory
         {
@@ -242,7 +320,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             set
             {
                 _textBoxFileNameText = value;
-                OnPropertyChanged(nameof(TextBoxAddressText));
+                OnPropertyChanged(nameof(TextBoxFileNameText));
             }
         }
 
@@ -255,8 +333,12 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <summary> BaseFilesInternalMessageEx class constructor. </summary>
         public BaseFilesInternalMessageEx()
         {
+            Loaded += OnLoaded;
+
             if (!Directory.Exists(InitialDirectory))
                 InitialDirectory = DEFAULT_PATH;
+
+            SelectedFiles = new ObservableCollection<FileItem>();
 
             _historyForward = new List<string>();
             UpdateDirectory(InitialDirectory);
@@ -272,6 +354,30 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         }
 
         #endregion CLASS METHODS
+
+        #region COMBOBOX METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing file type selection. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Selection Changed Event Arguments. </param>
+        private void OnFileTypeComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBoxEx = sender as ComboBoxEx;
+
+            if (comboBoxEx != null && comboBoxEx.SelectedItem != null)
+            {
+                var fileType = comboBoxEx.SelectedItem as FileTypeItem;
+
+                if (fileType != null)
+                {
+                    SelectedFileType = fileType;
+                    OnFileTypeChanged(fileType);
+                }
+            }
+        }
+
+        #endregion COMBOBOX METHODS
 
         #region BUTTONS METHODS
 
@@ -300,7 +406,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         private void OnOkClick(object sender, RoutedEventArgs e)
         {
             Result = InternalMessageResult.Ok;
-            MessageClose?.Invoke(this, new FilesInternalMessageCloseEventArgs(Result, null));
+            MessageClose?.Invoke(this, new FilesInternalMessageCloseEventArgs(
+                Result, SelectedFiles.Select(f => f.Path).ToArray()));
         }
 
         //  --------------------------------------------------------------------------------
@@ -398,12 +505,18 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                         result.Add(new FileItem(dir));
                 }
 
-                foreach (var file in Directory.GetFiles(CurrentDirectory))
+                if (SelectionType != FilesInternalMessageExSelectionType.DirectoryCreate
+                    && SelectionType != FilesInternalMessageExSelectionType.DirectorySelect)
                 {
-                    var fileInfo = new FileInfo(file);
+                    foreach (var file in Directory.GetFiles(CurrentDirectory))
+                    {
+                        var fileInfo = new FileInfo(file);
 
-                    if (fileInfo.Attributes.HasFlag(FileAttributes.Normal))
-                        result.Add(new FileItem(file));
+                        if (!fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
+                            && !fileInfo.Attributes.HasFlag(FileAttributes.System)
+                            && (SelectedFileType?.ValidateFileName(Path.GetFileName(file)) ?? true))
+                            result.Add(new FileItem(file));
+                    }
                 }
             }
             //  Get drives.
@@ -488,6 +601,79 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion FILES & DIRECTORIES METHODS
 
+        #region MANAGEMENT METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing file type selection. </summary>
+        /// <param name="fileType"> File type selection. </param>
+        protected virtual void OnFileTypeChanged(FileTypeItem fileType)
+        {
+            //
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after manually changed selected files. </summary>
+        /// <param name="filesNames"> List of files names. </param>
+        protected virtual void OnSelectionUpdate(string[] filesNames)
+        {
+            //
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after selecting file to select. </summary>
+        /// <param name="updateFromFilesList"> Is selection from selected files list. </param>
+        private void OnSelectionUpdate(bool updateFromFilesList = false)
+        {
+            if (_selectionUpdate)
+                return;
+
+            _selectionUpdate = true;
+
+            if (updateFromFilesList)
+            {
+                if (SelectionType != FilesInternalMessageExSelectionType.MultiSelect && SelectedFiles.Count > 1)
+                    SelectedFiles = new ObservableCollection<FileItem>(new List<FileItem>() { SelectedFiles[0] });
+
+                SelectedFile = SelectedFiles.FirstOrDefault();
+            }
+            else
+            {
+                SelectedFiles = new ObservableCollection<FileItem>(new List<FileItem>() { SelectedFile });
+            }
+            
+            TextBoxFileNameText = SelectedFiles.Any() 
+                ? string.Join("; ", SelectedFiles.Select(f => f.Name)) : string.Empty;
+            _selectionUpdate = false;
+        }
+
+        #endregion MANAGEMENT METHODS
+
+        #region MESSAGE METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after loading message. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            GetComboBoxEx("filesTypesComboBox").SelectedItem = FilesTypes.FirstOrDefault();
+        }
+
+        #endregion MESSAGE METHODS
+
+        #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method for invoking PropertyChangedEventHandler external method. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Notify Collection Changed Event Arguments. </param>
+        protected void OnSelectionCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnSelectionUpdate(true);
+        }
+
+        #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS
+
         #region TEXTBOXES METHODS
 
         //  --------------------------------------------------------------------------------
@@ -509,7 +695,14 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <param name="e"> Text Modified Event Arguments. </param>
         private void OnFileNameTextBoxTexModified(object sender, TextModifiedEventArgs e)
         {
-            //
+            if (e.UserModified)
+            {
+                var filesNames = e.NewText.Split(
+                        new string[] { "; ", ";" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(f => f.Trim()).ToArray();
+
+                OnSelectionUpdate(filesNames);
+            }
         }
 
         #endregion TEXTBOXES METHODS
@@ -531,6 +724,17 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
             ApplyTextBoxExModifiedMethod(GetTextBoxEx("addressTextBox"), OnAddressTextBoxTextModified);
             ApplyTextBoxExModifiedMethod(GetTextBoxEx("fileNameTextBox"), OnFileNameTextBoxTexModified);
+
+            ApplyComboBoxExSelectionChangedMethod(GetComboBoxEx("filesTypesComboBox"), OnFileTypeComboBoxSelectionChanged);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get ComboBoxEx from ContentTemplate. </summary>
+        /// <param name="comboBoxName"> ComboBoxEx name. </param>
+        /// <returns> ComboBoxEx or null. </returns>
+        protected ComboBoxEx GetComboBoxEx(string comboBoxName)
+        {
+            return this.Template.FindName(comboBoxName, this) as ComboBoxEx;
         }
 
         //  --------------------------------------------------------------------------------
@@ -540,6 +744,18 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         protected TextBoxEx GetTextBoxEx(string textBoxName)
         {
             return this.Template.FindName(textBoxName, this) as TextBoxEx;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Apply Click method on TextBoxEx. </summary>
+        /// <param name="textBoxEx"> TextBoxEx. </param>
+        /// <param name="eventHandler"> Click method. </param>
+        protected void ApplyComboBoxExSelectionChangedMethod(ComboBoxEx comboBoxEx, SelectionChangedEventHandler eventHandler)
+        {
+            if (comboBoxEx != null)
+            {
+                comboBoxEx.SelectionChanged += eventHandler;
+            }
         }
 
         //  --------------------------------------------------------------------------------
@@ -573,6 +789,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         {
             CanGoBack = !string.IsNullOrEmpty(CurrentDirectory);
             CanGoForward = _historyForward != null && _historyForward.Any();
+            SelectedFiles.Clear();
         }
 
         #endregion UPDATE METHODS

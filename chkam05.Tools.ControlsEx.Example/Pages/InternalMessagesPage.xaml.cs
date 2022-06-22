@@ -445,7 +445,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void OpenFilesIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            //
+            var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
+                "Open Files", true, onClose: OnFileMessageClose);
+
+            UpdateInternalMessageAppearance(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -454,7 +457,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void SaveFileIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            //
+            var message = _mainWindow.InternalMessages.CreateDefaultSaveFileMessage(
+                "Open File", onClose: OnFileMessageClose);
+
+            UpdateInternalMessageAppearance(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -463,7 +469,22 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void SelectFolderIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            //
+            var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
+                "Open File", onClose: OnFileMessageClose);
+
+            UpdateInternalMessageAppearance(message);
+        }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Select Folder IM Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void CreateFolderIMButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
+                "Open File", true, onClose: OnFileMessageClose);
+
+            UpdateInternalMessageAppearance(message);
         }
 
         #endregion INTERACTION METHODS
@@ -477,6 +498,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private void OnMessageClose(object sender, InternalMessageCloseEventArgs e)
         {
             LastResult = e.Result;
+            OptionalKey = string.Empty;
+            OptionalValue = string.Empty;
         }
 
         //  --------------------------------------------------------------------------------
@@ -486,6 +509,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private void OnFileMessageClose(object sender, FilesInternalMessageCloseEventArgs e)
         {
             LastResult = e.Result;
+            OptionalKey = "Files: ";
+            OptionalValue = e.FilePath;
         }
 
         //  --------------------------------------------------------------------------------
@@ -495,6 +520,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private void OnMessageHide(object sender, InternalMessageHideEventArgs e)
         {
             MessageHidden = e.IsHidden;
+            OptionalKey = string.Empty;
+            OptionalValue = string.Empty;
         }
 
         #endregion MESSAGES RESULT METHODS

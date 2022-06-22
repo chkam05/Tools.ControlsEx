@@ -202,18 +202,53 @@ namespace chkam05.Tools.ControlsEx
         //  --------------------------------------------------------------------------------
         /// <summary> Creates default open files message. </summary>
         /// <param name="title"> Message title. </param>
+        /// <param name="multiselect"> Select multiple files. </param>
         /// <param name="icon"> Message icon. </param>
         /// <param name="onClose"> Method invoked after closing message. </param>
         /// <returns></returns>
-        public OpenFilesInternalMessageEx CreateDefaultOpenFilesMessage(string title, 
+        public FilesInternalMessageEx CreateDefaultOpenFilesMessage(string title,
+            bool multiselect = false,
             PackIconKind icon = PackIconKind.FolderOpen, 
             FilesInternalMessageClose onClose = null)
         {
-            var internalMessage = new OpenFilesInternalMessageEx()
-            {
-                IconKind = icon,
-                Title = title
-            };
+            var internalMessage = FilesInternalMessageEx.CreateOpenFile(multiselect);
+            internalMessage.IconKind = icon;
+            internalMessage.Title = title;
+
+            LoadMessage(internalMessage);
+
+            if (onClose != null)
+                internalMessage.MessageClose += onClose;
+
+            return internalMessage;
+        }
+
+        //  --------------------------------------------------------------------------------
+        public FilesInternalMessageEx CreateDefaultSaveFileMessage(string title,
+            PackIconKind icon = PackIconKind.FolderOpen,
+            FilesInternalMessageClose onClose = null)
+        {
+            var internalMessage = FilesInternalMessageEx.CreateSaveFile();
+            internalMessage.IconKind = icon;
+            internalMessage.Title = title;
+
+            LoadMessage(internalMessage);
+
+            if (onClose != null)
+                internalMessage.MessageClose += onClose;
+
+            return internalMessage;
+        }
+
+        //  --------------------------------------------------------------------------------
+        public FilesInternalMessageEx CreateDefaultSelectDirectoryMessage(string title,
+            bool createFolderIfNotExists = false,
+            PackIconKind icon = PackIconKind.FolderOpen,
+            FilesInternalMessageClose onClose = null)
+        {
+            var internalMessage = FilesInternalMessageEx.CreateDirectorySelect(createFolderIfNotExists);
+            internalMessage.IconKind = icon;
+            internalMessage.Title = title;
 
             LoadMessage(internalMessage);
 

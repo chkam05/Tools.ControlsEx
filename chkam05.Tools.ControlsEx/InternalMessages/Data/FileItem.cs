@@ -23,6 +23,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages.Data
         private bool _isDirectory = false;
         private string _name = string.Empty;
         private string _path = string.Empty;
+        private bool _selected = false;
 
 
         //  GETTERS & SETTERS
@@ -65,6 +66,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages.Data
                 _path = value;
                 UpdateMetadata(value);
                 OnPropertyChanged(nameof(Path));
+            }
+        }
+
+        public bool Selected
+        {
+            get => _selected;
+            set
+            {
+                _selected = value;
+                OnPropertyChanged(nameof(Selected));
             }
         }
 

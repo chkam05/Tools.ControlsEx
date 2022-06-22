@@ -104,6 +104,7 @@
             <!-- Is Disabled. -->
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Opacity" TargetName="templateRoot" Value="0.56"/>
+                <Setter Property="IsHitTestVisible" Value="False"/>
             </Trigger>
 
             <!-- Is Pressed. -->
