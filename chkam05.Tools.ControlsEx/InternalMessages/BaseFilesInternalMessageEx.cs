@@ -20,7 +20,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
     public class BaseFilesInternalMessageEx : BaseInternalMessageEx, INotifyPropertyChanged
     {
 
-        //  CONT
+        //  CONST
 
         private static readonly string DEFAULT_PATH = Environment.GetEnvironmentVariable("USERPROFILE");
 
@@ -120,6 +120,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         private string _currentDirectory = DEFAULT_PATH;
         private FileTypeItem _fileItemType = null;
         private List<string> _historyForward;
+        private bool _isAnySelected = false;
         private FileItem _selectedFile = null;
         private ObservableCollection<FileItem> _selectedFiles;
         private bool _selectionUpdate = false;
@@ -235,13 +236,13 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
-        public FileTypeItem SelectedFileType
+        public bool IsAnySelected
         {
-            get => _fileItemType;
+            get => _isAnySelected;
             private set
             {
-                _fileItemType = value;
-                OnPropertyChanged(nameof(SelectedFileType));
+                _isAnySelected = value;
+                OnPropertyChanged(nameof(IsAnySelected));
             }
         }
 
@@ -263,6 +264,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             protected set
             {
                 _selectedFile = value;
+                IsAnySelected = _selectedFile != null;
                 OnPropertyChanged(nameof(SelectedFile));
                 OnSelectionUpdate(false);
             }
@@ -303,6 +305,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         }
 
         //  UI
+
+        public FileTypeItem SelectedFileType
+        {
+            get => _fileItemType;
+            private set
+            {
+                _fileItemType = value;
+                OnPropertyChanged(nameof(SelectedFileType));
+            }
+        }
 
         public string TextBoxAddressText
         {

@@ -39,6 +39,7 @@
 
         <!-- INTERNAL MESSAGES -->
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseAwaitInternalMessageExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseColorInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseFilesInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseStandardInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseProgressInternalMessageExStyle.xaml"/>
@@ -105,6 +106,8 @@
     <!-- INTERNAL MESSAGES -->
 
     <Style BasedOn="{StaticResource BaseAwaitInternalMessageExStyle}" TargetType="{x:Type im:BaseAwaitInternalMessageEx}"/>
+
+    <Style BasedOn="{StaticResource BaseColorInternalMessageExStyle}" TargetType="{x:Type im:BaseColorInternalMessageEx}"/>
 
     <Style BasedOn="{StaticResource BaseFilesInternalMessageExStyle}" TargetType="{x:Type im:BaseFilesInternalMessageEx}"/>
 

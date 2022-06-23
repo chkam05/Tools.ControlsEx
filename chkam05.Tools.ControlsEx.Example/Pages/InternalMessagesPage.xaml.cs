@@ -486,6 +486,18 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
             UpdateInternalMessageAppearance(message);
         }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Select Folder IM Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void OpenPaletteColorIMButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var message = _mainWindow.InternalMessages.CreateDefaultPaletteColorMessage(
+                "Select Color", onClose: OnColorMessageClose);
+
+            UpdateInternalMessageAppearance(message);
+        }
 
         #endregion INTERACTION METHODS
 
@@ -500,6 +512,17 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             LastResult = e.Result;
             OptionalKey = string.Empty;
             OptionalValue = string.Empty;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after closing InternalMessage. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Internal Message Close Event Arguments. </param>
+        private void OnColorMessageClose(object sender, ColorsInternalMessageCloseEventArgs e)
+        {
+            LastResult = e.Result;
+            OptionalKey = "Color: ";
+            OptionalValue = e.SelectedColorItem?.Name ?? "null";
         }
 
         //  --------------------------------------------------------------------------------

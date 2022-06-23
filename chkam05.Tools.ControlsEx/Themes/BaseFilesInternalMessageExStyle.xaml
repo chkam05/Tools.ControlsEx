@@ -253,6 +253,7 @@
                             <local:ButtonEx
                                 x:Name="okButton"
                                 Content="Select"
+                                IsEnabled="{Binding IsAnySelected}"
                                 Style="{StaticResource BaseFilesInternalMessageEx.Button}">
                             </local:ButtonEx>
 

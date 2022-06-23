@@ -169,6 +169,7 @@
                     Text="Examples of AwaitInternalMessageEx components with diffrent configuration."/>
 
                 <StackPanel
+                    Margin="0,0,0,16"
                     Orientation="Horizontal">
 
                     <controlsex:ButtonEx
@@ -199,9 +200,10 @@
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Examples of OpenFilesInternalMessageEx, SaveFilesInternalMessageEx and SelectFolderInternalMessageEx components."/>
+                    Text="Examples of FilesInternalMessageEx component with diffrent configuration."/>
 
                 <StackPanel
+                    Margin="0,0,0,16"
                     Orientation="Horizontal">
 
                     <controlsex:ButtonEx
@@ -228,6 +230,25 @@
                         Content="Create Folder"
                         IconKind="FolderAdd"
                         Click="CreateFolderIMButtonEx_Click"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                    Text="PaletteColorInternalMessageEx"/>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Examples of PaletteColorInternalMessageEx component."/>
+
+                <StackPanel
+                    Margin="0,0,0,16"
+                    Orientation="Horizontal">
+
+                    <controlsex:ButtonEx
+                        Content="Peak color"
+                        IconKind="Palette"
+                        Click="OpenPaletteColorIMButtonEx_Click"/>
 
                 </StackPanel>
 

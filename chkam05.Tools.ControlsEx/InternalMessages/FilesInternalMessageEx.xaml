@@ -15,7 +15,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     IconKind="FolderOpen"
     Margin="32"
-    MinHeight="384"
+    MinHeight="320"
     MinWidth="512"
     Title="Open Files">
 
@@ -38,6 +38,33 @@
 
             <!-- STYLES -->
 
+            <Style TargetType="{x:Type GridSplitter}">
+                <Setter Property="Background" Value="{Binding Background, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Foreground" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Width" Value="6"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type GridSplitter}">
+                            <Border
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+
+                                <materialDesign:PackIcon
+                                    Foreground="{TemplateBinding Foreground}"
+                                    HorizontalAlignment="Stretch"
+                                    Kind="DotsVertical"
+                                    VerticalAlignment="Center"
+                                    Width="{TemplateBinding Width}"/>
+
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
                 <Setter Property="ScrollBarThumbBackground" Value="{Binding ButtonBackground, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -51,6 +78,7 @@
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
                 <Setter Property="Padding" Value="4"/>
                 <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
@@ -79,6 +107,7 @@
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="Margin" Value="0,0,8,0"/>
                 <Setter Property="Padding" Value="4"/>
                 <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
@@ -172,7 +201,7 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="224"/>
+            <ColumnDefinition MinWidth="160" Width="224"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -181,12 +210,10 @@
             Grid.Column="0"
             ItemTemplate="{StaticResource Tree_DataTemplate}"
             ItemsSource="{Binding Tree}"
-            Margin="0,0,2,0"
             PreviewMouseDown="DirectoriesTreeView_PreviewMouseDown"/>
 
         <GridSplitter
-            Grid.Column="0"
-            Width="5"/>
+            Grid.Column="0"/>
 
         <controlsex:ListViewEx
             x:Name="filesListView"
@@ -194,7 +221,6 @@
             ItemContainerStyle="{StaticResource File_ListViewItemExStyle}"
             ItemTemplate="{StaticResource File_DataTemplate}"
             ItemsSource="{Binding Files}"
-            Margin="2,0,0,0"
             PreviewMouseDown="FilesListView_PreviewMouseDown"
             SelectionChanged="FilesListView_SelectionChanged"/>
 

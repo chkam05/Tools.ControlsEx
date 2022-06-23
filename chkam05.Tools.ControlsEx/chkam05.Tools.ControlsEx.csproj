@@ -78,6 +78,7 @@
     <Compile Include="Converters\MarqueeStartPositionConverter.cs" />
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Events\ColorsInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
     <Compile Include="Events\Delegates.cs" />
     <Compile Include="Events\FilesInternalMessageCloseEventArgs.cs" />
@@ -93,6 +94,7 @@
       <DependentUpon>AwaitInternalMessageEx.xaml</DependentUpon>
     </Compile>
     <Compile Include="InternalMessages\BaseAwaitInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\BaseColorInternalMessageEx.cs" />
     <Compile Include="InternalMessages\BaseFilesInternalMessageEx.cs" />
     <Compile Include="InternalMessages\BaseInternalMessageEx.cs" />
     <Compile Include="InternalMessages\BaseProgressInternalMessageEx.cs" />
@@ -107,6 +109,9 @@
     <Compile Include="InternalMessages\IProgressInternalMessageEx.cs" />
     <Compile Include="InternalMessages\FilesInternalMessageEx.xaml.cs">
       <DependentUpon>FilesInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\PaletteColorInternalMessageEx.xaml.cs">
+      <DependentUpon>PaletteColorInternalMessageEx.xaml</DependentUpon>
     </Compile>
     <Compile Include="InternalMessages\ProgressInternalMessageEx.xaml.cs">
       <DependentUpon>ProgressInternalMessageEx.xaml</DependentUpon>
@@ -180,11 +185,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InternalMessages\PaletteColorInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InternalMessages\ProgressInternalMessageEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\BaseAwaitInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\BaseColorInternalMessageExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

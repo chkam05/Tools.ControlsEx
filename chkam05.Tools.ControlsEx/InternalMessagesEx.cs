@@ -258,6 +258,23 @@ namespace chkam05.Tools.ControlsEx
             return internalMessage;
         }
 
+        //  --------------------------------------------------------------------------------
+        public PaletteColorInternalMessageEx CreateDefaultPaletteColorMessage(string title,
+            PackIconKind icon = PackIconKind.Palette,
+            ColorsInternalMessageClose onClose = null)
+        {
+            var internalMessage = new PaletteColorInternalMessageEx();
+            internalMessage.IconKind = icon;
+            internalMessage.Title = title;
+
+            LoadMessage(internalMessage);
+
+            if (onClose != null)
+                internalMessage.MessageClose += onClose;
+
+            return internalMessage;
+        }
+
         #endregion CREATE MESSAGE METHODS
 
         #region HIDDEN NAVIGATION METHODS
@@ -491,6 +508,8 @@ namespace chkam05.Tools.ControlsEx
                 (message as BaseAwaitInternalMessageEx).MessageClose += OnRequestCloseMessage;
             else if (type.IsSubclassOf(typeof(BaseFilesInternalMessageEx)))
                 (message as BaseFilesInternalMessageEx).MessageClose += OnRequestCloseMessage;
+            else if (type.IsSubclassOf(typeof(BaseColorInternalMessageEx)))
+                (message as BaseColorInternalMessageEx).MessageClose += OnRequestCloseMessage;
 
             if (message is IHideableInternalMessageEx)
                 (message as IHideableInternalMessageEx).MessageHide += OnRequestHideMessage;

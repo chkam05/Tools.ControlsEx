@@ -13,7 +13,7 @@ CORRECTIONS:
 	* InternalMessages
 		[v] Button colors (+)
 		[v] Progressbar colors
-		[ ] Reworked InternalMessages (+/-)
+		[v] Reworked InternalMessages (+/-)
 	* ListViewEx
 		[v] GridView ScrollBarEx template fix
 		[v] GridView Gripper border fix
@@ -28,25 +28,12 @@ CORRECTIONS:
 
 CREATE:
 	[v] ColorPaletteEx (+)
-	[ ] ColorPaletteInternalMessageEx
-	[ ] OpenFilesInternalMessageEx
-	[ ] SaveFileInternalMessageEx
-	[ ] OpenDirectoryInternalMessageEx
+	[v] ColorPaletteInternalMessageEx
+	[v] OpenFilesInternalMessageEx
+	[v] SaveFileInternalMessageEx
+	[v] OpenDirectoryInternalMessageEx
 
 Additional infos:
-	* BaseFilesInternalMessageEx
-
-	* OpenFiles
-	* SaveFile
-	* OpenDirectory
-
-	- Enabling Selection Button
-
-
-
-	* ColorPaletteInternalMessageEx
-		- Title
-		- RecentlyUsedColors
 
 	* ColorPickerInternalMessageEx
 		- Full Palette
