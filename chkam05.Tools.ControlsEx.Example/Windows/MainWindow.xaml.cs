@@ -222,6 +222,9 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         /// <param name="e"> Event Arguments. </param>
         private void Window_Closed(object sender, EventArgs e)
         {
+            Configuration.WindowLocation = new Point(Left, Top);
+            Configuration.WindowSize = new Size(Width, Height);
+
             Configuration.SaveConfiguration();
         }
 
@@ -232,6 +235,11 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             PagesManager.LoadSinglePage(new InfoPage());
+
+            Left = Configuration.WindowLocation.X;
+            Top = Configuration.WindowLocation.Y;
+            Height = Configuration.WindowSize.Height;
+            Width = Configuration.WindowSize.Width;
         }
 
         #endregion WINDOW METHODS

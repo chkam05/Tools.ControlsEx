@@ -100,6 +100,20 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             }
         }
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing color in Colors picker. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Colors Palette Selection Changed Event Arguments. </param>
+        private void ColorsPickerEx_ColorSelectionChanged(object sender, Events.ColorsPaletteSelectionChangedEventArgs e)
+        {
+            if (e?.SelectedColorItem != null)
+            {
+                SelectedColorBrush = new SolidColorBrush(e.SelectedColorItem.Color);
+                SelectedColorCode = $"({e.SelectedColorItem.ColorCode})";
+                SelectedColorName = e.SelectedColorItem.Name;
+            }
+        }
+
         #endregion INTERACTION METHODS
 
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS

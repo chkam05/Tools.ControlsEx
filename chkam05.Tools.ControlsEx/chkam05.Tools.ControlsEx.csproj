@@ -60,6 +60,7 @@
     <Compile Include="ButtonEx.cs" />
     <Compile Include="CheckBoxEx.cs" />
     <Compile Include="ColorsPaletteEx.cs" />
+    <Compile Include="ColorsPickerEx.cs" />
     <Compile Include="Colors\AHSLColor.cs" />
     <Compile Include="Colors\ColorPaletteItem.cs" />
     <Compile Include="Colors\ColorsPaletteItems.cs" />
@@ -222,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ColorsPaletteExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ColorsPickerExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

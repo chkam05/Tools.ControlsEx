@@ -9,6 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CheckBoxExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ColorsPaletteExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ColorsPickerExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ComboBoxItemExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuExStyle.xaml"/>
@@ -50,6 +51,8 @@
     <Style BasedOn="{StaticResource CheckBoxExStyle}" TargetType="{x:Type local:CheckBoxEx}"/>
 
     <Style BasedOn="{StaticResource ColorsPaletteExStyle}" TargetType="{x:Type local:ColorsPaletteEx}"/>
+
+    <Style BasedOn="{StaticResource ColorsPickerExStyle}" TargetType="{x:Type local:ColorsPickerEx}"/>
 
     <Style BasedOn="{StaticResource ComboBoxExStyle}" TargetType="{x:Type local:ComboBoxEx}"/>
     

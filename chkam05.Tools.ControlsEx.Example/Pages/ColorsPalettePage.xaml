@@ -71,7 +71,7 @@
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Header1}"
-                    Text="ColorsPaletteEx"/>
+                    Text="ColorsPaletteEx &amp; ColorsPickerEx"/>
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Content}"
@@ -87,7 +87,16 @@
 
                 <controlsex:ColorsPaletteEx
                     ColorSelectionChanged="ColorsPaletteEx_ColorSelectionChanged"
-                    ColorsHistoryEnabled="False"/>
+                    ColorsHistoryEnabled="False"
+                    Margin="0,0,0,16"/>
+
+                <TextBlock
+                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                    Text="Example of ColorsPickerEx component."/>
+
+                <controlsex:ColorsPickerEx
+                    ColorSelectionChanged="ColorsPickerEx_ColorSelectionChanged"
+                    Margin="0,0,0,16"/>
 
             </StackPanel>
         </controlsex:ScrollViewerEx>

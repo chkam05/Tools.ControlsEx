@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx.Example.Data.Config
@@ -51,6 +52,9 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
         private Brush _borderToolbarColorBrush = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160));
         private Brush _foregroundColorBrush = new SolidColorBrush(System.Windows.Media.Colors.Black);
         private Brush _selectedInactiveColorBrush = new SolidColorBrush(Color.FromArgb(255, 192, 192, 192));
+
+        private Point _windowLocation = new Point(150, 150);
+        private Size _windowSize = new Size(800, 450);
 
 
         //  GETTERS & SETTERS
@@ -193,6 +197,26 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Config
             {
                 _selectedInactiveColorBrush = value;
                 OnPropertyChanged(nameof(SelectedInactiveColorBrush));
+            }
+        }
+
+        public Point WindowLocation
+        {
+            get => _windowLocation;
+            set
+            {
+                _windowLocation = value;
+                OnPropertyChanged(nameof(WindowLocation));
+            }
+        }
+
+        public Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                _windowSize = value;
+                OnPropertyChanged(nameof(WindowSize));
             }
         }
 
