@@ -72,51 +72,18 @@
     <Compile Include="Converters\CheckBoxStyleCheckMarkConverter.cs" />
     <Compile Include="Converters\ColorSolidColorBrushConverter.cs" />
     <Compile Include="Converters\CornerRadiusSideConverter.cs" />
-    <Compile Include="Converters\FilesInternalMessageExMultiselectCheckBoxVisibilityConverter.cs" />
     <Compile Include="Converters\FileTypeItemExtensionsNameConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\MarqueeEndPositionConverter.cs" />
     <Compile Include="Converters\MarqueeStartPositionConverter.cs" />
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
-    <Compile Include="Events\ColorsInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
     <Compile Include="Events\Delegates.cs" />
-    <Compile Include="Events\FilesInternalMessageCloseEventArgs.cs" />
-    <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
-    <Compile Include="Events\FilesInternalMessageDirectoryChangedEventArgs.cs" />
-    <Compile Include="Events\InternalMessageHideEventArgs.cs" />
     <Compile Include="Events\TextModifiedEventArgs.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="Indicators\BaseIndicatorEx.cs" />
     <Compile Include="Indicators\CircleSmoothIndicatorEx.cs" />
-    <Compile Include="InternalMessagesEx.cs" />
-    <Compile Include="InternalMessages\AwaitInternalMessageEx.xaml.cs">
-      <DependentUpon>AwaitInternalMessageEx.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="InternalMessages\BaseAwaitInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\BaseColorInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\BaseFilesInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\BaseInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\BaseProgressInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\BaseStandardInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\Data\FileItem.cs" />
-    <Compile Include="InternalMessages\Data\FileTreeItem.cs" />
-    <Compile Include="InternalMessages\Data\FileTypeItem.cs" />
-    <Compile Include="InternalMessages\IHideableInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\InternalMessageEx.xaml.cs">
-      <DependentUpon>InternalMessageEx.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="InternalMessages\IProgressInternalMessageEx.cs" />
-    <Compile Include="InternalMessages\FilesInternalMessageEx.xaml.cs">
-      <DependentUpon>FilesInternalMessageEx.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="InternalMessages\PaletteColorInternalMessageEx.xaml.cs">
-      <DependentUpon>PaletteColorInternalMessageEx.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="InternalMessages\ProgressInternalMessageEx.xaml.cs">
-      <DependentUpon>ProgressInternalMessageEx.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ListViewEx.cs" />
     <Compile Include="ListViewItemEx.cs" />
     <Compile Include="MarqueeTextBlockEx.cs" />
@@ -140,11 +107,7 @@
     <Compile Include="SliderEx.cs" />
     <Compile Include="Static\CheckBoxStyle.cs" />
     <Compile Include="Static\ContentSide.cs" />
-    <Compile Include="Static\FilesInternalMessageDirectoryChangeMethod.cs" />
-    <Compile Include="Static\FilesInternalMessageExSelectionType.cs" />
     <Compile Include="Static\IndicatorType.cs" />
-    <Compile Include="Static\InternalMessageButtons.cs" />
-    <Compile Include="Static\InternalMessageResult.cs" />
     <Compile Include="Static\MarqueeTextAnimationPlace.cs" />
     <Compile Include="Static\StaticResources.cs" />
     <Compile Include="Static\TextBoxConversionType.cs" />
@@ -174,42 +137,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="InternalMessages\AwaitInternalMessageEx.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InternalMessages\InternalMessageEx.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InternalMessages\FilesInternalMessageEx.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InternalMessages\PaletteColorInternalMessageEx.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="InternalMessages\ProgressInternalMessageEx.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\BaseAwaitInternalMessageExStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\BaseColorInternalMessageExStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\BaseFilesInternalMessageExStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\BaseProgressInternalMessageExStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\ButtonExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,15 +185,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\BaseStandardInternalMessageExStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\BaseIndicatorExStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\InternalMessagesExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,7 +254,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="InternalMessages\Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="ToDo.txt" />
   </ItemGroup>

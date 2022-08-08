@@ -1,7 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Events;
 using chkam05.Tools.ControlsEx.Example.Data.Config;
 using chkam05.Tools.ControlsEx.Example.Windows;
-using chkam05.Tools.ControlsEx.InternalMessages;
+//using chkam05.Tools.ControlsEx.InternalMessages;
 using chkam05.Tools.ControlsEx.Static;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -33,7 +33,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         //  VARIABLES
 
-        private InternalMessageResult _lastResult = InternalMessageResult.None;
+        //private InternalMessageResult _lastResult = InternalMessageResult.None;
         private bool _messageHidden = false;
         private string _optionalKey = "";
         private string _optionalValue = "";
@@ -54,7 +54,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             }
         }
 
-        public InternalMessageResult LastResult
+        /*public InternalMessageResult LastResult
         {
             get => _lastResult;
             set
@@ -62,7 +62,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 _lastResult = value;
                 OnPropertyChanged(nameof(LastResult));
             }
-        }
+        }*/
 
         public string OptionalKey
         {
@@ -112,7 +112,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="progressInternalMessageEx"> Progress internal message. </param>
         /// <param name="tick"> Tick time. </param>
         /// <returns> Background worker. </returns>
-        private BackgroundWorker CreateBackgroundWorker(ProgressInternalMessageEx progressInternalMessageEx, TimeSpan tick)
+        /*private BackgroundWorker CreateBackgroundWorker(ProgressInternalMessageEx progressInternalMessageEx, TimeSpan tick)
         {
             var backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerReportsProgress = true;
@@ -153,14 +153,14 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             };
 
             return backgroundWorker;
-        }
+        }*/
 
         //  --------------------------------------------------------------------------------
         /// <summary> Create background worker for testing ProgressInternalMessageEx. </summary>
         /// <param name="progressInternalMessageEx"> Progress internal message. </param>
         /// <param name="tick"> Tick time. </param>
         /// <returns> Background worker. </returns>
-        private BackgroundWorker CreateBackgroundWorker(AwaitInternalMessageEx progressInternalMessageEx, TimeSpan tick)
+        /*private BackgroundWorker CreateBackgroundWorker(AwaitInternalMessageEx progressInternalMessageEx, TimeSpan tick)
         {
             var backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerReportsProgress = true;
@@ -196,7 +196,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             };
 
             return backgroundWorker;
-        }
+        }*/
 
         #endregion BACKGROUND WORKER METHODS
 
@@ -208,8 +208,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void ShowMessageButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.InternalMessages.ShowHidden();
-            MessageHidden = _mainWindow.InternalMessages.HasHidden;
+            /*_mainWindow.InternalMessages.ShowHidden();
+            MessageHidden = _mainWindow.InternalMessages.HasHidden;*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -218,10 +218,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void InfoIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultMessage("Info Message Test", "This is message example text",
+            /*var message = _mainWindow.InternalMessages.CreateDefaultMessage("Info Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
         
         //  --------------------------------------------------------------------------------
@@ -230,11 +230,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void QuestionIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultMessage("Question Message Test", "This is message example text",
+            /*var message = _mainWindow.InternalMessages.CreateDefaultMessage("Question Message Test", "This is message example text",
                 PackIconKind.QuestionMarkCircle, InternalMessageButtons.YesNo,
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -243,11 +243,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void AlertIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultMessage("Alert Message Test", "This is message example text",
+            /*var message = _mainWindow.InternalMessages.CreateDefaultMessage("Alert Message Test", "This is message example text",
                 PackIconKind.Alert, InternalMessageButtons.OkCancel,
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -256,11 +256,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void ErrorIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultMessage("Alert Message Test", "This is message example text",
+            /*var message = _mainWindow.InternalMessages.CreateDefaultMessage("Alert Message Test", "This is message example text",
                 PackIconKind.Alert, InternalMessageButtons.Ok,
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
         
         //  --------------------------------------------------------------------------------
@@ -269,12 +269,12 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void ProgressIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             UpdateInternalMessageAppearance(message);
-            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();
+            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -283,7 +283,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void CancelableProgressIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
@@ -297,7 +297,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                     bgWorker.CancelAsync();
             };
 
-            bgWorker.RunWorkerAsync();
+            bgWorker.RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -306,14 +306,14 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void HideableProgressIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             message.AllowHide = true;
             message.KeepOnScreenCompleted = true;
             UpdateInternalMessageAppearance(message);
-            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();
+            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25)).RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -322,7 +322,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void KeepAliveProgressIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultProgressMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
@@ -337,7 +337,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                     bgWorker.CancelAsync();
             };
 
-            bgWorker.RunWorkerAsync();
+            bgWorker.RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -346,12 +346,12 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void AwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
             UpdateInternalMessageAppearance(message);
-            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50)).RunWorkerAsync();
+            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50)).RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -360,7 +360,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void CancelableAwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
@@ -377,7 +377,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                     bgWorker.CancelAsync();
             };
 
-            bgWorker.RunWorkerAsync();
+            bgWorker.RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -386,7 +386,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void HideableAwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
@@ -397,7 +397,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             message.IndicatorPenThickness = new Thickness(1);
             message.KeepOnScreenCompleted = true;
 
-            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50)).RunWorkerAsync();
+            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50)).RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -406,7 +406,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void KeepAliveAwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
                 "Progress Message Test", "This is message example text",
                 onClose: OnMessageClose, onHide: OnMessageHide);
 
@@ -424,7 +424,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                     bgWorker.CancelAsync();
             };
 
-            bgWorker.RunWorkerAsync();
+            bgWorker.RunWorkerAsync();*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -433,10 +433,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void OpenFileIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
                 "Open File", onClose: OnFileMessageClose);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -445,10 +445,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void OpenFilesIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
                 "Open Files", true, onClose: OnFileMessageClose);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -457,10 +457,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void SaveFileIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultSaveFileMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultSaveFileMessage(
                 "Open File", onClose: OnFileMessageClose);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -469,10 +469,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void SelectFolderIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
                 "Open File", onClose: OnFileMessageClose);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
         
         //  --------------------------------------------------------------------------------
@@ -481,10 +481,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void CreateFolderIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
                 "Open File", true, onClose: OnFileMessageClose);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
         
         //  --------------------------------------------------------------------------------
@@ -493,10 +493,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void OpenPaletteColorIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            var message = _mainWindow.InternalMessages.CreateDefaultPaletteColorMessage(
+            /*var message = _mainWindow.InternalMessages.CreateDefaultPaletteColorMessage(
                 "Select Color", onClose: OnColorMessageClose);
 
-            UpdateInternalMessageAppearance(message);
+            UpdateInternalMessageAppearance(message);*/
         }
 
         #endregion INTERACTION METHODS
@@ -507,45 +507,45 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <summary> Method invoked after closing InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        private void OnMessageClose(object sender, InternalMessageCloseEventArgs e)
+        /*private void OnMessageClose(object sender, InternalMessageCloseEventArgs e)
         {
             LastResult = e.Result;
             OptionalKey = string.Empty;
             OptionalValue = string.Empty;
-        }
+        }*/
 
         //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after closing InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        private void OnColorMessageClose(object sender, ColorsInternalMessageCloseEventArgs e)
+        /*private void OnColorMessageClose(object sender, ColorsInternalMessageCloseEventArgs e)
         {
             LastResult = e.Result;
             OptionalKey = "Color: ";
             OptionalValue = e.SelectedColorItem?.Name ?? "null";
-        }
+        }*/
 
         //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after closing InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        private void OnFileMessageClose(object sender, FilesInternalMessageCloseEventArgs e)
+        /*private void OnFileMessageClose(object sender, FilesInternalMessageCloseEventArgs e)
         {
             LastResult = e.Result;
             OptionalKey = "Files: ";
             OptionalValue = e.FilePath;
-        }
+        }*/
 
         //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after hiding InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        private void OnMessageHide(object sender, InternalMessageHideEventArgs e)
+        /*private void OnMessageHide(object sender, InternalMessageHideEventArgs e)
         {
             MessageHidden = e.IsHidden;
             OptionalKey = string.Empty;
             OptionalValue = string.Empty;
-        }
+        }*/
 
         #endregion MESSAGES RESULT METHODS
 
@@ -569,7 +569,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         //  --------------------------------------------------------------------------------
         /// <summary> Update Internal Message appearance. </summary>
         /// <param name="message"> Internal Message. </param>
-        private void UpdateInternalMessageAppearance(BaseInternalMessageEx message)
+        /*private void UpdateInternalMessageAppearance(BaseInternalMessageEx message)
         {
             message.Background = Configuration.BackgroundColorBrush;
             message.BorderBrush = Configuration.AccentColorBrush;
@@ -610,7 +610,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 filesMessage.TextBoxSelectedForeground = Configuration.ForegroundColorBrush;
                 filesMessage.TextBoxSelectedTextBackground = Configuration.AccentSelectedColorBrush;
             }
-        }
+        }*/
 
         #endregion UPDATE METHODS
 

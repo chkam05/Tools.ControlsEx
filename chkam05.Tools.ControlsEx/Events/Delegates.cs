@@ -36,32 +36,32 @@ namespace chkam05.Tools.ControlsEx.Events
         /// <summary> Method invoked after hiding InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Hide Event Arguments. </param>
-        public delegate void InternalMessageHide(object sender, InternalMessageHideEventArgs e);
+        //public delegate void InternalMessageHide(object sender, InternalMessageHideEventArgs e);
 
         /// <summary> Method invoked after closing FilesInternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Files Internal Message Close Event Arguments. </param>
-        public delegate void FilesInternalMessageClose(object sender, FilesInternalMessageCloseEventArgs e);
+        //public delegate void FilesInternalMessageClose(object sender, FilesInternalMessageCloseEventArgs e);
 
         /// <summary> Method invoked after changing directory in FilesInternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Files Internal Message Directory Changed Event Arguments. </param>
-        public delegate void FilesInternalMessageDirectoryChanged(object sender, FilesInternalMessageDirectoryChangedEventArgs e);
+        //public delegate void FilesInternalMessageDirectoryChanged(object sender, FilesInternalMessageDirectoryChangedEventArgs e);
 
         /// <summary> Method invoked after closing ColorsInternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Colors Internal Message Close Event Arguments. </param>
-        public delegate void ColorsInternalMessageClose(object sender, ColorsInternalMessageCloseEventArgs e);
+        //public delegate void ColorsInternalMessageClose(object sender, ColorsInternalMessageCloseEventArgs e);
 
         /// <summary> Method invoked after closing InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        public delegate void StandardInternalMessageClose(object sender, InternalMessageCloseEventArgs e);
+        //public delegate void StandardInternalMessageClose(object sender, InternalMessageCloseEventArgs e);
 
         /// <summary> Method invoked after canceling ProgressInternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        public delegate void ProgressInternalMessageCancel(object sender, InternalMessageCloseEventArgs e);
+        //public delegate void ProgressInternalMessageCancel(object sender, InternalMessageCloseEventArgs e);
 
 
         //  TEXT BOXES

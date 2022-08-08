@@ -2,7 +2,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
-    xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
     xmlns:indicators="clr-namespace:chkam05.Tools.ControlsEx.Indicators">
 
     <ResourceDictionary.MergedDictionaries>
@@ -16,7 +15,6 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuItemExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ExpanderExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessagesExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MarqueeTextBlockExStyle.xaml"/>
@@ -39,11 +37,12 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/CircleSmoothIndicatorExStyle.xaml"/>
 
         <!-- INTERNAL MESSAGES -->
+        <!--ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessagesExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseAwaitInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseColorInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseFilesInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseStandardInternalMessageExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseProgressInternalMessageExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseProgressInternalMessageExStyle.xaml"/-->
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonExStyle}" TargetType="{x:Type local:ButtonEx}"/>
@@ -66,8 +65,6 @@
 
     <Style BasedOn="{StaticResource GridViewColumnHeaderStyle}" TargetType="{x:Type GridViewColumnHeader}"/>
 
-    <Style BasedOn="{StaticResource InternalMessagesExStyle}" TargetType="{x:Type local:InternalMessagesEx}"/>
-    
     <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type local:ListViewEx}"/>
     
     <Style BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type local:ListViewItemEx}"/>
@@ -108,6 +105,8 @@
     
     <!-- INTERNAL MESSAGES -->
 
+    <!--Style BasedOn="{StaticResource InternalMessagesExStyle}" TargetType="{x:Type local:InternalMessagesEx}"/>
+
     <Style BasedOn="{StaticResource BaseAwaitInternalMessageExStyle}" TargetType="{x:Type im:BaseAwaitInternalMessageEx}"/>
 
     <Style BasedOn="{StaticResource BaseColorInternalMessageExStyle}" TargetType="{x:Type im:BaseColorInternalMessageEx}"/>
@@ -116,6 +115,6 @@
 
     <Style BasedOn="{StaticResource BaseProgressInternalMessageExStyle}" TargetType="{x:Type im:BaseProgressInternalMessageEx}"/>
 
-    <Style BasedOn="{StaticResource BaseStandardInternalMessageExStyle}" TargetType="{x:Type im:BaseStandardInternalMessageEx}"/>
+    <Style BasedOn="{StaticResource BaseStandardInternalMessageExStyle}" TargetType="{x:Type im:BaseStandardInternalMessageEx}"/-->
 
 </ResourceDictionary>

@@ -130,10 +130,10 @@
             ItemTemplate="{StaticResource MainMenu.DataTemplate}"
             SelectionChanged="MainMenu_SelectionChanged"/>
 
-        <controlsex:InternalMessagesEx
+        <!--controlsex:InternalMessagesEx
             x:Name="InternalMessages"
             Grid.ColumnSpan="2"
-            Grid.RowSpan="2"/>
+            Grid.RowSpan="2"/-->
 
     </Grid>
 
