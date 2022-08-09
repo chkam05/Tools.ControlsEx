@@ -78,12 +78,20 @@
     <Compile Include="Converters\MarqueeStartPositionConverter.cs" />
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Data\InternalMessageButtons.cs" />
+    <Compile Include="Data\InternalMessageResult.cs" />
     <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
     <Compile Include="Events\Delegates.cs" />
+    <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
+    <Compile Include="Events\InternalMessageHideEventArgs.cs" />
     <Compile Include="Events\TextModifiedEventArgs.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="Indicators\BaseIndicatorEx.cs" />
     <Compile Include="Indicators\CircleSmoothIndicatorEx.cs" />
+    <Compile Include="InternalMessages\BaseInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\IInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\InternalMessagesExContainer.cs" />
+    <Compile Include="InternalMessages\StandardInternalMessageEx.cs" />
     <Compile Include="ListViewEx.cs" />
     <Compile Include="ListViewItemEx.cs" />
     <Compile Include="MarqueeTextBlockEx.cs" />
@@ -189,6 +197,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\InternalMessages\InternalMessagesExContainerStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\StandardInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\ListViewExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,9 +270,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="InternalMessages\Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="ToDo.txt" />
   </ItemGroup>

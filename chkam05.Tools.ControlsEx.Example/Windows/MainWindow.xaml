@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Windows"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d"
@@ -129,6 +130,11 @@
             ItemsSource="{Binding MenuDataContext.DataContext}"
             ItemTemplate="{StaticResource MainMenu.DataTemplate}"
             SelectionChanged="MainMenu_SelectionChanged"/>
+
+        <im:InternalMessagesExContainer
+            x:Name="InternalMessages"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"/>
 
         <!--controlsex:InternalMessagesEx
             x:Name="InternalMessages"

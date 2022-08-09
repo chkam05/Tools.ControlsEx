@@ -1,6 +1,8 @@
-﻿using chkam05.Tools.ControlsEx.Events;
+﻿using chkam05.Tools.ControlsEx.Data;
+using chkam05.Tools.ControlsEx.Events;
 using chkam05.Tools.ControlsEx.Example.Data.Config;
 using chkam05.Tools.ControlsEx.Example.Windows;
+using chkam05.Tools.ControlsEx.InternalMessages;
 //using chkam05.Tools.ControlsEx.InternalMessages;
 using chkam05.Tools.ControlsEx.Static;
 using MaterialDesignThemes.Wpf;
@@ -33,7 +35,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         //  VARIABLES
 
-        //private InternalMessageResult _lastResult = InternalMessageResult.None;
+        private InternalMessageResult _lastResult = InternalMessageResult.None;
         private bool _messageHidden = false;
         private string _optionalKey = "";
         private string _optionalValue = "";
@@ -54,7 +56,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             }
         }
 
-        /*public InternalMessageResult LastResult
+        public InternalMessageResult LastResult
         {
             get => _lastResult;
             set
@@ -62,7 +64,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 _lastResult = value;
                 OnPropertyChanged(nameof(LastResult));
             }
-        }*/
+        }
 
         public string OptionalKey
         {
@@ -201,15 +203,66 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         #endregion BACKGROUND WORKER METHODS
 
         #region INTERACTION METHODS
-
+        
         //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after clicking Show Hidden Button. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Routed Event Arguments. </param>
         private void ShowMessageButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*_mainWindow.InternalMessages.ShowHidden();
-            MessageHidden = _mainWindow.InternalMessages.HasHidden;*/
+            var internalMessages = _mainWindow.InternalMessages;
+            internalMessages.ShowLastHiddenMessage();
+            MessageHidden = internalMessages.HasHidden;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Empty Standard IM Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void EmptyStandardIMButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new StandardInternalMessageEx(internalMessages)
+            {
+                Buttons = new InternalMessageButtons[]
+                {
+                    InternalMessageButtons.OkButton,
+                    InternalMessageButtons.CancelButton,
+                },
+                IconKind = PackIconKind.Application,
+                Title = "Standard Empty IM"
+            };
+
+            message.OnClose += OnMessageClose;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
+        }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Empty Standard Hideable IM Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void EmptyStandardHideableIMButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new StandardInternalMessageEx(internalMessages)
+            {
+                AllowHide = true,
+                Buttons = new InternalMessageButtons[]
+                {
+                    InternalMessageButtons.OkButton,
+                    InternalMessageButtons.CancelButton,
+                },
+                IconKind = PackIconKind.Application,
+                Title = "Standard Hideable Empty IM"
+            };
+
+            message.OnClose += OnMessageClose;
+            message.OnHide += OnMessageHide;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -507,12 +560,12 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <summary> Method invoked after closing InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        /*private void OnMessageClose(object sender, InternalMessageCloseEventArgs e)
+        private void OnMessageClose(object sender, InternalMessageCloseEventArgs e)
         {
             LastResult = e.Result;
             OptionalKey = string.Empty;
             OptionalValue = string.Empty;
-        }*/
+        }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after closing InternalMessage. </summary>
@@ -540,12 +593,12 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <summary> Method invoked after hiding InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
-        /*private void OnMessageHide(object sender, InternalMessageHideEventArgs e)
+        private void OnMessageHide(object sender, InternalMessageHideEventArgs e)
         {
-            MessageHidden = e.IsHidden;
+            MessageHidden = e.Hidden;
             OptionalKey = string.Empty;
             OptionalValue = string.Empty;
-        }*/
+        }
 
         #endregion MESSAGES RESULT METHODS
 
@@ -569,7 +622,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         //  --------------------------------------------------------------------------------
         /// <summary> Update Internal Message appearance. </summary>
         /// <param name="message"> Internal Message. </param>
-        /*private void UpdateInternalMessageAppearance(BaseInternalMessageEx message)
+        private void UpdateInternalMessageAppearance<T>(BaseInternalMessageEx<T> message) where T : InternalMessageCloseEventArgs
         {
             message.Background = Configuration.BackgroundColorBrush;
             message.BorderBrush = Configuration.AccentColorBrush;
@@ -584,7 +637,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             message.ButtonPressedBorderBrush = Configuration.AccentPressedColorBrush;
             message.ButtonPressedForeground = Configuration.AccentForegroundColorBrush;
 
-            if (message.GetType().IsSubclassOf(typeof(BaseProgressInternalMessageEx)))
+            /*if (message.GetType().IsSubclassOf(typeof(BaseProgressInternalMessageEx)))
             {
                 var progressMessage = (BaseProgressInternalMessageEx)message;
                 progressMessage.ProgressBarBorderBrush = Configuration.AccentColorBrush;
@@ -609,8 +662,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 filesMessage.TextBoxSelectedBorderBrush = Configuration.AccentSelectedColorBrush;
                 filesMessage.TextBoxSelectedForeground = Configuration.ForegroundColorBrush;
                 filesMessage.TextBoxSelectedTextBackground = Configuration.AccentSelectedColorBrush;
-            }
-        }*/
+            }*/
+        }
 
         #endregion UPDATE METHODS
 

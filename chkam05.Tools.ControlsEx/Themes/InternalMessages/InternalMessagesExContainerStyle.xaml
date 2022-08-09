@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages">
+
+    <SolidColorBrush x:Key="InternalMessagesExContainer.Background">#B0000000</SolidColorBrush>
+
+    <ControlTemplate x:Key="InternalMessagesExContainer.ControlTemplate" TargetType="{x:Type im:InternalMessagesExContainer}">
+        <Border
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            Background="{TemplateBinding Background}"
+            Padding="{TemplateBinding Padding}">
+
+            <Frame
+                x:Name="contentFrame"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                Height="Auto"
+                NavigationUIVisibility="Hidden"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                Width="Auto"/>
+
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="InternalMessagesExContainerStyle" TargetType="{x:Type im:InternalMessagesExContainer}">
+        <Setter Property="Background" Value="{StaticResource InternalMessagesExContainer.Background}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Template" Value="{StaticResource InternalMessagesExContainer.ControlTemplate}"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>
