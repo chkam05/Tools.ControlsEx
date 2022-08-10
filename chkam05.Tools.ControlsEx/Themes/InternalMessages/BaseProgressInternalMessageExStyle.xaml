@@ -5,26 +5,26 @@
     xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-    <SolidColorBrush x:Key="StandardInternalMessageEx.Background">White</SolidColorBrush>
-    <SolidColorBrush x:Key="StandardInternalMessageEx.Foreground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="BaseProgressInternalMessageEx.Background">White</SolidColorBrush>
+    <SolidColorBrush x:Key="BaseProgressInternalMessageEx.Foreground">Black</SolidColorBrush>
 
-    <Style x:Key="StandardInternalMessageEx.Button" TargetType="{x:Type local:ButtonEx}">
-        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
+    <Style x:Key="BaseProgressInternalMessageEx.Button" TargetType="{x:Type local:ButtonEx}">
+        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="BorderThickness" Value="{Binding ButtonBorderThickness, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
         <Setter Property="Margin" Value="2,0"/>
         <Setter Property="MinHeight" Value="32"/>
         <Setter Property="MinWidth" Value="72"/>
-        <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
-        <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
+        <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseProgressInternalMessageEx}}}"/>
     </Style>
 
-    <ControlTemplate x:Key="StandardInternalMessageEx.ControlTemplate" TargetType="{x:Type im:StandardInternalMessageEx}">
+    <ControlTemplate x:Key="BaseProgressInternalMessageEx.ControlTemplate" TargetType="{x:Type im:BaseProgressInternalMessageEx}">
         <Border
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
@@ -39,6 +39,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" MinHeight="128"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
@@ -83,10 +84,24 @@
                     Margin="{TemplateBinding ContentPadding}"
                     VerticalAlignment="Stretch"/>
 
+                <ProgressBar
+                    x:Name="progressBar"
+                    Background="{TemplateBinding ProgressBarBackground}"
+                    BorderBrush="{TemplateBinding ProgressBarBorderBrush}"
+                    BorderThickness="1"
+                    Foreground="{TemplateBinding ProgressBarProgressBrush}"
+                    Grid.Row="2"
+                    Height="16"
+                    HorizontalAlignment="Stretch"
+                    Margin="{TemplateBinding ProgressMargin}"
+                    Maximum="{TemplateBinding ProgressMax}"
+                    Minimum="{TemplateBinding ProgressMin}"
+                    Value="{TemplateBinding Progress}"/>
+
                 <Border
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="0,1,0,0"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Padding="0,8,0,0">
 
                     <StackPanel
@@ -96,35 +111,21 @@
                         <local:ButtonEx
                             x:Name="okButton"
                             Content="OK"
-                            Style="{StaticResource StandardInternalMessageEx.Button}"
-                            Visibility="Collapsed">
-                        </local:ButtonEx>
-
-                        <local:ButtonEx
-                            x:Name="yesButton"
-                            Content="Yes"
-                            Style="{StaticResource StandardInternalMessageEx.Button}"
-                            Visibility="Collapsed">
-                        </local:ButtonEx>
-
-                        <local:ButtonEx
-                            x:Name="noButton"
-                            Content="No"
-                            Style="{StaticResource StandardInternalMessageEx.Button}"
+                            Style="{StaticResource BaseProgressInternalMessageEx.Button}"
                             Visibility="Collapsed">
                         </local:ButtonEx>
 
                         <local:ButtonEx
                             x:Name="cancelButton"
                             Content="Cancel"
-                            Style="{StaticResource StandardInternalMessageEx.Button}"
-                            Visibility="Collapsed">
+                            IsEnabled="False"
+                            Style="{StaticResource BaseProgressInternalMessageEx.Button}">
                         </local:ButtonEx>
 
                         <local:ButtonEx
                             x:Name="hideButton"
                             Content="Hide"
-                            Style="{StaticResource StandardInternalMessageEx.Button}"
+                            Style="{StaticResource BaseProgressInternalMessageEx.Button}"
                             Visibility="Collapsed">
                         </local:ButtonEx>
 
@@ -134,11 +135,11 @@
         </Border>
     </ControlTemplate>
 
-    <Style x:Key="StandardInternalMessageExStyle" TargetType="{x:Type im:StandardInternalMessageEx}">
-        <Setter Property="Background" Value="{StaticResource StandardInternalMessageEx.Background}"/>
-        <Setter Property="Foreground" Value="{StaticResource StandardInternalMessageEx.Foreground}"/>
-        <Setter Property="Template" Value="{StaticResource StandardInternalMessageEx.ControlTemplate}"/>
+    <Style x:Key="BaseProgressInternalMessageExStyle" TargetType="{x:Type im:BaseProgressInternalMessageEx}">
+        <Setter Property="Background" Value="{StaticResource BaseProgressInternalMessageEx.Background}"/>
+        <Setter Property="Foreground" Value="{StaticResource BaseProgressInternalMessageEx.Foreground}"/>
+        <Setter Property="Template" Value="{StaticResource BaseProgressInternalMessageEx.ControlTemplate}"/>
         <Setter Property="Title" Value="Message Title"/>
     </Style>
-    
+
 </ResourceDictionary>

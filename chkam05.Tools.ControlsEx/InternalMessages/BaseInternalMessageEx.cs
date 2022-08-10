@@ -204,6 +204,12 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(BaseInternalMessageEx<CloseEventArgs>),
             new PropertyMetadata(StaticResources.DEFAULT_CORNER_RADIUS));
 
+        public static readonly DependencyProperty ContentPaddingProperty = DependencyProperty.Register(
+            nameof(ContentPadding),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new Thickness(8)));
+
         public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
             nameof(Padding),
             typeof(Thickness),
@@ -506,6 +512,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
+        public Thickness ContentPadding
+        {
+            get => (Thickness)GetValue(ContentPaddingProperty);
+            set
+            {
+                SetValue(ContentPaddingProperty, value);
+                OnPropertyChanged(nameof(ContentPadding));
+            }
+        }
+
         public Thickness Padding
         {
             get => (Thickness)GetValue(PaddingProperty);
@@ -558,8 +574,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <summary> Close InternalMessage. </summary>
         public void Close()
         {
-            OnClose?.Invoke(this, (CloseEventArgs) new InternalMessageCloseEventArgs(Result));
+            InvokeClose((CloseEventArgs) new InternalMessageCloseEventArgs(Result));
             _parentContainer.CloseMessage(this);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoke close event. </summary>
+        /// <param name="e"> Event arguments based on InternalMessageCloseEventArgs. </param>
+        protected void InvokeClose(CloseEventArgs e)
+        {
+            OnClose?.Invoke(this, e);
         }
 
         //  --------------------------------------------------------------------------------
@@ -569,9 +593,17 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             if (AllowHide)
             {
                 IsHidden = true;
-                OnHide?.Invoke(this, new InternalMessageHideEventArgs(true));
+                InvokeHide(new InternalMessageHideEventArgs(true));
                 _parentContainer.HideMessage(this);
             }
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoke hide event. </summary>
+        /// <param name="e"> Internal Message Hide Event Arguments. </param>
+        protected void InvokeHide(InternalMessageHideEventArgs e)
+        {
+            OnHide?.Invoke(this, e);
         }
 
         //  --------------------------------------------------------------------------------

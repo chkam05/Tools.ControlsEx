@@ -10,12 +10,12 @@ using System.Windows;
 
 namespace chkam05.Tools.ControlsEx.InternalMessages
 {
-    public class StandardInternalMessageEx : BaseInternalMessageEx<InternalMessageCloseEventArgs>, INotifyPropertyChanged
+    public class StandardInternalMessageEx : BaseInternalMessageEx<InternalMessageCloseEventArgs>
     {
 
         //  VARIABLES
 
-        private InternalMessageButtons[] _buttons = new InternalMessageButtons[0];
+        protected InternalMessageButtons[] _buttons = new InternalMessageButtons[0];
 
 
         //  GETTERS & SETTERS
@@ -32,6 +32,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                     SetButtons(value);
             }
         }
+
 
         //  METHODS
 

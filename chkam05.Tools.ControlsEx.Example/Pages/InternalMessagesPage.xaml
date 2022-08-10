@@ -118,35 +118,35 @@
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Header1}"
-                    Text="InternalMessagesEx &amp; InternalMessageEx"/>
+                    Text="InternalMessageEx"/>
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Examples of InternalMessagesEx component with controls for InternalMessageEx components."/>
+                    Text="Examples of InternalMessagesEx component with diffrent configuration."/>
 
                 <StackPanel
                     Margin="0,0,0,16"
                     Orientation="Horizontal">
 
                     <controlsex:ButtonEx
-                        Content="Default"
-                        IconKind="InfoCircle"
-                        Click="InfoIMButtonEx_Click"/>
-
-                    <controlsex:ButtonEx
-                        Content="Question"
-                        IconKind="QuestionMarkCircle"
-                        Click="QuestionIMButtonEx_Click"/>
-
-                    <controlsex:ButtonEx
                         Content="Alert"
-                        IconKind="Alert"
+                        IconKind="AlertOutline"
                         Click="AlertIMButtonEx_Click"/>
 
                     <controlsex:ButtonEx
                         Content="Error"
-                        IconKind="Error"
+                        IconKind="ErrorOutline"
                         Click="ErrorIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Info"
+                        IconKind="InfoCircleOutline"
+                        Click="InfoIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Question"
+                        IconKind="QuestionMarkCircleOutline"
+                        Click="QuestionIMButtonEx_Click"/>
 
                 </StackPanel>
 
@@ -177,11 +177,6 @@
                         IconKind="ProgressStar"
                         Click="HideableProgressIMButtonEx_Click"/>
 
-                    <controlsex:ButtonEx
-                        Content="Waiting"
-                        IconKind="ProgressClock"
-                        Click="KeepAliveProgressIMButtonEx_Click"/>
-
                 </StackPanel>
 
                 <TextBlock
@@ -211,11 +206,6 @@
                         IconKind="ProgressStar"
                         Click="HideableAwaitIMButtonEx_Click"/>
 
-                    <controlsex:ButtonEx
-                        Content="Waiting"
-                        IconKind="ProgressClock"
-                        Click="KeepAliveAwaitIMButtonEx_Click"/>
-
                 </StackPanel>
 
                 <TextBlock
@@ -241,19 +231,14 @@
                         Click="OpenFilesIMButtonEx_Click"/>
 
                     <controlsex:ButtonEx
-                        Content="Save File"
-                        IconKind="ContentSaveEdit"
-                        Click="SaveFileIMButtonEx_Click"/>
-
-                    <controlsex:ButtonEx
                         Content="Select Folder"
                         IconKind="FolderMultiple"
                         Click="SelectFolderIMButtonEx_Click"/>
 
                     <controlsex:ButtonEx
-                        Content="Create Folder"
-                        IconKind="FolderAdd"
-                        Click="CreateFolderIMButtonEx_Click"/>
+                        Content="Save File"
+                        IconKind="ContentSaveEdit"
+                        Click="SaveFileIMButtonEx_Click"/>
 
                 </StackPanel>
 
