@@ -114,14 +114,14 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="message"> Progress internal message. </param>
         /// <param name="tick"> Tick time. </param>
         /// <returns> Background worker. </returns>
-        private BackgroundWorker CreateBackgroundWorker(ProgressInternalMessageEx message, TimeSpan tick)
+        private BackgroundWorker CreateBackgroundWorker(BaseProgressInternalMessageEx message, TimeSpan tick)
         {
             var backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerReportsProgress = true;
             backgroundWorker.WorkerSupportsCancellation = true;
 
             int progress = (int) message.ProgressMin;
-            int maxProgress = (int)message.ProgressMax - 1;
+            int maxProgress = (int)message.ProgressMax;
             bool isCanceled = false;
 
             backgroundWorker.DoWork += (s, e) =>
@@ -148,8 +148,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
             backgroundWorker.RunWorkerCompleted += (s, e) =>
             {
-                if (!isCanceled)
-                    message.DispatcherInvoker.TryInvoke(() => { message.Progress = message.ProgressMax; });
+                message.InvokeFinsh(!isCanceled);
             };
 
             return backgroundWorker;
@@ -157,10 +156,10 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         //  --------------------------------------------------------------------------------
         /// <summary> Create background worker for testing ProgressInternalMessageEx. </summary>
-        /// <param name="progressInternalMessageEx"> Progress internal message. </param>
+        /// <param name="message"> Progress internal message. </param>
         /// <param name="tick"> Tick time. </param>
         /// <returns> Background worker. </returns>
-        /*private BackgroundWorker CreateBackgroundWorker(AwaitInternalMessageEx progressInternalMessageEx, TimeSpan tick)
+        private BackgroundWorker CreateBackgroundWorker(BaseAwaitInternalMessageEx message, TimeSpan tick)
         {
             var backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerReportsProgress = true;
@@ -189,14 +188,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
             backgroundWorker.RunWorkerCompleted += (s, e) =>
             {
-                if (isCanceled)
-                    progressInternalMessageEx.InvokeFinish(InternalMessageResult.Cancel);
-                else
-                    progressInternalMessageEx.InvokeFinish();
+                message.InvokeFinsh(!isCanceled);
             };
 
             return backgroundWorker;
-        }*/
+        }
 
         #endregion BACKGROUND WORKER METHODS
 
@@ -402,12 +398,18 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void AwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
-                "Progress Message Test", "This is message example text",
-                onClose: OnMessageClose, onHide: OnMessageHide);
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new AwaitInternalMessageEx(internalMessages, "Test progress", "Test progress in progress...")
+            {
+                KeepFinishedOpen = true
+            };
+            var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
+
+            message.OnClose += OnMessageClose;
 
             UpdateInternalMessageAppearance(message);
-            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50)).RunWorkerAsync();*/
+            internalMessages.ShowMessage(message);
+            bgWorker.RunWorkerAsync();
         }
 
         //  --------------------------------------------------------------------------------
@@ -416,24 +418,25 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void CancelableAwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
-                "Progress Message Test", "This is message example text",
-                onClose: OnMessageClose, onHide: OnMessageHide);
-
-            var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50));
-
-            message.AllowCancel = true;
-            UpdateInternalMessageAppearance(message);
-            message.IndicatorFill = Configuration.AccentColorBrush;
-            message.IndicatorPen = Configuration.AccentColorBrush;
-            message.IndicatorPenThickness = new Thickness(1);
-            message.ProgressCancel += (s, ce) =>
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new AwaitInternalMessageEx(internalMessages, "Test progress", "Test progress in progress...")
             {
-                if (ce.Result == InternalMessageResult.Cancel)
+                AllowCancel = true,
+                KeepFinishedOpen = true
+            };
+            var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
+
+            message.OnClose += (s, ie) =>
+            {
+                if (ie.Result == InternalMessageResult.Cancel && bgWorker.IsBusy)
                     bgWorker.CancelAsync();
+
+                OnMessageClose(s, ie);
             };
 
-            bgWorker.RunWorkerAsync();*/
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
+            bgWorker.RunWorkerAsync();
         }
 
         //  --------------------------------------------------------------------------------
@@ -442,45 +445,20 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void HideableAwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
-                "Progress Message Test", "This is message example text",
-                onClose: OnMessageClose, onHide: OnMessageHide);
-
-            message.AllowHide = true;
-            UpdateInternalMessageAppearance(message);
-            message.IndicatorFill = Configuration.AccentColorBrush;
-            message.IndicatorPen = Configuration.AccentColorBrush;
-            message.IndicatorPenThickness = new Thickness(1);
-            message.KeepOnScreenCompleted = true;
-
-            CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50)).RunWorkerAsync();*/
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after clicking Info IM Button. </summary>
-        /// <param name="sender"> Object that invoked method. </param>
-        /// <param name="e"> Routed Event Arguments. </param>
-        private void KeepAliveAwaitIMButtonEx_Click(object sender, RoutedEventArgs e)
-        {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultAwaitMessage(
-                "Progress Message Test", "This is message example text",
-                onClose: OnMessageClose, onHide: OnMessageHide);
-
-            var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(50));
-
-            message.AllowCancel = true;
-            UpdateInternalMessageAppearance(message);
-            message.IndicatorFill = Configuration.AccentColorBrush;
-            message.IndicatorPen = Configuration.AccentColorBrush;
-            message.IndicatorPenThickness = new Thickness(1);
-            message.KeepOnScreenCompleted = true;
-            message.ProgressCancel += (s, ce) =>
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new AwaitInternalMessageEx(internalMessages, "Test progress", "Test progress in progress...")
             {
-                if (ce.Result == InternalMessageResult.Cancel)
-                    bgWorker.CancelAsync();
+                AllowHide = true,
+                KeepFinishedOpen = true
             };
+            var bgWorker = CreateBackgroundWorker(message, TimeSpan.FromMilliseconds(25));
 
-            bgWorker.RunWorkerAsync();*/
+            message.OnClose += OnMessageClose;
+            message.OnHide += OnMessageHide;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
+            bgWorker.RunWorkerAsync();
         }
 
         //  --------------------------------------------------------------------------------
@@ -549,10 +527,28 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void OpenPaletteColorIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultPaletteColorMessage(
-                "Select Color", onClose: OnColorMessageClose);
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new ColorsPaletteInternalMessageEx(internalMessages);
 
-            UpdateInternalMessageAppearance(message);*/
+            message.OnClose += OnColorMessageClose;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
+        }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Select Folder IM Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void OpenPickerColorIMButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new ColorsPickerInternalMessageEx(internalMessages);
+
+            message.OnClose += OnColorMessageClose;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
         }
 
         #endregion INTERACTION METHODS
@@ -568,6 +564,17 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             LastResult = e.Result;
             OptionalKey = string.Empty;
             OptionalValue = string.Empty;
+        }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after closing InternalMessage. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Internal Message Close Event Arguments. </param>
+        private void OnColorMessageClose(object sender, ColorSelectorInternalMessageCloseEventArgs e)
+        {
+            LastResult = e.Result;
+            OptionalKey = nameof(e.Color);
+            OptionalValue = $"{e.ColorName} [{e.ColorCode}]";
         }
 
         //  --------------------------------------------------------------------------------

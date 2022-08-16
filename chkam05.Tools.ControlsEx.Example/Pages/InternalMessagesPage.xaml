@@ -244,20 +244,25 @@
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Header1}"
-                    Text="PaletteColorInternalMessageEx"/>
+                    Text="ColorsPaletteInternalMessageEx &amp; ColorsPickerInternalMessageEx"/>
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Examples of PaletteColorInternalMessageEx component."/>
+                    Text="Examples of ColorSelectorInternalMessageEx (ColorsPaletteInternalMessageEx, ColorsPickerInternalMessageEx) components."/>
 
                 <StackPanel
                     Margin="0,0,0,16"
                     Orientation="Horizontal">
 
                     <controlsex:ButtonEx
-                        Content="Peak color"
+                        Content="Colors palette"
                         IconKind="Palette"
                         Click="OpenPaletteColorIMButtonEx_Click"/>
+
+                    <controlsex:ButtonEx
+                        Content="Colors picker"
+                        IconKind="Pipette"
+                        Click="OpenPickerColorIMButtonEx_Click"/>
 
                 </StackPanel>
 

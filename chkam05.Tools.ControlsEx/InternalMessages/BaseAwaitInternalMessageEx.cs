@@ -1,74 +1,60 @@
 ﻿using chkam05.Tools.ControlsEx.Data;
 using chkam05.Tools.ControlsEx.Events;
+using chkam05.Tools.ControlsEx.Indicators;
 using chkam05.Tools.ControlsEx.Static;
 using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 
 namespace chkam05.Tools.ControlsEx.InternalMessages
 {
-    public class BaseProgressInternalMessageEx : BaseInternalMessageEx<InternalMessageCloseEventArgs>
+    public class BaseAwaitInternalMessageEx : BaseInternalMessageEx<InternalMessageCloseEventArgs>
     {
-
-        //  CONST
-
-        internal readonly static double PROGRESS_MAX = 100d;
-        internal readonly static double PROGRESS_MIN = 0d;
-
 
         //  DEPENDENCY PROPERTIES
 
-        #region Appearance Properties
+        #region Indicator Properties
 
-        public static readonly DependencyProperty ProgressBarBackgroundProperty = DependencyProperty.Register(
-            nameof(ProgressBarBackground),
-            typeof(Brush),
-            typeof(BaseProgressInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
+        public static readonly DependencyProperty IndicatorAnimationSpeedProperty = DependencyProperty.Register(
+            nameof(IndicatorAnimationSpeed),
+            typeof(TimeSpan),
+            typeof(BaseAwaitInternalMessageEx),
+            new PropertyMetadata(TimeSpan.FromMilliseconds(BaseIndicatorEx.ANIMATION_DEFAULT_SPEED)));
 
-        public static readonly DependencyProperty ProgressBarBorderBrushProperty = DependencyProperty.Register(
-            nameof(ProgressBarBorderBrush),
+        public static readonly DependencyProperty IndicatorFillProperty = DependencyProperty.Register(
+            nameof(IndicatorFill),
             typeof(Brush),
-            typeof(BaseProgressInternalMessageEx),
+            typeof(BaseAwaitInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
-        public static readonly DependencyProperty ProgressBarProgressBrushProperty = DependencyProperty.Register(
-            nameof(ProgressBarProgressBrush),
-            typeof(Brush),
-            typeof(BaseProgressInternalMessageEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
-
-        #endregion Appearance Properties
-
-        #region ProgressBar Properties
-
-        public static readonly DependencyProperty ProgressMarginProperty = DependencyProperty.Register(
-            nameof(ProgressMargin),
+        public static readonly DependencyProperty IndicatorMarginProperty = DependencyProperty.Register(
+            nameof(IndicatorMargin),
             typeof(Thickness),
-            typeof(BaseProgressInternalMessageEx),
-            new PropertyMetadata(new Thickness(8,0,8,8)));
+            typeof(BaseAwaitInternalMessageEx),
+            new PropertyMetadata(new Thickness(8, 0, 8, 8)));
 
-        public static readonly DependencyProperty ProgressMaxProperty = DependencyProperty.Register(
-            nameof(ProgressMax),
-            typeof(double),
-            typeof(BaseProgressInternalMessageEx),
-            new PropertyMetadata(PROGRESS_MAX));
+        public static readonly DependencyProperty IndicatorPenProperty = DependencyProperty.Register(
+            nameof(IndicatorPen),
+            typeof(Brush),
+            typeof(BaseAwaitInternalMessageEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
-        public static readonly DependencyProperty ProgressMinProperty = DependencyProperty.Register(
-            nameof(ProgressMin),
-            typeof(double),
-            typeof(BaseProgressInternalMessageEx),
-            new PropertyMetadata(PROGRESS_MIN));
+        public static readonly DependencyProperty IndicatorPenThicknessProperty = DependencyProperty.Register(
+            nameof(IndicatorPenThickness),
+            typeof(Thickness),
+            typeof(BaseAwaitInternalMessageEx),
+            new PropertyMetadata(new Thickness(1)));
 
-        public static readonly DependencyProperty ProgressProperty = DependencyProperty.Register(
-            nameof(Progress),
-            typeof(double),
-            typeof(BaseProgressInternalMessageEx),
-            new PropertyMetadata(PROGRESS_MIN));
+        public static readonly DependencyProperty IndicatorTypeProperty = DependencyProperty.Register(
+            nameof(IndicatorType),
+            typeof(IndicatorType),
+            typeof(BaseAwaitInternalMessageEx),
+            new PropertyMetadata(IndicatorType.CircleSmoothIndicatorEx));
 
-        #endregion ProgressBar Properties
+        #endregion Indicator Properties
 
 
         //  VARIABLES
@@ -79,83 +65,79 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         //  GETTERS & SETTERS
 
-        #region Appearance
+        #region Indicator
 
-        public Brush ProgressBarBackground
+        public TimeSpan IndicatorAnimationSpeed
         {
-            get => (Brush)GetValue(ProgressBarBackgroundProperty);
+            get => (TimeSpan)GetValue(IndicatorAnimationSpeedProperty);
             set
             {
-                SetValue(ProgressBarBackgroundProperty, value);
-                OnPropertyChanged(nameof(ProgressBarBackground));
+                SetValue(IndicatorAnimationSpeedProperty, value);
+                OnPropertyChanged(nameof(IndicatorAnimationSpeed));
+                UpdateIndicator();
             }
         }
 
-        public Brush ProgressBarBorderBrush
+        public Brush IndicatorFill
         {
-            get => (Brush)GetValue(ProgressBarBorderBrushProperty);
+            get => (Brush)GetValue(IndicatorFillProperty);
             set
             {
-                SetValue(ProgressBarBorderBrushProperty, value);
-                OnPropertyChanged(nameof(ProgressBarBorderBrush));
+                SetValue(IndicatorFillProperty, value);
+                OnPropertyChanged(nameof(IndicatorFill));
+                UpdateIndicator();
             }
         }
 
-        public Brush ProgressBarProgressBrush
+        public Thickness IndicatorMargin
         {
-            get => (Brush)GetValue(ProgressBarProgressBrushProperty);
+            get => (Thickness)GetValue(IndicatorMarginProperty);
             set
             {
-                SetValue(ProgressBarProgressBrushProperty, value);
-                OnPropertyChanged(nameof(ProgressBarProgressBrush));
+                SetValue(IndicatorMarginProperty, value);
+                OnPropertyChanged(nameof(IndicatorMargin));
             }
         }
 
-        #endregion Appearance
-
-        #region ProgressBar
-
-        public Thickness ProgressMargin
+        public Brush IndicatorPen
         {
-            get => (Thickness)GetValue(ProgressMarginProperty);
+            get => (Brush)GetValue(IndicatorPenProperty);
             set
             {
-                SetValue(ProgressMarginProperty, value);
-                OnPropertyChanged(nameof(ProgressMargin));
+                SetValue(IndicatorPenProperty, value);
+                OnPropertyChanged(nameof(IndicatorPen));
+                UpdateIndicator();
             }
         }
 
-        public double ProgressMax
+        public Thickness IndicatorPenThickness
         {
-            get => (double)GetValue(ProgressMaxProperty);
+            get => (Thickness)GetValue(IndicatorPenThicknessProperty);
             set
             {
-                SetValue(ProgressMaxProperty, value);
-                OnPropertyChanged(nameof(ProgressMax));
+                SetValue(IndicatorPenThicknessProperty, value);
+                OnPropertyChanged(nameof(IndicatorPenThickness));
+                UpdateIndicator();
             }
         }
 
-        public double ProgressMin
+        public IndicatorType IndicatorType
         {
-            get => (double)GetValue(ProgressMinProperty);
+            get => (IndicatorType)GetValue(IndicatorTypeProperty);
             set
             {
-                SetValue(ProgressMinProperty, value);
-                OnPropertyChanged(nameof(ProgressMin));
+                SetValue(IndicatorTypeProperty, value);
+                OnPropertyChanged(nameof(IndicatorType));
+                SetupIndicator(value);
             }
         }
 
-        public double Progress
-        {
-            get => (double)GetValue(ProgressProperty);
-            set
-            {
-                SetValue(ProgressProperty, Math.Max(Math.Min(value, ProgressMax), ProgressMin));
-                OnPropertyChanged(nameof(Progress));
-            }
-        }
+        #endregion Indicator
 
-        #endregion ProgressBar
+        private Grid IndicatorContainer
+        {
+            get => Template?.FindName("indicatorContainer", this) as Grid ?? null;
+        }
 
         public bool AllowCancel
         {
@@ -180,6 +162,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
+        public BaseIndicatorEx Indicator { get; private set; }
+
         public DispatcherInvokerEx DispatcherInvoker { get; private set; }
 
 
@@ -188,19 +172,19 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         #region CLASS METHODS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> BaseProgressInternalMessageEx class constructor. </summary>
+        /// <summary> BaseAwaitInternalMessageEx class constructor. </summary>
         /// <param name="parentContainer"> Parent InternalMessagesEx container. </param>
-        public BaseProgressInternalMessageEx(InternalMessagesExContainer parentContainer) : base(parentContainer)
+        public BaseAwaitInternalMessageEx(InternalMessagesExContainer parentContainer) : base(parentContainer)
         {
             DispatcherInvoker = new DispatcherInvokerEx(this.Dispatcher);
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Static BaseProgressInternalMessageEx class constructor. </summary>
-        static BaseProgressInternalMessageEx()
+        /// <summary> Static BaseAwaitInternalMessageEx class constructor. </summary>
+        static BaseAwaitInternalMessageEx()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(BaseProgressInternalMessageEx),
-                new FrameworkPropertyMetadata(typeof(BaseProgressInternalMessageEx)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(BaseAwaitInternalMessageEx),
+                new FrameworkPropertyMetadata(typeof(BaseAwaitInternalMessageEx)));
         }
 
         #endregion CLASS METHODS
@@ -236,6 +220,59 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion BUTTONS METHODS
 
+        #region INDICATOR METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Create and load indicator by IndicatorType. </summary>
+        /// <param name="indicatorType"> Type of indicator. </param>
+        protected void SetupIndicator(IndicatorType indicatorType)
+        {
+            if (IndicatorContainer != null)
+            {
+                if (Indicator != null)
+                {
+                    Indicator.StopAnimation();
+                    IndicatorContainer.Children.Clear();
+                }
+
+                switch (indicatorType)
+                {
+                    case IndicatorType.CircleSmoothIndicatorEx:
+                    default:
+                        Indicator = new CircleSmoothIndicatorEx();
+                        IndicatorContainer.Children.Add(Indicator);
+                        UpdateIndicator();
+                        break;
+                }
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Stop and hide indicator. </summary>
+        protected void StopAndHideIndicator()
+        {
+            if (Indicator != null)
+            {
+                Indicator.StopAnimation();
+                Indicator.Visibility = Visibility.Hidden;
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update indicator configuration. </summary>
+        protected void UpdateIndicator()
+        {
+            if (Indicator != null)
+            {
+                Indicator.AnimationSpeed = IndicatorAnimationSpeed;
+                Indicator.Fill = IndicatorFill;
+                Indicator.Pen = IndicatorPen;
+                Indicator.PenThickness = IndicatorPenThickness;
+            }
+        }
+
+        #endregion INDICATOR METHODS
+
         #region INTERACTION METHODS
 
         //  --------------------------------------------------------------------------------
@@ -267,6 +304,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             ApplyButtonExClickMethod(GetButtonEx("okButton"), OnOkClick);
             OnAllowCancelUpdate(AllowCancel);
             OnAllowHideUpdate(AllowHide);
+            SetupIndicator(IndicatorType);
         }
 
         //  --------------------------------------------------------------------------------
@@ -301,6 +339,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                 var buttonOk = GetButtonEx("okButton");
                 buttonOk.Visibility = Visibility.Visible;
 
+                StopAndHideIndicator();
+
                 if (IsHidden)
                     Show();
 
@@ -323,6 +363,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
                 var buttonOk = GetButtonEx("okButton");
                 buttonOk.Visibility = Visibility.Visible;
+
+                StopAndHideIndicator();
 
                 if (IsHidden)
                     Show();

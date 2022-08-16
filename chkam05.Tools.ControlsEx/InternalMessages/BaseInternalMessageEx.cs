@@ -3,15 +3,12 @@ using chkam05.Tools.ControlsEx.Events;
 using chkam05.Tools.ControlsEx.Static;
 using MaterialDesignThemes.Wpf;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using static chkam05.Tools.ControlsEx.Events.Delegates;
+
 
 namespace chkam05.Tools.ControlsEx.InternalMessages
 {
@@ -574,8 +571,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <summary> Close InternalMessage. </summary>
         public void Close()
         {
-            InvokeClose((CloseEventArgs) new InternalMessageCloseEventArgs(Result));
+            InvokeClose(CreateCloseEventArgs());
             _parentContainer.CloseMessage(this);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Create close method event arguments. </summary>
+        /// <returns> Close method event arguments. </returns>
+        protected virtual CloseEventArgs CreateCloseEventArgs()
+        {
+            return (CloseEventArgs)new InternalMessageCloseEventArgs(Result);
         }
 
         //  --------------------------------------------------------------------------------
@@ -596,6 +601,14 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                 InvokeHide(new InternalMessageHideEventArgs(true));
                 _parentContainer.HideMessage(this);
             }
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Create hide method event arguments. </summary>
+        /// <returns> Hide method event arguments. </returns>
+        protected virtual InternalMessageHideEventArgs CreateHideEventArgs()
+        {
+            return new InternalMessageHideEventArgs(true);
         }
 
         //  --------------------------------------------------------------------------------

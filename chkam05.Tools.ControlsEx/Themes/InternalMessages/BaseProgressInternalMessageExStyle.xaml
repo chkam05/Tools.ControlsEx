@@ -138,6 +138,7 @@
     <Style x:Key="BaseProgressInternalMessageExStyle" TargetType="{x:Type im:BaseProgressInternalMessageEx}">
         <Setter Property="Background" Value="{StaticResource BaseProgressInternalMessageEx.Background}"/>
         <Setter Property="Foreground" Value="{StaticResource BaseProgressInternalMessageEx.Foreground}"/>
+        <Setter Property="Margin" Value="16"/>
         <Setter Property="Template" Value="{StaticResource BaseProgressInternalMessageEx.ControlTemplate}"/>
         <Setter Property="Title" Value="Message Title"/>
     </Style>

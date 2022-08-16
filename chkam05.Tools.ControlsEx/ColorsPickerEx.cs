@@ -181,6 +181,8 @@ namespace chkam05.Tools.ControlsEx
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 _isColorSelecting = true;
+            if (e.RightButton == MouseButtonState.Pressed)
+                UpdateSelectedColorVisualElements();
         }
 
         //  --------------------------------------------------------------------------------
@@ -350,8 +352,11 @@ namespace chkam05.Tools.ControlsEx
                 var selectorHalfX = colorSelector.ActualWidth / 2;
                 var selectorHalfY = colorSelector.ActualHeight / 2;
 
-                Canvas.SetLeft(colorSelector, (100 - _saturation) * border.ActualWidth / 100 - selectorHalfX);
-                Canvas.SetTop(colorSelector, _lightness * border.ActualHeight / 100 - selectorHalfY);
+                double x = _saturation * border.ActualWidth / 100 - selectorHalfX;
+                double y = border.ActualHeight - (Math.Min(_lightness + (_saturation / 2), 100) * border.ActualHeight / 100) - selectorHalfY;
+
+                Canvas.SetLeft(colorSelector, x);
+                Canvas.SetTop(colorSelector, y);
             }
         }
 

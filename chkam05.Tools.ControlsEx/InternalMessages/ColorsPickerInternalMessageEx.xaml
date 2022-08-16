@@ -1,0 +1,152 @@
+﻿<im:BaseColorSelectorInternalMessageEx 
+    x:Class="chkam05.Tools.ControlsEx.InternalMessages.ColorsPickerInternalMessageEx"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
+    xmlns:colors="clr-namespace:chkam05.Tools.ControlsEx.Colors"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:converters="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    Height="Auto"
+    Width="Auto"
+    Loaded="OnLoaded">
+
+    <Page.Resources>
+        <converters:StringToIntConverter x:Key="StringToIntConverter"/>
+
+        <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type im:BaseColorSelectorInternalMessageEx}"/>
+
+        <Style x:Key="ColorsPickerInternalMessageEx.TextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="Margin" Value="4,4,4,2"/>
+        </Style>
+        
+        <Style x:Key="ColorsPickerInternalMessageEx.UpDownTextBoxExStyle" TargetType="{x:Type controlsex:UpDownTextBoxEx}">
+            <Setter Property="ConversionType" Value="Decimal"/>
+            <Setter Property="Background" Value="{Binding Background, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonBackground" Value="{Binding ButtonBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonBorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonForeground" Value="{Binding ButtonForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonMouseOverBackground" Value="{Binding ButtonMouseOverBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonMouseOverBorderBrush" Value="{Binding ButtonMouseOverBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonMouseOverForeground" Value="{Binding ButtonMouseOverForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonPressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonPressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="ButtonPressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="MaxValue" Value="100"/>
+            <Setter Property="MinValue" Value="0"/>
+            <Setter Property="MinWidth" Value="64"/>
+            <Setter Property="MouseOverBackground" Value="{Binding MouseOverBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="MouseOverForeground" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedBackground" Value="{Binding SelectedBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedBorderBrush" Value="{Binding SelectedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedForeground" Value="{Binding SelectedForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedTextBackground" Value="{Binding SelectedTextBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="Tick" Value="1"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <controlsex:ColorsPickerEx
+            x:Name="colorPicker"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            ColorSelectionChanged="OnColorSelectionChanged"
+            Grid.Column="0"
+            Margin="0,0,4,0"
+            Padding="0"/>
+
+        <StackPanel
+            Grid.Column="1">
+
+            <TextBlock
+                Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
+                Text="Hue"/>
+
+            <controlsex:UpDownTextBoxEx
+                MaxValue="{x:Static colors:AHSLColor.HUE_MAX_D}"
+                MinValue="0"
+                Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
+                Text="{Binding HueComponent, Converter={StaticResource StringToIntConverter}}"/>
+
+            <TextBlock
+                Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
+                Text="Saturation"/>
+
+            <controlsex:UpDownTextBoxEx
+                Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
+                Text="{Binding SaturationComponent, Converter={StaticResource StringToIntConverter}}"/>
+
+            <TextBlock
+                Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
+                Text="Lightness"/>
+
+            <controlsex:UpDownTextBoxEx
+                Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
+                Text="{Binding LightnessComponent, Converter={StaticResource StringToIntConverter}}"/>
+
+        </StackPanel>
+
+        <StackPanel
+            Grid.Column="2">
+
+            <TextBlock
+                Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
+                Text="Red"/>
+
+            <controlsex:UpDownTextBoxEx
+                MaxValue="255"
+                Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
+                Text="{Binding RedComponent, Converter={StaticResource StringToIntConverter}}"/>
+
+            <TextBlock
+                Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
+                Text="Green"/>
+
+            <controlsex:UpDownTextBoxEx
+                MaxValue="255"
+                Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
+                Text="{Binding GreenComponent, Converter={StaticResource StringToIntConverter}}"/>
+
+            <TextBlock
+                Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
+                Text="Blue"/>
+
+            <controlsex:UpDownTextBoxEx
+                MaxValue="255"
+                Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
+                Text="{Binding BlueComponent, Converter={StaticResource StringToIntConverter}}"/>
+
+            <TextBlock
+                Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
+                Text="Alpha"/>
+
+            <controlsex:UpDownTextBoxEx
+                MaxValue="255"
+                Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
+                Text="{Binding AlphaComponent, Converter={StaticResource StringToIntConverter}}"/>
+
+        </StackPanel>
+        
+    </Grid>
+    
+</im:BaseColorSelectorInternalMessageEx>

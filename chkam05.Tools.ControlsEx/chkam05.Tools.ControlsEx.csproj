@@ -77,10 +77,12 @@
     <Compile Include="Converters\MarqueeEndPositionConverter.cs" />
     <Compile Include="Converters\MarqueeStartPositionConverter.cs" />
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
+    <Compile Include="Converters\StringToIntConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
     <Compile Include="Data\InternalMessageButtons.cs" />
     <Compile Include="Data\InternalMessageResult.cs" />
     <Compile Include="Data\InternalMessagesButtonsSet.cs" />
+    <Compile Include="Events\ColorSelectorInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
     <Compile Include="Events\Delegates.cs" />
     <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
@@ -89,8 +91,19 @@
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="Indicators\BaseIndicatorEx.cs" />
     <Compile Include="Indicators\CircleSmoothIndicatorEx.cs" />
+    <Compile Include="InternalMessages\AwaitInternalMessageEx.xaml.cs">
+      <DependentUpon>AwaitInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\BaseAwaitInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\BaseColorSelectorInternalMessageEx.cs" />
     <Compile Include="InternalMessages\BaseInternalMessageEx.cs" />
     <Compile Include="InternalMessages\BaseProgressInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\ColorsPaletteInternalMessageEx.xaml.cs">
+      <DependentUpon>ColorsPaletteInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\ColorsPickerInternalMessageEx.xaml.cs">
+      <DependentUpon>ColorsPickerInternalMessageEx.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InternalMessages\IInternalMessageEx.cs" />
     <Compile Include="InternalMessages\InternalMessageEx.xaml.cs">
       <DependentUpon>InternalMessageEx.xaml</DependentUpon>
@@ -153,6 +166,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="InternalMessages\AwaitInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalMessages\ColorsPaletteInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalMessages\ColorsPickerInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InternalMessages\InternalMessageEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +235,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\BaseIndicatorExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\BaseAwaitInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\BaseColorSelectorInternalMessageExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
