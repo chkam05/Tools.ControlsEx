@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace chkam05.Tools.ControlsEx.Converters
 {
-    internal class StringToIntConverter : IValueConverter
+    internal class IntToStringConverter : IValueConverter
     {
 
         //  METHODS

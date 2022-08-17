@@ -20,7 +20,7 @@
     Loaded="OnLoaded">
 
     <Page.Resources>
-        <converters:StringToIntConverter x:Key="StringToIntConverter"/>
+        <converters:IntToStringConverter x:Key="IntToStringConverter"/>
 
         <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type im:BaseColorSelectorInternalMessageEx}"/>
 
@@ -83,26 +83,32 @@
                 Text="Hue"/>
 
             <controlsex:UpDownTextBoxEx
+                x:Name="hueUpDownTextBoxEx"
                 MaxValue="{x:Static colors:AHSLColor.HUE_MAX_D}"
                 MinValue="0"
                 Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
-                Text="{Binding HueComponent, Converter={StaticResource StringToIntConverter}}"/>
+                Text="{Binding HueComponent, Converter={StaticResource IntToStringConverter}}"
+                TextModified="UpDownTextBoxEx_TextModified"/>
 
             <TextBlock
                 Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
                 Text="Saturation"/>
 
             <controlsex:UpDownTextBoxEx
+                x:Name="saturationUpDownTextBoxEx"
                 Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
-                Text="{Binding SaturationComponent, Converter={StaticResource StringToIntConverter}}"/>
+                Text="{Binding SaturationComponent, Converter={StaticResource IntToStringConverter}}"
+                TextModified="UpDownTextBoxEx_TextModified"/>
 
             <TextBlock
                 Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
                 Text="Lightness"/>
 
             <controlsex:UpDownTextBoxEx
+                x:Name="lightnessUpDownTextBoxEx"
                 Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
-                Text="{Binding LightnessComponent, Converter={StaticResource StringToIntConverter}}"/>
+                Text="{Binding LightnessComponent, Converter={StaticResource IntToStringConverter}}"
+                TextModified="UpDownTextBoxEx_TextModified"/>
 
         </StackPanel>
 
@@ -114,36 +120,44 @@
                 Text="Red"/>
 
             <controlsex:UpDownTextBoxEx
+                x:Name="redUpDownTextBoxEx"
                 MaxValue="255"
                 Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
-                Text="{Binding RedComponent, Converter={StaticResource StringToIntConverter}}"/>
+                Text="{Binding RedComponent, Converter={StaticResource IntToStringConverter}}"
+                TextModified="UpDownTextBoxEx_TextModified"/>
 
             <TextBlock
                 Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
                 Text="Green"/>
 
             <controlsex:UpDownTextBoxEx
+                x:Name="greenUpDownTextBoxEx"
                 MaxValue="255"
                 Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
-                Text="{Binding GreenComponent, Converter={StaticResource StringToIntConverter}}"/>
+                Text="{Binding GreenComponent, Converter={StaticResource IntToStringConverter}}"
+                TextModified="UpDownTextBoxEx_TextModified"/>
 
             <TextBlock
                 Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
                 Text="Blue"/>
 
             <controlsex:UpDownTextBoxEx
+                x:Name="blueUpDownTextBoxEx"
                 MaxValue="255"
                 Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
-                Text="{Binding BlueComponent, Converter={StaticResource StringToIntConverter}}"/>
+                Text="{Binding BlueComponent, Converter={StaticResource IntToStringConverter}}"
+                TextModified="UpDownTextBoxEx_TextModified"/>
 
             <TextBlock
                 Style="{StaticResource ColorsPickerInternalMessageEx.TextBlockStyle}"
                 Text="Alpha"/>
 
             <controlsex:UpDownTextBoxEx
+                x:Name="alphaUpDownTextBoxEx"
                 MaxValue="255"
                 Style="{StaticResource ColorsPickerInternalMessageEx.UpDownTextBoxExStyle}"
-                Text="{Binding AlphaComponent, Converter={StaticResource StringToIntConverter}}"/>
+                Text="{Binding AlphaComponent, Converter={StaticResource IntToStringConverter}}"
+                TextModified="UpDownTextBoxEx_TextModified"/>
 
         </StackPanel>
         

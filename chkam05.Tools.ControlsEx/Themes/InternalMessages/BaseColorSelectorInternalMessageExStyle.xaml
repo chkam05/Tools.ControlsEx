@@ -7,6 +7,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <converters:ColorSolidColorBrushConverter x:Key="ColorSolidColorBrushConverter"/>
+    <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
 
     <SolidColorBrush x:Key="StandardInternalMessageEx.Background">White</SolidColorBrush>
     <SolidColorBrush x:Key="StandardInternalMessageEx.Foreground">Black</SolidColorBrush>
@@ -118,7 +119,7 @@
                                 Margin="4,0,0,0"
                                 Text="{TemplateBinding SelectedColorCode}"
                                 VerticalAlignment="Center"
-                                Visibility="Collapsed"/>
+                                Visibility="{Binding ShowColorCode, Mode=OneWay, Converter={StaticResource BoolVisibilityConverter}}"/>
 
                         </StackPanel>
 

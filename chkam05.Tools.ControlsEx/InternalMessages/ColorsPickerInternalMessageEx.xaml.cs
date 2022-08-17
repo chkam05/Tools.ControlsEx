@@ -1,6 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Colors;
 using chkam05.Tools.ControlsEx.Events;
 using chkam05.Tools.ControlsEx.Static;
+using chkam05.Tools.ControlsEx.Utilities;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,15 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
     public partial class ColorsPickerInternalMessageEx : BaseColorSelectorInternalMessageEx
     {
+
+        //  CONST
+
+        private readonly string[] RGB_CONTROLS = new string[] { 
+            "redUpDownTextBoxEx", "greenUpDownTextBoxEx", "blueUpDownTextBoxEx", "alphaUpDownTextBoxEx" };
+
+        private readonly string[] HSL_CONTROLS = new string[] {
+            "hueUpDownTextBoxEx", "saturationUpDownTextBoxEx", "lightnessUpDownTextBoxEx" };
+
 
         //  DEPENDENCY PROPERTIES
 
@@ -296,15 +306,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                 SelectedColorCode = e.SelectedColorItem.ColorCode;
                 SelectedColorName = e.SelectedColorItem.Name;
 
-                RedComponent = SelectedColor.R;
-                GreenComponent = SelectedColor.G;
-                BlueComponent = SelectedColor.B;
-                AlphaComponent = SelectedColor.A;
-
-                var ahsl = AHSLColor.FromColor(SelectedColor);
-                HueComponent = ahsl.H;
-                SaturationComponent = ahsl.S;
-                LightnessComponent = ahsl.L;
+                UpdateARGBComponents(SelectedColor);
+                UpdateAHSLComponents(SelectedColor);
             }
         }
 
@@ -315,9 +318,94 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             colorPicker.SelectedColor = SelectedColor;
+
+            UpdateARGBComponents(SelectedColor);
+            UpdateAHSLComponents(SelectedColor);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after manual changing color components. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Text Modified Event Arguments. </param>
+        private void UpDownTextBoxEx_TextModified(object sender, TextModifiedEventArgs e)
+        {
+            if (e.UserModified)
+            {
+                var color = SelectedColor;
+                var senderName = (sender as UpDownTextBoxEx)?.Name ?? string.Empty;
+                
+                if (RGB_CONTROLS.Contains(senderName))
+                {
+                    color = Color.FromArgb(
+                        (byte)AlphaComponent, (byte)RedComponent, (byte)GreenComponent, (byte)BlueComponent);
+
+                    if (senderName != "redUpDownTextBoxEx")
+                        RedComponent = color.R;
+
+                    if (senderName != "greenUpDownTextBoxEx")
+                        GreenComponent = color.G;
+
+                    if (senderName != "blueUpDownTextBoxEx")
+                        BlueComponent = color.B;
+
+                    if (senderName != "alphaUpDownTextBoxEx")
+                        AlphaComponent = color.A;
+
+                    UpdateAHSLComponents(SelectedColor);
+                }
+                else if (HSL_CONTROLS.Contains(senderName))
+                {
+                    var ahslColor = new AHSLColor(
+                        (byte)AlphaComponent, HueComponent, SaturationComponent, LightnessComponent);
+
+                    if (senderName != "hueUpDownTextBoxEx")
+                        HueComponent = ahslColor.H;
+
+                    if (senderName != "saturationUpDownTextBoxEx")
+                        SaturationComponent = ahslColor.S;
+
+                    if (senderName != "lightnessUpDownTextBoxEx")
+                        LightnessComponent = ahslColor.L;
+
+                    color = ahslColor.ToColor();
+
+                    UpdateARGBComponents(color);
+                }
+
+                SelectedColor = color;
+                string hexCode = ColorsUtilities.ColorToHex(SelectedColor);
+                SelectedColorName = hexCode;
+                SelectedColorCode = hexCode;
+            }
         }
 
         #endregion MESSAGE METHODS
+
+        #region UPDATE METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update ARGB components. </summary>
+        /// <param name="color"> Color. </param>
+        private void UpdateARGBComponents(Color color)
+        {
+            RedComponent = color.R;
+            GreenComponent = color.G;
+            BlueComponent = color.B;
+            AlphaComponent = color.A;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update AHSL components. </summary>
+        /// <param name="color"> Color. </param>
+        private void UpdateAHSLComponents(Color color)
+        {
+            var ahsl = AHSLColor.FromColor(color);
+            HueComponent = ahsl.H;
+            SaturationComponent = ahsl.S;
+            LightnessComponent = ahsl.L;
+        }
+
+        #endregion UPDATE METHODS
 
     }
 

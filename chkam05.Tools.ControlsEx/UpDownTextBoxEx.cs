@@ -569,6 +569,11 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="e"> Routed Event Arguments. </param>
         private void OnUpClick(object sender, RoutedEventArgs e)
         {
+            var notFocused = !_focused;
+
+            if (notFocused)
+                _focused = true;
+
             switch (ConversionType)
             {
                 case UpDownTextBoxConversionType.FloatingPoint:
@@ -589,6 +594,9 @@ namespace chkam05.Tools.ControlsEx
                 default:
                     break;
             }
+
+            if (notFocused)
+                _focused = false;
         }
 
         //  --------------------------------------------------------------------------------
@@ -597,6 +605,11 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="e"> Routed Event Arguments. </param>
         private void OnDownClick(object sender, RoutedEventArgs e)
         {
+            var notFocused = !_focused;
+
+            if (notFocused)
+                _focused = true;
+
             switch (ConversionType)
             {
                 case UpDownTextBoxConversionType.FloatingPoint:
@@ -617,6 +630,9 @@ namespace chkam05.Tools.ControlsEx
                 default:
                     break;
             }
+
+            if (notFocused)
+                _focused = false;
         }
 
         #endregion INTERACTION METHODS

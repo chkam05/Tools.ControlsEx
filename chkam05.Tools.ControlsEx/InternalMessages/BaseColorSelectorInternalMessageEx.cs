@@ -55,6 +55,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(SelectedColorCodeProperty, value);
                 OnPropertyChanged(nameof(SelectedColorName));
+                OnPropertyChanged(nameof(ShowColorCode));
             }
         }
 
@@ -65,6 +66,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(SelectedColorNameProperty, value);
                 OnPropertyChanged(nameof(SelectedColorName));
+                OnPropertyChanged(nameof(ShowColorCode));
+            }
+        }
+
+        public bool ShowColorCode
+        {
+            get => SelectedColorCode != SelectedColorName;
+            set
+            {
+                throw new NotImplementedException();
             }
         }
 
