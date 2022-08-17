@@ -43,6 +43,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseAwaitInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseProgressInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseColorSelectorInternalMessageExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseFilesSelectorInternalMessageExStyle.xaml"/>
         <!--ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessagesExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseAwaitInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseColorInternalMessageExStyle.xaml"/>
@@ -120,6 +121,8 @@
     <Style BasedOn="{StaticResource BaseProgressInternalMessageExStyle}" TargetType="{x:Type im:BaseProgressInternalMessageEx}"/>
 
     <Style BasedOn="{StaticResource BaseColorSelectorInternalMessageExStyle}" TargetType="{x:Type im:BaseColorSelectorInternalMessageEx}"/>
+
+    <Style BasedOn="{StaticResource BaseFilesSelectorInternalMessageExStyle}" TargetType="{x:Type im:BaseFilesSelectorInternalMessageEx}"/>
     
     <!--Style BasedOn="{StaticResource InternalMessagesExStyle}" TargetType="{x:Type local:InternalMessagesEx}"/>
 

@@ -47,13 +47,13 @@
             <Setter Property="MaxValue" Value="100"/>
             <Setter Property="MinValue" Value="0"/>
             <Setter Property="MinWidth" Value="64"/>
-            <Setter Property="MouseOverBackground" Value="{Binding MouseOverBackground, RelativeSource={StaticResource RelativeSelf}}"/>
-            <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
-            <Setter Property="MouseOverForeground" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeSelf}}"/>
-            <Setter Property="SelectedBackground" Value="{Binding SelectedBackground, RelativeSource={StaticResource RelativeSelf}}"/>
-            <Setter Property="SelectedBorderBrush" Value="{Binding SelectedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
-            <Setter Property="SelectedForeground" Value="{Binding SelectedForeground, RelativeSource={StaticResource RelativeSelf}}"/>
-            <Setter Property="SelectedTextBackground" Value="{Binding SelectedTextBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="MouseOverBackground" Value="{Binding ColorComponentMouseOverBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="MouseOverBorderBrush" Value="{Binding ColorComponentMouseOverBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="MouseOverForeground" Value="{Binding ColorComponentMouseOverForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedBackground" Value="{Binding ColorComponentSelectedBackground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedBorderBrush" Value="{Binding ColorComponentSelectedBorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedForeground" Value="{Binding ColorComponentSelectedForeground, RelativeSource={StaticResource RelativeSelf}}"/>
+            <Setter Property="SelectedTextBackground" Value="{Binding ColorComponentSelectedTextBackground, RelativeSource={StaticResource RelativeSelf}}"/>
             <Setter Property="Tick" Value="1"/>
         </Style>
     </Page.Resources>

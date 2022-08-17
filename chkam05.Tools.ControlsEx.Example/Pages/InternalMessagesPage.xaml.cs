@@ -467,6 +467,14 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void OpenFileIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new OpenFileInternalMessageEx(internalMessages);
+
+            message.OnClose += OnFileMessageClose;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
+
             /*var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
                 "Open File", onClose: OnFileMessageClose);
 
@@ -581,6 +589,17 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <summary> Method invoked after closing InternalMessage. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Internal Message Close Event Arguments. </param>
+        private void OnFileMessageClose(object sender, FilesSelectorInternalMessageCloseEventArgs e)
+        {
+            LastResult = e.Result;
+            OptionalKey = nameof(e.FilePath);
+            OptionalValue = e.FilePath ?? string.Empty;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after closing InternalMessage. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Internal Message Close Event Arguments. </param>
         /*private void OnColorMessageClose(object sender, ColorsInternalMessageCloseEventArgs e)
         {
             LastResult = e.Result;
@@ -654,8 +673,24 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 progressMessage.ProgressBarProgressBrush = Configuration.AccentColorBrush;
             }
 
-            /*
+            if (message.GetType().IsSubclassOf(typeof(ColorsPickerInternalMessageEx)))
+            {
+                var pickerMessage = message as ColorsPickerInternalMessageEx;
+                pickerMessage.ColorComponentMouseOverBackground = Configuration.AccentMouseOverColorBrush;
+                pickerMessage.ColorComponentMouseOverBorderBrush = Configuration.AccentColorBrush;
+                pickerMessage.ColorComponentMouseOverForeground = Configuration.AccentForegroundColorBrush;
+                pickerMessage.ColorComponentSelectedBackground = Configuration.BackgroundColorBrush;
+                pickerMessage.ColorComponentSelectedBorderBrush = Configuration.AccentSelectedColorBrush;
+                pickerMessage.ColorComponentSelectedForeground = Configuration.ForegroundColorBrush;
+                pickerMessage.ColorComponentSelectedTextBackground = Configuration.AccentSelectedColorBrush;
+            }
 
+            if (message.GetType().IsSubclassOf(typeof(BaseFilesSelectorInternalMessageEx)))
+            {
+                var fileMessage = message as BaseFilesSelectorInternalMessageEx;
+            }
+
+            /*
             if (message.GetType().IsSubclassOf(typeof(BaseAwaitInternalMessageEx)))
             {
                 var awaitMessage = (BaseAwaitInternalMessageEx)message;

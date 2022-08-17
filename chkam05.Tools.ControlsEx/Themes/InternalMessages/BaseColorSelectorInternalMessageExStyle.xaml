@@ -9,8 +9,8 @@
     <converters:ColorSolidColorBrushConverter x:Key="ColorSolidColorBrushConverter"/>
     <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
 
-    <SolidColorBrush x:Key="StandardInternalMessageEx.Background">White</SolidColorBrush>
-    <SolidColorBrush x:Key="StandardInternalMessageEx.Foreground">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="BaseColorSelectorInternalMessageEx.Background">White</SolidColorBrush>
+    <SolidColorBrush x:Key="BaseColorSelectorInternalMessageEx.Foreground">Black</SolidColorBrush>
 
     <Style x:Key="BaseColorSelectorInternalMessageEx.Button" TargetType="{x:Type local:ButtonEx}">
         <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseColorSelectorInternalMessageEx}}}"/>

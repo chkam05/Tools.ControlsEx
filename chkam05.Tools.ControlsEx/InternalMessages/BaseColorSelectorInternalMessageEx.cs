@@ -152,13 +152,6 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             ApplyButtonExClickMethod(GetButtonEx("okButton"), OnOkClick);
         }
 
-        //  --------------------------------------------------------------------------------
-        /// <summary> Message invoked after updating color. </summary>
-        protected virtual void OnColorUpdated()
-        {
-            //
-        }
-
         #endregion TEMPLATE METHODS
 
     }

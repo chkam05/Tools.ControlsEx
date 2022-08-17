@@ -37,44 +37,44 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #region Appearance UpDownTextBoxEx Colors Properties
 
-        public static readonly DependencyProperty MouseOverBackgroundProperty = DependencyProperty.Register(
-            nameof(MouseOverBackground),
+        public static readonly DependencyProperty ColorComponentMouseOverBackgroundProperty = DependencyProperty.Register(
+            nameof(ColorComponentMouseOverBackground),
             typeof(Brush),
             typeof(ColorsPickerInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
 
-        public static readonly DependencyProperty MouseOverBorderBrushProperty = DependencyProperty.Register(
-            nameof(MouseOverBorderBrush),
+        public static readonly DependencyProperty ColorComponentMouseOverBorderBrushProperty = DependencyProperty.Register(
+            nameof(ColorComponentMouseOverBorderBrush),
             typeof(Brush),
             typeof(ColorsPickerInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
 
-        public static readonly DependencyProperty MouseOverForegroundProperty = DependencyProperty.Register(
-            nameof(MouseOverForeground),
+        public static readonly DependencyProperty ColorComponentMouseOverForegroundProperty = DependencyProperty.Register(
+            nameof(ColorComponentMouseOverForeground),
             typeof(Brush),
             typeof(ColorsPickerInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
-        public static readonly DependencyProperty SelectedBackgroundProperty = DependencyProperty.Register(
-            nameof(SelectedBackground),
+        public static readonly DependencyProperty ColorComponentSelectedBackgroundProperty = DependencyProperty.Register(
+            nameof(ColorComponentSelectedBackground),
             typeof(Brush),
             typeof(ColorsPickerInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
-        public static readonly DependencyProperty SelectedBorderBrushProperty = DependencyProperty.Register(
-            nameof(SelectedBorderBrush),
+        public static readonly DependencyProperty ColorComponentSelectedBorderBrushProperty = DependencyProperty.Register(
+            nameof(ColorComponentSelectedBorderBrush),
             typeof(Brush),
             typeof(ColorsPickerInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
 
-        public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.Register(
-            nameof(SelectedForeground),
+        public static readonly DependencyProperty ColorComponentSelectedForegroundProperty = DependencyProperty.Register(
+            nameof(ColorComponentSelectedForeground),
             typeof(Brush),
             typeof(ColorsPickerInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
-        public static readonly DependencyProperty SelectedTextBackgroundProperty = DependencyProperty.Register(
-            nameof(SelectedTextBackground),
+        public static readonly DependencyProperty ColorComponentSelectedTextBackgroundProperty = DependencyProperty.Register(
+            nameof(ColorComponentSelectedTextBackground),
             typeof(Brush),
             typeof(ColorsPickerInternalMessageEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
@@ -128,73 +128,73 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #region Appearance UpDownTextBoxEx Colors
 
-        public Brush MouseOverBackground
+        public Brush ColorComponentMouseOverBackground
         {
-            get => (Brush)GetValue(MouseOverBackgroundProperty);
+            get => (Brush)GetValue(ColorComponentMouseOverBackgroundProperty);
             set
             {
-                SetValue(MouseOverBackgroundProperty, value);
-                OnPropertyChanged(nameof(MouseOverBackground));
+                SetValue(ColorComponentMouseOverBackgroundProperty, value);
+                OnPropertyChanged(nameof(ColorComponentMouseOverBackground));
             }
         }
 
-        public Brush MouseOverBorderBrush
+        public Brush ColorComponentMouseOverBorderBrush
         {
-            get => (Brush)GetValue(MouseOverBorderBrushProperty);
+            get => (Brush)GetValue(ColorComponentMouseOverBorderBrushProperty);
             set
             {
-                SetValue(MouseOverBorderBrushProperty, value);
-                OnPropertyChanged(nameof(MouseOverBorderBrush));
+                SetValue(ColorComponentMouseOverBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ColorComponentMouseOverBorderBrush));
             }
         }
 
-        public Brush MouseOverForeground
+        public Brush ColorComponentMouseOverForeground
         {
-            get => (Brush)GetValue(MouseOverForegroundProperty);
+            get => (Brush)GetValue(ColorComponentMouseOverForegroundProperty);
             set
             {
-                SetValue(MouseOverForegroundProperty, value);
-                OnPropertyChanged(nameof(MouseOverForeground));
+                SetValue(ColorComponentMouseOverForegroundProperty, value);
+                OnPropertyChanged(nameof(ColorComponentMouseOverForeground));
             }
         }
 
-        public Brush SelectedBackground
+        public Brush ColorComponentSelectedBackground
         {
-            get => (Brush)GetValue(SelectedBackgroundProperty);
+            get => (Brush)GetValue(ColorComponentSelectedBackgroundProperty);
             set
             {
-                SetValue(SelectedBackgroundProperty, value);
-                OnPropertyChanged(nameof(SelectedBackground));
+                SetValue(ColorComponentSelectedBackgroundProperty, value);
+                OnPropertyChanged(nameof(ColorComponentSelectedBackground));
             }
         }
 
-        public Brush SelectedBorderBrush
+        public Brush ColorComponentSelectedBorderBrush
         {
-            get => (Brush)GetValue(SelectedBorderBrushProperty);
+            get => (Brush)GetValue(ColorComponentSelectedBorderBrushProperty);
             set
             {
-                SetValue(SelectedBorderBrushProperty, value);
-                OnPropertyChanged(nameof(SelectedBorderBrush));
+                SetValue(ColorComponentSelectedBorderBrushProperty, value);
+                OnPropertyChanged(nameof(ColorComponentSelectedBorderBrush));
             }
         }
 
-        public Brush SelectedForeground
+        public Brush ColorComponentSelectedForeground
         {
-            get => (Brush)GetValue(SelectedForegroundProperty);
+            get => (Brush)GetValue(ColorComponentSelectedForegroundProperty);
             set
             {
-                SetValue(SelectedForegroundProperty, value);
-                OnPropertyChanged(nameof(SelectedForeground));
+                SetValue(ColorComponentSelectedForegroundProperty, value);
+                OnPropertyChanged(nameof(ColorComponentSelectedForeground));
             }
         }
 
-        public Brush SelectedTextBackground
+        public Brush ColorComponentSelectedTextBackground
         {
-            get => (Brush)GetValue(SelectedTextBackgroundProperty);
+            get => (Brush)GetValue(ColorComponentSelectedTextBackgroundProperty);
             set
             {
-                SetValue(SelectedTextBackgroundProperty, value);
-                OnPropertyChanged(nameof(SelectedTextBackground));
+                SetValue(ColorComponentSelectedTextBackgroundProperty, value);
+                OnPropertyChanged(nameof(ColorComponentSelectedTextBackground));
             }
         }
 
