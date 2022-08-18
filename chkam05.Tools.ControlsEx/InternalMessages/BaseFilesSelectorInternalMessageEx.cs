@@ -251,92 +251,107 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         #region DATA METHODS
 
         //  --------------------------------------------------------------------------------
-        protected void GetFilesAndDirectories()
+        /// <summary> Get list of files and directories inside selected path. </summary>
+        /// <param name="directoriesOnly"> Get directories only. </param>
+        /// <returns> List of files and directories. </returns>
+        protected List<InternalMessageFileItem> GetFilesAndDirectories(bool directoriesOnly = false)
         {
-            //  Get base directories and files.
+            List<InternalMessageFileItem> result = new List<InternalMessageFileItem>();
+
             if (Directory.Exists(CurrentDirectory))
             {
-                foreach (var dir in Directory.GetDirectories(CurrentDirectory))
+                //  Get directories.
+                foreach (var directoryPath in Directory.GetDirectories(CurrentDirectory))
                 {
-                    var fileInfo = new FileInfo(dir);
+                    var fileInfo = new FileInfo(directoryPath);
 
-                    //if (fileInfo.Attributes.HasFlag(FileAttributes.Directory)
-                        //&& !fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
-                        //&& !fileInfo.Attributes.HasFlag(FileAttributes.System))
-                        //result.Add(new FileItem(dir));
+                    if (fileInfo.Attributes.HasFlag(FileAttributes.Directory)
+                        && !fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
+                        && !fileInfo.Attributes.HasFlag(FileAttributes.System))
+                        result.Add(new InternalMessageFileItem(directoryPath));
                 }
 
-                //if (SelectionType != FilesInternalMessageExSelectionType.DirectoryCreate
-                //    && SelectionType != FilesInternalMessageExSelectionType.DirectorySelect)
+                //  Get files.
+                if (!directoriesOnly)
                 {
-                    foreach (var file in Directory.GetFiles(CurrentDirectory))
+                    foreach (var filePath in Directory.GetFiles(CurrentDirectory))
                     {
-                        var fileInfo = new FileInfo(file);
+                        var fileInfo = new FileInfo(filePath);
 
-                        //if (!fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
-                        //    && !fileInfo.Attributes.HasFlag(FileAttributes.System)
-                            //&& (SelectedFileType?.ValidateFileName(Path.GetFileName(file)) ?? true))
-                            //result.Add(new FileItem(file));
+                        if (!fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
+                            && !fileInfo.Attributes.HasFlag(FileAttributes.System)
+                            /*&& (SelectedFileType?.ValidateFileName(Path.GetFileName(filePath)) ?? true)*/)
+                            result.Add(new InternalMessageFileItem(filePath));
                     }
                 }
             }
+
             //  Get drives.
             else if (string.IsNullOrEmpty(CurrentDirectory))
             {
                 foreach (var drive in DriveInfo.GetDrives())
                 {
-                    //if (Directory.Exists(drive.Name) || File.Exists(drive.Name))
-                        //result.Add(new FileItem(drive.Name));
+                    if (Directory.Exists(drive.Name) || File.Exists(drive.Name))
+                        result.Add(new InternalMessageFileItem(drive.Name));
                 }
             }
+
+            return result;
         }
 
         //  --------------------------------------------------------------------------------
-        protected void GetDirectoriesTree()
+        /// <summary> Get list of directories with subdirectories tree. </summary>
+        /// <returns> List of directories with subdirectories tree. </returns>
+        protected List<InternalMessageFileTreeItem> GetDirectoriesTree()
         {
+            List<InternalMessageFileTreeItem> result = new List<InternalMessageFileTreeItem>();
             List<string> hierarchy = GetTreeHierarchy();
 
             //  Get drives.
             foreach (var drive in DriveInfo.GetDrives())
             {
-                //if (Directory.Exists(drive.Name) || File.Exists(drive.Name))
-                    //result.Add(new FileTreeItem(drive.Name));
+                if (Directory.Exists(drive.Name) || File.Exists(drive.Name))
+                    result.Add(new InternalMessageFileTreeItem(drive.Name));
             }
 
             if (hierarchy.Any())
             {
-                //FillTreeContent(result.FirstOrDefault(t => t.Path == hierarchy[0]), hierarchy);
+                FillTreeContent(result.FirstOrDefault(t => t.Path == hierarchy[0]), hierarchy);
             }
+
+            return result;
         }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Fill nestings in list of directories. </summary>
-        /// <param name="item"> Nested directory item. </param>
+        /// <param name="item"> Nested file tree item. </param>
         /// <param name="hierarchy"> List of paths forward. </param>
-        private void FillTreeContent(object item, List<string> hierarchy)
+        private void FillTreeContent(InternalMessageFileTreeItem item, List<string> hierarchy)
         {
             if (item != null && hierarchy.Any())
             {
-                foreach (var dir in Directory.GetDirectories(hierarchy[0]))
+                foreach (var directoryPath in Directory.GetDirectories(hierarchy[0]))
                 {
-                    var fileInfo = new FileInfo(dir);
+                    var fileInfo = new FileInfo(directoryPath);
 
-                    //if (fileInfo.Attributes.HasFlag(FileAttributes.Directory)
-                        //&& !fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
-                        //&& !fileInfo.Attributes.HasFlag(FileAttributes.System))
-                        //item.Childs.Add(new FileTreeItem(dir));
+                    if (fileInfo.Attributes.HasFlag(FileAttributes.Directory)
+                        && !fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
+                        && !fileInfo.Attributes.HasFlag(FileAttributes.System))
+                        item.SubDirectories.Add(new InternalMessageFileTreeItem(directoryPath));
                 }
 
                 hierarchy.RemoveAt(0);
 
                 if (hierarchy.Any())
                 {
-                    //FillTreeContent(item.Childs.FirstOrDefault(t => t.Path == hierarchy[0]), hierarchy);
+                    FillTreeContent(item.SubDirectories.FirstOrDefault(t => t.Path == hierarchy[0]), hierarchy);
                 }
             }
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Get list of parent directories from selected directory. </summary>
+        /// <returns> List of parent directories. </returns>
         private List<string> GetTreeHierarchy()
         {
             List<string> result = new List<string>();

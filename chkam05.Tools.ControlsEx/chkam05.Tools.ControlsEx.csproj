@@ -80,6 +80,8 @@
     <Compile Include="Converters\IntToStringConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
     <Compile Include="Data\InternalMessageButtons.cs" />
+    <Compile Include="Data\InternalMessageFileItem.cs" />
+    <Compile Include="Data\InternalMessageFileTreeItem.cs" />
     <Compile Include="Data\InternalMessageFileType.cs" />
     <Compile Include="Data\InternalMessageResult.cs" />
     <Compile Include="Data\InternalMessagesButtonsSet.cs" />
