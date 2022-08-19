@@ -109,14 +109,14 @@
     <Compile Include="InternalMessages\ColorsPickerInternalMessageEx.xaml.cs">
       <DependentUpon>ColorsPickerInternalMessageEx.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InternalMessages\FilesSelectorInternalMessageEx.xaml.cs">
+      <DependentUpon>FilesSelectorInternalMessageEx.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InternalMessages\IInternalMessageEx.cs" />
     <Compile Include="InternalMessages\InternalMessageEx.xaml.cs">
       <DependentUpon>InternalMessageEx.xaml</DependentUpon>
     </Compile>
     <Compile Include="InternalMessages\InternalMessagesExContainer.cs" />
-    <Compile Include="InternalMessages\OpenFileInternalMessageEx.xaml.cs">
-      <DependentUpon>OpenFileInternalMessageEx.xaml</DependentUpon>
-    </Compile>
     <Compile Include="InternalMessages\ProgressInternalMessageEx.xaml.cs">
       <DependentUpon>ProgressInternalMessageEx.xaml</DependentUpon>
     </Compile>
@@ -186,11 +186,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InternalMessages\InternalMessageEx.xaml">
+    <Page Include="InternalMessages\FilesSelectorInternalMessageEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InternalMessages\OpenFileInternalMessageEx.xaml">
+    <Page Include="InternalMessages\InternalMessageEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

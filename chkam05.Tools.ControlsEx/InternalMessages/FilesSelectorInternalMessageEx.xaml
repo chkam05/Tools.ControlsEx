@@ -1,5 +1,5 @@
 ﻿<im:BaseFilesSelectorInternalMessageEx
-    x:Class="chkam05.Tools.ControlsEx.InternalMessages.OpenFileInternalMessageEx"
+    x:Class="chkam05.Tools.ControlsEx.InternalMessages.FilesSelectorInternalMessageEx"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,8 +13,8 @@
     d:DesignWidth="800"
     
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
-    MinHeight="320"
-    MinWidth="512"
+    ContentPadding="0,8"
+    Width="640"
     Loaded="OnLoaded">
 
     <im:BaseFilesSelectorInternalMessageEx.Resources>
@@ -28,7 +28,7 @@
 
             <RelativeSource
                 x:Key="RelativeSelf"
-                AncestorType="{x:Type local:OpenFileInternalMessageEx}"
+                AncestorType="{x:Type local:FilesSelectorInternalMessageEx}"
                 Mode="FindAncestor"/>
 
             <!-- STYLES -->
@@ -38,7 +38,7 @@
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Foreground" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
-                <Setter Property="Width" Value="6"/>
+                <Setter Property="Width" Value="8"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type GridSplitter}">
@@ -47,13 +47,42 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
 
-                                <materialDesign:PackIcon
-                                    Foreground="{TemplateBinding Foreground}"
-                                    HorizontalAlignment="Stretch"
-                                    Kind="DotsVertical"
-                                    VerticalAlignment="Center"
-                                    Width="{TemplateBinding Width}"/>
+                                <Grid>
 
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Border
+                                        Background="{TemplateBinding Foreground}"
+                                        BorderBrush="{x:Null}"
+                                        BorderThickness="0"
+                                        Grid.Row="0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Stretch"
+                                        Width="1"/>
+
+                                    <materialDesign:PackIcon
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Grid.Row="1"
+                                        HorizontalAlignment="Center"
+                                        Kind="DotsVertical"
+                                        Margin="0,8"
+                                        VerticalAlignment="Center"
+                                        Width="16"/>
+
+                                    <Border
+                                        Background="{TemplateBinding Foreground}"
+                                        BorderBrush="{x:Null}"
+                                        BorderThickness="0"
+                                        Grid.Row="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Stretch"
+                                        Width="1"/>
+
+                                </Grid>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -72,6 +101,7 @@
             <Style TargetType="{x:Type controlsex:ListViewEx}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="CornerRadius" Value="4"/>
                 <Setter Property="Margin" Value="2,0,0,0"/>
                 <Setter Property="Padding" Value="4"/>
@@ -101,8 +131,9 @@
             <Style TargetType="{x:Type controlsex:TreeViewEx}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="CornerRadius" Value="4"/>
-                <Setter Property="Margin" Value="0,0,8,0"/>
+                <Setter Property="Margin" Value="0,0,12,0"/>
                 <Setter Property="Padding" Value="4"/>
                 <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
@@ -188,7 +219,8 @@
             x:Name="directoriesTreeView"
             Grid.Column="0"
             ItemTemplate="{StaticResource Tree_DataTemplate}"
-            ItemsSource="{Binding Tree}"/>
+            ItemsSource="{Binding Tree}"
+            PreviewMouseDoubleClick="DirectoriesTreeView_PreviewMouseDoubleClick"/>
 
         <GridSplitter
             Grid.Column="0"/>
@@ -198,8 +230,10 @@
             Grid.Column="1"
             ItemContainerStyle="{StaticResource File_ListViewItemExStyle}"
             ItemTemplate="{StaticResource File_DataTemplate}"
-            ItemsSource="{Binding Files}"/>
+            ItemsSource="{Binding Files}"
+            PreviewMouseDoubleClick="FilesListView_PreviewMouseDoubleClick"
+            SelectionChanged="FilesListView_SelectionChanged"/>
 
     </Grid>
-    
+
 </im:BaseFilesSelectorInternalMessageEx>

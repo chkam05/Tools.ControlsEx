@@ -468,17 +468,12 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private void OpenFileIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
             var internalMessages = _mainWindow.InternalMessages;
-            var message = new OpenFileInternalMessageEx(internalMessages);
+            var message = FilesSelectorInternalMessageEx.CreateOpenFileInternalMessageEx(internalMessages);
 
             message.OnClose += OnFileMessageClose;
 
             UpdateInternalMessageAppearance(message);
             internalMessages.ShowMessage(message);
-
-            /*var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
-                "Open File", onClose: OnFileMessageClose);
-
-            UpdateInternalMessageAppearance(message);*/
         }
 
         //  --------------------------------------------------------------------------------
@@ -487,10 +482,14 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void OpenFilesIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultOpenFilesMessage(
-                "Open Files", true, onClose: OnFileMessageClose);
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = FilesSelectorInternalMessageEx.CreateOpenFileInternalMessageEx(internalMessages);
 
-            UpdateInternalMessageAppearance(message);*/
+            message.MultipleFiles = true;
+            message.OnClose += OnFileMessageClose;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -499,10 +498,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void SaveFileIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultSaveFileMessage(
-                "Open File", onClose: OnFileMessageClose);
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = FilesSelectorInternalMessageEx.CreateSaveFileInternalMessageEx(internalMessages);
 
-            UpdateInternalMessageAppearance(message);*/
+            message.OnClose += OnFileMessageClose;
+
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
         }
 
         //  --------------------------------------------------------------------------------
@@ -511,22 +513,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         /// <param name="e"> Routed Event Arguments. </param>
         private void SelectFolderIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
-                "Open File", onClose: OnFileMessageClose);
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = FilesSelectorInternalMessageEx.CreateSelectDirectoryInternalMessageEx(internalMessages);
 
-            UpdateInternalMessageAppearance(message);*/
-        }
-        
-        //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after clicking Select Folder IM Button. </summary>
-        /// <param name="sender"> Object that invoked method. </param>
-        /// <param name="e"> Routed Event Arguments. </param>
-        private void CreateFolderIMButtonEx_Click(object sender, RoutedEventArgs e)
-        {
-            /*var message = _mainWindow.InternalMessages.CreateDefaultSelectDirectoryMessage(
-                "Open File", true, onClose: OnFileMessageClose);
+            message.OnClose += OnFileMessageClose;
 
-            UpdateInternalMessageAppearance(message);*/
+            UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
         }
         
         //  --------------------------------------------------------------------------------
@@ -595,28 +588,6 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             OptionalKey = nameof(e.FilePath);
             OptionalValue = e.FilePath ?? string.Empty;
         }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after closing InternalMessage. </summary>
-        /// <param name="sender"> Object that invoked method. </param>
-        /// <param name="e"> Internal Message Close Event Arguments. </param>
-        /*private void OnColorMessageClose(object sender, ColorsInternalMessageCloseEventArgs e)
-        {
-            LastResult = e.Result;
-            OptionalKey = "Color: ";
-            OptionalValue = e.SelectedColorItem?.Name ?? "null";
-        }*/
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after closing InternalMessage. </summary>
-        /// <param name="sender"> Object that invoked method. </param>
-        /// <param name="e"> Internal Message Close Event Arguments. </param>
-        /*private void OnFileMessageClose(object sender, FilesInternalMessageCloseEventArgs e)
-        {
-            LastResult = e.Result;
-            OptionalKey = "Files: ";
-            OptionalValue = e.FilePath;
-        }*/
 
         //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after hiding InternalMessage. </summary>
@@ -688,28 +659,15 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             if (message.GetType().IsSubclassOf(typeof(BaseFilesSelectorInternalMessageEx)))
             {
                 var fileMessage = message as BaseFilesSelectorInternalMessageEx;
-            }
 
-            /*
-            if (message.GetType().IsSubclassOf(typeof(BaseAwaitInternalMessageEx)))
-            {
-                var awaitMessage = (BaseAwaitInternalMessageEx)message;
-                awaitMessage.IndicatorFill = Configuration.AccentColorBrush;
-                awaitMessage.IndicatorPen = Configuration.AccentColorBrush;
-                awaitMessage.IndicatorPenThickness = new Thickness(1);
+                fileMessage.TextBoxMouseOverBackground = Configuration.AccentMouseOverColorBrush;
+                fileMessage.TextBoxMouseOverBorderBrush = Configuration.AccentColorBrush;
+                fileMessage.TextBoxMouseOverForeground = Configuration.AccentForegroundColorBrush;
+                fileMessage.TextBoxSelectedBackground = Configuration.BackgroundColorBrush;
+                fileMessage.TextBoxSelectedBorderBrush = Configuration.AccentSelectedColorBrush;
+                fileMessage.TextBoxSelectedForeground = Configuration.ForegroundColorBrush;
+                fileMessage.TextBoxSelectedTextBackground = Configuration.AccentSelectedColorBrush;
             }
-
-            if (message.GetType().IsSubclassOf(typeof(BaseFilesInternalMessageEx)))
-            {
-                var filesMessage = (BaseFilesInternalMessageEx)message;
-                filesMessage.TextBoxMouseOverBackground = Configuration.AccentMouseOverColorBrush;
-                filesMessage.TextBoxMouseOverBorderBrush = Configuration.AccentColorBrush;
-                filesMessage.TextBoxMouseOverForeground = Configuration.AccentForegroundColorBrush;
-                filesMessage.TextBoxSelectedBackground = Configuration.BackgroundColorBrush;
-                filesMessage.TextBoxSelectedBorderBrush = Configuration.AccentSelectedColorBrush;
-                filesMessage.TextBoxSelectedForeground = Configuration.ForegroundColorBrush;
-                filesMessage.TextBoxSelectedTextBackground = Configuration.AccentSelectedColorBrush;
-            }*/
         }
 
         #endregion UPDATE METHODS

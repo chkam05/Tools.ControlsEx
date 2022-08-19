@@ -6,6 +6,8 @@
     xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
+    <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+
     <SolidColorBrush x:Key="BaseFilesSelectorInternalMessageEx.Background">White</SolidColorBrush>
     <SolidColorBrush x:Key="BaseFilesSelectorInternalMessageEx.Foreground">Black</SolidColorBrush>
 
@@ -23,6 +25,38 @@
         <Setter Property="PressedBackground" Value="{Binding ButtonPressedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
         <Setter Property="PressedBorderBrush" Value="{Binding ButtonPressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
         <Setter Property="PressedForeground" Value="{Binding ButtonPressedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+    </Style>
+
+    <Style x:Key="BaseFilesSelectorInternalMessageEx.ComboBoxEx" TargetType="{x:Type local:ComboBoxEx}">
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="DropDownBackground" Value="{Binding Background, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="DropDownBorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="DropDownForeground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="DropDownIconBrush" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="DropDownMouseOverIconBrush" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="DropDownSelectedIconBrush" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="Margin" Value="8,0,0,0"/>
+        <Setter Property="MouseOverBackground" Value="{Binding TextBoxMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding TextBoxMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding TextBoxMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="SelectedBackground" Value="{Binding TextBoxSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="SelectedBorderBrush" Value="{Binding TextBoxSelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="SelectedForeground" Value="{Binding TextBoxSelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="Width" Value="128"/>
+    </Style>
+
+    <Style x:Key="BaseFilesSelectorInternalMessageEx.ComboBoxItemEx" TargetType="{x:Type local:ComboBoxItemEx}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBackground" Value="{Binding TextBoxMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding TextBoxMouseOverBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding TextBoxMouseOverForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="SelectedBackground" Value="{Binding TextBoxSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="SelectedBorderBrush" Value="{Binding TextBoxSelectedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
+        <Setter Property="SelectedForeground" Value="{Binding TextBoxSelectedForeground, RelativeSource={RelativeSource AncestorType={x:Type im:BaseFilesSelectorInternalMessageEx}}}"/>
     </Style>
 
     <Style x:Key="BaseFilesSelectorInternalMessageEx.NavigationButton" TargetType="{x:Type local:ButtonEx}">
@@ -168,8 +202,8 @@
                     <Grid>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
 
                         <Grid
@@ -185,6 +219,27 @@
                                 Grid.Column="0"
                                 Style="{StaticResource BaseFilesSelectorInternalMessageEx.TextBoxEx}"/>
 
+                            <local:ComboBoxEx
+                                x:Name="filesTypesComboBox"
+                                Grid.Column="1"
+                                ItemContainerStyle="{StaticResource BaseFilesSelectorInternalMessageEx.ComboBoxItemEx}"
+                                ItemsSource="{Binding FilesTypes}"
+                                Style="{StaticResource BaseFilesSelectorInternalMessageEx.ComboBoxEx}"
+                                Visibility="{Binding UseFilesTypes, Converter={StaticResource BoolVisibilityConverter}}">
+
+                                <local:ComboBoxEx.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel
+                                            Orientation="Horizontal">
+
+                                            <TextBlock
+                                                Text="{Binding Title}"/>
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </local:ComboBoxEx.ItemTemplate>
+
+                            </local:ComboBoxEx>
                         </Grid>
 
                         <StackPanel
@@ -196,6 +251,7 @@
                             <local:ButtonEx
                                 x:Name="okButton"
                                 Content="Select"
+                                IsEnabled="False"
                                 Style="{StaticResource BaseFilesSelectorInternalMessageEx.Button}">
                             </local:ButtonEx>
 

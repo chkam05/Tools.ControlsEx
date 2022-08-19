@@ -44,12 +44,6 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseProgressInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseColorSelectorInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseFilesSelectorInternalMessageExStyle.xaml"/>
-        <!--ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessagesExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseAwaitInternalMessageExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseColorInternalMessageExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseFilesInternalMessageExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseStandardInternalMessageExStyle.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/BaseProgressInternalMessageExStyle.xaml"/-->
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonExStyle}" TargetType="{x:Type local:ButtonEx}"/>
@@ -123,17 +117,5 @@
     <Style BasedOn="{StaticResource BaseColorSelectorInternalMessageExStyle}" TargetType="{x:Type im:BaseColorSelectorInternalMessageEx}"/>
 
     <Style BasedOn="{StaticResource BaseFilesSelectorInternalMessageExStyle}" TargetType="{x:Type im:BaseFilesSelectorInternalMessageEx}"/>
-    
-    <!--Style BasedOn="{StaticResource InternalMessagesExStyle}" TargetType="{x:Type local:InternalMessagesEx}"/>
-
-    <Style BasedOn="{StaticResource BaseAwaitInternalMessageExStyle}" TargetType="{x:Type im:BaseAwaitInternalMessageEx}"/>
-
-    <Style BasedOn="{StaticResource BaseColorInternalMessageExStyle}" TargetType="{x:Type im:BaseColorInternalMessageEx}"/>
-
-    <Style BasedOn="{StaticResource BaseFilesInternalMessageExStyle}" TargetType="{x:Type im:BaseFilesInternalMessageEx}"/>
-
-    <Style BasedOn="{StaticResource BaseProgressInternalMessageExStyle}" TargetType="{x:Type im:BaseProgressInternalMessageEx}"/>
-
-    <Style BasedOn="{StaticResource BaseStandardInternalMessageExStyle}" TargetType="{x:Type im:BaseStandardInternalMessageEx}"/-->
 
 </ResourceDictionary>

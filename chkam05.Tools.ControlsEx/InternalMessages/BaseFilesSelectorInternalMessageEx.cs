@@ -3,9 +3,11 @@ using chkam05.Tools.ControlsEx.Events;
 using chkam05.Tools.ControlsEx.Static;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +19,15 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 {
     public class BaseFilesSelectorInternalMessageEx : BaseInternalMessageEx<FilesSelectorInternalMessageCloseEventArgs>
     {
+
+        //  CONST
+
+        public static readonly string USER_PROFILE_PATH = Environment.GetEnvironmentVariable("USERPROFILE");
+        protected static readonly string[] FORBIDDEN_CHARACTERS = new string[]
+        {
+            "/", "<", ">", ":", "\"", "|", "?", "*"
+        };
+
 
         //  DEPENDENCY PROPERTIES
 
@@ -66,15 +77,52 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion Appearance TextBoxes Colors Properties
 
+        public static readonly DependencyProperty AllowCreateProperty = DependencyProperty.Register(
+            nameof(AllowCreate),
+            typeof(bool),
+            typeof(BaseFilesSelectorInternalMessageEx),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty FilesTypesProperty = DependencyProperty.Register(
+            nameof(FilesTypes),
+            typeof(ObservableCollection<InternalMessageFileType>),
+            typeof(BaseFilesSelectorInternalMessageEx),
+            new PropertyMetadata(new ObservableCollection<InternalMessageFileType>(
+                new List<InternalMessageFileType>()
+                {
+                    InternalMessageFileType.AllFiles()
+                }
+            )));
+
+        public static readonly DependencyProperty MultipleFilesProperty = DependencyProperty.Register(
+            nameof(MultipleFiles),
+            typeof(bool),
+            typeof(BaseFilesSelectorInternalMessageEx),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty OnlyDirectoriesProperty = DependencyProperty.Register(
+            nameof(OnlyDirectories),
+            typeof(bool),
+            typeof(BaseFilesSelectorInternalMessageEx),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty UseFilesTypesProperty = DependencyProperty.Register(
+            nameof(UseFilesTypes),
+            typeof(bool),
+            typeof(BaseFilesSelectorInternalMessageEx),
+            new PropertyMetadata(true));
+
 
         //  VARIABLES
 
-        private TextBoxEx _addressTextBox = null;
-        private TextBoxEx _filesTextBox = null;
+        protected TextBoxEx _addressTextBox = null;
+        protected TextBoxEx _filesTextBox = null;
+        protected ComboBoxEx _filesTypesComboBox = null;
 
         private string _currentDirectory;
+        private InternalMessageFileType _fileType;
         private List<string> _historyForward;
-        private string _initialDirectory = Environment.GetEnvironmentVariable("USERPROFILE");
+        private string _initialDirectory = USER_PROFILE_PATH;
 
 
         //  GETTERS & SETTERS
@@ -163,6 +211,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
+        public InternalMessageFileType FileType
+        {
+            get => _fileType;
+            protected set
+            {
+                _fileType = value;
+                OnPropertyChanged(nameof(FileType));
+            }
+        }
+
         public string InitialDirectory
         {
             get => _initialDirectory;
@@ -171,6 +229,80 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                 if (Directory.Exists(value))
                     _initialDirectory = value;
                 OnPropertyChanged(nameof(InitialDirectory));
+            }
+        }
+
+        public bool AllowCreate
+        {
+            get => (bool)GetValue(AllowCreateProperty);
+            set
+            {
+                SetValue(AllowCreateProperty, value);
+                OnPropertyChanged(nameof(AllowCreate));
+
+                if (value == true)
+                    MultipleFiles = false;
+            }
+        }
+
+        public ObservableCollection<InternalMessageFileType> FilesTypes
+        {
+            get => (ObservableCollection<InternalMessageFileType>)GetValue(FilesTypesProperty);
+            set
+            {
+                SetValue(FilesTypesProperty, value);
+                OnPropertyChanged(nameof(FilesTypes));
+
+                if (IsLoadingComplete)
+                {
+                    _fileType = FilesTypes.FirstOrDefault();
+                    _filesTypesComboBox.SelectedItem = _fileType;
+                }
+            }
+        }
+
+        public bool MultipleFiles
+        {
+            get => (bool)GetValue(MultipleFilesProperty);
+            set
+            {
+                SetValue(MultipleFilesProperty, value);
+                OnPropertyChanged(nameof(MultipleFiles));
+
+                if (value == true)
+                {
+                    AllowCreate = false;
+                    OnlyDirectories = false;
+                }
+            }
+        }
+
+        public bool OnlyDirectories
+        {
+            get => (bool)GetValue(OnlyDirectoriesProperty);
+            set
+            {
+                SetValue(OnlyDirectoriesProperty, value);
+                OnPropertyChanged(nameof(OnlyDirectories));
+
+                if (value == true)
+                {
+                    MultipleFiles = false;
+                    UseFilesTypes = false;
+                }
+            }
+        }
+
+        public bool UseFilesTypes
+        {
+            get => (bool)GetValue(UseFilesTypesProperty);
+            set
+            {
+                SetValue(UseFilesTypesProperty, value);
+                OnPropertyChanged(nameof(UseFilesTypes));
+
+                if (value == true)
+                    OnlyDirectories = false;
             }
         }
 
@@ -196,6 +328,25 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         }
 
         #endregion CLASS METHODS
+
+        #region CHECKBOXES METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing file type selection. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Selection Changed Event Arguments. </param>
+        private void OnFileTypeComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBoxEx = sender as ComboBoxEx;
+
+            if (comboBoxEx != null && comboBoxEx.SelectedItem != null)
+            {
+                FileType = comboBoxEx.SelectedItem as InternalMessageFileType;
+                OnNavigate();
+            }
+        }
+
+        #endregion CHECKBOXES METHODS
 
         #region BUTTONS METHODS
 
@@ -252,9 +403,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         //  --------------------------------------------------------------------------------
         /// <summary> Get list of files and directories inside selected path. </summary>
-        /// <param name="directoriesOnly"> Get directories only. </param>
         /// <returns> List of files and directories. </returns>
-        protected List<InternalMessageFileItem> GetFilesAndDirectories(bool directoriesOnly = false)
+        protected List<InternalMessageFileItem> GetFilesAndDirectories()
         {
             List<InternalMessageFileItem> result = new List<InternalMessageFileItem>();
 
@@ -272,15 +422,17 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                 }
 
                 //  Get files.
-                if (!directoriesOnly)
+                if (!OnlyDirectories)
                 {
+                    var checkType = UseFilesTypes && FileType != null;
+
                     foreach (var filePath in Directory.GetFiles(CurrentDirectory))
                     {
                         var fileInfo = new FileInfo(filePath);
 
                         if (!fileInfo.Attributes.HasFlag(FileAttributes.Hidden)
                             && !fileInfo.Attributes.HasFlag(FileAttributes.System)
-                            /*&& (SelectedFileType?.ValidateFileName(Path.GetFileName(filePath)) ?? true)*/)
+                            && (checkType ? FileType.MatchFile(Path.GetFileName(Path.GetFileName(filePath))) : true))
                             result.Add(new InternalMessageFileItem(filePath));
                     }
                 }
@@ -446,6 +598,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         #region TEMPLATE METHODS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Apply Selection changed method on ComboBoxEx. </summary>
+        /// <param name="comboBoxEx"> ComboBoxEx. </param>
+        /// <param name="eventHandler"> Selection changed method. </param>
+        protected void ApplyComboBoxExSelectionChangedMethod(ComboBoxEx comboBoxEx, SelectionChangedEventHandler eventHandler)
+        {
+            if (comboBoxEx != null)
+                comboBoxEx.SelectionChanged += eventHandler;
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Apply TextModified method on TextBoxEx. </summary>
         /// <param name="textBoxEx"> TextBoxEx. </param>
         /// <param name="eventHandler"> TextModified method. </param>
@@ -453,6 +615,15 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         {
             if (textBoxEx != null)
                 textBoxEx.TextModified += eventHandler;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get TextBoxEx from GetComboBoxEx. </summary>
+        /// <param name="comboBoxName"> GetComboBoxEx name. </param>
+        /// <returns> GetComboBoxEx or null. </returns>
+        protected ComboBoxEx GetComboBoxEx(string comboBoxName)
+        {
+            return this.Template.FindName(comboBoxName, this) as ComboBoxEx;
         }
 
         //  --------------------------------------------------------------------------------
@@ -489,10 +660,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
             ApplyTextBoxExTextModifiedMethod(_addressTextBox, OnAddressTextBoxExTextModified);
             ApplyTextBoxExTextModifiedMethod(_filesTextBox, OnFileNameTextBoxExTextModified);
+
+            _filesTypesComboBox = GetComboBoxEx("filesTypesComboBox");
+            _fileType = FilesTypes.FirstOrDefault();
+            _filesTypesComboBox.SelectedItem = _fileType;
+
+            ApplyComboBoxExSelectionChangedMethod(_filesTypesComboBox, OnFileTypeComboBoxSelectionChanged);
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after navigating / changing path. </summary>
+        /// <summary> Method invoked after navigating / changing path for refresh data. </summary>
         protected virtual void OnNavigate()
         {
             //
@@ -531,6 +708,48 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         }
 
         #endregion TEXTBOXES METHODS
+
+        #region UTILITY METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get list of files names from list in string available in fileNameTextBox. </summary>
+        /// <param name="filesList"> List of files in string. </param>
+        /// <returns> List of files names. </returns>
+        protected List<string> GetFilesListFromString(string filesList)
+        {
+            if (!string.IsNullOrEmpty(filesList))
+            {
+                var matchList = Regex.Matches(filesList, "\"(.*?)\"");
+
+                if (matchList.Count > 0)
+                    return matchList.Cast<Match>().Select(match => ReplaceFilesInvalidCharacters(match.Value)).ToList();
+                else
+                    return new List<string>() { filesList };
+            }
+
+            return new List<string>();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Replace invalid characters in file name. </summary>
+        /// <param name="fileName"> File name. </param>
+        /// <returns> Corrected file name. </returns>
+        protected string ReplaceFilesInvalidCharacters(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                var updatedFileName = fileName;
+
+                foreach (var character in FORBIDDEN_CHARACTERS)
+                    updatedFileName = updatedFileName.Replace(character, "");
+
+                return updatedFileName;
+            }
+
+            return fileName;
+        }
+
+        #endregion UTILITY METHODS
 
     }
 }
