@@ -30,17 +30,7 @@ CREATE:
 	[v] ColorPaletteEx (+)
 	[v] ColorPickerEx (+)
 	[v] ColorPaletteInternalMessageEx
-	[ ] ColorPickerInternalMessageEx
+	[v] ColorPickerInternalMessageEx
 	[v] OpenFilesInternalMessageEx
 	[v] SaveFileInternalMessageEx
 	[v] OpenDirectoryInternalMessageEx
-
-Additional infos:
-
-	* ColorPickerEx > Update color
-	* R > After user change update color
-	* G > -||-
-	* B > -||-
-	* H > -||-
-	* S > -||-
-	* L > -||-
