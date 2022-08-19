@@ -202,6 +202,18 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             }
         }
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Create close method event arguments. </summary>
+        /// <returns> Close method event arguments. </returns>
+        protected override FilesSelectorInternalMessageCloseEventArgs CreateCloseEventArgs()
+        {
+            var filesArray = AllowCreate
+                ? new string[] { System.IO.Path.Combine(CurrentDirectory, ReplaceFilesInvalidCharacters(_filesTextBox.Text)) }
+                : filesListView.SelectedItems.Cast<InternalMessageFileItem>().Select(f => f.Path).ToArray();
+
+            return new FilesSelectorInternalMessageCloseEventArgs(Result, filesArray);
+        }
+
         #endregion INTERACTION METHODS
 
         #region MESSAGE METHODS
@@ -281,18 +293,17 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 var textBox = sender as TextBoxEx;
                 var files = GetFilesListFromString(e?.NewText);
+                var selection = "";
 
                 if (files.Any())
                 {
                     if (AllowCreate)
                     {
-                        var selection = files.FirstOrDefault(n => OnlyDirectories
+                        selection = files.FirstOrDefault(n => OnlyDirectories
                             ? !File.Exists(System.IO.Path.Combine(CurrentDirectory, n))
                             : !Files.Any(f => (!f.IsDirectory && !f.IsDrive) && f.Name == n)) ?? "";
 
                         SelectSingleFile(selection);
-
-                        textBox.Text = selection;
                     }
                     else if (MultipleFiles)
                     {
@@ -302,20 +313,23 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
                         SelectMultipleFiles(selections);
 
-                        textBox.Text = selections != null && selections.Any() 
+                        selection = selections != null && selections.Any() 
                             ? string.Join("; ", selections.Select(n => $"\"{n}\""))
                             : "";
                     }
                     else
                     {
-                        var selection = files.FirstOrDefault(n => OnlyDirectories
+                        selection = files.FirstOrDefault(n => OnlyDirectories
                             ? Files.Any(f => (f.IsDirectory || f.IsDrive) && f.Name == n)
                             : Files.Any(f => (!f.IsDirectory && !f.IsDrive) && f.Name == n)) ?? "";
 
                         SelectSingleFile(selection);
-
-                        textBox.Text = selection;
                     }
+
+                    textBox.Text = selection;
+
+                    if (IsLoadingComplete)
+                        GetButtonEx("okButton").IsEnabled = !string.IsNullOrEmpty(e.NewText);
                 }
             }
 
