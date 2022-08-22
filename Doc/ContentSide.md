@@ -1,5 +1,5 @@
 # ContentSide
-Enum responsible for [ButtonEx](Doc/ButtonEx.md) content side configuration.
+Enum responsible for [ButtonEx](ButtonEx.md) content side configuration.
 
 namespace: _chkam05.Tools.ControlsEx.Static_
 

@@ -26,7 +26,7 @@ namespace: _chkam05.Tools.ControlsEx.ButtonEx_
 | double       | IconWidth            | Icon width. |
 |||
 | CornerRadius | CornerRadius         | Button corner radius. |
-| [ContentSide](Doc/ContentSide.md) | ContentSide | Button content side in relation of Icon. |
+| [ContentSide](ContentSide.md) | ContentSide | Button content side in relation of Icon. |
 
 ### Additional Constructors:
 
