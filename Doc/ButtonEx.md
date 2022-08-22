@@ -1,7 +1,7 @@
 # ButtonEx
 Extended Button Control inherited from _Button_ and _INotifyPropertyChanged_.
 
-namespace: _chkam05.Tools.ControlsEx.ButtonEx_
+namespace: _chkam05.Tools.ControlsEx_
 
 ![ButtonEx Examples (Images/ButtonEx.png)](../Images/ButtonEx.png)
 
@@ -41,12 +41,6 @@ namespace: _chkam05.Tools.ControlsEx.ButtonEx_
 ### Additional Methods:
 
 - _None_
-
-# Examples:
-
-### Code behind (C#)
-
-### XAML:
 
 # Related repositories
 
