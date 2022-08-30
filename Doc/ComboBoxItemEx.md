@@ -3,9 +3,7 @@ Extended ComboBoxItem Control inherited from _ComboBoxItem_ and _INotifyProperty
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![ComboBoxEx Examples 1 (Images/ComboBoxEx1.png)](../Images/ComboBoxEx1.png)
-
-![ComboBoxEx Examples 2 (Images/ComboBoxEx2.png)](../Images/ComboBoxEx2.png)
+![ComboBoxItemEx Examples (Images/ComboBoxItemEx.png)](../Images/ComboBoxItemEx.png)
 
 ### Additional Attributes:
 

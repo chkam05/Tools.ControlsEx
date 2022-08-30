@@ -3,9 +3,7 @@ Extended CheckBox Control inherited from _CheckBox_ and _INotifyPropertyChanged_
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![CheckBoxEx Examples 1 (Images/CheckBoxEx1.png)](../Images/CheckBoxEx1.png)
-
-![CheckBoxx Examples 2 (Images/CheckBoxEx2.png)](../Images/CheckBoxEx2.png)
+![CheckBoxEx Examples (Images/CheckBoxEx.png)](../Images/CheckBoxEx.png)
 
 ### Additional Attributes:
 

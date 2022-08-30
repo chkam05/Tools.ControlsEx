@@ -3,7 +3,7 @@ Extended ListViewItem Control inherited from _ListViewItem_ and _INotifyProperty
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![ListViewEx Examples (Images/ListViewEx.png)](../Images/ListViewEx.png)
+![ListViewItemEx Examples (Images/ListViewItemEx.png)](../Images/ListViewItemEx.png)
 
 ### Additional Attributes:
 

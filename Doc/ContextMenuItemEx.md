@@ -3,7 +3,7 @@ Extended ContextMenuItem Control inherited from _[MenuItemEx](MenuItemEx.md)_ an
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![ContextMenuEx Examples 2 (Images/ContextMenu2.png)](../Images/ContextMenu2.png)
+![ContextMenuItemEx Examples (Images/ContextMenuItemEx.png)](../Images/ContextMenuItemEx.png)
 
 ### Additional Attributes:
 

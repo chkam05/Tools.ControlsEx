@@ -1,6 +1,10 @@
 # ColorsPickerEx
 Colors Picker Control inherited from _Control_ and _INotifyPropertyChanged_.
 
+namespace: _chkam05.Tools.ControlsEx_
+
+![ColorsPickerEx Examples (Images/ColorsPickerEx.png)](../Images/ColorsPickerEx.png)
+
 ### Additional Attributes:
 
 | Type         | Name          | Description |

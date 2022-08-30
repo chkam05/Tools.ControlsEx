@@ -3,6 +3,8 @@ Extended TreeView Control inherited from _TreeView_ and _INotifyPropertyChanged_
 
 namespace: _chkam05.Tools.ControlsEx_
 
+![TreeViewEx Examples (Images/TreeViewEx.png)](../Images/TreeViewEx.png)
+
 ### Additional Attributes:
 
 | Type         | Name         | Description |

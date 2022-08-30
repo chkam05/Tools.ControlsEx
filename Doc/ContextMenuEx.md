@@ -3,7 +3,7 @@ Extended ContextMenu Control inherited from _ContextMenu_ and _INotifyPropertyCh
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![ContextMenuEx Examples 1 (Images/ContextMenu1.png)](../Images/ContextMenu1.png)
+![ContextMenuEx Examples (Images/ContextMenuEx.png)](../Images/ContextMenuEx.png)
 
 ### Additional Attributes:
 

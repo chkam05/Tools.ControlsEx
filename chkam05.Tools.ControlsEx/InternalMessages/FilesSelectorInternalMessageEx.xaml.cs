@@ -119,7 +119,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <param name="title"> Message title. </param>
         /// <param name="icon"> Message header icon kind. </param>
         public static FilesSelectorInternalMessageEx CreateSelectDirectoryInternalMessageEx(InternalMessagesExContainer parentContainer,
-            string title = "Select file", PackIconKind icon = PackIconKind.Folder)
+            string title = "Select directory", PackIconKind icon = PackIconKind.Folder)
         {
             var filesSelector = new FilesSelectorInternalMessageEx(parentContainer, title, icon)
             {

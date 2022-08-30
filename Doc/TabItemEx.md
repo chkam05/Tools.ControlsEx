@@ -3,8 +3,6 @@ Extended TabItem Control inherited from _TabItem_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![TabControlEx Examples (Images/TabControlEx.png)](../Images/TabControlEx.png)
-
 ### Additional Attributes:
 
 | Type         | Name                 | Description |

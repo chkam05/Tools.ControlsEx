@@ -12,7 +12,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
             nameof(Message),
             typeof(string),
-            typeof(InternalMessageEx),
+            typeof(ProgressInternalMessageEx),
             new PropertyMetadata(string.Empty));
 
 

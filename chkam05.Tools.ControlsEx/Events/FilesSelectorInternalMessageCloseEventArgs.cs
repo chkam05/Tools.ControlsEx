@@ -19,7 +19,7 @@ namespace chkam05.Tools.ControlsEx.Events
 
         public string FilePath
         {
-            get => FilesPaths?[0] ?? null;
+            get => FilesPaths != null && FilesPaths.Any() ? FilesPaths[0] : null;
         }
 
 

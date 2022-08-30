@@ -3,6 +3,8 @@ Colors Palette Control inherited from _Control_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx_
 
+![ColorsPaletteEx Examples (Images/ColorsPaletteEx.png)](../Images/ColorsPaletteEx.png)
+
 ### Additional Attributes:
 
 | Type             | Name                                 | Description |

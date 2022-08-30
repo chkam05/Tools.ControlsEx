@@ -6,25 +6,50 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 
 - **[ButtonEx](Doc/ButtonEx.md)** 
 - **[CheckBoxEx](Doc/CheckBoxEx.md)** 
+- **[ColorsPaletteEx](Doc/ColorsPaletteEx.md)** 
+  - **[ColorPaletteItem](Doc/ColorPaletteItem.md)** 
+- **[ColorsPickerEx](Doc/ColorsPickerEx.md)** 
 - **[ComboBoxEx](Doc/ComboBoxEx.md)** 
-- **[ComboBoxItemEx](Doc/ComboBoxEx.md)** 
+  - **[ComboBoxItemEx](Doc/ComboBoxItemEx.md)** 
 - **[ContextMenuEx](Doc/ContextMenuEx.md)** 
-- **[ContextMenuItemEx](Doc/ContextMenuEx.md)** 
+  - **[ContextMenuItemEx](Doc/ContextMenuItemEx.md)** 
 - **[ExpanderEx](Doc/ExpanderEx.md)** 
 - **[ListViewEx](Doc/ListViewEx.md)** 
-- **[ListViewItemEx](Doc/ListViewEx.md)** 
-- **[MarqueeTextBlockEx](Doc/TextBlockEx.md)** 
+  - **[ListViewItemEx](Doc/ListViewItemEx.md)** 
+- **[MarqueeTextBlockEx](Doc/MarqueeTextBlockEx.md)** 
 - **[MenuEx](Doc/MenuEx.md)** 
-- **[MenuItemEx](Doc/MenuEx.md)** 
+  - **[MenuItemEx](Doc/MenuItemEx.md)** 
 - **[ScrollBarEx](Doc/ScrollBarEx.md)** 
 - **[ScrollViewerEx](Doc/ScrollViewerEx.md)** 
 - **[SliderEx](Doc/SliderEx.md)** 
 - **[SwitcherEx](Doc/SwitcherEx.md)** 
 - **[TabControlEx](Doc/TabControlEx.md)** 
-- **[TabItemEx](Doc/TabControlEx.md)** 
+  - **[TabItemEx](Doc/TabItemEx.md)** 
 - **[TextBlockEx](Doc/TextBlockEx.md)** 
 - **[TextBoxEx](Doc/TextBoxEx.md)** 
+- **[TreeViewEx](Doc/TreeViewEx.md)** 
+  - **[TreeViewItemEx](Doc/TreeViewItemEx.md)** 
 - **[UpDownTextBoxEx](Doc/UpDownTextBoxEx.md)** 
+
+## Enum Configurations:
+
+- **[CheckBoxStyle](Doc/CheckBoxStyle.md)** 
+- **[ContentSide](Doc/ContentSide.md)** 
+- **[MarqueeTextAnimationPlace](Doc/MarqueeTextAnimationPlace.md)** 
+- **[TextBoxConversionType](Doc/TextBoxConversionType.md)** 
+- **[UpDownTextBoxConversionType](Doc/UpDownTextBoxConversionType.md)** 
+
+## Internal Messages:
+
+
+
+
+
+
+
+
+
+# OBSOLETE
 
 ## List of Internal Messages Controls:
 

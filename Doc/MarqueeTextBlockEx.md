@@ -3,7 +3,7 @@ MarqueeTextBlockEx Control inherited from _[TextBlockEx](TextBlockEx.md)_ and _I
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![TextBlockEx Examples (Images/TextBlockEx.png)](../Images/TextBlockEx.png)
+![MarqueeTextBlockEx Examples (Images/MarqueeTextBlockEx.png)](../Images/MarqueeTextBlockEx.png)
 
 ### Additional Attributes:
 

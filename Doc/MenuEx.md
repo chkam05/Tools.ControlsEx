@@ -3,9 +3,7 @@ Extended Menu Control inherited from _Menu_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx_
 
-![MenuEx Examples 1 (Images/MenuEx1.png)](../Images/MenuEx1.png)
-
-![MenuEx Examples 2 (Images/MenuEx2.png)](../Images/MenuEx2.png)
+![MenuEx Examples (Images/MenuEx.png)](../Images/MenuEx.png)
 
 ### Additional Attributes:
 

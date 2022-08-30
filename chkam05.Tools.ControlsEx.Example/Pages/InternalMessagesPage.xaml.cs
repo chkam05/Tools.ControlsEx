@@ -483,7 +483,7 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private void OpenFilesIMButtonEx_Click(object sender, RoutedEventArgs e)
         {
             var internalMessages = _mainWindow.InternalMessages;
-            var message = FilesSelectorInternalMessageEx.CreateOpenFileInternalMessageEx(internalMessages);
+            var message = FilesSelectorInternalMessageEx.CreateOpenFileInternalMessageEx(internalMessages, "Select files");
 
             message.MultipleFiles = true;
             message.OnClose += OnFileMessageClose;
@@ -642,6 +642,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
                 var progressMessage = message as BaseProgressInternalMessageEx;
                 progressMessage.ProgressBarBorderBrush = Configuration.AccentColorBrush;
                 progressMessage.ProgressBarProgressBrush = Configuration.AccentColorBrush;
+            }
+
+            if (message.GetType().IsSubclassOf(typeof(BaseAwaitInternalMessageEx)))
+            {
+                var awaitMessage = message as BaseAwaitInternalMessageEx;
+                awaitMessage.IndicatorFill = Configuration.AccentColorBrush;
+                awaitMessage.IndicatorPen = Configuration.AccentColorBrush;
             }
 
             if (message.GetType().IsSubclassOf(typeof(ColorsPickerInternalMessageEx)))
