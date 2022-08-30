@@ -31,17 +31,44 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
   - **[TreeViewItemEx](Doc/TreeViewItemEx.md)** 
 - **[UpDownTextBoxEx](Doc/UpDownTextBoxEx.md)** 
 
+## Additional Controls:
+
+- **[BaseIndicatorEx](Doc/BaseIndicatorEx.md)** 
+  - **[CircleSmoothIndicatorEx](Doc/CircleSmoothIndicatorEx.md)** 
+
 ## Enum Configurations:
 
 - **[CheckBoxStyle](Doc/CheckBoxStyle.md)** 
 - **[ContentSide](Doc/ContentSide.md)** 
+- **[InternalMessageButtons](Doc/InternalMessageButtons.md)** 
+- **[InternalMessagesButtonsSet](Doc/InternalMessagesButtonsSet.md)** 
+- **[InternalMessageResult](Doc/InternalMessageResult.md)**
 - **[MarqueeTextAnimationPlace](Doc/MarqueeTextAnimationPlace.md)** 
 - **[TextBoxConversionType](Doc/TextBoxConversionType.md)** 
 - **[UpDownTextBoxConversionType](Doc/UpDownTextBoxConversionType.md)** 
 
 ## Internal Messages:
 
+- **[InternalMessagesExContainer](Doc/InternalMessagesExContainer.md)** 
+- **[BaseInternalMessageEx](Doc/BaseInternalMessageEx.md)** 
+  - **[StandardInternalMessageEx](Doc/StandardInternalMessageEx.md)** 
+    - **[InternalMessageEx](Doc/InternalMessageEx.md)** 
+  - **[BaseAwaitInternalMessageEx](Doc/BaseAwaitInternalMessageEx.md)** 
+    - **[AwaitInternalMessageEx](Doc/AwaitInternalMessageEx.md)** 
+  - **[BaseProgressInternalMessageEx](Doc/BaseProgressInternalMessageEx.md)** 
+    - **[ProgressInternalMessageEx](Doc/ProgressInternalMessageEx.md)** 
+  - **[BaseColorSelectorInternalMessageEx](Doc/BaseColorSelectorInternalMessageEx.md)** 
+    - 
 
+## Events Arguments:
+
+- **[InternalMessageCloseEventArgs](Doc/InternalMessageCloseEventArgs.md)** 
+  - **[ColorSelectorInternalMessageCloseEventArgs](Doc/ColorSelectorInternalMessageCloseEventArgs.md)** 
+- **[InternalMessageHideEventArgs](Doc/InternalMessageHideEventArgs.md)**
+
+## Tools:
+
+- **[DispatcherInvokerEx](Doc/DispatcherInvokerEx.md)** 
 
 
 

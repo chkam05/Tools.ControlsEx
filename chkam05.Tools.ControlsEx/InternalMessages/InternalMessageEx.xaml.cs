@@ -21,7 +21,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         public string Message
         {
-            get => (string)base.GetValue(MessageProperty);
+            get => (string)GetValue(MessageProperty);
             set
             {
                 SetValue(MessageProperty, value);
