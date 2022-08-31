@@ -1,5 +1,5 @@
 # BaseColorSelectorInternalMessageEx
-Extended Color Selector Internal Message inherited from _[BaseInternalMessageEx](BaseInternalMessageEx.md)<[ColorSelectorInternalMessageCloseEventArgs](ColorSelectorInternalMessageCloseEventArgs.md)>_.
+Extended Base Color Selector Internal Message inherited from _[BaseInternalMessageEx](BaseInternalMessageEx.md)<[ColorSelectorInternalMessageCloseEventArgs](ColorSelectorInternalMessageCloseEventArgs.md)>_.
 
 namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 
