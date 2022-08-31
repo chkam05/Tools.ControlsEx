@@ -3,7 +3,7 @@ Colors selector internal message close event arguments inherited from _[Internal
 
 namespace: _chkam05.Tools.ControlsEx.Events_
 
-### Attributes:
+### Additional Attributes:
 
 | Type   | Name      | Description |
 |:-------|:----------|:------------|
@@ -11,7 +11,7 @@ namespace: _chkam05.Tools.ControlsEx.Events_
 | string | ColorName | Selected color name. |
 | string | ColorCode | Selected color hexadecimal code as string. |
 
-### Constructors:
+### Additional Constructors:
 
 | Type                  | Parameter Name | Description |
 |:----------------------|:---------------|:------------|
@@ -20,10 +20,10 @@ namespace: _chkam05.Tools.ControlsEx.Events_
 | string                | colorName      | Selected color name. |
 | string                | colorCode      | Selected color hexadecimal code as string. |
 
-### Events:
+### Additional Events:
 
 - _None_
 
-### Methods:
+### Additional Methods:
 
 - _None_

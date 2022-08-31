@@ -3,7 +3,7 @@ Inherited from _Control_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.ControlsEx.Indicators_
 
-### Attributes:
+### Additional Attributes:
 
 | Type                | Name           | Description |
 |:--------------------|:---------------|:------------|
@@ -18,11 +18,11 @@ namespace: _chkam05.Tools.ControlsEx.Indicators_
 | **Get only**        |||
 | bool                | IsPathEditable | Parameter that defines if geomatry path is editable. |
 
-### Constructors:
+### Additional Constructors:
 
 - _None_
 
-### Events:
+### Additional Events:
 
 | Type                          | Name                  | Description |
 |:------------------------------|:----------------------|:------------|
@@ -30,7 +30,7 @@ namespace: _chkam05.Tools.ControlsEx.Indicators_
 | IndicatorAnimationEnd         | AnimationEnded        | Event invoked after stopping animation. |
 | IndicatorAnimationFrameUpdate | AnimationFrameUpdated | Event invoked after updating visual indicator frame by frame. |
 
-### Methods:
+### Additional Methods:
 
 - **StartAnimation**  
 Start animating indicator.

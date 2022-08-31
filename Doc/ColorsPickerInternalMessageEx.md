@@ -3,6 +3,8 @@ Extended Colors Picker Internal Message inherited from _[BaseColorSelectorIntern
 
 namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 
+![ColorsPickerInternalMessageEx Example (Images/ColorsPickerInternalMessageEx.png)](../Images/ColorsPickerInternalMessageEx.png)
+
 ### Additional Attributes:
 
 | Type  | Name                                 | Description |

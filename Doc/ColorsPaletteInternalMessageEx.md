@@ -3,6 +3,8 @@ Extended Colors Palette Internal Message inherited from _[BaseColorSelectorInter
 
 namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 
+![ColorsPaletteInternalMessageEx Example (Images/ColorsPaletteInternalMessageEx.png)](../Images/ColorsPaletteInternalMessageEx.png)
+
 ### Additional Attributes:
 
 | Type                                   | Name                 | Description |

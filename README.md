@@ -7,7 +7,6 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 - **[ButtonEx](Doc/ButtonEx.md)** 
 - **[CheckBoxEx](Doc/CheckBoxEx.md)** 
 - **[ColorsPaletteEx](Doc/ColorsPaletteEx.md)** 
-  - **[ColorPaletteItem](Doc/ColorPaletteItem.md)** 
 - **[ColorsPickerEx](Doc/ColorsPickerEx.md)** 
 - **[ComboBoxEx](Doc/ComboBoxEx.md)** 
   - **[ComboBoxItemEx](Doc/ComboBoxItemEx.md)** 
@@ -31,22 +30,6 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
   - **[TreeViewItemEx](Doc/TreeViewItemEx.md)** 
 - **[UpDownTextBoxEx](Doc/UpDownTextBoxEx.md)** 
 
-## Additional Controls:
-
-- **[BaseIndicatorEx](Doc/BaseIndicatorEx.md)** 
-  - **[CircleSmoothIndicatorEx](Doc/CircleSmoothIndicatorEx.md)** 
-
-## Enum Configurations:
-
-- **[CheckBoxStyle](Doc/CheckBoxStyle.md)** 
-- **[ContentSide](Doc/ContentSide.md)** 
-- **[InternalMessageButtons](Doc/InternalMessageButtons.md)** 
-- **[InternalMessagesButtonsSet](Doc/InternalMessagesButtonsSet.md)** 
-- **[InternalMessageResult](Doc/InternalMessageResult.md)**
-- **[MarqueeTextAnimationPlace](Doc/MarqueeTextAnimationPlace.md)** 
-- **[TextBoxConversionType](Doc/TextBoxConversionType.md)** 
-- **[UpDownTextBoxConversionType](Doc/UpDownTextBoxConversionType.md)** 
-
 ## Internal Messages:
 
 - **[InternalMessagesExContainer](Doc/InternalMessagesExContainer.md)** 
@@ -58,53 +41,49 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
   - **[BaseProgressInternalMessageEx](Doc/BaseProgressInternalMessageEx.md)** 
     - **[ProgressInternalMessageEx](Doc/ProgressInternalMessageEx.md)** 
   - **[BaseColorSelectorInternalMessageEx](Doc/BaseColorSelectorInternalMessageEx.md)** 
-    - 
+    - **[ColorSelectorInternalMessageCloseEventArgs](Doc/ColorSelectorInternalMessageCloseEventArgs.md)** 
+	- **[ColorsPaletteInternalMessageEx](Doc/ColorsPaletteInternalMessageEx.md)** 
+  - **[BaseFilesSelectorInternalMessageEx](Doc/BaseFilesSelectorInternalMessageEx.md)** 
+    - **[FilesSelectorInternalMessageEx](Doc/FilesSelectorInternalMessageEx.md)** 
+
+## Additional Controls:
+
+- **[BaseIndicatorEx](Doc/BaseIndicatorEx.md)** 
+  - **[CircleSmoothIndicatorEx](Doc/CircleSmoothIndicatorEx.md)** 
+
+## Data Objects:
+
+- **[AHSLColor](Doc/AHSLColor.md)**  
+- **[ColorPaletteItem](Doc/ColorPaletteItem.md)** 
+- **[ColorsPaletteItems](Doc/ColorsPaletteItems.md)** 
+- **[InternalMessageFileItem](Doc/InternalMessageFileItem.md)** 
+- **[InternalMessageFileTreeItem](Doc/InternalMessageFileTreeItem.md)** 
+- **[InternalMessageFileType](Doc/InternalMessageFileType.md)** 
+
+## Enum Configurations:
+
+- **[CheckBoxStyle](Doc/CheckBoxStyle.md)** 
+- **[ContentSide](Doc/ContentSide.md)** 
+- **[InternalMessageButtons](Doc/InternalMessageButtons.md)** 
+- **[InternalMessagesButtonsSet](Doc/InternalMessagesButtonsSet.md)** 
+- **[InternalMessageResult](Doc/InternalMessageResult.md)** 
+- **[MarqueeTextAnimationPlace](Doc/MarqueeTextAnimationPlace.md)** 
+- **[TextBoxConversionType](Doc/TextBoxConversionType.md)** 
+- **[UpDownTextBoxConversionType](Doc/UpDownTextBoxConversionType.md)** 
 
 ## Events Arguments:
 
+- ColorsPaletteSelectionChangedEventArgs 
 - **[InternalMessageCloseEventArgs](Doc/InternalMessageCloseEventArgs.md)** 
   - **[ColorSelectorInternalMessageCloseEventArgs](Doc/ColorSelectorInternalMessageCloseEventArgs.md)** 
-- **[InternalMessageHideEventArgs](Doc/InternalMessageHideEventArgs.md)**
+  - **[FilesSelectorInternalMessageCloseEventArgs](Doc/FilesSelectorInternalMessageCloseEventArgs.md)** 
+- **[InternalMessageHideEventArgs](Doc/InternalMessageHideEventArgs.md)** 
+- TextModifiedEventArgs 
 
 ## Tools:
 
-- **[DispatcherInvokerEx](Doc/DispatcherInvokerEx.md)** 
-
-
-
-
-
-
-
-# OBSOLETE
-
-## List of Internal Messages Controls:
-
-- **[InternalMessagesEx](Doc/InternalMessagesEx.md)** 
-
-### Base Controls:
-
-- **[BaseAwaitInternalMessageEx](Doc/InternalMessagesEx.md)** 
-- **[BaseInternalMessageEx](Doc/InternalMessagesEx.md)** 
-- **[BaseProgressInternalMessageEx](Doc/InternalMessagesEx.md)** 
-
-### Interfaces:
-
-- **[IProgressInternalMessageEx](Doc/InternalMessagesEx.md)** 
-
-### Implemented Default Controls:
-
-- **[AwaitInternalMessageEx](Doc/InternalMessagesEx.md)** 
-- **[InternalMessageEx](Doc/InternalMessagesEx.md)** 
-- **[ProgressInternalMessageEx](Doc/InternalMessagesEx.md)** 
-
-## List of Additional Controls:
-
-- **[BaseIndicatorEx](Doc/IndicatorEx.md)** 
-- **[CircleSmoothIndicatorEx](Doc/IndicatorEx.md)** 
-
-## List of utilities:
-
+- **[ColorsUtilities](Doc/ColorsUtilities.md)** 
+- Delegates 
 - **[DispatcherInvokerEx](Doc/DispatcherInvokerEx.md)** 
 - **[MathUtilitiesEx](Doc/MathUtilitiesEx.md)** 
 
