@@ -73,17 +73,17 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 
 ## Events Arguments:
 
-- ColorsPaletteSelectionChangedEventArgs 
+- **[ColorsPaletteSelectionChangedEventArgs](Doc/ColorsPaletteSelectionChangedEventArgs.md)** 
 - **[InternalMessageCloseEventArgs](Doc/InternalMessageCloseEventArgs.md)** 
   - **[ColorSelectorInternalMessageCloseEventArgs](Doc/ColorSelectorInternalMessageCloseEventArgs.md)** 
   - **[FilesSelectorInternalMessageCloseEventArgs](Doc/FilesSelectorInternalMessageCloseEventArgs.md)** 
 - **[InternalMessageHideEventArgs](Doc/InternalMessageHideEventArgs.md)** 
-- TextModifiedEventArgs 
+- **[TextModifiedEventArgs](Doc/TextModifiedEventArgs.md)** 
 
 ## Tools:
 
 - **[ColorsUtilities](Doc/ColorsUtilities.md)** 
-- Delegates 
+- **[Delegates](Doc/Delegates.md)** 
 - **[DispatcherInvokerEx](Doc/DispatcherInvokerEx.md)** 
 - **[MathUtilitiesEx](Doc/MathUtilitiesEx.md)** 
 
