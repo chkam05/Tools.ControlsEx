@@ -41,8 +41,8 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
   - **[BaseProgressInternalMessageEx](Doc/BaseProgressInternalMessageEx.md)** 
     - **[ProgressInternalMessageEx](Doc/ProgressInternalMessageEx.md)** 
   - **[BaseColorSelectorInternalMessageEx](Doc/BaseColorSelectorInternalMessageEx.md)** 
-    - **[ColorSelectorInternalMessageCloseEventArgs](Doc/ColorSelectorInternalMessageCloseEventArgs.md)** 
 	- **[ColorsPaletteInternalMessageEx](Doc/ColorsPaletteInternalMessageEx.md)** 
+	- **[ColorsPickerInternalMessageEx](Doc/ColorsPickerInternalMessageEx.md)** 
   - **[BaseFilesSelectorInternalMessageEx](Doc/BaseFilesSelectorInternalMessageEx.md)** 
     - **[FilesSelectorInternalMessageEx](Doc/FilesSelectorInternalMessageEx.md)** 
 

@@ -3,6 +3,8 @@ Inherited from _[BaseIndicatorEx](BaseIndicatorEx.md)_ and _INotifyPropertyChang
 
 namespace: _chkam05.Tools.ControlsEx.Indicators_
 
+![CircleSmoothIndicatorEx Example (Images/IndicatorEx.png)](../Images/IndicatorEx.png)
+
 ### Additional Attributes:
 
 | Type           | Name                   | Description |
