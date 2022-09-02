@@ -9,7 +9,7 @@ CORRECTIONS:
 	* ComboBox
 		[v] Button icon color (+)
 	* ContextMenu
-		[ ] Sub menu item style fix
+		[v] Sub menu item style fix
 	* InternalMessages
 		[v] Button colors (+)
 		[v] Progressbar colors

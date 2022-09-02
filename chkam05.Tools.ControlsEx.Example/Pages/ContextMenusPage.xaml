@@ -71,13 +71,13 @@
                 <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
-            <Style x:Key="Conf_ContextMenuExStyle" TargetType="{x:Type controlsex:ContextMenuEx}">
+            <Style TargetType="{x:Type controlsex:ContextMenuEx}">
                 <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
-            <Style x:Key="Conf_ContextMenuItemExStyle" TargetType="{x:Type controlsex:ContextMenuItemEx}">
+            <Style TargetType="{x:Type controlsex:ContextMenuItemEx}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -240,9 +240,7 @@
                     PreviewMouseDown="OpenContextMenu_Click">
 
                     <controlsex:ButtonEx.ContextMenu>
-                        <controlsex:ContextMenuEx
-                            ItemContainerStyle="{StaticResource Conf_ContextMenuItemExStyle}"
-                            Style="{DynamicResource Conf_ContextMenuExStyle}">
+                        <controlsex:ContextMenuEx>
                             <controlsex:ContextMenuEx.Items>
 
                                 <controlsex:ContextMenuItemEx
