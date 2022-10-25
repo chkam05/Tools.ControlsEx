@@ -59,13 +59,33 @@
                 <Setter Property="Margin" Value="0,0,0,8"/>
             </Style>
 
+            <Style x:Key="StartStopAnimationButtonExStyle" TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="Background" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid
         Background="{Binding Configuration.BackgroundColorBrush}">
 
-        <controlsex:ScrollViewerEx>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controlsex:ScrollViewerEx
+            Grid.Row="0">
 
             <StackPanel
                 HorizontalAlignment="Left"
@@ -96,6 +116,7 @@
                     Text="Marquee from right outside to left outside"/>
 
                 <controlsex:MarqueeTextBlockEx
+                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
                     Text="This is example of MarqueeTextBoxEx component."/>
 
                 <TextBlock
@@ -103,6 +124,7 @@
                     Text="Marquee from right inside to left outside"/>
 
                 <controlsex:MarqueeTextBlockEx
+                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
                     MarqueeStartPosition="RightInside"
                     Text="This is example of MarqueeTextBoxEx component."/>
 
@@ -111,6 +133,7 @@
                     Text="Marquee from left inside to left outside"/>
 
                 <controlsex:MarqueeTextBlockEx
+                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
                     MarqueeStartPosition="LeftInside"
                     Text="This is example of MarqueeTextBoxEx component."/>
 
@@ -120,6 +143,7 @@
 
                 <controlsex:MarqueeTextBlockEx
                     MarqueeBouncing="True"
+                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
                     MarqueeStartPosition="RightInside"
                     MarqueeEndPosition="LeftInside"
                     Text="This is example of MarqueeTextBoxEx component."/>
@@ -130,6 +154,7 @@
 
                 <controlsex:MarqueeTextBlockEx
                     MarqueeBouncing="True"
+                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
                     MarqueeStartPosition="LeftInside"
                     MarqueeEndPosition="RightInside"
                     Text="This is example of MarqueeTextBoxEx component."/>
@@ -139,6 +164,7 @@
                     Text="Marquee from left outside to right outside"/>
 
                 <controlsex:MarqueeTextBlockEx
+                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
                     MarqueeStartPosition="LeftOutside"
                     MarqueeEndPosition="RightOutside"
                     Text="This is example of MarqueeTextBoxEx component."/>
@@ -148,6 +174,7 @@
                     Text="Marquee from left inside to right outside"/>
 
                 <controlsex:MarqueeTextBlockEx
+                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
                     MarqueeStartPosition="LeftInside"
                     MarqueeEndPosition="RightOutside"
                     Text="This is example of MarqueeTextBoxEx component."/>
@@ -155,7 +182,28 @@
             </StackPanel>
 
         </controlsex:ScrollViewerEx>
-        
+
+        <Grid
+            Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="1"
+                Orientation="Horizontal">
+
+                <controlsex:ButtonEx
+                    Content="Start/Stop Animation"
+                    Style="{StaticResource StartStopAnimationButtonExStyle}"
+                    Click="StartStopAnimationButtonEx_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+
     </Grid>
 
 </Page>

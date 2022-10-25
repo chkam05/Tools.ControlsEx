@@ -28,6 +28,20 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         //  VARIABLES
 
         public Configuration Configuration { get; private set; }
+        public bool _enableAnimation = true;
+
+
+        //  GETTERS & SETTERS
+
+        public bool EnableAnimation
+        {
+            get => _enableAnimation;
+            set
+            {
+                _enableAnimation = value;
+                OnPropertyChanged(nameof(EnableAnimation));
+            }
+        }
 
 
         //  METHODS
@@ -47,6 +61,15 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         #endregion CLASS METHODS
 
+        #region INTERACTION METHODS
+
+        private void StartStopAnimationButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            EnableAnimation = !EnableAnimation;
+        }
+
+        #endregion INTERACTION METHODS
+
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
 
         //  --------------------------------------------------------------------------------
@@ -61,6 +84,6 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         }
 
         #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS
-        
+
     }
 }

@@ -47,6 +47,9 @@
                 <Setter Property="HeaderBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HeaderBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HeaderForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HeaderFontFamily" Value="Verdena"/>
+                <Setter Property="HeaderFontSize" Value="14"/>
+                <Setter Property="HeaderFontWeight" Value="SemiBold"/>
                 <Setter Property="HeaderPadding" Value="4"/>
                 <Setter Property="Margin" Value="0,0,0,8"/>
                 <Setter Property="Padding" Value="8"/>

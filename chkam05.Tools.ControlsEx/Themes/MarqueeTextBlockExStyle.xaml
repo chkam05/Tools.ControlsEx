@@ -41,6 +41,7 @@
                             <EventTrigger RoutedEvent="TextBlock.Loaded">
                                 <BeginStoryboard>
                                     <Storyboard
+                                        x:Name="contentStoryboard"
                                         Storyboard.TargetName="contentText">
 
                                         <DoubleAnimation

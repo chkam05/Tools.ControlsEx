@@ -67,6 +67,11 @@
                                 Grid.Row="1"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
+                                TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontSize="{Binding HeaderFontSize, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 VerticalAlignment="Top"/>
                         </Grid>
                     </Border>
@@ -141,6 +146,11 @@
                                 Margin="4,0,0,0"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
+                                TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontSize="{Binding HeaderFontSize, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 VerticalAlignment="Center"/>
 
                         </Grid>
@@ -216,6 +226,11 @@
                                 Grid.Row="1"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
+                                TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontSize="{Binding HeaderFontSize, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 VerticalAlignment="Top"/>
                         </Grid>
                     </Border>
@@ -290,6 +305,11 @@
                                 Margin="4,0,0,0"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
+                                TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontSize="{Binding HeaderFontSize, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
