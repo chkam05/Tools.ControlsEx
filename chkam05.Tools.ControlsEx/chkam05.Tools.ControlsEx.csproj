@@ -146,6 +146,7 @@
     <Compile Include="Static\ContentSide.cs" />
     <Compile Include="Static\IndicatorType.cs" />
     <Compile Include="Static\MarqueeTextAnimationPlace.cs" />
+    <Compile Include="Static\MarqueeTextBlockState.cs" />
     <Compile Include="Static\StaticResources.cs" />
     <Compile Include="Static\TextBoxConversionType.cs" />
     <Compile Include="Static\UpDownTextBoxConversionType.cs" />

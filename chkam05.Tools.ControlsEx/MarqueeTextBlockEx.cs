@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media.Animation;
 
 namespace chkam05.Tools.ControlsEx
@@ -28,9 +29,9 @@ namespace chkam05.Tools.ControlsEx
 
         public static readonly DependencyProperty MarqueeEnabledProperty = DependencyProperty.Register(
             nameof(MarqueeEnabled),
-            typeof(bool),
+            typeof(MarqueeTextBlockState),
             typeof(MarqueeTextBlockEx),
-            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnMarqueeEnabledPropertyUpdate)));
+            new FrameworkPropertyMetadata(MarqueeTextBlockState.Enabled, new PropertyChangedCallback(OnMarqueeEnabledPropertyUpdate)));
 
         public static readonly DependencyProperty MarqueeStartPositionProperty = DependencyProperty.Register(
             nameof(MarqueeStartPosition),
@@ -68,10 +69,17 @@ namespace chkam05.Tools.ControlsEx
         private bool _loaded = false;
         private double _textPosition = 0;
 
-        public Storyboard Storyboard { get; private set; }
+        public Storyboard MarqueeStoryboard { get; private set; }
 
 
         //  GETTERS & SETTERS
+
+        public bool IsTextToLong
+        {
+            get => _contentTextBlock != null && _contentCanvas != null
+                ? _contentTextBlock.ActualWidth > _contentCanvas.ActualWidth
+                : false;
+        }
 
         public bool MarqueeBouncing
         {
@@ -93,9 +101,9 @@ namespace chkam05.Tools.ControlsEx
             }
         }
 
-        public bool MarqueeEnabled
+        public MarqueeTextBlockState MarqueeEnabled
         {
-            get => (bool)GetValue(MarqueeEnabledProperty);
+            get => (MarqueeTextBlockState)GetValue(MarqueeEnabledProperty);
             set
             {
                 SetValue(MarqueeEnabledProperty, value);
@@ -153,6 +161,8 @@ namespace chkam05.Tools.ControlsEx
         public MarqueeTextBlockEx()
         {
             Loaded += OnLoaded;
+            SizeChanged += OnSizeChanged;
+            TargetUpdated += OnTargetUpdated;
         }
 
         //  --------------------------------------------------------------------------------
@@ -173,12 +183,37 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Storyboard = CreateStoryboard();
+            MarqueeStoryboard = CreateStoryboard();
 
-            if (MarqueeEnabled)
+            if (MarqueeEnabled != MarqueeTextBlockState.Disabled)
                 RestartStoryboard();
 
             _loaded = true;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing size of control. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Size Changed Event Arguments. </param>
+        protected virtual void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (_loaded)
+                RecreateStoryboard();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing text. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Data Transfer Event Arguments. </param>
+        protected virtual void OnTargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            if (_loaded && MarqueeEnabled == MarqueeTextBlockState.WhenTextIsTooLong)
+            {
+                if (IsTextToLong)
+                    RestartStoryboard();
+                else
+                    StopStoryboard();
+            }
         }
 
         #endregion COMPONENT METHODS
@@ -205,9 +240,9 @@ namespace chkam05.Tools.ControlsEx
         {
             var control = sender as MarqueeTextBlockEx;
 
-            if (control != null && control.Storyboard != null)
+            if (control != null && control.MarqueeStoryboard != null)
             {
-                if ((bool)e.NewValue == true)
+                if ((MarqueeTextBlockState)e.NewValue != MarqueeTextBlockState.Disabled)
                 {
                     control.RestartStoryboard();
                 }
@@ -263,21 +298,27 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Recreate storyboard when it's parameters has been changed. </summary>
         private void RecreateStoryboard()
         {
             if (_loaded)
             {
-                if (Storyboard != null)
+                if (MarqueeStoryboard != null)
+                {
                     StopStoryboard();
+                    MarqueeStoryboard.Remove(_contentTextBlock);
+                }
 
-                Storyboard = CreateStoryboard();
+                MarqueeStoryboard = CreateStoryboard();
 
-                if (MarqueeEnabled)
+                if (MarqueeEnabled != MarqueeTextBlockState.Disabled)
                     RestartStoryboard();
             }
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Get marquee storyboard start position animation. </summary>
+        /// <returns> Start position of marquee animation. </returns>
         private double GetStartPosition()
         {
             var startPosition = MarqueeStartPosition;
@@ -307,6 +348,8 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Get marquee storyboard end position animation. </summary>
+        /// <returns> End position of marquee animation. </returns>
         private double GetEndPosition()
         {
             var startPosition = MarqueeEndPosition;
@@ -336,24 +379,39 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Check if text is too long. </summary>
+        /// <param name="canvasWidth"> Canvas width. </param>
+        /// <param name="textWidth"> Text width. </param>
+        /// <returns> True - text is too long; False - otherwise. </returns>
         private bool IsTextTooLong(double canvasWidth, double textWidth)
         {
             return textWidth >= canvasWidth;
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Restart currently created storyboard. </summary>
         private void RestartStoryboard()
         {
-            if (Storyboard != null)
-                Storyboard.Begin();
+            if (MarqueeStoryboard != null)
+            {
+                if (MarqueeEnabled == MarqueeTextBlockState.Enabled
+                        || (MarqueeEnabled == MarqueeTextBlockState.WhenTextIsTooLong && IsTextToLong))
+                    MarqueeStoryboard.Begin();
+                else
+                {
+                    MarqueeStoryboard.Stop();
+                    TextPosition = 0;
+                }
+            }
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Stop currently created storyboard. </summary>
         private void StopStoryboard()
         {
-            if (Storyboard != null)
+            if (MarqueeStoryboard != null)
             {
-                Storyboard.Stop();
+                MarqueeStoryboard.Stop();
                 TextPosition = 0;
             }
         }

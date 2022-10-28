@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Example.Data.Config;
+using chkam05.Tools.ControlsEx.Static;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,12 +29,12 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         //  VARIABLES
 
         public Configuration Configuration { get; private set; }
-        public bool _enableAnimation = true;
+        public MarqueeTextBlockState _enableAnimation = MarqueeTextBlockState.Enabled;
 
 
         //  GETTERS & SETTERS
 
-        public bool EnableAnimation
+        public MarqueeTextBlockState EnableAnimation
         {
             get => _enableAnimation;
             set
@@ -63,9 +64,26 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         #region INTERACTION METHODS
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking start stop animation ButtonEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         private void StartStopAnimationButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            EnableAnimation = !EnableAnimation;
+            switch (EnableAnimation)
+            {
+                case MarqueeTextBlockState.Disabled:
+                    EnableAnimation = MarqueeTextBlockState.Enabled;
+                    return;
+
+                case MarqueeTextBlockState.Enabled:
+                    EnableAnimation = MarqueeTextBlockState.WhenTextIsTooLong;
+                    return;
+
+                case MarqueeTextBlockState.WhenTextIsTooLong:
+                    EnableAnimation = MarqueeTextBlockState.Disabled;
+                    return;
+            }
         }
 
         #endregion INTERACTION METHODS
