@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5809F50-F7E2-4158-89ED-890BF8D81477}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>chkam05.Tools.ControlsEx</RootNamespace>
+    <AssemblyName>chkam05.Tools.ControlsEx</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=2.0.6.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.6\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.5.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.5.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ButtonEx.cs" />
+    <Compile Include="CheckBoxEx.cs" />
+    <Compile Include="ColorsPaletteEx.cs" />
+    <Compile Include="ColorsPickerEx.cs" />
+    <Compile Include="Colors\AHSLColor.cs" />
+    <Compile Include="Colors\ColorPaletteItem.cs" />
+    <Compile Include="Colors\ColorsPaletteItems.cs" />
+    <Compile Include="ComboBoxEx.cs" />
+    <Compile Include="ComboBoxItemEx.cs" />
+    <Compile Include="ContextMenuEx.cs" />
+    <Compile Include="ContextMenuItemEx.cs" />
+    <Compile Include="Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="Converters\CheckBoxStyleCheckMarkConverter.cs" />
+    <Compile Include="Converters\ColorSolidColorBrushConverter.cs" />
+    <Compile Include="Converters\CornerRadiusSideConverter.cs" />
+    <Compile Include="Converters\FileTypeItemExtensionsNameConverter.cs" />
+    <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\MarqueeEndPositionConverter.cs" />
+    <Compile Include="Converters\MarqueeStartPositionConverter.cs" />
+    <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
+    <Compile Include="Converters\IntToStringConverter.cs" />
+    <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Data\InternalMessageButtons.cs" />
+    <Compile Include="Data\InternalMessageFileItem.cs" />
+    <Compile Include="Data\InternalMessageFileTreeItem.cs" />
+    <Compile Include="Data\InternalMessageFileType.cs" />
+    <Compile Include="Data\InternalMessageResult.cs" />
+    <Compile Include="Data\InternalMessagesButtonsSet.cs" />
+    <Compile Include="Events\ColorSelectorInternalMessageCloseEventArgs.cs" />
+    <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
+    <Compile Include="Events\Delegates.cs" />
+    <Compile Include="Events\FilesSelectorInternalMessageCloseEventArgs.cs" />
+    <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
+    <Compile Include="Events\InternalMessageHideEventArgs.cs" />
+    <Compile Include="Events\TextModifiedEventArgs.cs" />
+    <Compile Include="ExpanderEx.cs" />
+    <Compile Include="Indicators\BaseIndicatorEx.cs" />
+    <Compile Include="Indicators\CircleSmoothIndicatorEx.cs" />
+    <Compile Include="InternalMessages\AwaitInternalMessageEx.xaml.cs">
+      <DependentUpon>AwaitInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\BaseAwaitInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\BaseColorSelectorInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\BaseFilesSelectorInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\BaseInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\BaseProgressInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\ColorsPaletteInternalMessageEx.xaml.cs">
+      <DependentUpon>ColorsPaletteInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\ColorsPickerInternalMessageEx.xaml.cs">
+      <DependentUpon>ColorsPickerInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\FilesSelectorInternalMessageEx.xaml.cs">
+      <DependentUpon>FilesSelectorInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\IInternalMessageEx.cs" />
+    <Compile Include="InternalMessages\InternalMessageEx.xaml.cs">
+      <DependentUpon>InternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\InternalMessagesExContainer.cs" />
+    <Compile Include="InternalMessages\ProgressInternalMessageEx.xaml.cs">
+      <DependentUpon>ProgressInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InternalMessages\StandardInternalMessageEx.cs" />
+    <Compile Include="ListViewEx.cs" />
+    <Compile Include="ListViewItemEx.cs" />
+    <Compile Include="MarqueeTextBlockEx.cs" />
+    <Compile Include="MenuEx.cs" />
+    <Compile Include="MenuItemEx.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ScrollBarEx.cs" />
+    <Compile Include="ScrollViewerEx.cs" />
+    <Compile Include="SliderEx.cs" />
+    <Compile Include="Static\CheckBoxStyle.cs" />
+    <Compile Include="Static\ContentSide.cs" />
+    <Compile Include="Static\IndicatorType.cs" />
+    <Compile Include="Static\MarqueeTextAnimationPlace.cs" />
+    <Compile Include="Static\MarqueeTextBlockState.cs" />
+    <Compile Include="Static\StaticResources.cs" />
+    <Compile Include="Static\TextBoxConversionType.cs" />
+    <Compile Include="Static\UpDownTextBoxConversionType.cs" />
+    <Compile Include="SwitcherEx.cs" />
+    <Compile Include="TabControlEx.cs" />
+    <Compile Include="TabItemEx.cs" />
+    <Compile Include="TextBlockEx.cs" />
+    <Compile Include="TextBoxEx.cs" />
+    <Compile Include="TreeViewEx.cs" />
+    <Compile Include="TreeViewItemEx.cs" />
+    <Compile Include="UpDownTextBoxEx.cs" />
+    <Compile Include="Utilities\ColorsUtilities.cs" />
+    <Compile Include="Utilities\DispatcherInvokerEx.cs" />
+    <Compile Include="Utilities\MathUtilitiesEx.cs" />
+    <Compile Include="Utilities\TextBoxExValidator.cs" />
+    <Compile Include="Utilities\UpDownTextBoxExValidator.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="chkam05.Tools.ControlsEx.nuspec" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="InternalMessages\AwaitInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalMessages\ColorsPaletteInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalMessages\ColorsPickerInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalMessages\FilesSelectorInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalMessages\InternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InternalMessages\ProgressInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ButtonExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CheckBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\CircleSmoothIndicatorExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ColorsPaletteExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ColorsPickerExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ComboBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ComboBoxItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ContextMenuExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ContextMenuItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ExpanderExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\GridViewColumnHeaderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\BaseIndicatorExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\BaseAwaitInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\BaseColorSelectorInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\BaseFilesSelectorInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\BaseProgressInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\InternalMessagesExContainerStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\InternalMessages\StandardInternalMessageExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ListViewExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ListViewItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MarqueeTextBlockExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MenuExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MenuItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ScrollBarExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ScrollViewerExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\SliderExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\SwitcherExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TabControlExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TabItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextBlockExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TreeViewExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TreeViewItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\UpDownTextBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ToDo.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets'))" />
+  </Target>
+</Project>
