@@ -35,48 +35,7 @@
                         HorizontalAlignment="Left"
                         Text="{TemplateBinding Text}"
                         VerticalAlignment="Center"
-                        Width="Auto">
-
-                        <TextBlock.Triggers>
-                            <EventTrigger RoutedEvent="TextBlock.Loaded">
-                                <BeginStoryboard>
-                                    <Storyboard
-                                        x:Name="contentStoryboard"
-                                        Storyboard.TargetName="contentText">
-
-                                        <DoubleAnimation
-                                            BeginTime="0:0:0"
-                                            Storyboard.TargetProperty="(Canvas.Left)"
-                                            AutoReverse="{Binding MarqueeBouncing, RelativeSource={RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}}"
-                                            Duration="{Binding MarqueeDuration, RelativeSource={RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}}"
-                                            RepeatBehavior="Forever">
-
-                                            <DoubleAnimation.From>
-                                                <MultiBinding Converter="{StaticResource StartPositionConverter}">
-                                                    <Binding Path="MarqueeStartPosition" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
-                                                    <Binding ElementName="border" Path="ActualWidth"/>
-                                                    <Binding ElementName="contentText" Path="ActualWidth"/>
-                                                    <Binding Path="WaitForText" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
-                                                </MultiBinding>
-                                            </DoubleAnimation.From>
-
-                                            <DoubleAnimation.To>
-                                                <MultiBinding Converter="{StaticResource EndPositionConverter}">
-                                                    <Binding Path="MarqueeEndPosition" RelativeSource="{RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
-                                                    <Binding ElementName="border" Path="ActualWidth"/>
-                                                    <Binding ElementName="contentText" Path="ActualWidth"/>
-                                                    <Binding Path="WaitForText" RelativeSource="{RelativeSource AncestorType={x:Type local:MarqueeTextBlockEx}}"/>
-                                                </MultiBinding>
-                                            </DoubleAnimation.To>
-
-                                        </DoubleAnimation>
-
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </TextBlock.Triggers>
-
-                    </TextBlock>
+                        Width="Auto"/>
 
                 </Canvas>
             </Grid>

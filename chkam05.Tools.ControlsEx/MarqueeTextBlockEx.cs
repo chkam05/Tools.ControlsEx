@@ -16,13 +16,15 @@ namespace chkam05.Tools.ControlsEx
             nameof(MarqueeBouncing),
             typeof(bool),
             typeof(MarqueeTextBlockEx),
-            new PropertyMetadata(true));
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnMarqueeAnyPropertyUpdate)));
 
         public static readonly DependencyProperty MarqueeDurationProperty = DependencyProperty.Register(
             nameof(MarqueeDuration),
             typeof(Duration),
             typeof(MarqueeTextBlockEx),
-            new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(5000))));
+            new FrameworkPropertyMetadata(
+                new Duration(TimeSpan.FromMilliseconds(5000)),
+                new PropertyChangedCallback(OnMarqueeAnyPropertyUpdate)));
 
         public static readonly DependencyProperty MarqueeEnabledProperty = DependencyProperty.Register(
             nameof(MarqueeEnabled),
@@ -34,19 +36,23 @@ namespace chkam05.Tools.ControlsEx
             nameof(MarqueeStartPosition),
             typeof(MarqueeTextAnimationPlace),
             typeof(MarqueeTextBlockEx),
-            new PropertyMetadata(MarqueeTextAnimationPlace.RightOutside));
+            new FrameworkPropertyMetadata(
+                MarqueeTextAnimationPlace.RightOutside,
+                new PropertyChangedCallback(OnMarqueeAnyPropertyUpdate)));
 
         public static readonly DependencyProperty MarqueeEndPositionProperty = DependencyProperty.Register(
             nameof(MarqueeEndPosition),
             typeof(MarqueeTextAnimationPlace),
             typeof(MarqueeTextBlockEx),
-            new PropertyMetadata(MarqueeTextAnimationPlace.LeftOutside));
+            new FrameworkPropertyMetadata(
+                MarqueeTextAnimationPlace.LeftOutside,
+                new PropertyChangedCallback(OnMarqueeAnyPropertyUpdate)));
 
         public static readonly DependencyProperty WaitForTextProperty = DependencyProperty.Register(
             nameof(WaitForText),
             typeof(bool),
             typeof(MarqueeTextBlockEx),
-            new PropertyMetadata(true));
+            new FrameworkPropertyMetadata(true, new PropertyChangedCallback(OnMarqueeAnyPropertyUpdate)));
 
 
         //  EVENTS
@@ -56,8 +62,13 @@ namespace chkam05.Tools.ControlsEx
 
         //  VARIABLES
 
-        private Storyboard _storyboard = null;
+        private Border _contentBorder = null;
+        private Canvas _contentCanvas = null;
+        private TextBlock _contentTextBlock = null;
+        private bool _loaded = false;
         private double _textPosition = 0;
+
+        public Storyboard Storyboard { get; private set; }
 
 
         //  GETTERS & SETTERS
@@ -138,6 +149,13 @@ namespace chkam05.Tools.ControlsEx
         #region CLASS METHODS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> MarqueeTextBlockEx class constructor. </summary>
+        public MarqueeTextBlockEx()
+        {
+            Loaded += OnLoaded;
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Static MarqueeTextBlockEx class constructor. </summary>
         static MarqueeTextBlockEx()
         {
@@ -147,13 +165,47 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion CLASS METHODS
 
+        #region COMPONENT METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after loading control. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected virtual void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Storyboard = CreateStoryboard();
+
+            if (MarqueeEnabled)
+                RestartStoryboard();
+
+            _loaded = true;
+        }
+
+        #endregion COMPONENT METHODS
+
         #region DEPENDENCY PROPERTIES UPDATE METHODS
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after updating any MarqueeTextBlockEx Property. </summary>
+        /// <param name="sender"> Dependency object. </param>
+        /// <param name="e"> Dependency Property Changed Event Arguments. </param>
+        private static void OnMarqueeAnyPropertyUpdate(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var control = sender as MarqueeTextBlockEx;
+
+            if (control != null)
+                control.RecreateStoryboard();
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after updating MarqueeEnabledProperty. </summary>
+        /// <param name="sender"> Dependency object. </param>
+        /// <param name="e"> Dependency Property Changed Event Arguments. </param>
         private static void OnMarqueeEnabledPropertyUpdate(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             var control = sender as MarqueeTextBlockEx;
 
-            if (control != null && control._storyboard != null)
+            if (control != null && control.Storyboard != null)
             {
                 if ((bool)e.NewValue == true)
                 {
@@ -183,26 +235,130 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS
 
-        #region STORYBOARD CONTROL METHODS
+        #region STORYBOARD METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Create marquee storyboard. </summary>
+        /// <returns> Marquee storyboard. </returns>
+        private Storyboard CreateStoryboard()
+        {
+            var storyboard = new Storyboard();
+
+            var doubleAnimation = new DoubleAnimation()
+            {
+                AutoReverse = MarqueeBouncing,
+                BeginTime = new TimeSpan(0, 0, 0),
+                Duration = MarqueeDuration,
+                RepeatBehavior = RepeatBehavior.Forever,
+
+                From = GetStartPosition(),
+                To = GetEndPosition()
+            };
+
+            storyboard.Children.Add(doubleAnimation);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath("(Canvas.Left)"));
+            Storyboard.SetTarget(doubleAnimation, _contentTextBlock);
+
+            return storyboard;
+        }
+
+        //  --------------------------------------------------------------------------------
+        private void RecreateStoryboard()
+        {
+            if (_loaded)
+            {
+                if (Storyboard != null)
+                    StopStoryboard();
+
+                Storyboard = CreateStoryboard();
+
+                if (MarqueeEnabled)
+                    RestartStoryboard();
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
+        private double GetStartPosition()
+        {
+            var startPosition = MarqueeStartPosition;
+            var canvasWidth = _contentBorder.ActualWidth;
+            var textWidth = _contentTextBlock.ActualWidth;
+            var waitForText = WaitForText;
+
+            switch (MarqueeStartPosition)
+            {
+                case MarqueeTextAnimationPlace.LeftOutside:
+                    return -textWidth;
+
+                case MarqueeTextAnimationPlace.LeftInside:
+                    return waitForText &&  IsTextTooLong(canvasWidth, textWidth)
+                        ? -(textWidth - canvasWidth)
+                        : 0;
+
+                case MarqueeTextAnimationPlace.RightInside:
+                    return waitForText && IsTextTooLong(canvasWidth, textWidth)
+                        ? 0
+                        : canvasWidth - textWidth;
+
+                case MarqueeTextAnimationPlace.RightOutside:
+                default:
+                    return canvasWidth;
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
+        private double GetEndPosition()
+        {
+            var startPosition = MarqueeEndPosition;
+            var canvasWidth = _contentBorder.ActualWidth;
+            var textWidth = _contentTextBlock.ActualWidth;
+            var waitForText = WaitForText;
+
+            switch (startPosition)
+            {
+                case MarqueeTextAnimationPlace.LeftOutside:
+                    return -textWidth;
+
+                case MarqueeTextAnimationPlace.LeftInside:
+                    return waitForText && IsTextTooLong(canvasWidth, textWidth)
+                        ? -(textWidth - canvasWidth)
+                        : 0;
+
+                case MarqueeTextAnimationPlace.RightInside:
+                    return waitForText && IsTextTooLong(canvasWidth, textWidth)
+                        ? 0
+                        : canvasWidth - textWidth;
+
+                case MarqueeTextAnimationPlace.RightOutside:
+                default:
+                    return canvasWidth;
+            }
+        }
+
+        //  --------------------------------------------------------------------------------
+        private bool IsTextTooLong(double canvasWidth, double textWidth)
+        {
+            return textWidth >= canvasWidth;
+        }
 
         //  --------------------------------------------------------------------------------
         private void RestartStoryboard()
         {
-            if (_storyboard != null)
-                _storyboard.Begin();
+            if (Storyboard != null)
+                Storyboard.Begin();
         }
 
         //  --------------------------------------------------------------------------------
         private void StopStoryboard()
         {
-            if (_storyboard != null)
+            if (Storyboard != null)
             {
-                _storyboard.Stop();
+                Storyboard.Stop();
                 TextPosition = 0;
             }
         }
 
-        #endregion STORYBOARD CONTROL METHODS
+        #endregion STORYBOARD METHODS
 
         #region TEMPLATE METHODS
 
@@ -214,10 +370,27 @@ namespace chkam05.Tools.ControlsEx
             //  Apply Template
             base.OnApplyTemplate();
 
-            _storyboard = GetStoryboard("contentStoryboard");
+            _contentBorder = GetBorder("border");
+            _contentCanvas = GetCanvas("contentCanvas");
+            _contentTextBlock = GetTextBlock("contentText");
+        }
 
-            if (!MarqueeEnabled)
-                StopStoryboard();
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get content Border from ContentTemplate. </summary>
+        /// <param name="canvasName"> Border name. </param>
+        /// <returns> Border or null. </returns>
+        protected Border GetBorder(string canvasName)
+        {
+            return this.Template.FindName(canvasName, this) as Border;
+        }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get content Canvas from ContentTemplate. </summary>
+        /// <param name="canvasName"> Canvas name. </param>
+        /// <returns> Border or null. </returns>
+        protected Canvas GetCanvas(string canvasName)
+        {
+            return this.Template.FindName(canvasName, this) as Canvas;
         }
 
         //  --------------------------------------------------------------------------------
