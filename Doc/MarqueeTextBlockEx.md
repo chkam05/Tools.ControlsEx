@@ -11,6 +11,7 @@ namespace: _chkam05.Tools.ControlsEx_
 |:--------------------------|:---------------------|:------------|
 | bool                      | MarqueeBouncing      | Enable text moving in two directions. |
 | Duration                  | MarqueeDuration      | Text moving speed. |
+| [MarqueeTextBlockState](MarqueeTextBlockState.md) | MarqueeEnabled | Specifies whether the animation is enabled or disabled. |
 | [MarqueeTextAnimationPlace](MarqueeTextAnimationPlace.md) | MarqueeStartPosition | Text moving start position. |
 | [MarqueeTextAnimationPlace](MarqueeTextAnimationPlace.md) | MarqueeEndPosition   | Text moving destination position. |
 | bool                      | WaitForText          | Wait for all text to be scrolled. |
