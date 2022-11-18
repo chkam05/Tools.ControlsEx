@@ -70,7 +70,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(ArrowMaxHeight),
             typeof(double),
             typeof(ExpanderEx),
-            new PropertyMetadata(double.NaN));
+            new PropertyMetadata(double.PositiveInfinity));
 
         public static readonly DependencyProperty ArrowMarginProperty = DependencyProperty.Register(
             nameof(ArrowMargin),
@@ -82,19 +82,19 @@ namespace chkam05.Tools.ControlsEx
             nameof(ArrowMaxWidth),
             typeof(double),
             typeof(ExpanderEx),
-            new PropertyMetadata(double.NaN));
+            new PropertyMetadata(double.PositiveInfinity));
 
         public static readonly DependencyProperty ArrowMinHeightProperty = DependencyProperty.Register(
             nameof(ArrowMinHeight),
             typeof(double),
             typeof(ExpanderEx),
-            new PropertyMetadata(double.NaN));
+            new PropertyMetadata(0d));
 
         public static readonly DependencyProperty ArrowMinWidthProperty = DependencyProperty.Register(
             nameof(ArrowMinWidth),
             typeof(double),
             typeof(ExpanderEx),
-            new PropertyMetadata(double.NaN));
+            new PropertyMetadata(0d));
 
         public static readonly DependencyProperty ArrowWidthProperty = DependencyProperty.Register(
             nameof(ArrowWidth),

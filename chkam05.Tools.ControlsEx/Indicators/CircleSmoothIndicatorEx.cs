@@ -28,7 +28,7 @@ namespace chkam05.Tools.ControlsEx.Indicators
             nameof(InnerArcEndPoint),
             typeof(Point),
             typeof(CircleSmoothIndicatorEx),
-            new PropertyMetadata(new Point(0, 0)));
+            new PropertyMetadata(new Point(0d, 0d)));
 
         public static readonly DependencyProperty InnerArcLargeProperty = DependencyProperty.Register(
             nameof(InnerArcLarge),
@@ -46,13 +46,13 @@ namespace chkam05.Tools.ControlsEx.Indicators
             nameof(InnerArcSize),
             typeof(Size),
             typeof(CircleSmoothIndicatorEx),
-            new PropertyMetadata(new Size(0, 0)));
+            new PropertyMetadata(new Size(0d, 0d)));
 
         public static readonly DependencyProperty InnerArcStartPointProperty = DependencyProperty.Register(
             nameof(InnerArcStartPoint),
             typeof(Point),
             typeof(CircleSmoothIndicatorEx),
-            new PropertyMetadata(new Point(0, 0)));
+            new PropertyMetadata(new Point(0d, 0d)));
 
         public static readonly DependencyProperty InnerArcSweepDirectionProperty = DependencyProperty.Register(
             nameof(InnerArcSweepDirection),
@@ -64,7 +64,7 @@ namespace chkam05.Tools.ControlsEx.Indicators
             nameof(OuterArcEndPoint),
             typeof(Point),
             typeof(CircleSmoothIndicatorEx),
-            new PropertyMetadata(new Point(0, 0)));
+            new PropertyMetadata(new Point(0d, 0d)));
 
         public static readonly DependencyProperty OuterArcLargeProperty = DependencyProperty.Register(
             nameof(OuterArcLarge),
@@ -82,13 +82,13 @@ namespace chkam05.Tools.ControlsEx.Indicators
             nameof(OuterArcSize),
             typeof(Size),
             typeof(CircleSmoothIndicatorEx),
-            new PropertyMetadata(new Size(0, 0)));
+            new PropertyMetadata(new Size(0d, 0d)));
 
         public static readonly DependencyProperty OuterArcStartPointProperty = DependencyProperty.Register(
             nameof(OuterArcStartPoint),
             typeof(Point),
             typeof(CircleSmoothIndicatorEx),
-            new PropertyMetadata(new Point(0, 0)));
+            new PropertyMetadata(new Point(0d, 0d)));
 
         public static readonly DependencyProperty OuterArcSweepDirectionProperty = DependencyProperty.Register(
             nameof(OuterArcSweepDirection),

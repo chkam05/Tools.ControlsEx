@@ -134,9 +134,9 @@
             </Trigger>
 
             <!-- No Pack Icon. -->
-            <DataTrigger Binding="{Binding IconKind}" Value="{x:Static materialDesign:PackIconKind.None}">
+            <Trigger Property="IconKind" Value="{x:Static materialDesign:PackIconKind.None}">
                 <Setter Property="Visibility" TargetName="packIcon" Value="Collapsed"/>
-            </DataTrigger>
+            </Trigger>
 
             <!-- Is Checkable. -->
             <Trigger Property="IsCheckable" Value="True">
@@ -346,9 +346,9 @@
             </Trigger>
 
             <!-- No Pack Icon. -->
-            <DataTrigger Binding="{Binding IconKind}" Value="{x:Static materialDesign:PackIconKind.None}">
+            <Trigger Property="IconKind" Value="{x:Static materialDesign:PackIconKind.None}">
                 <Setter Property="Visibility" TargetName="packIcon" Value="Collapsed"/>
-            </DataTrigger>
+            </Trigger>
 
             <!-- Is Checkable. -->
             <Trigger Property="IsCheckable" Value="True">
