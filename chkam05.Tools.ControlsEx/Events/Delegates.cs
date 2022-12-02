@@ -17,6 +17,59 @@ namespace chkam05.Tools.ControlsEx.Events
         public delegate void ColorsPalleteSelectionChanged(object sender, ColorsPaletteSelectionChangedEventArgs e);
 
 
+        //  FONTS
+
+        /// <summary> Method invoked after requesting background change in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Background Changed Request Event Arguments. </param>
+        public delegate void FontBackgroundChangedRequestEventHandler(object sender, FontBackgroundChangedRequestEventArgs e);
+
+        /// <summary> Method invoked after changing font in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Changed Event Arguments. </param>
+        public delegate void FontChangedEventHandler(object sender, FontChangedEventArgs e);
+
+        /// <summary> Method invoked after requesting color change in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Color Changed Request Event Arguments. </param>
+        public delegate void FontColorChangeRequestEventHandler(object sender, FontColorChangeRequestEventArgs e);
+
+        /// <summary> Method invoked after changing font size in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Size Changed Request Event Arguments. </param>
+        public delegate void FontSizeChangedEventHandler(object sender, FontSizeChangedEventArgs e);
+
+        /// <summary> Method invoked after changing font strike in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Strike Changed Event Arguments. </param>
+        public delegate void FontStrikeChangedEventHandler(object sender, FontStrikeChangedEventArgs e);
+
+        /// <summary> Method invoked after changing font style in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Style Changed Event Arguments. </param>
+        public delegate void FontStyleChangedEventHandler(object sender, FontStyleChangedEventArgs e);
+
+        /// <summary> Method invoked after changing font underline in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Underline Changed Event Arguments. </param>
+        public delegate void FontUnderlineChangedEventHandler(object sender, FontUnderlineChangedEventArgs e);
+
+        /// <summary> Method invoked after changing font weight in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Font Weight Changed Event Arguments. </param>
+        public delegate void FontWeightChangedEventHandler(object sender, FontWeightChangedEventArgs e);
+
+        /// <summary> Method invoked after changing text alignment in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Text Alignment Changed Event Arguments. </param>
+        public delegate void TextAlignmentChangedEventHandler(object sender, TextAlignmentChangedEventArgs e);
+
+        /// <summary> Method invoked after changing text data format in FontControllerEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Text Data Format Changed Event Arguments. </param>
+        public delegate void TextDataFormatChangedEventHandler(object sender, TextDataFormatChangedEventArgs e);
+
+
         //  INDICATORS
 
         /// <summary> Method invoked after animation finish in IndicatorEx. </summary>

@@ -16,6 +16,7 @@ namespace chkam05.Tools.ControlsEx.Static
 
         public static readonly Color ACCENT_COLOR = Color.FromArgb(255, 0, 120, 215);
         public static readonly Color ACCENT_COLOR_DRAGGING = Color.FromArgb(255, 0, 88, 183);
+        public static readonly Color ACCENT_COLOR_FOREGROUND = System.Windows.Media.Colors.White;
         public static readonly Color ACCENT_COLOR_MOUSE_OVER = Color.FromArgb(255, 32, 152, 247);
         public static readonly Color ACCENT_COLOR_PRESSED = Color.FromArgb(255, 0, 88, 183);
         public static readonly Color ACCENT_COLOR_SELECTED = Color.FromArgb(255, 0, 120, 215);

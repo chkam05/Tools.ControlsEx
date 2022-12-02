@@ -15,6 +15,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ContextMenuItemExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ExpanderExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/FontControllerExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewItemExStyle.xaml"/>
@@ -63,6 +64,8 @@
     <Style BasedOn="{StaticResource ContextMenuItemExStyle}" TargetType="{x:Type local:ContextMenuItemEx}"/>
     
     <Style BasedOn="{StaticResource ExpanderExStyle}" TargetType="{x:Type local:ExpanderEx}"/>
+
+    <Style BasedOn="{StaticResource FontControllerExStyle}" TargetType="{x:Type local:FontControllerEx}"/>
 
     <Style BasedOn="{StaticResource GridViewColumnHeaderStyle}" TargetType="{x:Type GridViewColumnHeader}"/>
 

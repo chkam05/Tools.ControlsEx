@@ -89,6 +89,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\ColorToHexConverter.cs" />
     <Compile Include="Data\Config\Configuration.cs" />
     <Compile Include="Data\Country.cs" />
     <Compile Include="Data\ExampleData.cs" />
@@ -112,6 +113,9 @@
     </Compile>
     <Compile Include="Pages\ExpandersPage.xaml.cs">
       <DependentUpon>ExpandersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FontAndRichTextBoxPage.xaml.cs">
+      <DependentUpon>FontAndRichTextBoxPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\IndicatorsPage.xaml.cs">
       <DependentUpon>IndicatorsPage.xaml</DependentUpon>
@@ -203,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ExpandersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FontAndRichTextBoxPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,257 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fontsConverters="clr-namespace:chkam05.Tools.ControlsEx.Converters.Fonts"
+    xmlns:converters="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
+
+    <fontsConverters:BoldCheckedConverter x:Key="BoldCheckedConverter"/>
+    <fontsConverters:ItalicCheckedConverter x:Key="ItalicCheckedConverter"/>
+    <fontsConverters:TextAlignmentConverter x:Key="TextAlignmentConverter"/>
+    <converters:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
+
+    <RelativeSource x:Key="RelativeFontControllerEx" AncestorType="{x:Type local:FontControllerEx}"/>
+
+    <Style x:Key="FontControllerEx.SpecialBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="2"/>
+        <Setter Property="Margin" Value="0,-4,0,0"/>
+        <Setter Property="Width" Value="24"/>
+    </Style>
+
+    <Style x:Key="FontControllerEx.ButtonExStyle" TargetType="{x:Type local:ButtonEx}">
+        <Setter Property="Background" Value="{Binding ButtonBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="Foreground" Value="{Binding ButtonForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="Height" Value="34"/>
+        <Setter Property="Margin" Value="0,0,4,0"/>
+        <Setter Property="MouseOverBackground" Value="{Binding MouseOverBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="PressedBackground" Value="{Binding PressedBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding PressedBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="PressedForeground" Value="{Binding PressedForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+    </Style>
+
+    <Style x:Key="FontControllerEx.SpecialButtonExStyle" BasedOn="{StaticResource FontControllerEx.ButtonExStyle}" TargetType="{x:Type local:ButtonEx}">
+        <Setter Property="ContentSide" Value="Bottom"/>
+        <Setter Property="Height" Value="34"/>
+        <Setter Property="IconMargin" Value="0"/>
+        <Setter Property="Margin" Value="0,0,4,0"/>
+        <Setter Property="Padding" Value="4,0,4,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
+
+    <Style x:Key="FontControllerEx.ComboBoxExStyle" TargetType="{x:Type local:ComboBoxEx}">
+        <Setter Property="Background" Value="{Binding InternalBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="BorderBrush" Value="{Binding InternalBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="Foreground" Value="{Binding InternalForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="DropDownBackground" Value="{Binding InternalBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="DropDownBorderBrush" Value="{Binding InternalBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="DropDownForeground" Value="{Binding InternalForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="DropDownIconBrush" Value="{Binding ButtonForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="DropDownMouseOverIconBrush" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="DropDownSelectedIconBrush" Value="{Binding PressedForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="Height" Value="34"/>
+        <Setter Property="MinWidth" Value="192"/>
+        <Setter Property="MouseOverBackground" Value="{Binding MouseOverBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedBackground" Value="{Binding InternalBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedBorderBrush" Value="{Binding InternalBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedForeground" Value="{Binding InternalForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="FontControllerEx.ComboBoxItemExStyle" TargetType="{x:Type local:ComboBoxItemEx}">
+        <Setter Property="Background" Value="{Binding ItemBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="BorderBrush" Value="{Binding ItemBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="Foreground" Value="{Binding ItemForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverBackground" Value="{Binding MouseOverBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedBackground" Value="{Binding SelectedBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedBorderBrush" Value="{Binding SelectedBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedForeground" Value="{Binding SelectedForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+    </Style>
+
+    <Style x:Key="FontControllerEx.UpDownTextBoxExStyle" TargetType="{x:Type local:UpDownTextBoxEx}">
+        <Setter Property="Background" Value="{Binding InternalBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="BorderBrush" Value="{Binding InternalBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonBackground" Value="{Binding ButtonBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonBorderBrush" Value="{Binding ButtonBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonForeground" Value="{Binding ButtonForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonMouseOverBackground" Value="{Binding MouseOverBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonMouseOverBorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonMouseOverForeground" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonPressedBackground" Value="{Binding PressedBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonPressedBorderBrush" Value="{Binding PressedBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="ButtonPressedForeground" Value="{Binding PressedForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="Foreground" Value="{Binding InternalForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="Height" Value="34"/>
+        <Setter Property="MinWidth" Value="48"/>
+        <Setter Property="MouseOverBackground" Value="{Binding MouseOverBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding MouseOverForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedBackground" Value="{Binding InternalBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedBorderBrush" Value="{Binding InternalBorderBrush, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedForeground" Value="{Binding InternalForeground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+        <Setter Property="SelectedTextBackground" Value="{Binding SelectedTextBackground, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+    </Style>
+
+    <DataTemplate x:Key="FontControllerEx.FontDataTemplate">
+        <TextBlock
+            Text="{Binding Name}"
+            TextAlignment="Left"
+            VerticalAlignment="Center"/>
+    </DataTemplate>
+
+    <ControlTemplate x:Key="FontControllerEx.ControlTemplate" TargetType="{x:Type local:FontControllerEx}">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            Margin="{TemplateBinding Margin}"
+            Padding="{TemplateBinding Padding}">
+
+            <WrapPanel
+                Orientation="Horizontal">
+
+                <local:ComboBoxEx
+                    x:Name="fontComboBox"
+                    ItemContainerStyle="{StaticResource FontControllerEx.ComboBoxItemExStyle}"
+                    ItemsSource="{Binding Fonts, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    ItemTemplate="{StaticResource FontControllerEx.FontDataTemplate}"
+                    Margin="0,0,8,0"
+                    SelectedItem="{Binding SelectedFont, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    Style="{StaticResource FontControllerEx.ComboBoxExStyle}"/>
+
+                <local:UpDownTextBoxEx
+                    x:Name="fontSizeUpDownTextBox"
+                    ConversionType="FloatingPoint"
+                    MaxValue="{Binding FontSizeMax, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    MinValue="{Binding FontSizeMin, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource FontControllerEx.UpDownTextBoxExStyle}"
+                    Text="{Binding SelectedFontSize, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+
+                <local:ButtonEx
+                    x:Name="fontBoldButton"
+                    IconKind="FormatBold"
+                    IsChecked="{Binding SelectedFontWeight, Converter={StaticResource BoldCheckedConverter}, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+
+                <local:ButtonEx
+                    x:Name="fontItalicButton"
+                    IconKind="FormatItalic"
+                    IsChecked="{Binding SelectedFontStyle, Converter={StaticResource ItalicCheckedConverter}, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+
+                <local:ButtonEx
+                    x:Name="fontUnderlineButton"
+                    IconKind="FormatUnderline"
+                    IsChecked="{Binding SelectedFontUnderline, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+
+                <local:ButtonEx
+                    x:Name="fontStrikeButton"
+                    IconKind="FormatStrikethrough"
+                    IsChecked="{Binding SelectedFontStrike, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+
+                <local:ButtonEx
+                    x:Name="textAlignLeftButton"
+                    IconKind="FormatAlignLeft"
+                    IsChecked="{Binding SelectedTextAlignment, 
+                        Converter={StaticResource TextAlignmentConverter}, 
+                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_LEFT},
+                        RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+
+                <local:ButtonEx
+                    x:Name="textAlignCenterButton"
+                    IconKind="FormatAlignCenter"
+                    IsChecked="{Binding SelectedTextAlignment, 
+                        Converter={StaticResource TextAlignmentConverter}, 
+                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_CENTER},
+                        RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+                
+                <local:ButtonEx
+                    x:Name="textAlignRightButton"
+                    IconKind="FormatAlignRight"
+                    IsChecked="{Binding SelectedTextAlignment, 
+                        Converter={StaticResource TextAlignmentConverter}, 
+                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_RIGHT},
+                        RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+
+                <local:ButtonEx
+                    x:Name="textAlignJustifyButton"
+                    IconKind="FormatAlignJustify"
+                    IsChecked="{Binding SelectedTextAlignment, 
+                        Converter={StaticResource TextAlignmentConverter}, 
+                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_JUSTIFY},
+                    RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    IsPressable="True"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
+
+                <local:ButtonEx
+                    x:Name="fontColorButton"
+                    IconKind="FormatColorText"
+                    Style="{StaticResource FontControllerEx.SpecialButtonExStyle}">
+
+                    <local:ButtonEx.Content>
+
+                        <Border
+                            Background="{Binding SelectedFontColorBrush, RelativeSource={StaticResource RelativeFontControllerEx}, Mode=OneWay}"
+                            Style="{StaticResource FontControllerEx.SpecialBorderStyle}"/>
+
+                    </local:ButtonEx.Content>
+
+                </local:ButtonEx>
+
+                <local:ButtonEx
+                    x:Name="fontBackgroundButton"
+                    IconKind="FormatColorFill"
+                    Margin="0,0,8,0"
+                    Style="{StaticResource FontControllerEx.SpecialButtonExStyle}">
+
+                    <local:ButtonEx.Content>
+
+                        <Border
+                            Background="{Binding SelectedFontBackgroundBrush, RelativeSource={StaticResource RelativeFontControllerEx}, Mode=OneWay}"
+                            Style="{StaticResource FontControllerEx.SpecialBorderStyle}"/>
+
+                    </local:ButtonEx.Content>
+
+                </local:ButtonEx>
+
+                <local:ComboBoxEx
+                    x:Name="textFormatDataComboBox"
+                    ItemContainerStyle="{StaticResource FontControllerEx.ComboBoxItemExStyle}"
+                    ItemsSource="{Binding DataFormats, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    SelectedItem="{Binding DataFormat, RelativeSource={StaticResource RelativeFontControllerEx}}"
+                    Style="{StaticResource FontControllerEx.ComboBoxExStyle}"/>
+
+            </WrapPanel>
+
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="FontControllerExStyle" TargetType="{x:Type local:FontControllerEx}">
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="Template" Value="{StaticResource FontControllerEx.ControlTemplate}"/>
+    </Style>
+
+</ResourceDictionary>

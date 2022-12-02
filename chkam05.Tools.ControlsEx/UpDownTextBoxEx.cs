@@ -559,8 +559,8 @@ namespace chkam05.Tools.ControlsEx
                 _lockUpdate = false;
             }
 
-            TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, _focused));
             base.OnTextChanged(e);
+            TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, _focused));
         }
 
         //  --------------------------------------------------------------------------------
