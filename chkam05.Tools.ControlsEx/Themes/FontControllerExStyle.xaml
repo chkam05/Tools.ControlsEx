@@ -124,43 +124,35 @@
                     ItemsSource="{Binding Fonts, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     ItemTemplate="{StaticResource FontControllerEx.FontDataTemplate}"
                     Margin="0,0,8,0"
-                    SelectedItem="{Binding SelectedFont, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     Style="{StaticResource FontControllerEx.ComboBoxExStyle}"/>
 
                 <local:UpDownTextBoxEx
                     x:Name="fontSizeUpDownTextBox"
                     ConversionType="FloatingPoint"
-                    MaxValue="{Binding FontSizeMax, RelativeSource={StaticResource RelativeFontControllerEx}}"
-                    MinValue="{Binding FontSizeMin, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     Margin="0,0,8,0"
-                    Style="{StaticResource FontControllerEx.UpDownTextBoxExStyle}"
-                    Text="{Binding SelectedFontSize, RelativeSource={StaticResource RelativeFontControllerEx}}"/>
+                    Style="{StaticResource FontControllerEx.UpDownTextBoxExStyle}"/>
 
                 <local:ButtonEx
                     x:Name="fontBoldButton"
                     IconKind="FormatBold"
-                    IsChecked="{Binding SelectedFontWeight, Converter={StaticResource BoldCheckedConverter}, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
 
                 <local:ButtonEx
                     x:Name="fontItalicButton"
                     IconKind="FormatItalic"
-                    IsChecked="{Binding SelectedFontStyle, Converter={StaticResource ItalicCheckedConverter}, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
 
                 <local:ButtonEx
                     x:Name="fontUnderlineButton"
                     IconKind="FormatUnderline"
-                    IsChecked="{Binding SelectedFontUnderline, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
 
                 <local:ButtonEx
                     x:Name="fontStrikeButton"
                     IconKind="FormatStrikethrough"
-                    IsChecked="{Binding SelectedFontStrike, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Margin="0,0,8,0"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
@@ -168,40 +160,24 @@
                 <local:ButtonEx
                     x:Name="textAlignLeftButton"
                     IconKind="FormatAlignLeft"
-                    IsChecked="{Binding SelectedTextAlignment, 
-                        Converter={StaticResource TextAlignmentConverter}, 
-                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_LEFT},
-                        RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
 
                 <local:ButtonEx
                     x:Name="textAlignCenterButton"
                     IconKind="FormatAlignCenter"
-                    IsChecked="{Binding SelectedTextAlignment, 
-                        Converter={StaticResource TextAlignmentConverter}, 
-                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_CENTER},
-                        RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
                 
                 <local:ButtonEx
                     x:Name="textAlignRightButton"
                     IconKind="FormatAlignRight"
-                    IsChecked="{Binding SelectedTextAlignment, 
-                        Converter={StaticResource TextAlignmentConverter}, 
-                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_RIGHT},
-                        RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
 
                 <local:ButtonEx
                     x:Name="textAlignJustifyButton"
                     IconKind="FormatAlignJustify"
-                    IsChecked="{Binding SelectedTextAlignment, 
-                        Converter={StaticResource TextAlignmentConverter}, 
-                        ConverterParameter={x:Static fontsConverters:TextAlignmentConverter.PARAM_JUSTIFY},
-                    RelativeSource={StaticResource RelativeFontControllerEx}}"
                     IsPressable="True"
                     Margin="0,0,8,0"
                     Style="{StaticResource FontControllerEx.ButtonExStyle}"/>
@@ -214,7 +190,8 @@
                     <local:ButtonEx.Content>
 
                         <Border
-                            Background="{Binding SelectedFontColorBrush, RelativeSource={StaticResource RelativeFontControllerEx}, Mode=OneWay}"
+                            x:Name="fontColorContainerBorder"
+                            Background="Transparent"
                             Style="{StaticResource FontControllerEx.SpecialBorderStyle}"/>
 
                     </local:ButtonEx.Content>
@@ -230,7 +207,8 @@
                     <local:ButtonEx.Content>
 
                         <Border
-                            Background="{Binding SelectedFontBackgroundBrush, RelativeSource={StaticResource RelativeFontControllerEx}, Mode=OneWay}"
+                            x:Name="fontBackgroundContainerBorder"
+                            Background="Transparent"
                             Style="{StaticResource FontControllerEx.SpecialBorderStyle}"/>
 
                     </local:ButtonEx.Content>
@@ -241,7 +219,6 @@
                     x:Name="textFormatDataComboBox"
                     ItemContainerStyle="{StaticResource FontControllerEx.ComboBoxItemExStyle}"
                     ItemsSource="{Binding DataFormats, RelativeSource={StaticResource RelativeFontControllerEx}}"
-                    SelectedItem="{Binding DataFormat, RelativeSource={StaticResource RelativeFontControllerEx}}"
                     Style="{StaticResource FontControllerEx.ComboBoxExStyle}"/>
 
             </WrapPanel>

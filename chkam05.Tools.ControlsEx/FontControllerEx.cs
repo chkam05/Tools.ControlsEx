@@ -293,9 +293,9 @@ namespace chkam05.Tools.ControlsEx
 
         public static readonly DependencyProperty SelectedTextAlignmentProperty = DependencyProperty.Register(
             nameof(SelectedTextAlignment),
-            typeof(TextAlignment?),
+            typeof(TextAlignment),
             typeof(FontControllerEx),
-            new PropertyMetadata(System.Windows.TextAlignment.Left));
+            new PropertyMetadata(TextAlignment.Left));
 
         #endregion Text Properties
 
@@ -322,6 +322,8 @@ namespace chkam05.Tools.ControlsEx
 
 
         //  VARIABLES
+
+        private bool _isUpdating = false;
 
 
         //  GETTERS & SETTERS
@@ -739,6 +741,7 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(SelectedFontBackgroundProperty, value);
                 OnPropertyChanged(nameof(SelectedFontBackground));
+                OnPropertyChanged(nameof(SelectedFontBackgroundBrush));
             }
         }
 
@@ -781,16 +784,13 @@ namespace chkam05.Tools.ControlsEx
             get => TextDataConversionMethod.FromDataFormat(DataFormat);
         }
 
-        public System.Windows.TextAlignment? SelectedTextAlignment
+        public TextAlignment SelectedTextAlignment
         {
-            get => (System.Windows.TextAlignment?)GetValue(SelectedTextAlignmentProperty);
+            get => (TextAlignment)GetValue(SelectedTextAlignmentProperty);
             set
             {
-                if (value.HasValue)
-                {
-                    SetValue(SelectedTextAlignmentProperty, value);
-                    OnPropertyChanged(nameof(SelectedTextAlignment));
-                }
+                SetValue(SelectedTextAlignmentProperty, value);
+                OnPropertyChanged(nameof(SelectedTextAlignment));
             }
         }
 
@@ -816,6 +816,7 @@ namespace chkam05.Tools.ControlsEx
         public FontControllerEx()
         {
             DataContext = this;
+            Loaded += OnLoad;
         }
 
         //  --------------------------------------------------------------------------------
@@ -829,6 +830,12 @@ namespace chkam05.Tools.ControlsEx
         #endregion CLASS METHODS
 
         #region INTERACTION METHODS
+
+        //  --------------------------------------------------------------------------------
+        protected virtual void OnLoad(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         //  --------------------------------------------------------------------------------
         protected virtual void OnFontChange(object sender, SelectionChangedEventArgs e)
