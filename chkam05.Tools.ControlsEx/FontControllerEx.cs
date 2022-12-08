@@ -832,73 +832,108 @@ namespace chkam05.Tools.ControlsEx
         #region INTERACTION METHODS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after loading font controller. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnLoad(object sender, RoutedEventArgs e)
         {
 
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing font family in comboCox. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Selection Changed Event Arguments. </param>
         protected virtual void OnFontChange(object sender, SelectionChangedEventArgs e)
         {
             FontChanged?.Invoke(this, new FontChangedEventArgs(SelectedFont));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing font size in upDownTextBox. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Text Modified Event Arguments. </param>
         protected virtual void OnFontSizeChange(object sender, TextModifiedEventArgs e)
         {
             FontSizeChanged?.Invoke(this, new FontSizeChangedEventArgs(SelectedFontSize));
-            var x = SelectedFontSize;
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on bold button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnFontBoldChange(object sender, RoutedEventArgs e)
         {
             FontWeightChanged?.Invoke(this, new FontWeightChangedEventArgs(SelectedFontWeight));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on italic button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnFontItalicChange(object sender, RoutedEventArgs e)
         {
             FontStyleChanged?.Invoke(this, new FontStyleChangedEventArgs(SelectedFontStyle));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on underline button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnFontUnderlineChange(object sender, RoutedEventArgs e)
         {
             FontUnderlineChanged?.Invoke(this, new FontUnderlineChangedEventArgs(SelectedFontUnderline));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on strike button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnFontStrikeChange(object sender, RoutedEventArgs e)
         {
             FontStrikeChanged?.Invoke(this, new FontStrikeChangedEventArgs(SelectedFontStrike));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on text alignment left button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnTextAlignmentLeftChange(object sender, RoutedEventArgs e)
         {
             TextAlignmentChanged?.Invoke(this, new TextAlignmentChangedEventArgs(TextAlignment.Left));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on text alignment center button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnTextAlignmentCenterChange(object sender, RoutedEventArgs e)
         {
             TextAlignmentChanged?.Invoke(this, new TextAlignmentChangedEventArgs(TextAlignment.Center));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on text alignment right button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnTextAlignmentRightChange(object sender, RoutedEventArgs e)
         {
             TextAlignmentChanged?.Invoke(this, new TextAlignmentChangedEventArgs(TextAlignment.Right));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on text alignment justify button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnTextAlignmentJustifyChange(object sender, RoutedEventArgs e)
         {
             TextAlignmentChanged?.Invoke(this, new TextAlignmentChangedEventArgs(TextAlignment.Justify));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on text change font background button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnRequestFontBackgroundChange(object sender, RoutedEventArgs e)
         {
             FontBackgroundChangeRequested?.Invoke(
@@ -906,6 +941,9 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking on text change font color button. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
         protected virtual void OnRequestFontColorChange(object sender, RoutedEventArgs e)
         {
             FontColorChangeRequested?.Invoke(
@@ -913,6 +951,9 @@ namespace chkam05.Tools.ControlsEx
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing text format data in comboCox. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Selection Changed Event Arguments. </param>
         protected virtual void OnTextFormatDataChange(object sender, SelectionChangedEventArgs e)
         {
             TextDataFormatChanged?.Invoke(this, new TextDataFormatChangedEventArgs(DataFormat));
