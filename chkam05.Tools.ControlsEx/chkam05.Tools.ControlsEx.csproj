@@ -139,6 +139,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RichTextBoxEx.cs" />
     <Compile Include="ScrollBarEx.cs" />
     <Compile Include="ScrollViewerEx.cs" />
     <Compile Include="SliderEx.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="UpDownTextBoxEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\DispatcherInvokerEx.cs" />
+    <Compile Include="Utilities\EasyRichTextManager.cs" />
     <Compile Include="Utilities\MathUtilitiesEx.cs" />
     <Compile Include="Utilities\TextBoxExValidator.cs" />
     <Compile Include="Utilities\UpDownTextBoxExValidator.cs" />
@@ -292,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MenuItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\RichTextBoxExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,6 +35,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         private const string MAINMENU_INDICATORS_ITEM = "Indicators";
         private const string MAINMENU_INTERNALMESSAGES_ITEM = "Internal Messages";
         private const string MAINMENU_LISTVIEWS_ITEM = "ListViews";
+        private const string MAINMENU_RICHTEXTBOX_ITEM = "RichTextBox";
         private const string MAINMENU_SLIDERS_ITEM = "Sliders";
         private const string MAINMENU_SWITCHERS_ITEM = "Switchers";
         private const string MAINMENU_TABCONTROLS_ITEM = "TabControls";
@@ -150,6 +151,10 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                             PagesManager.LoadSinglePage(new ListViewsPage());
                             break;
 
+                        case MAINMENU_RICHTEXTBOX_ITEM:
+                            PagesManager.LoadSinglePage(new RichTextBoxPage());
+                            break;
+
                         case MAINMENU_SLIDERS_ITEM:
                             PagesManager.LoadSinglePage(new SlidersPage());
                             break;
@@ -202,6 +207,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                 new MenuItem(MAINMENU_INDICATORS_ITEM, PackIconKind.Loading),
                 new MenuItem(MAINMENU_INTERNALMESSAGES_ITEM, PackIconKind.Application),
                 new MenuItem(MAINMENU_LISTVIEWS_ITEM, PackIconKind.ViewList),
+                new MenuItem(MAINMENU_RICHTEXTBOX_ITEM, PackIconKind.TextBoxEdit),
                 new MenuItem(MAINMENU_SLIDERS_ITEM, PackIconKind.Equaliser),
                 new MenuItem(MAINMENU_SWITCHERS_ITEM, PackIconKind.ToggleSwitchOff),
                 new MenuItem(MAINMENU_TABCONTROLS_ITEM, PackIconKind.Tab),

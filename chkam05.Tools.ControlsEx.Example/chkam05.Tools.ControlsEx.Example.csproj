@@ -125,6 +125,9 @@
     <Compile Include="Pages\ListViewsPage.xaml.cs">
       <DependentUpon>ListViewsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RichTextBoxPage.xaml.cs">
+      <DependentUpon>RichTextBoxPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -219,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ListViewsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RichTextBoxPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

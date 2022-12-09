@@ -21,6 +21,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MarqueeTextBlockExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RichTextBoxExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/SliderExStyle.xaml"/>
@@ -75,6 +76,8 @@
     <Style BasedOn="{StaticResource MenuExStyle}" TargetType="{x:Type local:MenuEx}"/>
     
     <Style BasedOn="{StaticResource MenuItemExStyle}" TargetType="{x:Type local:MenuItemEx}"/>
+
+    <Style BasedOn="{StaticResource RichTextBoxExStyle}" TargetType="{x:Type local:RichTextBoxEx}"/>
     
     <Style BasedOn="{StaticResource ScrollBarExStyle}" TargetType="{x:Type local:ScrollBarEx}"/>
     
