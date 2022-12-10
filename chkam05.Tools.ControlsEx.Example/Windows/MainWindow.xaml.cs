@@ -32,6 +32,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         private const string MAINMENU_COMBOBOXS_ITEM = "ComboBoxes";
         private const string MAINMENU_CONTEXTMENUS_ITEM = "ContextMenus";
         private const string MAINMENU_EXPANDERS_ITEM = "Expanders";
+        private const string MAINMENU_FONT_RICHTEXTBOX_ITEM = "Font & RichTextBox";
         private const string MAINMENU_INDICATORS_ITEM = "Indicators";
         private const string MAINMENU_INTERNALMESSAGES_ITEM = "Internal Messages";
         private const string MAINMENU_LISTVIEWS_ITEM = "ListViews";
@@ -138,6 +139,10 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                             PagesManager.LoadSinglePage(new ExpandersPage());
                             break;
 
+                        case MAINMENU_FONT_RICHTEXTBOX_ITEM:
+                            PagesManager.LoadSinglePage(new FontAndRichTextBoxPage());
+                            break;
+
                         case MAINMENU_INDICATORS_ITEM:
                             PagesManager.LoadSinglePage(new IndicatorsPage());
                             break;
@@ -199,6 +204,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                 new MenuItem(MAINMENU_COMBOBOXS_ITEM, PackIconKind.ChevronDoubleDown),
                 new MenuItem(MAINMENU_CONTEXTMENUS_ITEM, PackIconKind.MenuOpen),
                 new MenuItem(MAINMENU_EXPANDERS_ITEM, PackIconKind.ArrowExpandDown),
+                new MenuItem(MAINMENU_FONT_RICHTEXTBOX_ITEM, PackIconKind.TextBoxEdit),
                 new MenuItem(MAINMENU_INDICATORS_ITEM, PackIconKind.Loading),
                 new MenuItem(MAINMENU_INTERNALMESSAGES_ITEM, PackIconKind.Application),
                 new MenuItem(MAINMENU_LISTVIEWS_ITEM, PackIconKind.ViewList),

@@ -72,27 +72,45 @@
     <Compile Include="Converters\CheckBoxStyleCheckMarkConverter.cs" />
     <Compile Include="Converters\ColorSolidColorBrushConverter.cs" />
     <Compile Include="Converters\CornerRadiusSideConverter.cs" />
+    <Compile Include="Converters\DoubleToStringConverter.cs" />
     <Compile Include="Converters\FileTypeItemExtensionsNameConverter.cs" />
+    <Compile Include="Converters\Fonts\BoldCheckedConverter.cs" />
+    <Compile Include="Converters\Fonts\ItalicCheckedConverter.cs" />
+    <Compile Include="Converters\Fonts\TextAlignmentConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\MarqueeEndPositionConverter.cs" />
     <Compile Include="Converters\MarqueeStartPositionConverter.cs" />
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\IntToStringConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Data\FontFamilyInfo.cs" />
     <Compile Include="Data\InternalMessageButtons.cs" />
     <Compile Include="Data\InternalMessageFileItem.cs" />
     <Compile Include="Data\InternalMessageFileTreeItem.cs" />
     <Compile Include="Data\InternalMessageFileType.cs" />
     <Compile Include="Data\InternalMessageResult.cs" />
     <Compile Include="Data\InternalMessagesButtonsSet.cs" />
+    <Compile Include="Data\TextDataConversionMethod.cs" />
+    <Compile Include="Data\TextDataFormat.cs" />
     <Compile Include="Events\ColorSelectorInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
     <Compile Include="Events\Delegates.cs" />
     <Compile Include="Events\FilesSelectorInternalMessageCloseEventArgs.cs" />
+    <Compile Include="Events\FontBackgroundChangedRequestEventArgs.cs" />
+    <Compile Include="Events\FontChangedEventArgs.cs" />
+    <Compile Include="Events\FontColorChangeRequestEventArgs.cs" />
+    <Compile Include="Events\FontSizeChangedEventArgs.cs" />
+    <Compile Include="Events\FontStrikeChangedEventArgs.cs" />
+    <Compile Include="Events\FontStyleChangedEventArgs.cs" />
+    <Compile Include="Events\FontUnderlineChangedEventArgs.cs" />
+    <Compile Include="Events\FontWeightChangedEventArgs.cs" />
     <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\InternalMessageHideEventArgs.cs" />
+    <Compile Include="Events\TextAlignmentChangedEventArgs.cs" />
+    <Compile Include="Events\TextDataFormatChangedEventArgs.cs" />
     <Compile Include="Events\TextModifiedEventArgs.cs" />
     <Compile Include="ExpanderEx.cs" />
+    <Compile Include="FontControllerEx.cs" />
     <Compile Include="Indicators\BaseIndicatorEx.cs" />
     <Compile Include="Indicators\CircleSmoothIndicatorEx.cs" />
     <Compile Include="InternalMessages\AwaitInternalMessageEx.xaml.cs">
@@ -160,6 +178,7 @@
     <Compile Include="UpDownTextBoxEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\DispatcherInvokerEx.cs" />
+    <Compile Include="Utilities\FontUtilities.cs" />
     <Compile Include="Utilities\MathUtilitiesEx.cs" />
     <Compile Include="Utilities\TextBoxExValidator.cs" />
     <Compile Include="Utilities\UpDownTextBoxExValidator.cs" />
@@ -236,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ExpanderExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\FontControllerExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
