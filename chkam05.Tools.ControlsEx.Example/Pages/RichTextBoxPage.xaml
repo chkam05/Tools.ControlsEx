@@ -10,7 +10,8 @@
     
     d:DesignWidth="800"
     
-    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    Loaded="Page_Loaded">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -19,7 +20,21 @@
             </ResourceDictionary.MergedDictionaries>
 
             <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+            
+            <!-- STORYBOARDS -->
 
+            <Storyboard x:Key="ShowHideFormattingGrid" Completed="ShowHideFormattingGridStoryboard_Completed">
+                <ThicknessAnimationUsingKeyFrames
+                    BeginTime="00:00:0"
+                    Duration="00:00:0.25"
+                    Storyboard.TargetName="fontFormatGrid"
+                    Storyboard.TargetProperty="Margin">
+                    <ThicknessAnimationUsingKeyFrames.KeyFrames>
+                        <LinearThicknessKeyFrame Value="{Binding Path=FontFormatGridMargin, Mode=TwoWay}"/>
+                    </ThicknessAnimationUsingKeyFrames.KeyFrames>
+                </ThicknessAnimationUsingKeyFrames>
+            </Storyboard>
+            
             <!-- STYLES -->
 
             <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
@@ -39,6 +54,79 @@
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
+            <Style TargetType="{x:Type controlsex:ButtonEx}">
+                <Setter Property="Background" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:RichTextBoxEx}">
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedTextBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:ComboBoxEx}">
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownBackground" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownIconBrush" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownMouseOverIconBrush" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="DropDownSelectedIconBrush" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:ComboBoxItemEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:UpDownTextBoxEx}">
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonPressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonPressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedTextBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
         </ResourceDictionary>
     </Page.Resources>
 
@@ -49,7 +137,6 @@
             Margin="8">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -69,10 +156,106 @@
             </StackPanel>
 
             <controlsex:RichTextBoxEx
-                Grid.Row="2"
+                Grid.Row="1"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
+                VerticalAlignment="Stretch"
+                EasyTextManager="{Binding EasyTextManager}"/>
 
         </Grid>
+
+        <Grid
+            HorizontalAlignment="Right">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                Orientation="Horizontal"
+                VerticalAlignment="Top">
+
+                <controlsex:ButtonEx
+                    Content="Format"
+                    IconKind="FormatFont"
+                    Margin="8"
+                    Click="FontFormatButtonEx_Click"/>
+
+            </StackPanel>
+
+            <Grid
+                x:Name="fontFormatGrid"
+                Grid.Column="1"
+                Margin="0,0,-256,0"
+                Width="256">
+
+                <Border
+                    Background="{Binding Configuration.BackgroundColorBrush}"
+                    BorderBrush="{Binding Configuration.AccentColorBrush}"
+                    BorderThickness="1"
+                    CornerRadius="4"
+                    Margin="0,8,8,8">
+
+                    <controlsex:ScrollViewerEx
+                        Padding="4">
+
+                        <StackPanel
+                            Orientation="Vertical">
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Font face."/>
+
+                            <controlsex:ComboBoxEx
+                                ItemsSource="{Binding FontsCollection}"
+                                Margin="0,0,0,4"
+                                SelectedItem="{Binding EditorFontFamilyInfo}"/>
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Font size."/>
+
+                            <controlsex:UpDownTextBoxEx
+                                Margin="0,0,0,4"
+                                MaxValue="{Binding EditorFontSizeMax}"
+                                MinValue="{Binding EditorFontSizeMin}"
+                                Text="{Binding EditorFontSize}"/>
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Font style."/>
+
+                            <controlsex:ComboBoxEx
+                                ItemsSource="{Binding FontStylesCollection}"
+                                Margin="0,0,0,4"
+                                SelectedItem="{Binding EditorFontStyle}"/>
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Font weight."/>
+
+                            <controlsex:ComboBoxEx
+                                ItemsSource="{Binding FontWeightsCollection}"
+                                Margin="0,0,0,4"
+                                SelectedItem="{Binding EditorFontWeight}"/>
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Text alignment."/>
+
+                            <controlsex:ComboBoxEx
+                                ItemsSource="{Binding TextAlignmentsCollection}"
+                                Margin="0,0,0,4"
+                                SelectedItem="{Binding EditorTextAlignment}"/>
+
+                        </StackPanel>
+
+                    </controlsex:ScrollViewerEx>
+                </Border>
+
+            </Grid>
+        </Grid>
+
     </Grid>
 </Page>

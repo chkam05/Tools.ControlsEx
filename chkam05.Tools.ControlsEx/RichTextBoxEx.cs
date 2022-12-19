@@ -55,6 +55,20 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion Hyperlinks Properties
 
+        public static readonly DependencyProperty EasyTextManagerProperty = DependencyProperty.Register(
+            nameof(EasyTextManager),
+            typeof(EasyRichTextManager),
+            typeof(RichTextBoxEx),
+            new PropertyMetadata(
+                new EasyRichTextManager(),
+                new PropertyChangedCallback((s, e) =>
+                {
+                    var richTextBoxEx = (RichTextBoxEx)s;
+                    var easyTextManager = (EasyRichTextManager)e.NewValue;
+
+                    easyTextManager.Setup(richTextBoxEx);
+                })));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -69,7 +83,18 @@ namespace chkam05.Tools.ControlsEx
 
         //  VARIABLES
 
-        public EasyRichTextManager EasyTextManager { get; private set; }
+        public EasyRichTextManager EasyTextManager
+        {
+            get => (EasyRichTextManager)GetValue(EasyTextManagerProperty);
+            set
+            {
+                if (value.RichTextBox == null)
+                    value.Setup(this);
+
+                SetValue(EasyTextManagerProperty, value);
+                OnPropertyChanged(nameof(EasyTextManager));
+            }
+        }
 
 
         //  GETTERS & SETTERS
@@ -151,7 +176,7 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> RichTextBoxEx class constructor. </summary>
         public RichTextBoxEx() : base()
         {
-            EasyTextManager = new EasyRichTextManager(this);
+            //
         }
 
         //  --------------------------------------------------------------------------------

@@ -79,6 +79,8 @@
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\IntToStringConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Data\EasyRichTextFormatting.cs" />
+    <Compile Include="Data\FontFamilyInfo.cs" />
     <Compile Include="Data\InternalMessageButtons.cs" />
     <Compile Include="Data\InternalMessageFileItem.cs" />
     <Compile Include="Data\InternalMessageFileTreeItem.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Events\ColorSelectorInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
     <Compile Include="Events\Delegates.cs" />
+    <Compile Include="Events\EasyRichTextSelectionChanged.cs" />
     <Compile Include="Events\FilesSelectorInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\InternalMessageHideEventArgs.cs" />
@@ -162,6 +165,7 @@
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\DispatcherInvokerEx.cs" />
     <Compile Include="Utilities\EasyRichTextManager.cs" />
+    <Compile Include="Utilities\FontUtilities.cs" />
     <Compile Include="Utilities\MathUtilitiesEx.cs" />
     <Compile Include="Utilities\TextBoxExValidator.cs" />
     <Compile Include="Utilities\UpDownTextBoxExValidator.cs" />
