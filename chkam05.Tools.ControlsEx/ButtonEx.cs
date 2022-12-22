@@ -118,6 +118,18 @@ namespace chkam05.Tools.ControlsEx
             typeof(ButtonEx),
             new PropertyMetadata(ContentSide.Right));
 
+        public static readonly DependencyProperty IsCheckedProperty = DependencyProperty.Register(
+            nameof(IsChecked),
+            typeof(bool),
+            typeof(ButtonEx),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty IsPressableProperty = DependencyProperty.Register(
+            nameof(IsPressable),
+            typeof(bool),
+            typeof(ButtonEx),
+            new PropertyMetadata(false));
+
 
         //  EVENTS
 
@@ -294,6 +306,26 @@ namespace chkam05.Tools.ControlsEx
             }
         }
 
+        public bool IsChecked
+        {
+            get => (bool)GetValue(IsCheckedProperty);
+            set
+            {
+                SetValue(IsCheckedProperty, IsPressable ? value : false);
+                OnPropertyChanged(nameof(IsChecked));
+            }
+        }
+
+        public bool IsPressable
+        {
+            get => (bool)GetValue(IsPressableProperty);
+            set
+            {
+                SetValue(IsPressableProperty, value);
+                OnPropertyChanged(nameof(IsPressable));
+            }
+        }
+
 
         //  METHODS
 
@@ -308,6 +340,22 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion CLASS METHODS
+
+        #region INTERACTION METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after button click. </summary>
+        /// <param name="sender"> Object from which method has been invoked. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        protected override void OnClick()
+        {
+            if (IsPressable)
+                IsChecked = !IsChecked;
+
+            base.OnClick();
+        }
+
+        #endregion INTERACTION METHODS
 
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
 

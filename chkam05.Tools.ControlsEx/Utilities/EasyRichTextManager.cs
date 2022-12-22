@@ -43,6 +43,7 @@ namespace chkam05.Tools.ControlsEx.Utilities
         #region CLASS METHODS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> EasyRichTextManager class constructor. </summary>
         public EasyRichTextManager()
         {
             //
@@ -66,6 +67,75 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         #endregion CLASS METHODS
+
+        #region DECORATIONS MANAGEMENT METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Add decoration to text decoration collection. </summary>
+        /// <param name="collection"> Decoration collection. </param>
+        /// <param name="decoration"> Decoration to add. </param>
+        protected void AddDecoration(TextDecorationCollection collection, TextDecoration decoration)
+        {
+            if (collection == null && !collection.Any())
+                return;
+
+            if (!IsDecorationApplied(collection, decoration))
+                collection.Add(decoration);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Check if decoration is applied in text decoration collection. </summary>
+        /// <param name="collection"> Decoration collection. </param>
+        /// <param name="decoration"> Decoration. </param>
+        /// <returns> True - decoration is applied; False - otherwise. </returns>
+        protected bool IsDecorationApplied(TextDecorationCollection collection, TextDecoration decoration)
+        {
+            if (collection == null && !collection.Any())
+                return false;
+
+            return collection.Any(d => d.Equals(decoration));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Check if any decoration of particular type is applied in text decoration collection. </summary>
+        /// <param name="collection"> Decoration collection. </param>
+        /// <param name="decorations"> Decoration type collection. </param>
+        /// <returns> True - decoration is applied; False - otherwise. </returns>
+        protected bool IsDecorationTypeApplied(TextDecorationCollection collection, TextDecorationCollection decorations)
+        {
+            if (collection == null && !collection.Any())
+                return false;
+
+            return decorations.Any(d => IsDecorationApplied(collection, d));
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Remove decoration from text decoration collection. </summary>
+        /// <param name="collection"> Decoration collection. </param>
+        /// <param name="decoration"> Decoration to remove. </param>
+        protected void RemoveDecoration(TextDecorationCollection collection, TextDecoration decoration)
+        {
+            if (collection == null && !collection.Any())
+                return;
+
+            if (IsDecorationApplied(collection, decoration))
+                collection.Remove(decoration);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Remove type of decoration from text decoration collection. </summary>
+        /// <param name="collection"> Decoration collection. </param>
+        /// <param name="decorations"> Decoration type collection. </param>
+        protected void RemoveDecorationType(TextDecorationCollection collection, TextDecorationCollection decorations)
+        {
+            if (collection == null && !collection.Any())
+                return;
+
+            foreach (var decor in decorations)
+                RemoveDecoration(collection, decor);
+        }
+
+        #endregion DECORATIONS MANAGEMENT METHODS
 
         #region RICHTEXTBOX INTERACTION METHODS
 
@@ -176,7 +246,8 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <returns> Selected text font background color. </returns>
         public Brush GetSelectedTextFontBackground()
         {
-            object propertyValue = SelectedText.GetPropertyValue(TextElement.BackgroundProperty);
+            var property = TextElement.BackgroundProperty;
+            object propertyValue = SelectedText.GetPropertyValue(property);
 
             if (IsPropertySet(propertyValue))
                 return (Brush)propertyValue;
@@ -189,7 +260,8 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <returns> Selected text font color. </returns>
         public Brush GetSelectedTextFontColor()
         {
-            object propertyValue = SelectedText.GetPropertyValue(TextElement.ForegroundProperty);
+            var property = TextElement.ForegroundProperty;
+            object propertyValue = SelectedText.GetPropertyValue(property);
 
             if (IsPropertySet(propertyValue))
                 return (Brush)propertyValue;
@@ -202,7 +274,8 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <returns> Selected text font family. </returns>
         public FontFamily GetSelectedTextFontFamily()
         {
-            object propertyValue = SelectedText.GetPropertyValue(TextElement.FontFamilyProperty);
+            var property = TextElement.FontFamilyProperty;
+            object propertyValue = SelectedText.GetPropertyValue(property);
 
             if (IsPropertySet(propertyValue))
                 return (FontFamily)propertyValue;
@@ -215,7 +288,8 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <returns> Selected text font size. </returns>
         public double GetSelectedTextFontSize()
         {
-            object propertyValue = SelectedText.GetPropertyValue(TextElement.FontSizeProperty);
+            var property = TextElement.FontSizeProperty;
+            object propertyValue = SelectedText.GetPropertyValue(property);
 
             if (IsPropertySet(propertyValue))
                 return (double)propertyValue;
@@ -228,7 +302,8 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <returns> Selected text font style. </returns>
         public FontStyle GetSelectedTextFontStyle()
         {
-            object propertyValue = RichTextBox.Selection.GetPropertyValue(TextElement.FontStyleProperty);
+            var property = TextElement.FontStyleProperty;
+            object propertyValue = RichTextBox.Selection.GetPropertyValue(property);
 
             if (IsPropertySet(propertyValue))
                 return (FontStyle)propertyValue;
@@ -241,7 +316,8 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <returns> Selected text font weight. </returns>
         public FontWeight GetSelectedTextFontWeight()
         {
-            object propertyValue = RichTextBox.Selection.GetPropertyValue(TextElement.FontWeightProperty);
+            var property = TextElement.FontWeightProperty;
+            object propertyValue = RichTextBox.Selection.GetPropertyValue(property);
 
             if (IsPropertySet(propertyValue))
                 return (FontWeight)propertyValue;
@@ -254,12 +330,73 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <returns> Selected text alignment. </returns>
         public TextAlignment GetSelectedTextAlignment()
         {
-            object propertyValue = RichTextBox.Selection.GetPropertyValue(Paragraph.TextAlignmentProperty);
+            var property = Paragraph.TextAlignmentProperty;
+            object propertyValue = RichTextBox.Selection.GetPropertyValue(property);
 
             if (IsPropertySet(propertyValue))
                 return (TextAlignment)propertyValue;
 
             return TextAlignment.Left;
+        }
+
+        //  --------------------------------------------------------------------------------
+        public bool GetSelectedTextBaseline(int type)
+        {
+            var property = Inline.TextDecorationsProperty;
+            var propertyValue = SelectedText.GetPropertyValue(property);
+
+            if (IsPropertySet(propertyValue))
+            {
+                var textDecorations = propertyValue as TextDecorationCollection;
+                return IsDecorationTypeApplied(textDecorations, TextDecorations.Baseline);
+            }
+
+            return false;
+        }
+
+        //  --------------------------------------------------------------------------------
+        public bool GetSelectedTextOverLine(int type)
+        {
+            var property = Inline.TextDecorationsProperty;
+            var propertyValue = SelectedText.GetPropertyValue(property);
+
+            if (IsPropertySet(propertyValue))
+            {
+                var textDecorations = propertyValue as TextDecorationCollection;
+                return IsDecorationTypeApplied(textDecorations, TextDecorations.OverLine);
+            }
+
+            return false;
+        }
+
+        //  --------------------------------------------------------------------------------
+        public bool GetSelectedTextStrike(int type)
+        {
+            var property = Inline.TextDecorationsProperty;
+            var propertyValue = SelectedText.GetPropertyValue(property);
+
+            if (IsPropertySet(propertyValue))
+            {
+                var textDecorations = propertyValue as TextDecorationCollection;
+                return IsDecorationTypeApplied(textDecorations, TextDecorations.Strikethrough);
+            }
+
+            return false;
+        }
+
+        //  --------------------------------------------------------------------------------
+        public bool GetSelectedTextUnderline(int type)
+        {
+            var property = Inline.TextDecorationsProperty;
+            var propertyValue = SelectedText.GetPropertyValue(property);
+
+            if (IsPropertySet(propertyValue))
+            {
+                var textDecorations = propertyValue as TextDecorationCollection;
+                return IsDecorationTypeApplied(textDecorations, TextDecorations.Underline);
+            }
+
+            return false;
         }
 
         //  --------------------------------------------------------------------------------
@@ -385,6 +522,182 @@ namespace chkam05.Tools.ControlsEx.Utilities
 
             if (selectedText != null)
                 selectedText.ApplyPropertyValue(property, textAlignment);
+
+            RichTextBox.Focus();
+        }
+
+        //  --------------------------------------------------------------------------------
+        public void SetSelectedTextBaseline(bool baseline, int type = 0)
+        {
+            if (!_textSelected)
+                InitForNoSelectionUpdate();
+
+            var property = Inline.TextDecorationsProperty;
+            var selectedText = SelectedText;
+
+            if (selectedText != null)
+            {
+                var textDecorations = (TextDecorationCollection)selectedText.GetPropertyValue(property);
+                bool requiredUpdate = false;
+
+                if (textDecorations != null)
+                {
+                    var isDecorationApplied = IsDecorationTypeApplied(textDecorations, TextDecorations.Baseline);
+
+                    if (baseline && !isDecorationApplied)
+                    {
+                        AddDecoration(textDecorations, TextDecorations.Baseline[type]);
+                        requiredUpdate = true;
+                    }
+                    else if (!baseline && isDecorationApplied)
+                    {
+                        RemoveDecorationType(textDecorations, TextDecorations.Baseline);
+                        requiredUpdate = true;
+                    }
+                }
+                else
+                {
+                    textDecorations = baseline
+                        ? new TextDecorationCollection() { TextDecorations.Baseline[type] }
+                        : null;
+                    requiredUpdate = true;
+                }
+
+                if (requiredUpdate)
+                    selectedText.ApplyPropertyValue(property, textDecorations);
+            }
+
+            RichTextBox.Focus();
+        }
+
+        //  --------------------------------------------------------------------------------
+        public void SetSelectedTextOverLine(bool overLine, int type = 0)
+        {
+            if (!_textSelected)
+                InitForNoSelectionUpdate();
+
+            var property = Inline.TextDecorationsProperty;
+            var selectedText = SelectedText;
+
+            if (selectedText != null)
+            {
+                var textDecorations = (TextDecorationCollection)selectedText.GetPropertyValue(property);
+                bool requiredUpdate = false;
+
+                if (textDecorations != null)
+                {
+                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.OverLine[type]);
+
+                    if (overLine && !isDecorationApplied)
+                    {
+                        AddDecoration(textDecorations, TextDecorations.OverLine[type]);
+                        requiredUpdate = true;
+                    }
+                    else if (!overLine && isDecorationApplied)
+                    {
+                        RemoveDecorationType(textDecorations, TextDecorations.OverLine);
+                        requiredUpdate = true;
+                    }
+                }
+                else
+                {
+                    textDecorations = overLine
+                        ? new TextDecorationCollection() { TextDecorations.OverLine[type] }
+                        : null;
+                    requiredUpdate = true;
+                }
+
+                if (requiredUpdate)
+                    selectedText.ApplyPropertyValue(property, textDecorations);
+            }
+
+            RichTextBox.Focus();
+        }
+
+        //  --------------------------------------------------------------------------------
+        public void SetSelectedTextStrike(bool strike, int type = 0)
+        {
+            if (!_textSelected)
+                InitForNoSelectionUpdate();
+
+            var property = Inline.TextDecorationsProperty;
+            var selectedText = SelectedText;
+
+            if (selectedText != null)
+            {
+                var textDecorations = (TextDecorationCollection)selectedText.GetPropertyValue(property);
+                bool requiredUpdate = false;
+
+                if (textDecorations != null)
+                {
+                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.Strikethrough[type]);
+
+                    if (strike && !isDecorationApplied)
+                    {
+                        AddDecoration(textDecorations, TextDecorations.Strikethrough[type]);
+                        requiredUpdate = true;
+                    }
+                    else if (!strike && isDecorationApplied)
+                    {
+                        RemoveDecorationType(textDecorations, TextDecorations.Strikethrough);
+                        requiredUpdate = true;
+                    }
+                }
+                else
+                {
+                    textDecorations = strike
+                        ? new TextDecorationCollection() { TextDecorations.Strikethrough[type] }
+                        : null;
+                    requiredUpdate = true;
+                }
+
+                if (requiredUpdate)
+                    selectedText.ApplyPropertyValue(property, textDecorations);
+            }   
+
+            RichTextBox.Focus();
+        }
+
+        //  --------------------------------------------------------------------------------
+        public void SetSelectedTextUnderline(bool underline, int type = 0)
+        {
+            if (!_textSelected)
+                InitForNoSelectionUpdate();
+
+            var property = Inline.TextDecorationsProperty;
+            var selectedText = SelectedText;
+
+            if (selectedText != null)
+            {
+                var textDecorations = (TextDecorationCollection)selectedText.GetPropertyValue(property);
+                bool requiredUpdate = false;
+
+                if (textDecorations != null)
+                {
+                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.Underline[type]);
+
+                    if (underline && !isDecorationApplied)
+                    {
+                        AddDecoration(textDecorations, TextDecorations.Underline[type]);
+                        requiredUpdate = true;
+                    }
+                    else if (!underline && isDecorationApplied)
+                    {
+                        RemoveDecorationType(textDecorations, TextDecorations.Underline);
+                        requiredUpdate = true;
+                    }
+                }
+                else
+                {
+                    textDecorations = underline
+                        ? new TextDecorationCollection() { TextDecorations.Underline[type] }
+                        : null;
+                    requiredUpdate = true;
+                }
+
+                if (requiredUpdate)
+                    selectedText.ApplyPropertyValue(property, textDecorations);
+            }
 
             RichTextBox.Focus();
         }
