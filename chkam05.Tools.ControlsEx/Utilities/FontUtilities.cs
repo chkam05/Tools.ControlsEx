@@ -101,30 +101,6 @@ namespace chkam05.Tools.ControlsEx.Utilities
         #region STATIC ELEMENTS METHODS
 
         //  --------------------------------------------------------------------------------
-        public static int GetBaselineTextDecorations()
-        {
-            return TextDecorations.Baseline.Count;
-        }
-
-        //  --------------------------------------------------------------------------------
-        public static int GetOverLineTextDecorations()
-        {
-            return TextDecorations.OverLine.Count;
-        }
-
-        //  --------------------------------------------------------------------------------
-        public static int GetStrikeTextDecorations()
-        {
-            return TextDecorations.Strikethrough.Count;
-        }
-
-        //  --------------------------------------------------------------------------------
-        public static int GetUnderlineTextDecorations()
-        {
-            return TextDecorations.Underline.Count;
-        }
-
-        //  --------------------------------------------------------------------------------
         /// <summary> Get list of text alignment types. </summary>
         /// <returns> List of text alignment types. </returns>
         public static List<TextAlignment> GetTextAlignments()

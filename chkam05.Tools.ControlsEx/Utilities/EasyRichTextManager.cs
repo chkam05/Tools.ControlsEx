@@ -97,19 +97,6 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Check if any decoration of particular type is applied in text decoration collection. </summary>
-        /// <param name="collection"> Decoration collection. </param>
-        /// <param name="decorations"> Decoration type collection. </param>
-        /// <returns> True - decoration is applied; False - otherwise. </returns>
-        protected bool IsDecorationTypeApplied(TextDecorationCollection collection, TextDecorationCollection decorations)
-        {
-            if (collection == null && !collection.Any())
-                return false;
-
-            return decorations.Any(d => IsDecorationApplied(collection, d));
-        }
-
-        //  --------------------------------------------------------------------------------
         /// <summary> Remove decoration from text decoration collection. </summary>
         /// <param name="collection"> Decoration collection. </param>
         /// <param name="decoration"> Decoration to remove. </param>
@@ -120,19 +107,6 @@ namespace chkam05.Tools.ControlsEx.Utilities
 
             if (IsDecorationApplied(collection, decoration))
                 collection.Remove(decoration);
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Remove type of decoration from text decoration collection. </summary>
-        /// <param name="collection"> Decoration collection. </param>
-        /// <param name="decorations"> Decoration type collection. </param>
-        protected void RemoveDecorationType(TextDecorationCollection collection, TextDecorationCollection decorations)
-        {
-            if (collection == null && !collection.Any())
-                return;
-
-            foreach (var decor in decorations)
-                RemoveDecoration(collection, decor);
         }
 
         #endregion DECORATIONS MANAGEMENT METHODS
@@ -212,6 +186,11 @@ namespace chkam05.Tools.ControlsEx.Utilities
             FontWeight fontWeight = GetSelectedTextFontWeight();
             TextAlignment textAlignment = GetSelectedTextAlignment();
 
+            var textDecorBaseLine = GetSelectedTextBaseline();
+            var textDecorOverLine = GetSelectedTextOverLine();
+            var textDecorStrikethrough = GetSelectedTextStrikethrough();
+            var textDecorUnderline = GetSelectedTextUnderline();
+
             return new EasyRichTextFormatting()
             {
                 FontBackground = fontBackground,
@@ -221,6 +200,11 @@ namespace chkam05.Tools.ControlsEx.Utilities
                 FontStyle = fontStyle,
                 FontWeight = fontWeight,
                 TextAlignment = textAlignment,
+
+                TextDecorationBaseline = textDecorBaseLine,
+                TextDecorationOverLine = textDecorOverLine,
+                TextDecorationStrikethrough = textDecorStrikethrough,
+                TextDecorationUnderline = textDecorUnderline,
             };
         }
 
@@ -238,6 +222,10 @@ namespace chkam05.Tools.ControlsEx.Utilities
                 SetSelectedTextFontStyle(formatting.FontStyle);
                 SetSelectedTextFontWeight(formatting.FontWeight);
                 SetSelectedTextAlignment(formatting.TextAlignment);
+                SetSelectedTextBaseline(formatting.TextDecorationBaseline);
+                SetSelectedTextOverLine(formatting.TextDecorationOverLine);
+                SetSelectedTextStrikethrough(formatting.TextDecorationStrikethrough);
+                SetSelectedTextUnderline(formatting.TextDecorationUnderline);
             }
         }
 
@@ -340,7 +328,9 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
-        public bool GetSelectedTextBaseline(int type)
+        /// <summary> Get text baseline decoration of current selected text or for current position. </summary>
+        /// <returns> Selected text baseline decoration enabled. </returns>
+        public bool GetSelectedTextBaseline()
         {
             var property = Inline.TextDecorationsProperty;
             var propertyValue = SelectedText.GetPropertyValue(property);
@@ -348,14 +338,16 @@ namespace chkam05.Tools.ControlsEx.Utilities
             if (IsPropertySet(propertyValue))
             {
                 var textDecorations = propertyValue as TextDecorationCollection;
-                return IsDecorationTypeApplied(textDecorations, TextDecorations.Baseline);
+                return IsDecorationApplied(textDecorations, TextDecorations.Baseline[0]);
             }
 
             return false;
         }
 
         //  --------------------------------------------------------------------------------
-        public bool GetSelectedTextOverLine(int type)
+        /// <summary> Get text overline decoration of current selected text or for current position. </summary>
+        /// <returns> Selected text overline decoration enabled. </returns>
+        public bool GetSelectedTextOverLine()
         {
             var property = Inline.TextDecorationsProperty;
             var propertyValue = SelectedText.GetPropertyValue(property);
@@ -363,14 +355,16 @@ namespace chkam05.Tools.ControlsEx.Utilities
             if (IsPropertySet(propertyValue))
             {
                 var textDecorations = propertyValue as TextDecorationCollection;
-                return IsDecorationTypeApplied(textDecorations, TextDecorations.OverLine);
+                return IsDecorationApplied(textDecorations, TextDecorations.OverLine[0]);
             }
 
             return false;
         }
 
         //  --------------------------------------------------------------------------------
-        public bool GetSelectedTextStrike(int type)
+        /// <summary> Get text strikethrough decoration of current selected text or for current position. </summary>
+        /// <returns> Selected text strikethrough decoration enabled. </returns>
+        public bool GetSelectedTextStrikethrough()
         {
             var property = Inline.TextDecorationsProperty;
             var propertyValue = SelectedText.GetPropertyValue(property);
@@ -378,14 +372,16 @@ namespace chkam05.Tools.ControlsEx.Utilities
             if (IsPropertySet(propertyValue))
             {
                 var textDecorations = propertyValue as TextDecorationCollection;
-                return IsDecorationTypeApplied(textDecorations, TextDecorations.Strikethrough);
+                return IsDecorationApplied(textDecorations, TextDecorations.Strikethrough[0]);
             }
 
             return false;
         }
 
         //  --------------------------------------------------------------------------------
-        public bool GetSelectedTextUnderline(int type)
+        /// <summary> Get text underline decoration of current selected text or for current position. </summary>
+        /// <returns> Selected text underline decoration enabled. </returns>
+        public bool GetSelectedTextUnderline()
         {
             var property = Inline.TextDecorationsProperty;
             var propertyValue = SelectedText.GetPropertyValue(property);
@@ -393,7 +389,7 @@ namespace chkam05.Tools.ControlsEx.Utilities
             if (IsPropertySet(propertyValue))
             {
                 var textDecorations = propertyValue as TextDecorationCollection;
-                return IsDecorationTypeApplied(textDecorations, TextDecorations.Underline);
+                return IsDecorationApplied(textDecorations, TextDecorations.Underline[0]);
             }
 
             return false;
@@ -527,7 +523,9 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
-        public void SetSelectedTextBaseline(bool baseline, int type = 0)
+        /// <summary> Set baseline text decoration to selected text or for current position. </summary>
+        /// <param name="baseline"> Baseline text decoration enabled. </param>
+        public void SetSelectedTextBaseline(bool baseline)
         {
             if (!_textSelected)
                 InitForNoSelectionUpdate();
@@ -542,23 +540,23 @@ namespace chkam05.Tools.ControlsEx.Utilities
 
                 if (textDecorations != null)
                 {
-                    var isDecorationApplied = IsDecorationTypeApplied(textDecorations, TextDecorations.Baseline);
+                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.Baseline[0]);
 
                     if (baseline && !isDecorationApplied)
                     {
-                        AddDecoration(textDecorations, TextDecorations.Baseline[type]);
+                        AddDecoration(textDecorations, TextDecorations.Baseline[0]);
                         requiredUpdate = true;
                     }
                     else if (!baseline && isDecorationApplied)
                     {
-                        RemoveDecorationType(textDecorations, TextDecorations.Baseline);
+                        RemoveDecoration(textDecorations, TextDecorations.Baseline[0]);
                         requiredUpdate = true;
                     }
                 }
                 else
                 {
                     textDecorations = baseline
-                        ? new TextDecorationCollection() { TextDecorations.Baseline[type] }
+                        ? new TextDecorationCollection() { TextDecorations.Baseline[0] }
                         : null;
                     requiredUpdate = true;
                 }
@@ -571,7 +569,9 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
-        public void SetSelectedTextOverLine(bool overLine, int type = 0)
+        /// <summary> Set overLine text decoration to selected text or for current position. </summary>
+        /// <param name="overLine"> OverLine text decoration enabled. </param>
+        public void SetSelectedTextOverLine(bool overLine)
         {
             if (!_textSelected)
                 InitForNoSelectionUpdate();
@@ -586,23 +586,23 @@ namespace chkam05.Tools.ControlsEx.Utilities
 
                 if (textDecorations != null)
                 {
-                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.OverLine[type]);
+                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.OverLine[0]);
 
                     if (overLine && !isDecorationApplied)
                     {
-                        AddDecoration(textDecorations, TextDecorations.OverLine[type]);
+                        AddDecoration(textDecorations, TextDecorations.OverLine[0]);
                         requiredUpdate = true;
                     }
                     else if (!overLine && isDecorationApplied)
                     {
-                        RemoveDecorationType(textDecorations, TextDecorations.OverLine);
+                        RemoveDecoration(textDecorations, TextDecorations.OverLine[0]);
                         requiredUpdate = true;
                     }
                 }
                 else
                 {
                     textDecorations = overLine
-                        ? new TextDecorationCollection() { TextDecorations.OverLine[type] }
+                        ? new TextDecorationCollection() { TextDecorations.OverLine[0] }
                         : null;
                     requiredUpdate = true;
                 }
@@ -615,7 +615,9 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
-        public void SetSelectedTextStrike(bool strike, int type = 0)
+        /// <summary> Set strikethrough text decoration to selected text or for current position. </summary>
+        /// <param name="strike"> Strikethrough text decoration enabled. </param>
+        public void SetSelectedTextStrikethrough(bool strike)
         {
             if (!_textSelected)
                 InitForNoSelectionUpdate();
@@ -630,23 +632,23 @@ namespace chkam05.Tools.ControlsEx.Utilities
 
                 if (textDecorations != null)
                 {
-                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.Strikethrough[type]);
+                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.Strikethrough[0]);
 
                     if (strike && !isDecorationApplied)
                     {
-                        AddDecoration(textDecorations, TextDecorations.Strikethrough[type]);
+                        AddDecoration(textDecorations, TextDecorations.Strikethrough[0]);
                         requiredUpdate = true;
                     }
                     else if (!strike && isDecorationApplied)
                     {
-                        RemoveDecorationType(textDecorations, TextDecorations.Strikethrough);
+                        RemoveDecoration(textDecorations, TextDecorations.Strikethrough[0]);
                         requiredUpdate = true;
                     }
                 }
                 else
                 {
                     textDecorations = strike
-                        ? new TextDecorationCollection() { TextDecorations.Strikethrough[type] }
+                        ? new TextDecorationCollection() { TextDecorations.Strikethrough[0] }
                         : null;
                     requiredUpdate = true;
                 }
@@ -659,7 +661,9 @@ namespace chkam05.Tools.ControlsEx.Utilities
         }
 
         //  --------------------------------------------------------------------------------
-        public void SetSelectedTextUnderline(bool underline, int type = 0)
+        /// <summary> Set underline text decoration to selected text or for current position. </summary>
+        /// <param name="underline"> Underline text decoration enabled. </param>
+        public void SetSelectedTextUnderline(bool underline)
         {
             if (!_textSelected)
                 InitForNoSelectionUpdate();
@@ -674,23 +678,23 @@ namespace chkam05.Tools.ControlsEx.Utilities
 
                 if (textDecorations != null)
                 {
-                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.Underline[type]);
+                    var isDecorationApplied = IsDecorationApplied(textDecorations, TextDecorations.Underline[0]);
 
                     if (underline && !isDecorationApplied)
                     {
-                        AddDecoration(textDecorations, TextDecorations.Underline[type]);
+                        AddDecoration(textDecorations, TextDecorations.Underline[0]);
                         requiredUpdate = true;
                     }
                     else if (!underline && isDecorationApplied)
                     {
-                        RemoveDecorationType(textDecorations, TextDecorations.Underline);
+                        RemoveDecoration(textDecorations, TextDecorations.Underline[0]);
                         requiredUpdate = true;
                     }
                 }
                 else
                 {
                     textDecorations = underline
-                        ? new TextDecorationCollection() { TextDecorations.Underline[type] }
+                        ? new TextDecorationCollection() { TextDecorations.Underline[0] }
                         : null;
                     requiredUpdate = true;
                 }

@@ -21,6 +21,11 @@ namespace chkam05.Tools.ControlsEx.Data
         public FontWeight FontWeight { get; set; } = FontWeights.Normal;
         public TextAlignment TextAlignment { get; set; } = TextAlignment.Left;
 
+        public bool TextDecorationBaseline { get; set; } = false;
+        public bool TextDecorationOverLine { get; set; } = false;
+        public bool TextDecorationStrikethrough { get; set; } = false;
+        public bool TextDecorationUnderline { get; set; } = false;
+
 
         //  METHODS
 

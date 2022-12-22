@@ -275,12 +275,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\chkam05.Tools.ControlsEx\chkam05.Tools.ControlsEx.csproj">
-      <Project>{c5809f50-f7e2-4158-89ed-890bf8d81477}</Project>
-      <Name>chkam05.Tools.ControlsEx</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Icons\Apple_32.png" />
     <Resource Include="Resources\Icons\Linux_32.png" />
     <Resource Include="Resources\Icons\Windows_32.png" />
@@ -296,6 +290,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\chkam05.Tools.ControlsEx\chkam05.Tools.ControlsEx.csproj">
+      <Project>{c5809f50-f7e2-4158-89ed-890bf8d81477}</Project>
+      <Name>chkam05.Tools.ControlsEx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />

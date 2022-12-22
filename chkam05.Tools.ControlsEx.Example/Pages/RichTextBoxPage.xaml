@@ -205,7 +205,7 @@
 
                             <TextBlock
                                 Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font face."/>
+                                Text="Font face:"/>
 
                             <controlsex:ComboBoxEx
                                 ItemsSource="{Binding FontsCollection}"
@@ -214,7 +214,7 @@
 
                             <TextBlock
                                 Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font size."/>
+                                Text="Font size:"/>
 
                             <controlsex:UpDownTextBoxEx
                                 Margin="0,0,0,4"
@@ -224,7 +224,7 @@
 
                             <TextBlock
                                 Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font style."/>
+                                Text="Font style:"/>
 
                             <controlsex:ComboBoxEx
                                 ItemsSource="{Binding FontStylesCollection}"
@@ -233,7 +233,7 @@
 
                             <TextBlock
                                 Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font weight."/>
+                                Text="Font weight:"/>
 
                             <controlsex:ComboBoxEx
                                 ItemsSource="{Binding FontWeightsCollection}"
@@ -242,12 +242,53 @@
 
                             <TextBlock
                                 Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Text alignment."/>
+                                Text="Text alignment:"/>
 
                             <controlsex:ComboBoxEx
                                 ItemsSource="{Binding TextAlignmentsCollection}"
                                 Margin="0,0,0,4"
                                 SelectedItem="{Binding EditorTextAlignment}"/>
+
+                            <TextBlock
+                                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                Text="Decorations:"/>
+
+                            <Grid
+                                Margin="0,0,0,4">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controlsex:ButtonEx
+                                    Grid.Column="0"
+                                    IconKind="FormatStrikethrough"
+                                    IsChecked="{Binding EditorTextDecorBaseline, Mode=TwoWay}"
+                                    IsPressable="True"/>
+
+                                <controlsex:ButtonEx
+                                    Grid.Column="1"
+                                    IconKind="FormatOverline"
+                                    IsChecked="{Binding EditorTextDecorOverLine, Mode=TwoWay}"
+                                    IsPressable="True"/>
+
+                                <controlsex:ButtonEx
+                                    Grid.Column="2"
+                                    IconKind="FormatStrikethroughVariant"
+                                    IsChecked="{Binding EditorTextDecorStrikethrough, Mode=TwoWay}"
+                                    IsPressable="True"/>
+
+                                <controlsex:ButtonEx
+                                    Grid.Column="3"
+                                    IconKind="FormatUnderline"
+                                    IsChecked="{Binding EditorTextDecorUnderline, Mode=TwoWay}"
+                                    IsPressable="True"/>
+
+                            </Grid>
 
                         </StackPanel>
 

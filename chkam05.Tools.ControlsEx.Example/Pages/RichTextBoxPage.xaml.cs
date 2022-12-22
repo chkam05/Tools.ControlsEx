@@ -49,6 +49,14 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         private FontStyle _editorFontStyle = FontStyles.Normal;
         private FontWeight _editorFontWeight = FontWeights.Bold;
         private TextAlignment _editorTextAlignment = TextAlignment.Left;
+        private bool _editorTextDecorBaseline = false;
+        private int _editorTextDecorBaselineType = 0;
+        private bool _editorTextDecorOverLine = false;
+        private int _editorTextDecorOverLineType = 0;
+        private bool _editorTextDecorStrikethrough = false;
+        private int _editorTextDecorStrikethroughType = 0;
+        private bool _editorTextDecorUnderline = false;
+        private int _editorTextDecorUnderlineType = 0;
 
         public Configuration Configuration { get; private set; }
 
@@ -200,6 +208,58 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             }
         }
 
+        public bool EditorTextDecorBaseline
+        {
+            get => _editorTextDecorBaseline;
+            set
+            {
+                _editorTextDecorBaseline = value;
+                OnPropertyChanged(nameof(EditorTextDecorBaseline));
+
+                if (!_editorLock)
+                    EasyTextManager.SetSelectedTextBaseline(value);
+            }
+        }
+
+        public bool EditorTextDecorOverLine
+        {
+            get => _editorTextDecorOverLine;
+            set
+            {
+                _editorTextDecorOverLine = value;
+                OnPropertyChanged(nameof(EditorTextDecorOverLine));
+
+                if (!_editorLock)
+                    EasyTextManager.SetSelectedTextOverLine(value);
+            }
+        }
+
+        public bool EditorTextDecorStrikethrough
+        {
+            get => _editorTextDecorStrikethrough;
+            set
+            {
+                _editorTextDecorStrikethrough = value;
+                OnPropertyChanged(nameof(EditorTextDecorStrikethrough));
+
+                if (!_editorLock)
+                    EasyTextManager.SetSelectedTextStrikethrough(value);
+            }
+        }
+
+        public bool EditorTextDecorUnderline
+        {
+            get => _editorTextDecorUnderline;
+            set
+            {
+                _editorTextDecorUnderline = value;
+                OnPropertyChanged(nameof(EditorTextDecorUnderline));
+
+                if (!_editorLock)
+                    EasyTextManager.SetSelectedTextUnderline(value);
+            }
+        }
+
 
         //  METHODS
 
@@ -279,6 +339,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             EditorFontStyle = formatting.FontStyle;
             EditorFontWeight = formatting.FontWeight;
             EditorTextAlignment = formatting.TextAlignment;
+
+            EditorTextDecorBaseline = formatting.TextDecorationBaseline;
+            EditorTextDecorOverLine = formatting.TextDecorationOverLine;
+            EditorTextDecorStrikethrough = formatting.TextDecorationStrikethrough;
+            EditorTextDecorUnderline = formatting.TextDecorationUnderline;
 
             _editorLock = false;
         }
