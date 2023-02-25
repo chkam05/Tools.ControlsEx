@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace chkam05.Tools.ControlsEx.Static
 {
-    internal static class StaticResources
+    public static class StaticResources
     {
 
         //  VARIABLES

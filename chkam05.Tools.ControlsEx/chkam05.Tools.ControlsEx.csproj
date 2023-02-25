@@ -43,6 +43,8 @@
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -51,6 +53,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Windows">
+      <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.22000.0\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -69,16 +74,20 @@
     <Compile Include="ContextMenuEx.cs" />
     <Compile Include="ContextMenuItemEx.cs" />
     <Compile Include="Converters\BoolVisibilityConverter.cs" />
+    <Compile Include="Converters\BrushOpacityConverter.cs" />
     <Compile Include="Converters\CheckBoxStyleCheckMarkConverter.cs" />
     <Compile Include="Converters\ColorSolidColorBrushConverter.cs" />
     <Compile Include="Converters\CornerRadiusSideConverter.cs" />
     <Compile Include="Converters\FileTypeItemExtensionsNameConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\IsNotNullConverter.cs" />
     <Compile Include="Converters\MarqueeEndPositionConverter.cs" />
     <Compile Include="Converters\MarqueeStartPositionConverter.cs" />
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\IntToStringConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Converters\WindowExButtonCornerRadiusConverter.cs" />
+    <Compile Include="Converters\WindowExTitleBarCornerRadiusConverter.cs" />
     <Compile Include="Data\InternalMessageButtons.cs" />
     <Compile Include="Data\InternalMessageFileItem.cs" />
     <Compile Include="Data\InternalMessageFileTreeItem.cs" />
@@ -163,6 +172,8 @@
     <Compile Include="Utilities\MathUtilitiesEx.cs" />
     <Compile Include="Utilities\TextBoxExValidator.cs" />
     <Compile Include="Utilities\UpDownTextBoxExValidator.cs" />
+    <Compile Include="WindowsEx\BaseWindowEx.cs" />
+    <Compile Include="WindowsEx\WindowEx.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -336,6 +347,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\UpDownTextBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\WindowsEx\WindowExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

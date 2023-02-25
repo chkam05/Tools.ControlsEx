@@ -42,6 +42,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
         private const string MAINMENU_TEXTBOXES_ITEM = "TextBoxes";
         private const string MAINMENU_TREEVIEWS_ITEM = "TreeView";
         private const string MAINMENU_UPDOWNTEXTBOXES_ITEM = "UpDownTextBoxes";
+        private const string MAINMENU_WINDOWS_ITEM = "Windows";
 
 
         //  VARIABLES
@@ -177,6 +178,10 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                         case MAINMENU_UPDOWNTEXTBOXES_ITEM:
                             PagesManager.LoadSinglePage(new UpDownTextBoxesPage());
                             break;
+
+                        case MAINMENU_WINDOWS_ITEM:
+                            PagesManager.LoadSinglePage(new WindowsPage());
+                            break;
                     }
 
                 //listView.SelectedItem = null;
@@ -209,6 +214,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
                 new MenuItem(MAINMENU_TEXTBOXES_ITEM, PackIconKind.TextBox),
                 new MenuItem(MAINMENU_TREEVIEWS_ITEM, PackIconKind.Tree),
                 new MenuItem(MAINMENU_UPDOWNTEXTBOXES_ITEM, PackIconKind.ChevronUpDown),
+                new MenuItem(MAINMENU_WINDOWS_ITEM, PackIconKind.ApplicationOutline),
             });
         }
 
