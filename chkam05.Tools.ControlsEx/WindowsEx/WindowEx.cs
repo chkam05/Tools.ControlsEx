@@ -342,12 +342,6 @@ namespace chkam05.Tools.ControlsEx.WindowsEx
 
         #endregion CLASS METHODS
 
-        #region DWM METHODS
-
-        //  --------------------------------------------------------------------------------
-
-        #endregion DWM METHODS
-
         #region INTERACTION METHODS
 
         //  --------------------------------------------------------------------------------

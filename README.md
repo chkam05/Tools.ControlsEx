@@ -46,6 +46,11 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
   - **[BaseFilesSelectorInternalMessageEx](Doc/BaseFilesSelectorInternalMessageEx.md)** 
     - **[FilesSelectorInternalMessageEx](Doc/FilesSelectorInternalMessageEx.md)** 
 
+## Windows:
+
+- **[BaseWindowEx](Doc/BaseWindowEx.md)** 
+  - **[WindowEx](Doc/WindowEx.md)** 
+
 ## Additional Controls:
 
 - **[BaseIndicatorEx](Doc/BaseIndicatorEx.md)** 
