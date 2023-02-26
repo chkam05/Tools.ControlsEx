@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Static;
+using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -322,8 +323,8 @@ namespace chkam05.Tools.ControlsEx
         private double GetStartPosition()
         {
             var startPosition = MarqueeStartPosition;
-            var canvasWidth = _contentBorder.ActualWidth;
-            var textWidth = _contentTextBlock.ActualWidth;
+            var canvasWidth = _contentBorder?.ActualWidth ?? 0;
+            var textWidth = _contentTextBlock?.ActualWidth ?? 0;
             var waitForText = WaitForText;
 
             switch (MarqueeStartPosition)
@@ -353,8 +354,8 @@ namespace chkam05.Tools.ControlsEx
         private double GetEndPosition()
         {
             var startPosition = MarqueeEndPosition;
-            var canvasWidth = _contentBorder.ActualWidth;
-            var textWidth = _contentTextBlock.ActualWidth;
+            var canvasWidth = _contentBorder?.ActualWidth ?? 0;
+            var textWidth = _contentTextBlock?.ActualWidth ?? 0;
             var waitForText = WaitForText;
 
             switch (startPosition)
@@ -392,7 +393,7 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> Restart currently created storyboard. </summary>
         private void RestartStoryboard()
         {
-            if (MarqueeStoryboard != null)
+            if (MarqueeStoryboard != null && ControlsHelper.IsControlVisible(this))
             {
                 if (MarqueeEnabled == MarqueeTextBlockState.Enabled
                         || (MarqueeEnabled == MarqueeTextBlockState.WhenTextIsTooLong && IsTextToLong))

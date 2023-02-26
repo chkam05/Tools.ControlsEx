@@ -1,4 +1,4 @@
-# ButtonEx
+# WindowEx
 Extended Window inherited from _[BaseWindowEx](BaseWindowEx.md)_.
 
 namespace: _chkam05.Tools.WindowsEx_

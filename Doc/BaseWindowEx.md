@@ -1,4 +1,4 @@
-# ButtonEx
+# BaseWindowEx
 Extended BaseWindow inherited from _Window_ and _INotifyPropertyChanged_.
 
 namespace: _chkam05.Tools.WindowsEx_

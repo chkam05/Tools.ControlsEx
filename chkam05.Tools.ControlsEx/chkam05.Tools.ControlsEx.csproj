@@ -169,6 +169,7 @@
     <Compile Include="TreeViewItemEx.cs" />
     <Compile Include="UpDownTextBoxEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
+    <Compile Include="Utilities\ControlsHelper.cs" />
     <Compile Include="Utilities\DispatcherInvokerEx.cs" />
     <Compile Include="Utilities\MathUtilitiesEx.cs" />
     <Compile Include="Utilities\TextBoxExValidator.cs" />

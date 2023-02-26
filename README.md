@@ -88,6 +88,7 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 ## Tools:
 
 - **[ColorsUtilities](Doc/ColorsUtilities.md)** 
+- **[ControlsHelper](Doc/ControlsHelper.md)** 
 - **[Delegates](Doc/Delegates.md)** 
 - **[DispatcherInvokerEx](Doc/DispatcherInvokerEx.md)** 
 - **[MathUtilitiesEx](Doc/MathUtilitiesEx.md)** 

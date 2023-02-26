@@ -86,6 +86,18 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             }
         }
 
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking show hide marquees ButtonEx. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void ShowHideMarqueesButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            MarqueesStackPanel.Visibility =
+                MarqueesStackPanel.Visibility == Visibility.Visible
+                    ? Visibility.Collapsed
+                    : Visibility.Visible;
+        }
+
         #endregion INTERACTION METHODS
 
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
