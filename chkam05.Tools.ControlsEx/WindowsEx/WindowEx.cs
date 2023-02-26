@@ -107,7 +107,7 @@ namespace chkam05.Tools.ControlsEx.WindowsEx
             nameof(BackgroundOpacity),
             typeof(double),
             typeof(WindowEx),
-            new PropertyMetadata(1d));
+            new PropertyMetadata(.75d));
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
@@ -341,6 +341,12 @@ namespace chkam05.Tools.ControlsEx.WindowsEx
         }
 
         #endregion CLASS METHODS
+
+        #region DWM METHODS
+
+        //  --------------------------------------------------------------------------------
+
+        #endregion DWM METHODS
 
         #region INTERACTION METHODS
 

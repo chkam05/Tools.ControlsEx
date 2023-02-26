@@ -6,6 +6,8 @@
     xmlns:localStatic="clr-namespace:chkam05.Tools.ControlsEx.Static"
     xmlns:localWin="clr-namespace:chkam05.Tools.ControlsEx.WindowsEx"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:media="clr-namespace:Windows.UI.Xaml.Media;assembly=Windows"
+    xmlns:properties="clr-namespace:chkam05.Tools.ControlsEx.Properties"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <SolidColorBrush x:Key="WindowEx.Background">#FFFFFF</SolidColorBrush>
@@ -42,6 +44,7 @@
         <Setter Property="PressedBackground" Value="{Binding PressedTitleBarButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
         <Setter Property="PressedBorderBrush" Value="{Binding PressedTitleBarButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
         <Setter Property="PressedForeground" Value="{Binding PressedTitleBarButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="Width" Value="45"/>
     </Style>
 
     <Style x:Key="WindowEx.TitleBar.CloseButtonExStyle" BasedOn="{StaticResource WindowEx.TitleBar.ButtonExStyle}" TargetType="{x:Type local:ButtonEx}">
@@ -70,19 +73,19 @@
             </Grid.RowDefinitions>
 
             <Border
-                BorderBrush="{TemplateBinding BorderBrush}"
+                Background="Transparent"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 ClipToBounds="True"
                 CornerRadius="{TemplateBinding CornerRadius}"
                 Grid.Column="1"
                 Grid.Row="1">
 
-                <Border.Background>
+                <Border.BorderBrush>
                     <MultiBinding Mode="OneWay" Converter="{StaticResource BrushOpacityConverter}">
-                        <Binding Path="Background" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
-                        <Binding Path="BackgroundOpacity" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                        <Binding Path="BorderBrush" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                        <Binding Path="TitleBarOpacity" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
                     </MultiBinding>
-                </Border.Background>
+                </Border.BorderBrush>
 
                 <Grid
                     ClipToBounds="True">
@@ -96,7 +99,8 @@
                         x:Name="TitleBar"
                         BorderBrush="{x:Null}"
                         BorderThickness="0"
-                        Grid.Row="0">
+                        Grid.Row="0"
+                        Height="30">
 
                         <Border.Background>
                             <MultiBinding Mode="OneWay" Converter="{StaticResource BrushOpacityConverter}">
@@ -206,7 +210,26 @@
 
                     </Border>
 
-                    <ContentPresenter Grid.Row="1"/>
+                    <Border
+                        Grid.Row="1">
+
+                        <Border.Background>
+                            <MultiBinding Mode="OneWay" Converter="{StaticResource BrushOpacityConverter}">
+                                <Binding Path="Background" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                                <Binding Path="BackgroundOpacity" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                            </MultiBinding>
+                        </Border.Background>
+
+                        <Border.CornerRadius>
+                            <MultiBinding Mode="OneWay" Converter="{StaticResource WindowExTitleBarCornerRadiusConverter}" ConverterParameter="{x:Static converters:WindowExTitleBarCornerRadiusConverter.BottomSide}">
+                                <Binding Path="CornerRadius" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                                <Binding Source="{StaticResource WindowEx.TitleBar.CornerRadiusShift}"/>
+                            </MultiBinding>
+                        </Border.CornerRadius>
+
+                        <ContentPresenter/>
+
+                    </Border>
 
                 </Grid>
 
