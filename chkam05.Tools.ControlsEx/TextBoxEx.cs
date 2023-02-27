@@ -79,6 +79,7 @@ namespace chkam05.Tools.ControlsEx
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event TextModifiedEventHandler TextModified;
+        public event TextModifiedEventHandler TextLiveModified;
 
 
         //  VARIABLES
@@ -317,6 +318,8 @@ namespace chkam05.Tools.ControlsEx
 
             if (!_focused)
                 TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, false));
+
+            TextLiveModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, _focused));
 
             base.OnTextChanged(e);
         }

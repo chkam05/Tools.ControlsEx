@@ -616,6 +616,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             if (textBoxEx != null)
                 textBoxEx.TextModified += eventHandler;
         }
+        
+        //  --------------------------------------------------------------------------------
+        /// <summary> Apply TextModified method on TextBoxEx. </summary>
+        /// <param name="textBoxEx"> TextBoxEx. </param>
+        /// <param name="eventHandler"> TextModified method. </param>
+        protected void ApplyTextBoxExTextLiveModifiedMethod(TextBoxEx textBoxEx, TextModifiedEventHandler eventHandler)
+        {
+            if (textBoxEx != null)
+                textBoxEx.TextLiveModified += eventHandler;
+        }
 
         //  --------------------------------------------------------------------------------
         /// <summary> Get TextBoxEx from GetComboBoxEx. </summary>
@@ -660,6 +670,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
             ApplyTextBoxExTextModifiedMethod(_addressTextBox, OnAddressTextBoxExTextModified);
             ApplyTextBoxExTextModifiedMethod(_filesTextBox, OnFileNameTextBoxExTextModified);
+            ApplyTextBoxExTextLiveModifiedMethod(_filesTextBox, OnFileNameTextBoxExTextLiveModified);
 
             _filesTypesComboBox = GetComboBoxEx("filesTypesComboBox");
             _fileType = FilesTypes.FirstOrDefault();
@@ -703,6 +714,15 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Text Modified Event Arguments. </param>
         protected virtual void OnFileNameTextBoxExTextModified(object sender, TextModifiedEventArgs e)
+        {
+            //
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing text in FileNameTextBoxEx in edit mode. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Text Modified Event Arguments. </param>
+        protected virtual void OnFileNameTextBoxExTextLiveModified(object sender, TextModifiedEventArgs e)
         {
             //
         }

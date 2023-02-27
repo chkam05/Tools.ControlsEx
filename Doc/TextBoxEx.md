@@ -30,6 +30,7 @@ namespace: _chkam05.Tools.ControlsEx_
 |:----------------------------|:-----------------|:------------|
 | PropertyChangedEventHandler | PropertyChanged  | Event invoked after changing property. |
 | TextModifiedEventHandler    | TextModified     | Event invoked after finishing text modification (Lost focus, Tab or Enter pressed). |
+| TextModifiedEventHandler    | TextLiveModified | Event invoked after modifiying text. |
 
 ### Additional Methods:
 

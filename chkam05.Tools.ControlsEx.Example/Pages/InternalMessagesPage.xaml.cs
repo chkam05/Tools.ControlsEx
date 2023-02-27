@@ -8,6 +8,7 @@ using chkam05.Tools.ControlsEx.Static;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -471,6 +472,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var message = FilesSelectorInternalMessageEx.CreateOpenFileInternalMessageEx(internalMessages);
 
             message.OnClose += OnFileMessageClose;
+            message.FilesTypes = new ObservableCollection<InternalMessageFileType>()
+            {
+                new InternalMessageFileType("All Files", new string[] { "*.*" }),
+                new InternalMessageFileType("Image Files", new string[] { "*.bmp", "*.jpeg", "*.jpg", "*.png" }),
+                new InternalMessageFileType("Music Files", new string[] { "*.mp3", "*.ogg", "*.wav" }),
+                new InternalMessageFileType("Text Files", new string[] { "*.txt" })
+            };
 
             UpdateInternalMessageAppearance(message);
             internalMessages.ShowMessage(message);
@@ -487,6 +495,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
             message.MultipleFiles = true;
             message.OnClose += OnFileMessageClose;
+            message.FilesTypes = new ObservableCollection<InternalMessageFileType>()
+            {
+                new InternalMessageFileType("All Files", new string[] { "*.*" }),
+                new InternalMessageFileType("Image Files", new string[] { "*.bmp", "*.jpeg", "*.jpg", "*.png" }),
+                new InternalMessageFileType("Music Files", new string[] { "*.mp3", "*.ogg", "*.wav" }),
+                new InternalMessageFileType("Text Files", new string[] { "*.txt" })
+            };
 
             UpdateInternalMessageAppearance(message);
             internalMessages.ShowMessage(message);
@@ -502,6 +517,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var message = FilesSelectorInternalMessageEx.CreateSaveFileInternalMessageEx(internalMessages);
 
             message.OnClose += OnFileMessageClose;
+            message.FilesTypes = new ObservableCollection<InternalMessageFileType>()
+            {
+                new InternalMessageFileType("All Files", new string[] { "*.*" }),
+                new InternalMessageFileType("Text Files", new string[] { "*.txt" })
+            };
 
             UpdateInternalMessageAppearance(message);
             internalMessages.ShowMessage(message);

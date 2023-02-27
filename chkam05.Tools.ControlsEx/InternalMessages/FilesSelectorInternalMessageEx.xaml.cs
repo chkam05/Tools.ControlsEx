@@ -28,6 +28,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         //  VARIABLES
 
+        private bool _anyFileSelected = false;
+        private bool _manualInput = false;
         private ObservableCollection<InternalMessageFileItem> _filesCollection;
         private ObservableCollection<InternalMessageFileTreeItem> _treeCollection;
 
@@ -171,11 +173,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                     if (!MultipleFiles && selectedItems.Count() > 1)
                         listView.SelectedItems.Remove(selectedItems.First());
 
-                    _filesTextBox.Text = string.Join("; ", selectedItems
-                        .Where(f => OnlyDirectories 
+                    string selectedFilesNames = string.Join("; ", selectedItems
+                        .Where(f => OnlyDirectories
                             ? f.IsDirectory || f.IsDrive
                             : !f.IsDirectory && !f.IsDrive)
                         .Select(f => $"\"{f.Name}\""));
+
+                    _anyFileSelected = !string.IsNullOrEmpty(selectedFilesNames);
+
+                    if (!_manualInput)
+                        _filesTextBox.Text = selectedFilesNames;
                 }
             }
         }
@@ -194,10 +201,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
                 if (selectedItems != null && selectedItems.Any())
                 {
-                    var dirItem = selectedItems.Last(i => i.IsDirectory);
+                    var dirItem = selectedItems.LastOrDefault(i => i.IsDirectory);
 
                     if (dirItem != null)
                         Navigate(dirItem.Path);
+
+                    else if (_anyFileSelected)
+                    {
+                        Result = InternalMessageResult.Ok;
+                        Close();
+                    }
                 }
             }
         }
@@ -207,9 +220,25 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         /// <returns> Close method event arguments. </returns>
         protected override FilesSelectorInternalMessageCloseEventArgs CreateCloseEventArgs()
         {
-            var filesArray = AllowCreate
-                ? new string[] { System.IO.Path.Combine(CurrentDirectory, ReplaceFilesInvalidCharacters(_filesTextBox.Text)) }
-                : filesListView.SelectedItems.Cast<InternalMessageFileItem>().Select(f => f.Path).ToArray();
+            string[] filesArray = null;
+
+            if (AllowCreate)
+            {
+                string saveFilePath = System.IO.Path.Combine(
+                    CurrentDirectory, ReplaceFilesInvalidCharacters(_filesTextBox.Text));
+
+                if (!OnlyDirectories && UseFilesTypes)
+                    if (!FileType.MatchFile(saveFilePath) && !FileType.IsUniversal())
+                        saveFilePath += FileType.Extensions.FirstOrDefault().Replace("*", "");
+
+                filesArray = new string[] { saveFilePath };
+            }
+            else
+            {
+                filesArray = filesListView.SelectedItems
+                    .Cast<InternalMessageFileItem>()
+                    .Select(f => f.Path).ToArray();
+            }
 
             return new FilesSelectorInternalMessageCloseEventArgs(Result, filesArray);
         }
@@ -295,6 +324,8 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
                 var files = GetFilesListFromString(e?.NewText);
                 var selection = "";
 
+                _manualInput = false;
+
                 if (files.Any())
                 {
                     if (AllowCreate)
@@ -330,6 +361,60 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
                     if (IsLoadingComplete)
                         GetButtonEx("okButton").IsEnabled = !string.IsNullOrEmpty(e.NewText);
+                }
+            }
+
+            if (!e.UserModified && IsLoadingComplete)
+                GetButtonEx("okButton").IsEnabled = !string.IsNullOrEmpty(e.NewText);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing text in FileNameTextBoxEx in edit mode. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Text Modified Event Arguments. </param>
+        protected override void OnFileNameTextBoxExTextLiveModified(object sender, TextModifiedEventArgs e)
+        {
+            if (e.UserModified)
+            {
+                var textBox = sender as TextBoxEx;
+                var files = GetFilesListFromString(e?.NewText);
+                var selection = "";
+
+                _manualInput = true;
+
+                if (files.Any())
+                {
+                    if (AllowCreate)
+                    {
+                        selection = files.FirstOrDefault(n => OnlyDirectories
+                            ? !File.Exists(System.IO.Path.Combine(CurrentDirectory, n))
+                            : !Files.Any(f => (!f.IsDirectory && !f.IsDrive) && f.Name == n)) ?? "";
+
+                        SelectSingleFile(selection);
+                    }
+                    else if (MultipleFiles)
+                    {
+                        var selections = files
+                            .Where(n => Files.Any(f => !f.IsDirectory && !f.IsDrive && f.Name == n))
+                            .ToList();
+
+                        SelectMultipleFiles(selections);
+
+                        selection = selections != null && selections.Any()
+                            ? string.Join("; ", selections.Select(n => $"\"{n}\""))
+                            : "";
+                    }
+                    else
+                    {
+                        selection = files.FirstOrDefault(n => OnlyDirectories
+                            ? Files.Any(f => (f.IsDirectory || f.IsDrive) && f.Name == n)
+                            : Files.Any(f => (!f.IsDirectory && !f.IsDrive) && f.Name == n)) ?? "";
+
+                        SelectSingleFile(selection);
+                    }
+
+                    if (IsLoadingComplete)
+                        GetButtonEx("okButton").IsEnabled = !string.IsNullOrEmpty(selection);
                 }
             }
 
