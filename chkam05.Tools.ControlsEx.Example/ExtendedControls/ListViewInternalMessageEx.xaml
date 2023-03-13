@@ -11,10 +11,20 @@
     mc:Ignorable="d"
     
     d:DesignWidth="800"
+    BottomBackground="#242424"
+    BottomBorderBrush="{Binding Configuration.ForegroundColorBrush, RelativeSource={RelativeSource Self}}"
+    BottomPadding="8"
     ContentPadding="0"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    HeaderBackground="#242424"
+    HeaderBorderBrush="{Binding Configuration.ForegroundColorBrush, RelativeSource={RelativeSource Self}}"
+    HeaderForeground="{Binding Configuration.AccentColorBrush, RelativeSource={RelativeSource Self}}"
+    HeaderPadding="8"
     IconKind="ViewList"
-    Title="Internal Message ListView Test">
+    Padding="0"
+    Title="Internal Message ListView Test"
+    UseCustomHeaderForegroundBrush="True"
+    UseCustomSectionBreaksBorderBrush="True">
 
     <internalMessagesEx:StandardInternalMessageEx.Resources>
         <ResourceDictionary>
@@ -85,8 +95,8 @@
                         Grid.Column="0"
                         Height="24"
                         HorizontalAlignment="Left"
-                        Kind="{Binding IconKind}"
-                        Margin="0,0,8,0"
+                        Kind="{Binding Icon}"
+                        Margin="0,0,16,0"
                         VerticalAlignment="Center"
                         Width="24"/>
 

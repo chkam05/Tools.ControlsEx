@@ -34,11 +34,13 @@
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}"
             CornerRadius="{TemplateBinding CornerRadius}"
+            ClipToBounds="True"
             MinHeight="192"
             MinWidth="352"
             Padding="{TemplateBinding Padding}">
 
-            <Grid>
+            <Grid
+                ClipToBounds="True">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -48,7 +50,7 @@
 
                 <Border
                     x:Name="headerBorder"
-                    Background="{TemplateBinding Background}"
+                    Background="{TemplateBinding HeaderBackground}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding HeaderBorderThickness}"
                     Grid.Row="0"

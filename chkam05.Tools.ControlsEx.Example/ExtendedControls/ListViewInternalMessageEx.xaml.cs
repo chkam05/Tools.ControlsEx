@@ -96,14 +96,12 @@ namespace chkam05.Tools.ControlsEx.Example.ExtendedControls
         /// <summary> Setup an example data. </summary>
         private void SetupData()
         {
-            var icons = Enum.GetValues(typeof(PackIconKind)).Cast<PackIconKind>()
-                .Distinct().ToList();
-
             var data = new List<ListViewIMData>();
+            var icons = Enum.GetValues(typeof(PackIconKind)).Cast<PackIconKind>().Distinct().ToList();
+            Random rand = new Random();
 
             for (int i = 0; i < 20; i++)
             {
-                Random rand = new Random();
                 int iconIndex = rand.Next(icons.Count);
                 var country = ExampleData.EuropeanCountries[i];
 
