@@ -103,6 +103,76 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion Buttons Properties
 
+        #region Header & Bottom Properties
+
+        public static readonly DependencyProperty BottomBackgroundProperty = DependencyProperty.Register(
+            nameof(BottomBackground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(Brushes.Transparent));
+
+        public static readonly DependencyProperty BottomBorderBrushProperty = DependencyProperty.Register(
+            nameof(BottomBorderBrush),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+
+        public static readonly DependencyProperty BottomBorderThicknessProperty = DependencyProperty.Register(
+            nameof(BottomBorderThickness),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new Thickness(0,1,0,0)));
+
+        public static readonly DependencyProperty BottomPaddingProperty = DependencyProperty.Register(
+            nameof(BottomPadding),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new Thickness(0,8,0,0)));
+
+        public static readonly DependencyProperty HeaderBackgroundProperty = DependencyProperty.Register(
+            nameof(HeaderBackground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(Brushes.Transparent));
+
+        public static readonly DependencyProperty HeaderBorderBrushProperty = DependencyProperty.Register(
+            nameof(HeaderBorderBrush),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+
+        public static readonly DependencyProperty HeaderBorderThicknessProperty = DependencyProperty.Register(
+            nameof(HeaderBorderThickness),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new Thickness(0, 0, 0, 1)));
+
+        public static readonly DependencyProperty HeaderForegroundProperty = DependencyProperty.Register(
+            nameof(HeaderForeground),
+            typeof(Brush),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
+
+        public static readonly DependencyProperty HeaderPaddingProperty = DependencyProperty.Register(
+            nameof(HeaderPadding),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new Thickness(0,0,0,8)));
+
+        public static readonly DependencyProperty UseCustomHeaderForegroundBrushProperty = DependencyProperty.Register(
+            nameof(UseCustomHeaderForegroundBrush),
+            typeof(bool),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(false));
+
+        public static readonly DependencyProperty UseCustomSectionBreaksBorderBrushProperty = DependencyProperty.Register(
+            nameof(UseCustomSectionBreaksBorderBrush),
+            typeof(bool),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(false));
+
+        #endregion Header & Bottom Properties
+
         #region Icon Properties
 
         public static readonly DependencyProperty IconHeightProperty = DependencyProperty.Register(
@@ -186,6 +256,12 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             typeof(FontWeight),
             typeof(BaseInternalMessageEx<CloseEventArgs>),
             new PropertyMetadata(FontWeights.SemiBold));
+
+        public static readonly DependencyProperty TitleMarginProperty = DependencyProperty.Register(
+            nameof(TitleMargin),
+            typeof(Thickness),
+            typeof(BaseInternalMessageEx<CloseEventArgs>),
+            new PropertyMetadata(new Thickness(0)));
 
         #endregion Title Properties
 
@@ -351,6 +427,120 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         #endregion Buttons
 
+        #region Header & Bottom
+
+        public Brush BottomBackground
+        {
+            get => (Brush)GetValue(BottomBackgroundProperty);
+            set
+            {
+                SetValue(BottomBackgroundProperty, value);
+                OnPropertyChanged(nameof(BottomBackground));
+            }
+        }
+
+        public Brush BottomBorderBrush
+        {
+            get => (Brush)GetValue(BottomBorderBrushProperty);
+            set
+            {
+                SetValue(BottomBorderBrushProperty, value);
+                OnPropertyChanged(nameof(BottomBorderBrush));
+            }
+        }
+
+        public Thickness BottomBorderThickness
+        {
+            get => (Thickness)GetValue(BottomBorderThicknessProperty);
+            set
+            {
+                SetValue(BottomBorderThicknessProperty, value);
+                OnPropertyChanged(nameof(BottomBorderThickness));
+            }
+        }
+
+        public Thickness BottomPadding
+        {
+            get => (Thickness)GetValue(BottomPaddingProperty);
+            set
+            {
+                SetValue(BottomPaddingProperty, value);
+                OnPropertyChanged(nameof(BottomPadding));
+            }
+        }
+
+        public Brush HeaderBackground
+        {
+            get => (Brush)GetValue(HeaderBackgroundProperty);
+            set
+            {
+                SetValue(HeaderBackgroundProperty, value);
+                OnPropertyChanged(nameof(HeaderBackground));
+            }
+        }
+        
+        public Brush HeaderBorderBrush
+        {
+            get => (Brush)GetValue(HeaderBorderBrushProperty);
+            set
+            {
+                SetValue(HeaderBorderBrushProperty, value);
+                OnPropertyChanged(nameof(HeaderBorderBrush));
+            }
+        }
+
+        public Thickness HeaderBorderThickness
+        {
+            get => (Thickness)GetValue(HeaderBorderThicknessProperty);
+            set
+            {
+                SetValue(HeaderBorderThicknessProperty, value);
+                OnPropertyChanged(nameof(HeaderBorderThickness));
+            }
+        }
+
+        public Brush HeaderForeground
+        {
+            get => (Brush)GetValue(HeaderForegroundProperty);
+            set
+            {
+                SetValue(HeaderForegroundProperty, value);
+                OnPropertyChanged(nameof(HeaderForeground));
+            }
+        }
+
+        public Thickness HeaderPadding
+        {
+            get => (Thickness)GetValue(HeaderPaddingProperty);
+            set
+            {
+                SetValue(HeaderPaddingProperty, value);
+                OnPropertyChanged(nameof(HeaderPadding));
+            }
+        }
+
+        public bool UseCustomHeaderForegroundBrush
+        {
+            get => (bool)GetValue(UseCustomHeaderForegroundBrushProperty);
+            set
+            {
+                SetValue(UseCustomHeaderForegroundBrushProperty, value);
+                OnPropertyChanged(nameof(UseCustomHeaderForegroundBrush));
+            }
+        }
+        
+        public bool UseCustomSectionBreaksBorderBrush
+        {
+            get => (bool)GetValue(UseCustomSectionBreaksBorderBrushProperty);
+            set
+            {
+                SetValue(UseCustomSectionBreaksBorderBrushProperty, value);
+                OnPropertyChanged(nameof(UseCustomSectionBreaksBorderBrush));
+            }
+        }
+
+        #endregion Header & Bottom
+
         #region Icon
 
         public double IconHeight
@@ -484,6 +674,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
             {
                 SetValue(TitleFontWeightProperty, value);
                 OnPropertyChanged(nameof(TitleFontWeight));
+            }
+        }
+
+        public Thickness TitleMargin
+        {
+            get => (Thickness)GetValue(TitleMarginProperty);
+            set
+            {
+                SetValue(TitleMarginProperty, value);
+                OnPropertyChanged(nameof(TitleMargin));
             }
         }
 

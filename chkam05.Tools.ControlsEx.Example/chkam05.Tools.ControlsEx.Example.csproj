@@ -92,8 +92,12 @@
     <Compile Include="Data\Config\Configuration.cs" />
     <Compile Include="Data\Country.cs" />
     <Compile Include="Data\ExampleData.cs" />
+    <Compile Include="Data\ListViewIMData.cs" />
     <Compile Include="Data\Menu\MenuDataContext.cs" />
     <Compile Include="Data\Menu\MenuItem.cs" />
+    <Compile Include="ExtendedControls\ListViewInternalMessageEx.xaml.cs">
+      <DependentUpon>ListViewInternalMessageEx.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Base\PagesManager.cs" />
     <Compile Include="Pages\ButtonsPage.xaml.cs">
       <DependentUpon>ButtonsPage.xaml</DependentUpon>
@@ -188,6 +192,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ExtendedControls\ListViewInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ButtonsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

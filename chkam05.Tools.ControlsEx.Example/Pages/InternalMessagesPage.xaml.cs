@@ -1,6 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Data;
 using chkam05.Tools.ControlsEx.Events;
 using chkam05.Tools.ControlsEx.Example.Data.Config;
+using chkam05.Tools.ControlsEx.Example.ExtendedControls;
 using chkam05.Tools.ControlsEx.Example.Windows;
 using chkam05.Tools.ControlsEx.InternalMessages;
 //using chkam05.Tools.ControlsEx.InternalMessages;
@@ -257,6 +258,21 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             message.OnHide += OnMessageHide;
 
             UpdateInternalMessageAppearance(message);
+            internalMessages.ShowMessage(message);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Extended List IM Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void ExtendedListIMButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new ListViewInternalMessageEx(internalMessages);
+
+            message.OnClose += OnMessageClose;
+            message.OnHide += OnMessageHide;
+
             internalMessages.ShowMessage(message);
         }
 

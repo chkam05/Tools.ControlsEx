@@ -38,21 +38,24 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" MinHeight="128"/>
+                    <RowDefinition Height="*" MinHeight="128"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Border
+                    x:Name="headerBorder"
+                    Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="0,0,0,1"
+                    BorderThickness="{TemplateBinding HeaderBorderThickness}"
                     Grid.Row="0"
-                    Padding="0,0,0,8">
+                    Padding="{TemplateBinding HeaderPadding}">
 
                     <StackPanel
                         HorizontalAlignment="Left"
                         Orientation="Horizontal">
 
                         <materialDesign:PackIcon
+                            x:Name="headerIcon"
                             Foreground="{TemplateBinding Foreground}"
                             Kind="{TemplateBinding IconKind}"
                             Height="{TemplateBinding IconHeight}"
@@ -64,12 +67,14 @@
                             Width="{TemplateBinding IconWidth}"/>
 
                         <TextBlock
+                            x:Name="headerTitle"
                             Foreground="{TemplateBinding Foreground}"
                             FontFamily="{TemplateBinding TitleFontFamily}"
                             FontSize="{TemplateBinding TitleFontSize}"
                             FontStretch="{TemplateBinding TitleFontStretch}"
                             FontStyle="{TemplateBinding TitleFontStyle}"
                             FontWeight="{TemplateBinding TitleFontWeight}"
+                            Margin="{TemplateBinding TitleMargin}"
                             Text="{TemplateBinding Title}"
                             VerticalAlignment="Center"/>
 
@@ -84,10 +89,12 @@
                     VerticalAlignment="Stretch"/>
 
                 <Border
+                    x:Name="bottomBorder"
+                    Background="{TemplateBinding BottomBackground}"
                     BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="0,1,0,0"
+                    BorderThickness="{TemplateBinding BottomBorderThickness}"
                     Grid.Row="2"
-                    Padding="0,8,0,0">
+                    Padding="{TemplateBinding BottomPadding}">
 
                     <StackPanel
                         HorizontalAlignment="Center"
@@ -132,6 +139,22 @@
                 </Border>
             </Grid>
         </Border>
+
+        <ControlTemplate.Triggers>
+            
+            <!-- Custom Header Foreground -->
+            <Trigger Property="UseCustomHeaderForegroundBrush" Value="True">
+                <Setter TargetName="headerIcon" Property="Foreground" Value="{Binding HeaderForeground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
+                <Setter TargetName="headerTitle" Property="Foreground" Value="{Binding HeaderForeground, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
+            </Trigger>
+
+            <!-- Custom Section Break Border Brush -->
+            <Trigger Property="UseCustomSectionBreaksBorderBrush" Value="True">
+                <Setter TargetName="headerBorder" Property="BorderBrush" Value="{Binding HeaderBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
+                <Setter TargetName="bottomBorder" Property="BorderBrush" Value="{Binding BottomBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type im:StandardInternalMessageEx}}}"/>
+            </Trigger>
+
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="StandardInternalMessageExStyle" TargetType="{x:Type im:StandardInternalMessageEx}">

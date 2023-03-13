@@ -114,6 +114,11 @@
                         IconKind="ApplicationOutline"
                         Click="EmptyStandardHideableIMButtonEx_Click"/>
 
+                    <controlsex:ButtonEx
+                        Content="Extended"
+                        IconKind="ViewList"
+                        Click="ExtendedListIMButtonEx_Click"/>
+
                 </StackPanel>
 
                 <TextBlock
