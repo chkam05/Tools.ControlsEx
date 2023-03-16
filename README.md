@@ -69,6 +69,7 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 
 - **[CheckBoxStyle](Doc/CheckBoxStyle.md)** 
 - **[ContentSide](Doc/ContentSide.md)** 
+- **[ExpanderArrowPosition](Doc/ExpanderArrowPosition.md)** 
 - **[InternalMessageButtons](Doc/InternalMessageButtons.md)** 
 - **[InternalMessagesButtonsSet](Doc/InternalMessagesButtonsSet.md)** 
 - **[InternalMessageResult](Doc/InternalMessageResult.md)** 

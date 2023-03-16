@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Static;
+using MaterialDesignThemes.Wpf;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,6 +61,18 @@ namespace chkam05.Tools.ControlsEx
             typeof(ExpanderEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.WHITE_PRESSED)));
 
+        public static readonly DependencyProperty ArrowCollapsedProperty = DependencyProperty.Register(
+            nameof(ArrowCollapsed),
+            typeof(PackIconKind),
+            typeof(ExpanderEx),
+            new PropertyMetadata(PackIconKind.ChevronDown));
+
+        public static readonly DependencyProperty ArrowExpandedProperty = DependencyProperty.Register(
+            nameof(ArrowExpanded),
+            typeof(PackIconKind),
+            typeof(ExpanderEx),
+            new PropertyMetadata(PackIconKind.ChevronUp));
+
         public static readonly DependencyProperty ArrowHeightProperty = DependencyProperty.Register(
             nameof(ArrowHeight),
             typeof(double),
@@ -95,6 +108,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(double),
             typeof(ExpanderEx),
             new PropertyMetadata(0d));
+        
+        public static readonly DependencyProperty ArrowPositionProperty = DependencyProperty.Register(
+            nameof(ArrowPosition),
+            typeof(ExpanderArrowPosition),
+            typeof(ExpanderEx),
+            new PropertyMetadata(ExpanderArrowPosition.Left));
 
         public static readonly DependencyProperty ArrowWidthProperty = DependencyProperty.Register(
             nameof(ArrowWidth),
@@ -111,6 +130,22 @@ namespace chkam05.Tools.ControlsEx
             typeof(Thickness),
             typeof(ExpanderEx),
             new PropertyMetadata(new Thickness(0)));
+
+        public static readonly DependencyProperty HeaderContentMarginProperty = DependencyProperty.Register(
+            nameof(HeaderContentMargin),
+            typeof(Thickness),
+            typeof(ExpanderEx),
+            new PropertyMetadata(new Thickness(4,0,0,0)));
+
+        public static readonly DependencyProperty HeaderPaddingProperty = DependencyProperty.Register(
+            nameof(HeaderPadding),
+            typeof(Thickness),
+            typeof(ExpanderEx),
+            new PropertyMetadata(new Thickness(0)));
+
+        #endregion Header Properties
+
+        #region Header Font Properties
 
         public static readonly DependencyProperty HeaderFontFamilyProperty = DependencyProperty.Register(
             nameof(HeaderFontFamily),
@@ -142,13 +177,59 @@ namespace chkam05.Tools.ControlsEx
             typeof(ExpanderEx),
             new PropertyMetadata(FontWeights.SemiBold));
 
-        public static readonly DependencyProperty HeaderPaddingProperty = DependencyProperty.Register(
-            nameof(HeaderPadding),
+        #endregion Header Font Properties
+
+        #region Header Icon Properties
+
+        public static readonly DependencyProperty IconHeightProperty = DependencyProperty.Register(
+            nameof(IconHeight),
+            typeof(double),
+            typeof(ExpanderEx),
+            new PropertyMetadata(double.NaN));
+
+        public static readonly DependencyProperty IconKindProperty = DependencyProperty.Register(
+            nameof(IconKind),
+            typeof(PackIconKind),
+            typeof(ExpanderEx),
+            new PropertyMetadata(PackIconKind.None));
+
+        public static readonly DependencyProperty IconMarginProperty = DependencyProperty.Register(
+            nameof(IconMargin),
             typeof(Thickness),
             typeof(ExpanderEx),
-            new PropertyMetadata(new Thickness(0)));
+            new PropertyMetadata(new Thickness(4)));
 
-        #endregion Header Properties
+        public static readonly DependencyProperty IconMaxHeightProperty = DependencyProperty.Register(
+            nameof(IconMaxHeight),
+            typeof(double),
+            typeof(ExpanderEx),
+            new PropertyMetadata(double.PositiveInfinity));
+
+        public static readonly DependencyProperty IconMaxWidthProperty = DependencyProperty.Register(
+            nameof(IconMaxWidth),
+            typeof(double),
+            typeof(ExpanderEx),
+            new PropertyMetadata(double.PositiveInfinity));
+
+        public static readonly DependencyProperty IconMinHeightProperty = DependencyProperty.Register(
+            nameof(IconMinHeight),
+            typeof(double),
+            typeof(ExpanderEx),
+            new PropertyMetadata(0d));
+
+        public static readonly DependencyProperty IconMinWidthProperty = DependencyProperty.Register(
+            nameof(IconMinWidth),
+            typeof(double),
+            typeof(ExpanderEx),
+            new PropertyMetadata(0d));
+
+        public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register(
+            nameof(IconWidth),
+            typeof(double),
+            typeof(ExpanderEx),
+            new PropertyMetadata(double.NaN));
+
+        #endregion Header Icon Properties
 
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
@@ -198,7 +279,7 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion Appearance Colors
 
-        #region Arrow Properties
+        #region Arrow
 
         public Brush ArrowBrush
         {
@@ -227,6 +308,26 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(ArrowPressedBrushProperty, value);
                 OnPropertyChanged(nameof(ArrowPressedBrush));
+            }
+        }
+
+        public PackIconKind ArrowCollapsed
+        {
+            get => (PackIconKind)GetValue(ArrowCollapsedProperty);
+            set
+            {
+                SetValue(ArrowCollapsedProperty, value);
+                OnPropertyChanged(nameof(ArrowCollapsed));
+            }
+        }
+
+        public PackIconKind ArrowExpanded
+        {
+            get => (PackIconKind)GetValue(ArrowExpandedProperty);
+            set
+            {
+                SetValue(ArrowExpandedProperty, value);
+                OnPropertyChanged(nameof(ArrowExpanded));
             }
         }
 
@@ -290,6 +391,16 @@ namespace chkam05.Tools.ControlsEx
             }
         }
 
+        public ExpanderArrowPosition ArrowPosition
+        {
+            get => (ExpanderArrowPosition)GetValue(ArrowPositionProperty);
+            set
+            {
+                SetValue(ArrowPositionProperty, value);
+                OnPropertyChanged(nameof(ArrowPosition));
+            }
+        }
+
         public double ArrowWidth
         {
             get => (double)GetValue(ArrowWidthProperty);
@@ -300,7 +411,7 @@ namespace chkam05.Tools.ControlsEx
             }
         }
 
-        #endregion Arrow Properties
+        #endregion Arrow
 
         #region Header
 
@@ -313,6 +424,30 @@ namespace chkam05.Tools.ControlsEx
                 OnPropertyChanged(nameof(HeaderBorderThickness));
             }
         }
+
+        public Thickness HeaderContentMargin
+        {
+            get => (Thickness)GetValue(HeaderContentMarginProperty);
+            set
+            {
+                SetValue(HeaderContentMarginProperty, value);
+                OnPropertyChanged(nameof(HeaderContentMargin));
+            }
+        }
+
+        public Thickness HeaderPadding
+        {
+            get => (Thickness)GetValue(HeaderPaddingProperty);
+            set
+            {
+                SetValue(HeaderPaddingProperty, value);
+                OnPropertyChanged(nameof(HeaderPadding));
+            }
+        }
+
+        #endregion Header
+
+        #region Header Font
 
         public FontFamily HeaderFontFamily
         {
@@ -364,17 +499,91 @@ namespace chkam05.Tools.ControlsEx
             }
         }
 
-        public Thickness HeaderPadding
+        #endregion Header Font
+
+        #region Header Icon
+
+        public double IconHeight
         {
-            get => (Thickness)GetValue(HeaderPaddingProperty);
+            get => (double)GetValue(IconHeightProperty);
             set
             {
-                SetValue(HeaderPaddingProperty, value);
-                OnPropertyChanged(nameof(HeaderPadding));
+                SetValue(IconHeightProperty, value);
+                OnPropertyChanged(nameof(IconHeight));
             }
         }
 
-        #endregion Header
+        public PackIconKind IconKind
+        {
+            get => (PackIconKind)GetValue(IconKindProperty);
+            set
+            {
+                SetValue(IconKindProperty, value);
+                OnPropertyChanged(nameof(IconKind));
+            }
+        }
+
+        public Thickness IconMargin
+        {
+            get => (Thickness)GetValue(IconMarginProperty);
+            set
+            {
+                SetValue(IconMarginProperty, value);
+                OnPropertyChanged(nameof(IconMargin));
+            }
+        }
+
+        public double IconMaxHeight
+        {
+            get => (double)GetValue(IconMaxHeightProperty);
+            set
+            {
+                SetValue(IconMaxHeightProperty, value);
+                OnPropertyChanged(nameof(IconMaxHeight));
+            }
+        }
+
+        public double IconMaxWidth
+        {
+            get => (double)GetValue(IconMaxWidthProperty);
+            set
+            {
+                SetValue(IconMaxWidthProperty, value);
+                OnPropertyChanged(nameof(IconMaxWidth));
+            }
+        }
+
+        public double IconMinHeight
+        {
+            get => (double)GetValue(IconMinHeightProperty);
+            set
+            {
+                SetValue(IconMinHeightProperty, value);
+                OnPropertyChanged(nameof(IconMinHeight));
+            }
+        }
+
+        public double IconMinWidth
+        {
+            get => (double)GetValue(IconMinWidthProperty);
+            set
+            {
+                SetValue(IconMinWidthProperty, value);
+                OnPropertyChanged(nameof(IconMinWidth));
+            }
+        }
+
+        public double IconWidth
+        {
+            get => (double)GetValue(IconWidthProperty);
+            set
+            {
+                SetValue(IconWidthProperty, value);
+                OnPropertyChanged(nameof(IconWidth));
+            }
+        }
+
+        #endregion Header Icon
 
         public CornerRadius CornerRadius
         {

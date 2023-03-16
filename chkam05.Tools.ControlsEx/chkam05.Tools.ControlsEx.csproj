@@ -154,6 +154,7 @@
     <Compile Include="SliderEx.cs" />
     <Compile Include="Static\CheckBoxStyle.cs" />
     <Compile Include="Static\ContentSide.cs" />
+    <Compile Include="Static\ExpanderArrowPosition.cs" />
     <Compile Include="Static\IndicatorType.cs" />
     <Compile Include="Static\MarqueeTextAnimationPlace.cs" />
     <Compile Include="Static\MarqueeTextBlockState.cs" />
