@@ -137,11 +137,23 @@ namespace chkam05.Tools.ControlsEx
             typeof(ExpanderEx),
             new PropertyMetadata(new Thickness(4,0,0,0)));
 
+        public static readonly DependencyProperty HeaderHorizontalContentAlignmentProperty = DependencyProperty.Register(
+            nameof(HeaderHorizontalContentAlignment),
+            typeof(HorizontalAlignment),
+            typeof(ExpanderEx),
+            new PropertyMetadata(HorizontalAlignment.Left));
+
         public static readonly DependencyProperty HeaderPaddingProperty = DependencyProperty.Register(
             nameof(HeaderPadding),
             typeof(Thickness),
             typeof(ExpanderEx),
             new PropertyMetadata(new Thickness(0)));
+
+        public static readonly DependencyProperty HeaderVerticalContentAlignmentProperty = DependencyProperty.Register(
+            nameof(HeaderVerticalContentAlignment),
+            typeof(VerticalAlignment),
+            typeof(ExpanderEx),
+            new PropertyMetadata(VerticalAlignment.Center));
 
         #endregion Header Properties
 
@@ -435,6 +447,16 @@ namespace chkam05.Tools.ControlsEx
             }
         }
 
+        public HorizontalAlignment HeaderHorizontalContentAlignment
+        {
+            get => (HorizontalAlignment)GetValue(HeaderHorizontalContentAlignmentProperty);
+            set
+            {
+                SetValue(HeaderHorizontalContentAlignmentProperty, value);
+                OnPropertyChanged(nameof(HeaderHorizontalContentAlignment));
+            }
+        }
+
         public Thickness HeaderPadding
         {
             get => (Thickness)GetValue(HeaderPaddingProperty);
@@ -442,6 +464,16 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(HeaderPaddingProperty, value);
                 OnPropertyChanged(nameof(HeaderPadding));
+            }
+        }
+
+        public VerticalAlignment HeaderVerticalContentAlignment
+        {
+            get => (VerticalAlignment)GetValue(HeaderVerticalContentAlignmentProperty);
+            set
+            {
+                SetValue(HeaderVerticalContentAlignmentProperty, value);
+                OnPropertyChanged(nameof(HeaderVerticalContentAlignment));
             }
         }
 

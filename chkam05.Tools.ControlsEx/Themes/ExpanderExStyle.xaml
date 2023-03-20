@@ -96,7 +96,7 @@
 
                             <ContentPresenter
                                 Grid.Column="2"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
@@ -105,7 +105,7 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -215,7 +215,7 @@
 
                             <ContentPresenter
                                 Grid.Column="2"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
@@ -224,7 +224,7 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
 
                         </Grid>
                     </Border>
@@ -349,7 +349,7 @@
 
                             <ContentPresenter
                                 Grid.Column="2"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
@@ -358,8 +358,8 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Center">
-                            </ContentPresenter>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+                        
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -469,7 +469,7 @@
 
                             <ContentPresenter
                                 Grid.Column="2"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
@@ -478,7 +478,8 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+                            
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -553,13 +554,13 @@
                     DockPanel.Dock="Top"
                     Foreground="{TemplateBinding HeaderForeground}"
                     FocusVisualStyle="{StaticResource ExpanderEx.HeaderFocusVisual}"
-                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    HorizontalContentAlignment="Stretch"
                     IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                     MinWidth="0"
                     MinHeight="0"
                     Padding="{TemplateBinding HeaderPadding}"
                     Style="{StaticResource ExpanderEx.DownHeaderStyle}"
-                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    VerticalContentAlignment="Stretch"/>
 
                 <ContentPresenter
                     x:Name="ExpandSite"

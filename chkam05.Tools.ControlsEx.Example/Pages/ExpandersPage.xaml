@@ -79,6 +79,7 @@
                 <controlsex:ExpanderEx
                     ArrowPosition="Right"
                     Header="Downward expanding"
+                    HeaderHorizontalContentAlignment="Center"
                     IconKind="ArrowUpDown">
 
                     <StackPanel
@@ -97,8 +98,9 @@
 
                     <controlsex:ExpanderEx
                         ArrowPosition="Right"
-                        Header="Expanding to the left"
                         ExpandDirection="Left"
+                        Header="Expanding to the left"
+                        HeaderHorizontalContentAlignment="Center"
                         IconKind="ArrowLeftRight">
 
                         <StackPanel
@@ -119,8 +121,9 @@
 
                     <controlsex:ExpanderEx
                         ArrowPosition="Right"
-                        Header="Expanding to the right"
                         ExpandDirection="Right"
+                        Header="Expanding to the right"
+                        HeaderHorizontalContentAlignment="Center"
                         IconKind="ArrowLeftRight">
 
                         <StackPanel
@@ -138,8 +141,9 @@
 
                 <controlsex:ExpanderEx
                     ArrowPosition="Right"
-                    Header="Upward expanding"
                     ExpandDirection="Up"
+                    Header="Upward expanding"
+                    HeaderHorizontalContentAlignment="Center"
                     IconKind="ArrowUpDown">
 
                     <StackPanel
