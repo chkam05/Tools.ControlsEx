@@ -1,0 +1,136 @@
+﻿<controlsexwin:WindowEx
+    x:Class="chkam05.Tools.ControlsEx.Example.Windows.TestWindows.ClassicWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:controlsexwin="clr-namespace:chkam05.Tools.ControlsEx.WindowsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Windows.TestWindows"
+    mc:Ignorable="d"
+    
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    Background="{Binding Configuration.BackgroundColorBrush}"
+    BorderBrush="{Binding Configuration.AccentColorBrush}"
+    Foreground="{Binding Configuration.AccentForegroundColorBrush}"
+    MouseOverTitleBarButtonBackground="{Binding Configuration.AccentMouseOverColorBrush}"
+    MouseOverTitleBarButtonForeground="{Binding Configuration.AccentForegroundColorBrush}"
+    PressedTitleBarButtonBackground="{Binding Configuration.AccentPressedColorBrush}"
+    PressedTitleBarButtonForeground="{Binding Configuration.AccentForegroundColorBrush}"
+    Title="Classic Window"
+    Height="450"
+    Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Window}"/>
+
+            <!-- STYLES -->
+            
+            <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:SliderEx}">
+                <Setter Property="Foreground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Margin" Value="0,0,0,16"/>
+                <Setter Property="Maximum" Value="100"/>
+                <Setter Property="Minimum" Value="0"/>
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="SmallChange" Value="1"/>
+                <Setter Property="ThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbDraggingBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbDraggingBorderBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ThumbMouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="TicksColorBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="TrackBarBackground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:CheckBoxEx}">
+                <Setter Property="CheckMarkBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="CheckMarkWidth" Value="24"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverCheckMarkBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedCheckMarkBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+
+        <StackPanel
+            HorizontalAlignment="Center"
+            MinWidth="256"
+            Orientation="Vertical"
+            VerticalAlignment="Center">
+
+            <TextBlock
+                Margin="0,0,0,8"
+                Style="{StaticResource Conf_TextBlockStyle.Header1}"
+                Text="Classic Window"/>
+
+            <TextBlock
+                Margin="0,0,0,4"
+                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                Text="Background bar opacity:"/>
+
+            <controlsex:SliderEx
+                Height="18"
+                Margin="0,0,0,8"
+                MaxHeight="18"
+                Maximum="1"
+                Minimum="0.1"
+                SmallChange="0.01"
+                ThumbCornerRadius="8"
+                ThumbWidth="14"
+                Value="{Binding BackgroundOpacity}"/>
+
+            <TextBlock
+                Margin="0,0,0,4"
+                Style="{StaticResource Conf_TextBlockStyle.Content}"
+                Text="Title bar opacity:"/>
+
+            <controlsex:SliderEx
+                Height="18"
+                MaxHeight="18"
+                Maximum="1"
+                Minimum="0.1"
+                SmallChange="0.01"
+                ThumbCornerRadius="8"
+                ThumbWidth="14"
+                Value="{Binding TitleBarOpacity}"/>
+
+            <StackPanel
+                Margin="0,0,0,8"
+                Orientation="Horizontal">
+
+                <controlsex:CheckBoxEx
+                    Content="Show Minimize"
+                    IsChecked="{Binding ShowMinimizeButton}"
+                    Margin="0,0,8,0"/>
+
+                <controlsex:CheckBoxEx
+                    Content="Show Maximize"
+                    IsChecked="{Binding ShowMaximizeButton}"/>
+
+            </StackPanel>
+
+            <controlsex:CheckBoxEx
+                    Content="Show Icon"
+                    IsChecked="{Binding ShowIcon}"/>
+
+        </StackPanel>
+
+    </Grid>
+    
+</controlsexwin:WindowEx>

@@ -1,5 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.Example.Data.Config;
-using chkam05.Tools.ControlsEx.Static;
+using chkam05.Tools.ControlsEx.Example.Windows.TestWindows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace chkam05.Tools.ControlsEx.Example.Pages
 {
-    public partial class TextBlocksPage : Page, INotifyPropertyChanged
+    public partial class WindowsPage : Page, INotifyPropertyChanged
     {
 
         //  EVENTS
@@ -29,20 +29,6 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         //  VARIABLES
 
         public Configuration Configuration { get; private set; }
-        public MarqueeTextBlockState _enableAnimation = MarqueeTextBlockState.Enabled;
-
-
-        //  GETTERS & SETTERS
-
-        public MarqueeTextBlockState EnableAnimation
-        {
-            get => _enableAnimation;
-            set
-            {
-                _enableAnimation = value;
-                OnPropertyChanged(nameof(EnableAnimation));
-            }
-        }
 
 
         //  METHODS
@@ -50,8 +36,8 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         #region CLASS METHODS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> TextBlocksPage class constructor. </summary>
-        public TextBlocksPage()
+        /// <summary> WindowsPage class constructor. </summary>
+        public WindowsPage()
         {
             //  Initialize data containers.
             Configuration = Configuration.Instance;
@@ -65,37 +51,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         #region INTERACTION METHODS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after clicking start stop animation ButtonEx. </summary>
+        /// <summary> Method invoked after clicking on ClassicWindowEx button. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Routed Event Arguments. </param>
-        private void StartStopAnimationButtonEx_Click(object sender, RoutedEventArgs e)
+        private void ClassicWindowExButtonEx_Click(object sender, RoutedEventArgs e)
         {
-            switch (EnableAnimation)
-            {
-                case MarqueeTextBlockState.Disabled:
-                    EnableAnimation = MarqueeTextBlockState.Enabled;
-                    return;
-
-                case MarqueeTextBlockState.Enabled:
-                    EnableAnimation = MarqueeTextBlockState.WhenTextIsTooLong;
-                    return;
-
-                case MarqueeTextBlockState.WhenTextIsTooLong:
-                    EnableAnimation = MarqueeTextBlockState.Disabled;
-                    return;
-            }
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Method invoked after clicking show hide marquees ButtonEx. </summary>
-        /// <param name="sender"> Object that invoked method. </param>
-        /// <param name="e"> Routed Event Arguments. </param>
-        private void ShowHideMarqueesButtonEx_Click(object sender, RoutedEventArgs e)
-        {
-            MarqueesStackPanel.Visibility =
-                MarqueesStackPanel.Visibility == Visibility.Visible
-                    ? Visibility.Collapsed
-                    : Visibility.Visible;
+            var window = new ClassicWindow();
+            window.Show();
         }
 
         #endregion INTERACTION METHODS

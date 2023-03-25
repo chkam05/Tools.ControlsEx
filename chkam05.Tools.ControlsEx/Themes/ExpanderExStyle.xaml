@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:chkam05.Tools.ControlsEx.Converters"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:static="clr-namespace:chkam05.Tools.ControlsEx.Static">
 
     <converters:CornerRadiusSideConverter x:Key="CornerRadiusSideConverter"/>
 
@@ -41,30 +42,62 @@
                             Background="Transparent"
                             SnapsToDevicePixels="False">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                            <Grid.LayoutTransform>
+                                <RotateTransform Angle="-90" />
+                            </Grid.LayoutTransform>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
                             <materialDesign:PackIcon
                                 x:Name="icon"
                                 Foreground="{Binding ArrowBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Grid.Column="0"
                                 Height="{Binding ArrowHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                HorizontalAlignment="Stretch"
-                                Kind="ChevronRightCircle"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding ArrowCollapsed, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxHeight="{Binding ArrowMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxWidth="{Binding ArrowMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinHeight="{Binding ArrowMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinWidth="{Binding ArrowMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 SnapsToDevicePixels="false"
-                                VerticalAlignment="Stretch"
-                                Width="{Binding ArrowWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+                                VerticalAlignment="Center"
+                                Width="{Binding ArrowWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}">
+
+                                <materialDesign:PackIcon.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                                </materialDesign:PackIcon.LayoutTransform>
+                            </materialDesign:PackIcon>
+
+                            <materialDesign:PackIcon
+                                x:Name="headerIcon"
+                                Foreground="{Binding HeaderForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Grid.Column="1"
+                                Height="{Binding IconHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding IconKind, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding IconMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxHeight="{Binding IconMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxWidth="{Binding IconMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinHeight="{Binding IconMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinWidth="{Binding IconMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                VerticalAlignment="Center"
+                                Width="{Binding IconWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}">
+
+                                <materialDesign:PackIcon.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                                </materialDesign:PackIcon.LayoutTransform>
+                            </materialDesign:PackIcon>
 
                             <ContentPresenter
-                                HorizontalAlignment="Center"
-                                Margin="0,4,0,0"
-                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
                                 TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
@@ -72,15 +105,37 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Top"/>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
 
+                        <!-- Arrow Position. -->
+                        <DataTrigger Value="{x:Static static:ExpanderArrowPosition.Right}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="ArrowPosition"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Grid.Column" TargetName="icon"  Value="3"/>
+                        </DataTrigger>
+
+                        <!-- Icon Visibility -->
+                        <DataTrigger Value="{x:Static materialDesign:PackIconKind.None}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="IconKind"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Visibility" TargetName="headerIcon" Value="Collapsed"/>
+                        </DataTrigger>
+
                         <!-- Is Checked. -->
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="CornerRadius" TargetName="border" Value="{Binding CornerRadius, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}, Converter={StaticResource CornerRadiusSideConverter}, ConverterParameter={x:Static converters:CornerRadiusSideConverter.LeftSide}}"/>
-                            <Setter Property="Kind" TargetName="icon" Value="ChevronLeftCircle"/>
+                            <Setter Property="Kind" TargetName="icon" Value="{Binding ArrowExpanded, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
                         </Trigger>
 
                         <!-- Is Mouse Over. -->
@@ -122,28 +177,46 @@
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
                             <materialDesign:PackIcon
                                 x:Name="icon"
                                 Foreground="{Binding ArrowBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Grid.Column="0"
                                 Height="{Binding ArrowHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                HorizontalAlignment="Stretch"
-                                Kind="ChevronUpCircle"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding ArrowCollapsed, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxHeight="{Binding ArrowMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxWidth="{Binding ArrowMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinHeight="{Binding ArrowMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinWidth="{Binding ArrowMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 SnapsToDevicePixels="false"
-                                VerticalAlignment="Stretch"
+                                VerticalAlignment="Center"
                                 Width="{Binding ArrowWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
 
-                            <ContentPresenter
+                            <materialDesign:PackIcon
+                                x:Name="headerIcon"
+                                Foreground="{Binding HeaderForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Grid.Column="1"
-                                HorizontalAlignment="Left"
-                                Margin="4,0,0,0"
+                                Height="{Binding IconHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding IconKind, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding IconMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxHeight="{Binding IconMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxWidth="{Binding IconMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinHeight="{Binding IconMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinWidth="{Binding IconMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                VerticalAlignment="Center"
+                                Width="{Binding IconWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+
+                            <ContentPresenter
+                                Grid.Column="2"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
                                 TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
@@ -151,16 +224,38 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
 
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
 
+                        <!-- Arrow Position. -->
+                        <DataTrigger Value="{x:Static static:ExpanderArrowPosition.Right}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="ArrowPosition"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Grid.Column" TargetName="icon"  Value="3"/>
+                        </DataTrigger>
+
+                        <!-- Icon Visibility -->
+                        <DataTrigger Value="{x:Static materialDesign:PackIconKind.None}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="IconKind"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Visibility" TargetName="headerIcon" Value="Collapsed"/>
+                        </DataTrigger>
+
                         <!-- Is Checked. -->
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="CornerRadius" TargetName="border" Value="{Binding CornerRadius, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}, Converter={StaticResource CornerRadiusSideConverter}, ConverterParameter={x:Static converters:CornerRadiusSideConverter.BottomSide}}"/>
-                            <Setter Property="Kind" TargetName="icon" Value="ChevronDownCircle"/>
+                            <Setter Property="Kind" TargetName="icon" Value="{Binding ArrowExpanded, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
                         </Trigger>
 
                         <!-- Is Mouse Over. -->
@@ -200,30 +295,62 @@
                             Background="Transparent"
                             SnapsToDevicePixels="False">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                            <Grid.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </Grid.LayoutTransform>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
 
                             <materialDesign:PackIcon
                                 x:Name="icon"
                                 Foreground="{Binding ArrowBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Grid.Column="0"
                                 Height="{Binding ArrowHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                HorizontalAlignment="Stretch"
-                                Kind="ChevronLeftCircle"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding ArrowCollapsed, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxHeight="{Binding ArrowMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxWidth="{Binding ArrowMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinHeight="{Binding ArrowMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinWidth="{Binding ArrowMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 SnapsToDevicePixels="false"
-                                VerticalAlignment="Stretch"
-                                Width="{Binding ArrowWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+                                VerticalAlignment="Center"
+                                Width="{Binding ArrowWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}">
+                                
+                                <materialDesign:PackIcon.LayoutTransform>
+                                    <RotateTransform Angle="-90" />
+                                </materialDesign:PackIcon.LayoutTransform>
+                            </materialDesign:PackIcon>
+
+                            <materialDesign:PackIcon
+                                x:Name="headerIcon"
+                                Foreground="{Binding HeaderForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Grid.Column="1"
+                                Height="{Binding IconHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding IconKind, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding IconMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxHeight="{Binding IconMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxWidth="{Binding IconMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinHeight="{Binding IconMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinWidth="{Binding IconMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                VerticalAlignment="Center"
+                                Width="{Binding IconWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}">
+
+                                <materialDesign:PackIcon.LayoutTransform>
+                                    <RotateTransform Angle="-90" />
+                                </materialDesign:PackIcon.LayoutTransform>
+                            </materialDesign:PackIcon>
 
                             <ContentPresenter
-                                HorizontalAlignment="Center"
-                                Margin="0,4,0,0"
-                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
                                 TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
@@ -231,15 +358,38 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Top"/>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+                        
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
 
+                        <!-- Arrow Position. -->
+                        <DataTrigger Value="{x:Static static:ExpanderArrowPosition.Right}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="ArrowPosition"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Grid.Column" TargetName="icon"  Value="3"/>
+                        </DataTrigger>
+
+                        <!-- Icon Visibility -->
+                        <DataTrigger Value="{x:Static materialDesign:PackIconKind.None}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="IconKind"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Visibility" TargetName="headerIcon" Value="Collapsed"/>
+                        </DataTrigger>
+
                         <!-- Is Checked. -->
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="CornerRadius" TargetName="border" Value="{Binding CornerRadius, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}, Converter={StaticResource CornerRadiusSideConverter}, ConverterParameter={x:Static converters:CornerRadiusSideConverter.RightSide}}"/>
-                            <Setter Property="Kind" TargetName="icon" Value="ChevronRightCircle"/>
+                            <Setter Property="Kind" TargetName="icon" Value="{Binding ArrowExpanded, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
                         </Trigger>
 
                         <!-- Is Mouse Over. -->
@@ -281,28 +431,46 @@
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
                             <materialDesign:PackIcon
                                 x:Name="icon"
                                 Foreground="{Binding ArrowBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Grid.Column="0"
                                 Height="{Binding ArrowHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                HorizontalAlignment="Stretch"
-                                Kind="ChevronDownCircle"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding ArrowCollapsed, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Margin="{Binding ArrowMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxHeight="{Binding ArrowMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MaxWidth="{Binding ArrowMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinHeight="{Binding ArrowMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 MinWidth="{Binding ArrowMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 SnapsToDevicePixels="false"
-                                VerticalAlignment="Stretch"
+                                VerticalAlignment="Center"
                                 Width="{Binding ArrowWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
 
-                            <ContentPresenter
+                            <materialDesign:PackIcon
+                                x:Name="headerIcon"
+                                Foreground="{Binding HeaderForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 Grid.Column="1"
-                                HorizontalAlignment="Left"
-                                Margin="4,0,0,0"
+                                Height="{Binding IconHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                HorizontalAlignment="Center"
+                                Kind="{Binding IconKind, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding IconMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxHeight="{Binding IconMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MaxWidth="{Binding IconMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinHeight="{Binding IconMinHeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                MinWidth="{Binding IconMinWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                VerticalAlignment="Center"
+                                Width="{Binding IconWidth, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+
+                            <ContentPresenter
+                                Grid.Column="2"
+                                HorizontalAlignment="{Binding HeaderHorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
+                                Margin="{Binding HeaderContentMargin, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 RecognizesAccessKey="True"
                                 SnapsToDevicePixels="True"
                                 TextBlock.FontFamily="{Binding HeaderFontFamily, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
@@ -310,15 +478,38 @@
                                 TextBlock.FontStretch="{Binding HeaderFontStretch, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontStyle="{Binding HeaderFontStyle, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
                                 TextBlock.FontWeight="{Binding HeaderFontWeight, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="{Binding HeaderVerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
+                            
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
 
+                        <!-- Arrow Position. -->
+                        <DataTrigger Value="{x:Static static:ExpanderArrowPosition.Right}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="ArrowPosition"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Grid.Column" TargetName="icon"  Value="3"/>
+                        </DataTrigger>
+                        
+                        <!-- Icon Visibility -->
+                        <DataTrigger Value="{x:Static materialDesign:PackIconKind.None}">
+                            <DataTrigger.Binding>
+                                <Binding
+                                    Mode="OneWay"
+                                    Path="IconKind"
+                                    RelativeSource="{RelativeSource AncestorType={x:Type local:ExpanderEx}}"/>
+                            </DataTrigger.Binding>
+                            <Setter Property="Visibility" TargetName="headerIcon" Value="Collapsed"/>
+                        </DataTrigger>
+
                         <!-- Is Checked. -->
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="CornerRadius" TargetName="border" Value="{Binding CornerRadius, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}, Converter={StaticResource CornerRadiusSideConverter}, ConverterParameter={x:Static converters:CornerRadiusSideConverter.TopSide}}"/>
-                            <Setter Property="Kind" TargetName="icon" Value="ChevronUpCircle"/>
+                            <Setter Property="Kind" TargetName="icon" Value="{Binding ArrowExpanded, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:ExpanderEx}}}"/>
                         </Trigger>
 
                         <!-- Is Mouse Over. -->
@@ -363,13 +554,13 @@
                     DockPanel.Dock="Top"
                     Foreground="{TemplateBinding HeaderForeground}"
                     FocusVisualStyle="{StaticResource ExpanderEx.HeaderFocusVisual}"
-                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    HorizontalContentAlignment="Stretch"
                     IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                     MinWidth="0"
                     MinHeight="0"
                     Padding="{TemplateBinding HeaderPadding}"
                     Style="{StaticResource ExpanderEx.DownHeaderStyle}"
-                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    VerticalContentAlignment="Stretch"/>
 
                 <ContentPresenter
                     x:Name="ExpandSite"
@@ -390,6 +581,8 @@
 
             <!-- Direction Left. -->
             <Trigger Property="ExpandDirection" Value="Left">
+                <Setter Property="ArrowCollapsed" Value="ChevronLeft"/>
+                <Setter Property="ArrowExpanded" Value="ChevronRight"/>
                 <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Left"/>
                 <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Right"/>
                 <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderEx.LeftHeaderStyle}"/>
@@ -397,6 +590,8 @@
 
             <!-- Direction Up. -->
             <Trigger Property="ExpandDirection" Value="Up">
+                <Setter Property="ArrowCollapsed" Value="ChevronUp"/>
+                <Setter Property="ArrowExpanded" Value="ChevronDown"/>
                 <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Top"/>
                 <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Bottom"/>
                 <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderEx.UpHeaderStyle}"/>
@@ -404,6 +599,8 @@
 
             <!-- Direction Right. -->
             <Trigger Property="ExpandDirection" Value="Right">
+                <Setter Property="ArrowCollapsed" Value="ChevronRight"/>
+                <Setter Property="ArrowExpanded" Value="ChevronLeft"/>
                 <Setter Property="DockPanel.Dock" TargetName="ExpandSite" Value="Right"/>
                 <Setter Property="DockPanel.Dock" TargetName="HeaderSite" Value="Left"/>
                 <Setter Property="Style" TargetName="HeaderSite" Value="{StaticResource ExpanderEx.RightHeaderStyle}"/>

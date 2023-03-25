@@ -1,0 +1,149 @@
+﻿<internalMessagesEx:StandardInternalMessageEx
+    x:Class="chkam05.Tools.ControlsEx.Example.ExtendedControls.ListViewInternalMessageEx"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:internalMessagesEx="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages;assembly=chkam05.Tools.ControlsEx"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.ExtendedControls"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    
+    d:DesignWidth="800"
+    BottomBackground="#242424"
+    BottomBorderBrush="{Binding Configuration.ForegroundColorBrush, RelativeSource={RelativeSource Self}}"
+    BottomPadding="8"
+    ContentPadding="0"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    HeaderBackground="#242424"
+    HeaderBorderBrush="{Binding Configuration.ForegroundColorBrush, RelativeSource={RelativeSource Self}}"
+    HeaderForeground="{Binding Configuration.AccentColorBrush, RelativeSource={RelativeSource Self}}"
+    HeaderPadding="8"
+    IconKind="ViewList"
+    Padding="0"
+    Title="Internal Message ListView Test"
+    UseCustomHeaderForegroundBrush="True"
+    UseCustomSectionBreaksBorderBrush="True">
+
+    <internalMessagesEx:StandardInternalMessageEx.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/GridViewColumnHeaderStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ListViewExStyle.xaml"/>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
+
+            <!-- STYLES -->
+
+            <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
+                <Setter Property="ScrollBarDraggingThumbBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarDraggingThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarMouseOverThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style x:Key="Internal_ListViewItemExStyle" BasedOn="{StaticResource ListViewItemExStyle}" TargetType="{x:Type controlsex:ListViewItemEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBackground" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedInactiveBorderBrush" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
+            <Style BasedOn="{StaticResource ListViewExStyle}" TargetType="{x:Type controlsex:ListViewEx}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="ColumnHeaderBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderEmptyBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderEmptyBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderMouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderPressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderPressedBorderBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ColumnHeaderPressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled"/>
+            </Style>
+
+            <!-- DATA TEMPLATES -->
+
+            <DataTemplate x:Key="ListViewDataTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:PackIcon
+                        Grid.Column="0"
+                        Height="24"
+                        HorizontalAlignment="Left"
+                        Kind="{Binding Icon}"
+                        Margin="0,0,16,0"
+                        VerticalAlignment="Center"
+                        Width="24"/>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center">
+
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{Binding Title}"/>
+
+                        <TextBlock
+                            Text="{Binding Description}"
+                            TextWrapping="Wrap"/>
+
+                    </StackPanel>
+
+                    <materialDesign:PackIcon
+                        Grid.Column="2"
+                        Height="18"
+                        HorizontalAlignment="Left"
+                        Kind="ChevronRight"
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        Width="18"/>
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </internalMessagesEx:StandardInternalMessageEx.Resources>
+
+    <Grid>
+
+        <controlsex:ScrollViewerEx
+            HorizontalScrollBarVisibility="Disabled"
+            Padding="0,8"
+            VerticalScrollBarVisibility="Auto">
+
+            <controlsex:ListViewEx
+                ItemContainerStyle="{StaticResource Internal_ListViewItemExStyle}"
+                ItemsSource="{Binding Data}"
+                ItemTemplate="{StaticResource ListViewDataTemplate}"/>
+
+        </controlsex:ScrollViewerEx>
+        
+    </Grid>
+    
+</internalMessagesEx:StandardInternalMessageEx>

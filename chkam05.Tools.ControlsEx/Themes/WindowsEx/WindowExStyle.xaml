@@ -1,0 +1,331 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:chkam05.Tools.ControlsEx.Converters"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
+    xmlns:localStatic="clr-namespace:chkam05.Tools.ControlsEx.Static"
+    xmlns:localWin="clr-namespace:chkam05.Tools.ControlsEx.WindowsEx"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:media="clr-namespace:Windows.UI.Xaml.Media;assembly=Windows"
+    xmlns:properties="clr-namespace:chkam05.Tools.ControlsEx.Properties"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <SolidColorBrush x:Key="WindowEx.Background">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowEx.BorderBrush">#FF0078D7</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowEx.Foreground">Black</SolidColorBrush>
+
+    <sys:Int32 x:Key="WindowEx.TitleBar.CornerRadiusShift">2</sys:Int32>
+
+    <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    <converters:BrushOpacityConverter x:Key="BrushOpacityConverter"/>
+    <converters:IsNotNullConverter x:Key="IsNotNullConverter"/>
+    <converters:WindowExButtonCornerRadiusConverter x:Key="WindowExButtonCornerRadiusConverter"/>
+    <converters:WindowExTitleBarCornerRadiusConverter x:Key="WindowExTitleBarCornerRadiusConverter"/>
+
+    <Style x:Key="WindowEx.ResizeBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style x:Key="WindowEx.TitleBar.ButtonExStyle" TargetType="{x:Type local:ButtonEx}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource WindowEx.Foreground}"/>
+        <Setter Property="IconHeight" Value="18"/>
+        <Setter Property="IconWidth" Value="18"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="MinWidth" Value="40"/>
+        <Setter Property="MouseOverBackground" Value="{Binding MouseOverTitleBarButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverTitleBarButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding MouseOverTitleBarButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="PressedBackground" Value="{Binding PressedTitleBarButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding PressedTitleBarButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="PressedForeground" Value="{Binding PressedTitleBarButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="Width" Value="45"/>
+    </Style>
+
+    <Style x:Key="WindowEx.TitleBar.CloseButtonExStyle" BasedOn="{StaticResource WindowEx.TitleBar.ButtonExStyle}" TargetType="{x:Type local:ButtonEx}">
+        <Setter Property="MouseOverBackground" Value="{Binding MouseOverTitleBarCloseButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="MouseOverBorderBrush" Value="{Binding MouseOverTitleBarCloseButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="MouseOverForeground" Value="{Binding MouseOverTitleBarCloseButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="PressedBackground" Value="{Binding PressedTitleBarCloseButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding PressedTitleBarCloseButtonBackground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+        <Setter Property="PressedForeground" Value="{Binding PressedTitleBarCloseButtonForeground, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}"/>
+    </Style>
+
+    <ControlTemplate x:Key="WindowEx.ControlTemplate" TargetType="{x:Type localWin:WindowEx}">
+        <Grid
+            x:Name="ResizeableGrid">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border
+                Background="Transparent"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                ClipToBounds="True"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Grid.Column="1"
+                Grid.Row="1">
+
+                <Border.BorderBrush>
+                    <MultiBinding Mode="OneWay" Converter="{StaticResource BrushOpacityConverter}">
+                        <Binding Path="BorderBrush" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                        <Binding Path="TitleBarOpacity" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                    </MultiBinding>
+                </Border.BorderBrush>
+
+                <Grid
+                    ClipToBounds="True">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        x:Name="TitleBar"
+                        BorderBrush="{x:Null}"
+                        BorderThickness="0"
+                        Grid.Row="0"
+                        Height="30">
+
+                        <Border.Background>
+                            <MultiBinding Mode="OneWay" Converter="{StaticResource BrushOpacityConverter}">
+                                <Binding Path="BorderBrush" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                                <Binding Path="TitleBarOpacity" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                            </MultiBinding>
+                        </Border.Background>
+
+                        <Border.CornerRadius>
+                            <MultiBinding Mode="OneWay" Converter="{StaticResource WindowExTitleBarCornerRadiusConverter}" ConverterParameter="{x:Static converters:WindowExTitleBarCornerRadiusConverter.TopSide}">
+                                <Binding Path="CornerRadius" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                                <Binding Source="{StaticResource WindowEx.TitleBar.CornerRadiusShift}"/>
+                            </MultiBinding>
+                        </Border.CornerRadius>
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Column="0"
+                                Orientation="Horizontal">
+
+                                <Image
+                                    x:Name="ImageIcon"
+                                    Margin="8,4,0,4"
+                                    Source="{TemplateBinding Icon}"
+                                    VerticalAlignment="Stretch">
+
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Icon, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+
+                                                <DataTrigger Binding="{Binding ShowIcon, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}" Value="false">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                                
+                                <materialDesign:PackIcon
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Kind="{TemplateBinding IconKind}"
+                                    Margin="8,4,0,4"
+                                    VerticalAlignment="Stretch">
+                                    
+                                    <materialDesign:PackIcon.Style>
+                                        <Style TargetType="{x:Type materialDesign:PackIcon}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Icon, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}, Converter={StaticResource IsNotNullConverter}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+
+                                                <DataTrigger Binding="{Binding ShowIcon, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}}" Value="false">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:PackIcon.Style>
+                                </materialDesign:PackIcon>
+
+                                <TextBlock
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Margin="8,0,0,0"
+                                    Text="{TemplateBinding Title}"
+                                    VerticalAlignment="Center"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="2"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+
+                                <local:ButtonEx
+                                    x:Name="MinimizeButton"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IconKind="{TemplateBinding MinimizeButtonIconKind}"
+                                    Style="{StaticResource WindowEx.TitleBar.ButtonExStyle}"
+                                    Visibility="{Binding ShowMinimizeButton, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}, Converter={StaticResource BoolVisibilityConverter}}"/>
+
+                                <local:ButtonEx
+                                    x:Name="MaximizeButton"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IconKind="{TemplateBinding MaximizeButtonIconKind}"
+                                    Style="{StaticResource WindowEx.TitleBar.ButtonExStyle}"
+                                    Visibility="{Binding ShowMaximizeButton, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}, Converter={StaticResource BoolVisibilityConverter}}"/>
+
+                                <local:ButtonEx
+                                    x:Name="CloseButton"
+                                    CornerRadius="{Binding CornerRadius, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type localWin:WindowEx}}, Converter={StaticResource WindowExButtonCornerRadiusConverter}, ConverterParameter={x:Static converters:WindowExButtonCornerRadiusConverter.TopRight}}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IconKind="{TemplateBinding CloseButtonIconKind}"
+                                    Style="{StaticResource WindowEx.TitleBar.CloseButtonExStyle}"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                    <Border
+                        Grid.Row="1">
+
+                        <Border.Background>
+                            <MultiBinding Mode="OneWay" Converter="{StaticResource BrushOpacityConverter}">
+                                <Binding Path="Background" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                                <Binding Path="BackgroundOpacity" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                            </MultiBinding>
+                        </Border.Background>
+
+                        <Border.CornerRadius>
+                            <MultiBinding Mode="OneWay" Converter="{StaticResource WindowExTitleBarCornerRadiusConverter}" ConverterParameter="{x:Static converters:WindowExTitleBarCornerRadiusConverter.BottomSide}">
+                                <Binding Path="CornerRadius" RelativeSource="{RelativeSource AncestorType={x:Type localWin:WindowEx}}"/>
+                                <Binding Source="{StaticResource WindowEx.TitleBar.CornerRadiusShift}"/>
+                            </MultiBinding>
+                        </Border.CornerRadius>
+
+                        <ContentPresenter/>
+
+                    </Border>
+
+                </Grid>
+
+            </Border>
+
+            <!--#region ResizeBorders-->
+            
+            <Border
+                x:Name="ResizeBorderTop"
+                Cursor="SizeNS"
+                Grid.Column="1"
+                Grid.Row="0"
+                Height="4"
+                Margin="0,0,0,-2"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"/>
+
+            <Border
+                x:Name="ResizeBorderLeft"
+                Cursor="SizeWE"
+                Grid.Column="0"
+                Grid.Row="1"
+                Margin="0,0,-2,0"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                Width="4"/>
+
+            <Border
+                x:Name="ResizeBorderRight"
+                Cursor="SizeWE"
+                Grid.Column="2"
+                Grid.Row="1"
+                Margin="-2,0,0,0"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                Width="4"/>
+
+            <Border
+                x:Name="ResizeBorderBottom"
+                Cursor="SizeNS"
+                Grid.Column="1"
+                Grid.Row="2"
+                Height="4"
+                Margin="0,-2,0,0"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"/>
+
+            <Border
+                x:Name="ResizeBorderTopLeft"
+                Cursor="SizeNWSE"
+                Grid.Column="0"
+                Grid.Row="0"
+                Height="8"
+                Margin="0,0,-4,-4"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                Width="8"/>
+
+            <Border
+                x:Name="ResizeBorderTopRight"
+                Cursor="SizeNESW"
+                Grid.Column="2"
+                Grid.Row="0"
+                Height="8"
+                Margin="-4,0,0,-4"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                Width="8"/>
+
+            <Border
+                x:Name="ResizeBorderBottomLeft"
+                Cursor="SizeNESW"
+                Grid.Column="0"
+                Grid.Row="2"
+                Height="8"
+                Margin="0,-4,-4,0"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                Width="8"/>
+
+            <Border
+                x:Name="ResizeBorderBottomRight"
+                Cursor="SizeNWSE"
+                Grid.Column="2"
+                Grid.Row="2"
+                Height="8"
+                Margin="-4,-4,0,0"
+                Style="{StaticResource WindowEx.ResizeBorderStyle}"
+                Width="8"/>
+            
+            <!--#endregion ResizeBorders-->
+
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="WindowExStyle" TargetType="{x:Type localWin:WindowEx}">
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource WindowEx.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource WindowEx.BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource WindowEx.Foreground}"/>
+        <Setter Property="Template" Value="{StaticResource WindowEx.ControlTemplate}"/>
+        <Setter Property="WindowStyle" Value="None"/>
+    </Style>
+
+</ResourceDictionary>

@@ -25,6 +25,13 @@ namespace: _chkam05.Tools.ControlsEx.Data_
 
 ### Additional Methods:
 
+- **IsUniversal**  
+Check if file type is universal (contains \*.\* in Extensions).
+
+| Type   | Parameter Name | Description |
+|:-------|:---------------|:------------|
+| bool   | RETURN         | True if file extension is universal. |
+
 - **MatchFile**  
 Check if file matches extension.
 

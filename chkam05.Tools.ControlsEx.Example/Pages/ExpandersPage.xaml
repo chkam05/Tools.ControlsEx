@@ -77,7 +77,10 @@
                     Text="Examples of ExpanderEx component with diffrent configuration."/>
 
                 <controlsex:ExpanderEx
-                    Header="Downward expanding">
+                    ArrowPosition="Right"
+                    Header="Downward expanding"
+                    HeaderHorizontalContentAlignment="Center"
+                    IconKind="ArrowUpDown">
 
                     <StackPanel
                         Orientation="Vertical">
@@ -94,8 +97,11 @@
                     Orientation="Horizontal">
 
                     <controlsex:ExpanderEx
+                        ArrowPosition="Right"
+                        ExpandDirection="Left"
                         Header="Expanding to the left"
-                        ExpandDirection="Left">
+                        HeaderHorizontalContentAlignment="Center"
+                        IconKind="ArrowLeftRight">
 
                         <StackPanel
                             Orientation="Vertical">
@@ -114,8 +120,11 @@
                     Orientation="Horizontal">
 
                     <controlsex:ExpanderEx
+                        ArrowPosition="Right"
+                        ExpandDirection="Right"
                         Header="Expanding to the right"
-                        ExpandDirection="Right">
+                        HeaderHorizontalContentAlignment="Center"
+                        IconKind="ArrowLeftRight">
 
                         <StackPanel
                             Orientation="Vertical">
@@ -131,8 +140,11 @@
                 </StackPanel>
 
                 <controlsex:ExpanderEx
+                    ArrowPosition="Right"
+                    ExpandDirection="Up"
                     Header="Upward expanding"
-                    ExpandDirection="Up">
+                    HeaderHorizontalContentAlignment="Center"
+                    IconKind="ArrowUpDown">
 
                     <StackPanel
                         Orientation="Vertical">

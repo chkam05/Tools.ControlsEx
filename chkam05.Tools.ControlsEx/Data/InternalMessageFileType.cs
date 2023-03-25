@@ -66,6 +66,14 @@ namespace chkam05.Tools.ControlsEx.Data
         #region CHECK METHODS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Check if FileType is universal: not have any extension, or is *.*. </summary>
+        /// <returns> True - FileType is universal; False - otherwise. </returns>
+        public bool IsUniversal()
+        {
+            return Extensions == null || !Extensions.Any() || Extensions.Contains("*.*");
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Check if file extension match file type extensions. </summary>
         /// <param name="fileName"> File name. </param>
         /// <returns> True - file extension matches; False - otherwise. </returns>

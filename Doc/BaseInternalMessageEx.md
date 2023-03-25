@@ -12,6 +12,10 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 | Type                  | Name                       | Description |
 |:----------------------|:---------------------------|:------------|
 | Brush                 | BorderBrush                | InternalMessageEx border color. |
+| Brush                 | BottomBackground           | InternalMessageEx bottom part background color. |
+| Brush                 | BottomBorderBrush          | InternalMessageEx bottom part border color. |
+| Thickness             | BottomBorderThickness      | InternalMessageEx bottom part border thickness. |
+| Thickness             | BottomPadding              | InternalMessageEx bottom part padding. |
 | Brush                 | ButtonBackground           | InternalMessageEx buttons background color. |
 | Brush                 | ButtonBorderBrush          | InternalMessageEx buttons border color. |
 | Brush                 | ButtonForeground           | InternalMessageEx buttons foreground color. |
@@ -22,6 +26,11 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 | Brush                 | ButtonPressedBorderBrush   | InternalMessageEx buttons border color when is pressed. |
 | Brush                 | ButtonPressedForeground    | InternalMessageEx buttons foreground color when is pressed. |
 | Thickness             | ButtonBorderThickness      | InternalMessageEx buttons border thickness. |
+| Brush                 | HeaderBackground           | InternalMessageEx header part background color. |
+| Brush                 | HeaderBorderBrush          | InternalMessageEx header part border color. |
+| Thickness             | HeaderBorderThickness      | InternalMessageEx header part border thickness. |
+| Brush                 | HeaderForeground           | InternalMessageEx header part foreground color. |
+| Thickness             | HeaderPadding              | InternalMessageEx header part padding. |
 ||||
 | double                | IconHeight                 | InternalMessageEx header icon height. |
 | PackIconKind          | IconKind                   | InternalMessageEx header icon kind (see related repositories). |
@@ -37,6 +46,7 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 | FontStretch           | TitleFontStretch           | InternalMessageEx title font stretch. |
 | FontStyle             | TitleFontStyle             | InternalMessageEx title font style. |
 | FontWeight            | TitleFontWeight            | InternalMessageEx title font weight. |
+| Thickness             | TitleMargin                | InternalMessageEx title margin. |
 ||||
 | Thickness             | BorderThickness            | InternalMessageEx border thickness. |
 | CornerRadius          | CornerRadius               | InternalMessageEx corner radius. |
@@ -48,6 +58,8 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 | bool                  | IsHidden                   | Check if internal message has been hidden. |
 | bool                  | IsLoadingComplete          | Check if internal message has been fully loaded. |
 | [InternalMessageResult](InternalMessageResult.md) | Result | Result value, depends on clicked button. |
+| bool                  | UseCustomHeaderForegroundBrush    | Use HeaderForeground for header part foreground color, instead of global Foreground. |
+| bool                  | UseCustomSectionBreaksBorderBrush | Use BottomBorderBrush and HeaderBorderBrush for brush color for those parts, instead of global BorderBrush. |
 
 ### Constructors:
 

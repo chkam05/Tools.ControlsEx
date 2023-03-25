@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx"
     xmlns:im="clr-namespace:chkam05.Tools.ControlsEx.InternalMessages"
-    xmlns:indicators="clr-namespace:chkam05.Tools.ControlsEx.Indicators">
+    xmlns:indicators="clr-namespace:chkam05.Tools.ControlsEx.Indicators"
+    xmlns:winex="clr-namespace:chkam05.Tools.ControlsEx.WindowsEx">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ButtonExStyle.xaml"/>
@@ -45,6 +46,9 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseProgressInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseColorSelectorInternalMessageExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/InternalMessages/BaseFilesSelectorInternalMessageExStyle.xaml"/>
+    
+        <!-- WINDOWS EX -->
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WindowsEx/WindowExStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonExStyle}" TargetType="{x:Type local:ButtonEx}"/>
@@ -120,5 +124,9 @@
     <Style BasedOn="{StaticResource BaseColorSelectorInternalMessageExStyle}" TargetType="{x:Type im:BaseColorSelectorInternalMessageEx}"/>
 
     <Style BasedOn="{StaticResource BaseFilesSelectorInternalMessageExStyle}" TargetType="{x:Type im:BaseFilesSelectorInternalMessageEx}"/>
+
+    <!-- WINODWS EX -->
+
+    <Style BasedOn="{StaticResource WindowExStyle}" TargetType="{x:Type winex:WindowEx}"/>
 
 </ResourceDictionary>

@@ -1,6 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Data;
 using chkam05.Tools.ControlsEx.Events;
 using chkam05.Tools.ControlsEx.Example.Data.Config;
+using chkam05.Tools.ControlsEx.Example.ExtendedControls;
 using chkam05.Tools.ControlsEx.Example.Windows;
 using chkam05.Tools.ControlsEx.InternalMessages;
 //using chkam05.Tools.ControlsEx.InternalMessages;
@@ -8,6 +9,7 @@ using chkam05.Tools.ControlsEx.Static;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -260,6 +262,21 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after clicking Extended List IM Button. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Routed Event Arguments. </param>
+        private void ExtendedListIMButtonEx_Click(object sender, RoutedEventArgs e)
+        {
+            var internalMessages = _mainWindow.InternalMessages;
+            var message = new ListViewInternalMessageEx(internalMessages);
+
+            message.OnClose += OnMessageClose;
+            message.OnHide += OnMessageHide;
+
+            internalMessages.ShowMessage(message);
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after clicking Info IM Button. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Routed Event Arguments. </param>
@@ -471,6 +488,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var message = FilesSelectorInternalMessageEx.CreateOpenFileInternalMessageEx(internalMessages);
 
             message.OnClose += OnFileMessageClose;
+            message.FilesTypes = new ObservableCollection<InternalMessageFileType>()
+            {
+                new InternalMessageFileType("All Files", new string[] { "*.*" }),
+                new InternalMessageFileType("Image Files", new string[] { "*.bmp", "*.jpeg", "*.jpg", "*.png" }),
+                new InternalMessageFileType("Music Files", new string[] { "*.mp3", "*.ogg", "*.wav" }),
+                new InternalMessageFileType("Text Files", new string[] { "*.txt" })
+            };
 
             UpdateInternalMessageAppearance(message);
             internalMessages.ShowMessage(message);
@@ -487,6 +511,13 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
             message.MultipleFiles = true;
             message.OnClose += OnFileMessageClose;
+            message.FilesTypes = new ObservableCollection<InternalMessageFileType>()
+            {
+                new InternalMessageFileType("All Files", new string[] { "*.*" }),
+                new InternalMessageFileType("Image Files", new string[] { "*.bmp", "*.jpeg", "*.jpg", "*.png" }),
+                new InternalMessageFileType("Music Files", new string[] { "*.mp3", "*.ogg", "*.wav" }),
+                new InternalMessageFileType("Text Files", new string[] { "*.txt" })
+            };
 
             UpdateInternalMessageAppearance(message);
             internalMessages.ShowMessage(message);
@@ -502,6 +533,11 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             var message = FilesSelectorInternalMessageEx.CreateSaveFileInternalMessageEx(internalMessages);
 
             message.OnClose += OnFileMessageClose;
+            message.FilesTypes = new ObservableCollection<InternalMessageFileType>()
+            {
+                new InternalMessageFileType("All Files", new string[] { "*.*" }),
+                new InternalMessageFileType("Text Files", new string[] { "*.txt" })
+            };
 
             UpdateInternalMessageAppearance(message);
             internalMessages.ShowMessage(message);

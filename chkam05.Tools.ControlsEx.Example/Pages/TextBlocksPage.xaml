@@ -107,77 +107,86 @@
                     IsEnabled="False"
                     Text="This is example of static disabled TextBoxEx component."/>
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Examples of Marquee TextBlockEx component with diffrent configuration."/>
+                <StackPanel
+                    x:Name="MarqueesStackPanel"
+                    HorizontalAlignment="Left"
+                    Margin="8"
+                    Orientation="Vertical"
+                    Visibility="Collapsed">
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Marquee from right outside to left outside"/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Examples of Marquee TextBlockEx component with diffrent configuration."/>
 
-                <controlsex:MarqueeTextBlockEx
-                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
-                    Text="This is example of MarqueeTextBoxEx component."/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Marquee from right outside to left outside"/>
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Marquee from right inside to left outside"/>
+                    <controlsex:MarqueeTextBlockEx
+                        MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
+                        Text="This is example of MarqueeTextBoxEx component."/>
 
-                <controlsex:MarqueeTextBlockEx
-                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
-                    MarqueeStartPosition="RightInside"
-                    Text="This is example of MarqueeTextBoxEx component."/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Marquee from right inside to left outside"/>
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Marquee from left inside to left outside"/>
+                    <controlsex:MarqueeTextBlockEx
+                        MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
+                        MarqueeStartPosition="RightInside"
+                        Text="This is example of MarqueeTextBoxEx component."/>
 
-                <controlsex:MarqueeTextBlockEx
-                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
-                    MarqueeStartPosition="LeftInside"
-                    Text="This is example of MarqueeTextBoxEx component."/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Marquee from left inside to left outside"/>
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Marquee from right to left to right"/>
+                    <controlsex:MarqueeTextBlockEx
+                        MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
+                        MarqueeStartPosition="LeftInside"
+                        Text="This is example of MarqueeTextBoxEx component."/>
 
-                <controlsex:MarqueeTextBlockEx
-                    MarqueeBouncing="True"
-                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
-                    MarqueeStartPosition="RightInside"
-                    MarqueeEndPosition="LeftInside"
-                    Text="This is example of MarqueeTextBoxEx component."/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Marquee from right to left to right"/>
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Marquee from left to right to left"/>
+                    <controlsex:MarqueeTextBlockEx
+                        MarqueeBouncing="True"
+                        MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
+                        MarqueeStartPosition="RightInside"
+                        MarqueeEndPosition="LeftInside"
+                        Text="This is example of MarqueeTextBoxEx component."/>
 
-                <controlsex:MarqueeTextBlockEx
-                    MarqueeBouncing="True"
-                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
-                    MarqueeStartPosition="LeftInside"
-                    MarqueeEndPosition="RightInside"
-                    Text="This is example of MarqueeTextBoxEx component."/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Marquee from left to right to left"/>
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Marquee from left outside to right outside"/>
+                    <controlsex:MarqueeTextBlockEx
+                        MarqueeBouncing="True"
+                        MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
+                        MarqueeStartPosition="LeftInside"
+                        MarqueeEndPosition="RightInside"
+                        Text="This is example of MarqueeTextBoxEx component."/>
 
-                <controlsex:MarqueeTextBlockEx
-                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
-                    MarqueeStartPosition="LeftOutside"
-                    MarqueeEndPosition="RightOutside"
-                    Text="This is example of MarqueeTextBoxEx component."/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Marquee from left outside to right outside"/>
 
-                <TextBlock
-                    Style="{StaticResource Conf_TextBlockStyle.Content}"
-                    Text="Marquee from left inside to right outside"/>
+                    <controlsex:MarqueeTextBlockEx
+                        MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
+                        MarqueeStartPosition="LeftOutside"
+                        MarqueeEndPosition="RightOutside"
+                        Text="This is example of MarqueeTextBoxEx component."/>
 
-                <controlsex:MarqueeTextBlockEx
-                    MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
-                    MarqueeStartPosition="LeftInside"
-                    MarqueeEndPosition="RightOutside"
-                    Text="This is example of MarqueeTextBoxEx component."/>
+                    <TextBlock
+                        Style="{StaticResource Conf_TextBlockStyle.Content}"
+                        Text="Marquee from left inside to right outside"/>
+
+                    <controlsex:MarqueeTextBlockEx
+                        MarqueeEnabled="{Binding EnableAnimation, RelativeSource={StaticResource RelativeSelf}}"
+                        MarqueeStartPosition="LeftInside"
+                        MarqueeEndPosition="RightOutside"
+                        Text="This is example of MarqueeTextBoxEx component."/>
+
+                </StackPanel>
 
             </StackPanel>
 
@@ -194,6 +203,11 @@
             <StackPanel
                 Grid.Column="1"
                 Orientation="Horizontal">
+
+                <controlsex:ButtonEx
+                    Content="Show/Hide Marquee"
+                    Style="{StaticResource StartStopAnimationButtonExStyle}"
+                    Click="ShowHideMarqueesButtonEx_Click"/>
 
                 <controlsex:ButtonEx
                     Content="Start/Stop Animation"
