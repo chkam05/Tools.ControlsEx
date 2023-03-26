@@ -168,7 +168,6 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
             }
         }
 
-
         //  METHODS
 
         #region CLASS METHODS

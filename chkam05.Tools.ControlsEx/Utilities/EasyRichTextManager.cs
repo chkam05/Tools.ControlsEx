@@ -1132,7 +1132,7 @@ namespace chkam05.Tools.ControlsEx.Utilities
         /// <param name="lineHeight"> Line height value. </param>
         public void SetSelectedParagraphLineHeight(double lineHeight)
         {
-            if (lineHeight > -1)
+            if (lineHeight > 0)
             {
                 if (!_textSelected)
                     InitForNoSelectionUpdate();

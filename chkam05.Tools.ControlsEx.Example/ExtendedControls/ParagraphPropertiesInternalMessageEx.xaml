@@ -12,6 +12,7 @@
     mc:Ignorable="d"
     
     d:DesignWidth="800"
+    BorderBrush="#242424"
     BottomBackground="#242424"
     BottomBorderBrush="{Binding Configuration.ForegroundColorBrush, RelativeSource={RelativeSource Self}}"
     BottomPadding="8"
@@ -22,6 +23,7 @@
     HeaderForeground="{Binding Configuration.AccentColorBrush, RelativeSource={RelativeSource Self}}"
     HeaderPadding="8"
     IconKind="ViewList"
+    MinWidth="448"
     Padding="0"
     Title="Internal Message ListView Test"
     UseCustomHeaderForegroundBrush="True"
@@ -172,6 +174,17 @@
                 <Setter Property="ColorItemSelectedInactiveBackground" Value="{Binding Configuration.SelectedInactiveColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
+            <Style TargetType="{x:Type controlsex:CheckBoxEx}">
+                <Setter Property="CheckBoxStyle" Value="Bordered"/>
+                <Setter Property="CheckMarkBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="CheckMarkHeight" Value="28"/>
+                <Setter Property="CheckMarkWidth" Value="28"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Margin" Value="0,0,8,8"/>
+                <Setter Property="MouseOverCheckMarkBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="PressedCheckMarkBrush" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
         </ResourceDictionary>
     </internalMessagesEx:StandardInternalMessageEx.Resources>
 
@@ -186,6 +199,7 @@
                 <controlsex:ScrollViewerEx>
 
                     <StackPanel
+                        HorizontalAlignment="Stretch"
                         Margin="8"
                         Orientation="Vertical">
 
@@ -204,6 +218,7 @@
                             Text="Font Size"/>
 
                         <controlsex:UpDownTextBoxEx
+                            ConversionType="FloatingPoint"
                             Margin="0,0,0,16"
                             MaxValue="{Binding EditorFontSizeMax}"
                             MinValue="{Binding EditorFontSizeMin}"
@@ -238,6 +253,22 @@
                                 IsChecked="{Binding EasyRichParagraphProperties.TextDecorationUnderline, Mode=TwoWay}"
                                 IsPressable="True"/>
 
+                            <controlsex:ButtonEx
+                                IconKind="FormatColorText"
+                                Click="FontColorButtonEx_Click">
+
+                                <Grid
+                                    Background="{Binding EasyRichParagraphProperties.Foreground}">
+
+                                    <TextBlock
+                                        Foreground="{Binding EasyRichParagraphProperties.Foreground, Converter={StaticResource ContrastSolidColorBrushConverter}}"
+                                        Margin="4,0"
+                                        Text="Text color"/>
+
+                                </Grid>
+
+                            </controlsex:ButtonEx>
+
                         </WrapPanel>
 
                         <TextBlock
@@ -267,25 +298,6 @@
                             Margin="0,0,0,16"
                             SelectedItem="{Binding EasyRichParagraphProperties.TextAlignment}"/>
 
-                        <TextBlock
-                            Style="{StaticResource Conf_TextBlockStyle.Header2}"
-                            Text="Text Background"/>
-
-                        <controlsex:ColorsPaletteEx
-                            AllowTransparent="True"
-                            ColorsHistory="{Binding FontBackgroundColorsHistoryCollection}"
-                            Margin="0,0,0,16"
-                            ColorSelectionChanged="FontBackgroundColorsPaletteEx_ColorSelectionChanged"/>
-
-                        <TextBlock
-                            Style="{StaticResource Conf_TextBlockStyle.Header2}"
-                            Text="Text Color"/>
-
-                        <controlsex:ColorsPaletteEx
-                            ColorsHistory="{Binding FontColorsHistoryCollection}"
-                            Margin="0"
-                            ColorSelectionChanged="FontColorsPaletteEx_ColorSelectionChanged"/>
-
                     </StackPanel>
 
                 </controlsex:ScrollViewerEx>
@@ -299,8 +311,345 @@
                 <controlsex:ScrollViewerEx>
 
                     <StackPanel
+                        HorizontalAlignment="Stretch"
                         Margin="8"
                         Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Header2}"
+                            Text="Appearance"/>
+
+                        <WrapPanel
+                            Margin="0,0,0,16"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom">
+
+                            <controlsex:ButtonEx
+                                IconKind="FormatColorText"
+                                Click="BackgroundButtonEx_Click">
+
+                                <Grid
+                                    Background="{Binding EasyRichParagraphProperties.Background}">
+
+                                    <TextBlock
+                                        Foreground="{Binding EasyRichParagraphProperties.Background, Converter={StaticResource ContrastSolidColorBrushConverter}}"
+                                        Margin="4,0"
+                                        Text="Background color"/>
+
+                                </Grid>
+
+                            </controlsex:ButtonEx>
+
+                            <controlsex:ButtonEx
+                                IconKind="FormatColorText"
+                                Click="BorderBrushButtonEx_Click">
+
+                                <Grid
+                                    Background="{Binding EasyRichParagraphProperties.BorderBrush}">
+
+                                    <TextBlock
+                                        Foreground="{Binding EasyRichParagraphProperties.BorderBrush, Converter={StaticResource ContrastSolidColorBrushConverter}}"
+                                        Margin="4,0"
+                                        Text="Border color"/>
+
+                                </Grid>
+
+                            </controlsex:ButtonEx>
+
+                        </WrapPanel>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Header2}"
+                            Text="Border thickness"/>
+
+                        <WrapPanel
+                            Margin="0,0,0,16"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom">
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Left"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorBorderThicknessLeft}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Top"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorBorderThicknessTop}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Right"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorBorderThicknessRight}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Bottom"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorBorderThicknessBottom}"/>
+
+                            </StackPanel>
+
+                        </WrapPanel>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Header2}"
+                            Text="Behaviour"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Automatically insert a column break before."
+                            IsChecked="{Binding EasyRichParagraphProperties.BreakColumnBefore}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Automatically insert a page break before."
+                            IsChecked="{Binding EasyRichParagraphProperties.BreakPageBefore}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Flow direction"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FlowDirectionCollection}"
+                            Margin="0,0,0,8"
+                            SelectedItem="{Binding EasyRichParagraphProperties.FlowDirection}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Automatic word splitting."
+                            IsChecked="{Binding EasyRichParagraphProperties.IsHyphenationEnabled}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Prevent text breaks by page break or column break."
+                            IsChecked="{Binding EasyRichParagraphProperties.KeepTogether}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Block the break between this paragraph and the next."
+                            IsChecked="{Binding EasyRichParagraphProperties.KeepWithNext}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Line stacking strategy"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding LineStackingStrategyCollection}"
+                            Margin="0,0,0,16"
+                            SelectedItem="{Binding EasyRichParagraphProperties.LineStackingStrategy}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Header2}"
+                            Text="Layout"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Line height"/>
+
+                        <controlsex:UpDownTextBoxEx
+                            ConversionType="FloatingPoint"
+                            Margin="0,0,0,8"
+                            MinValue="0"
+                            Text="{Binding EasyRichParagraphProperties.LineHeight}"/>
+
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Margin"/>
+                        
+                        <WrapPanel
+                            Margin="0,0,0,8"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom">
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Left"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorMarginLeft}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Top"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorMarginTop}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Right"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorMarginRight}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Bottom"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorMarginBottom}"/>
+
+                            </StackPanel>
+
+                        </WrapPanel>
+
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Padding"/>
+
+                        <WrapPanel
+                            Margin="0,0,0,8"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom">
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Left"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorPaddingLeft}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Top"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorPaddingTop}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Right"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorPaddingRight}"/>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="0,0,8,0"
+                                Orientation="Vertical">
+
+                                <TextBlock
+                                    Style="{StaticResource Conf_TextBlockStyle.Content}"
+                                    Text="Bottom"/>
+
+                                <controlsex:UpDownTextBoxEx
+                                    ConversionType="FloatingPoint"
+                                    MaxValue="8"
+                                    MinValue="0"
+                                    Text="{Binding EditorPaddingBottom}"/>
+
+                            </StackPanel>
+
+                        </WrapPanel>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="First line indent"/>
+
+                        <controlsex:UpDownTextBoxEx
+                            ConversionType="FloatingPoint"
+                            Margin="0"
+                            MinValue="0"
+                            Text="{Binding EasyRichParagraphProperties.TextIndent}"/>
 
                     </StackPanel>
 
@@ -317,6 +666,281 @@
                     <StackPanel
                         Margin="8"
                         Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Alternative annotation form index."/>
+
+                        <controlsex:UpDownTextBoxEx
+                            Margin="0,0,0,8"
+                            MinValue="0"
+                            Text="{Binding EasyRichParagraphProperties.TypographyAnnotationAlternates}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Capitals"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontCapitalsCollection}"
+                            Margin="0,0,0,8"
+                            MinWidth="192"
+                            SelectedItem="{Binding EasyRichParagraphProperties.TypographyCapitals}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Adjusting text spacing to improve readability."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyCapitalSpacing}"/>
+
+                        <controlsex:CheckBoxEx
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyCaseSensitiveForms}">
+
+                            <TextBlock
+                                Text="They adjust glyph positions vertically to better fit capital letters."
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center"/>
+
+                        </controlsex:CheckBoxEx>
+
+                        <controlsex:CheckBoxEx
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyContextualAlternates}">
+
+                            <TextBlock
+                                Text="Allows the use of custom glyph forms based on the text rendering context."
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center"/>
+
+                        </controlsex:CheckBoxEx>
+
+                        <controlsex:CheckBoxEx
+                            Content="Enable contextual ligatures."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyContextualLigatures}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Context swing form index."/>
+
+                        <controlsex:UpDownTextBoxEx
+                            Margin="0,0,0,8"
+                            MinValue="0"
+                            Text="{Binding EasyRichParagraphProperties.TypographyContextualSwashes}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Enable discretionary ligatures."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyDiscretionaryLigatures}"/>
+
+                        <controlsex:CheckBoxEx
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyEastAsianExpertForms}">
+
+                            <TextBlock
+                                Text="Replacing the standard Japanese font forms with the corresponding preferred typographic forms."
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center"/>
+
+                        </controlsex:CheckBoxEx>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="East Asian Language - The version of the east asian glyphs to use for the specified writing system or language."
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontEastAsianLanguageCollection}"
+                            Margin="0,0,0,8"
+                            SelectedItem="{Binding EasyRichParagraphProperties.TypographyEastAsianLanguage}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="East Asian Widths - The proportional width to use for Latin characters in an East Asian font."
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontEastAsianWidthsCollection}"
+                            Margin="0,0,0,8"
+                            SelectedItem="{Binding EasyRichParagraphProperties.TypographyEastAsianWidths}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Fraction style."
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontFractionCollection}"
+                            Margin="0,0,0,8"
+                            SelectedItem="{Binding EasyRichParagraphProperties.TypographyFraction}"/>
+                        
+                        <controlsex:CheckBoxEx
+                            Content="Enable historical forms."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyHistoricalForms}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Enable historical ligatures."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyHistoricalLigatures}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Enable kerning."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyKerning}"/>
+
+                        <controlsex:CheckBoxEx
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyMathematicalGreek}">
+
+                            <TextBlock
+                                Text="Replacing the standard typographic font form of the Greek glyphs with the corresponding font forms commonly used in mathematical notation."
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center"/>
+
+                        </controlsex:CheckBoxEx>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Width alignment when using numbers."
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontNumeralAlignmentCollection}"
+                            Margin="0,0,0,8"
+                            SelectedItem="{Binding EasyRichParagraphProperties.TypographyNumeralAlignment}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Set of glyphs used to render alternate forms of numeric fonts."
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontNumeralStyleCollection}"
+                            Margin="0,0,0,8"
+                            SelectedItem="{Binding EasyRichParagraphProperties.TypographyNumeralStyle}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Replace zero with slashed zero."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographySlashedZero}"/>
+
+                        <controlsex:CheckBoxEx
+                            Content="Enable standard ligatures."
+                            IsChecked="{Binding EasyRichParagraphProperties.TypographyStandardLigatures}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Index of the standard swashes form."/>
+
+                        <controlsex:UpDownTextBoxEx
+                            Margin="0,0,0,8"
+                            MinValue="0"
+                            Text="{Binding EasyRichParagraphProperties.TypographyStandardSwashes}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Index of an alternative stylistic form."/>
+
+                        <controlsex:UpDownTextBoxEx
+                            Margin="0,0,0,8"
+                            MinValue="0"
+                            Text="{Binding EasyRichParagraphProperties.TypographyStylisticAlternates}"/>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Font form stylistic sets."/>
+
+                        <WrapPanel
+                            Margin="0,0,0,8"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom">
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 1"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet1}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 2"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet2}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 3"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet3}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 4"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet4}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 5"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet5}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 6"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet6}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 7"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet7}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 8"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet8}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 9"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet9}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 10"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet10}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 11"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet11}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 12"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet12}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 13"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet13}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 14"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet14}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 15"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet15}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 16"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet16}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 17"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet17}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 18"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet18}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 19"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet19}"/>
+
+                            <controlsex:CheckBoxEx
+                                Content="Set 20"
+                                IsChecked="{Binding EasyRichParagraphProperties.TypographyStylisticSet20}"/>
+
+                        </WrapPanel>
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="A variation of the standard typographic form."
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontVariantsCollection}"
+                            Margin="0"
+                            SelectedItem="{Binding EasyRichParagraphProperties.TypographyVariants}"/>
 
                     </StackPanel>
 

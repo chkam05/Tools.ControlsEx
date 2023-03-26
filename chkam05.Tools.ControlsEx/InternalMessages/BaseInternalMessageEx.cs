@@ -300,7 +300,7 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
         //  VARIABLES
 
         private bool _allowHide = false;
-        internal InternalMessagesExContainer _parentContainer = null;
+        protected InternalMessagesExContainer _parentContainer = null;
 
 
         //  GETTERS & SETTERS
