@@ -13,7 +13,8 @@ namespace chkam05.Tools.ControlsEx.Events
 
         //  VARIABLES
 
-        public EasyRichTextFormatting Formatting { get; private set; }
+        public EasyRichParagraphProperties ParagraphProperties { get; private set; }
+        public EasyRichTextFormatting TextFormatting { get; private set; }
         public TextRange SelectedText { get; private set; }
 
 
@@ -23,11 +24,14 @@ namespace chkam05.Tools.ControlsEx.Events
 
         //  --------------------------------------------------------------------------------
         /// <summary> EasyRichTextSelectionChangedEventArgs class constructor. </summary>
-        /// <param name="formatting"> Selected text formatting. </param>
+        /// <param name="paragraphProperties"> Paragraph properties. </param>
+        /// <param name="textFormatting"> Text formatting. </param>
         /// <param name="selectedText"> Selected text range. </param>
-        public EasyRichTextSelectionChangedEventArgs(EasyRichTextFormatting formatting, TextRange selectedText) : base()
+        public EasyRichTextSelectionChangedEventArgs(EasyRichParagraphProperties paragraphProperties,
+            EasyRichTextFormatting textFormatting, TextRange selectedText) : base()
         {
-            Formatting = formatting;
+            ParagraphProperties = paragraphProperties;
+            TextFormatting = textFormatting;
             SelectedText = selectedText;
         }
 

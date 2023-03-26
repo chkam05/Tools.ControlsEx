@@ -89,6 +89,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\ContrastSolidColorBrushConverter.cs" />
     <Compile Include="Data\Config\Configuration.cs" />
     <Compile Include="Data\Country.cs" />
     <Compile Include="Data\ExampleData.cs" />
@@ -97,6 +98,9 @@
     <Compile Include="Data\Menu\MenuItem.cs" />
     <Compile Include="ExtendedControls\ListViewInternalMessageEx.xaml.cs">
       <DependentUpon>ListViewInternalMessageEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedControls\ParagraphPropertiesInternalMessageEx.xaml.cs">
+      <DependentUpon>ParagraphPropertiesInternalMessageEx.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Base\PagesManager.cs" />
     <Compile Include="Pages\ButtonsPage.xaml.cs">
@@ -196,6 +200,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ExtendedControls\ListViewInternalMessageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExtendedControls\ParagraphPropertiesInternalMessageEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,9 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:controlsex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:converters="clr-namespace:chkam05.Tools.ControlsEx.Example.Converters"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     mc:Ignorable="d"
     
+    d:DesignHeight="400"
     d:DesignWidth="800"
     
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
@@ -21,20 +23,10 @@
 
             <RelativeSource x:Key="RelativeSelf" Mode="FindAncestor" AncestorType="{x:Type Page}"/>
             
-            <!-- STORYBOARDS -->
+            <!-- CONVERTERS -->
 
-            <Storyboard x:Key="ShowHideFormattingGrid" Completed="ShowHideFormattingGridStoryboard_Completed">
-                <ThicknessAnimationUsingKeyFrames
-                    BeginTime="00:00:0"
-                    Duration="00:00:0.25"
-                    Storyboard.TargetName="fontFormatGrid"
-                    Storyboard.TargetProperty="Margin">
-                    <ThicknessAnimationUsingKeyFrames.KeyFrames>
-                        <LinearThicknessKeyFrame Value="{Binding Path=FontFormatGridMargin, Mode=TwoWay}"/>
-                    </ThicknessAnimationUsingKeyFrames.KeyFrames>
-                </ThicknessAnimationUsingKeyFrames>
-            </Storyboard>
-            
+            <converters:ContrastSolidColorBrushConverter x:Key="ContrastSolidColorBrushConverter"/>
+
             <!-- STYLES -->
 
             <Style TargetType="{x:Type controlsex:ScrollViewerEx}">
@@ -58,8 +50,9 @@
                 <Setter Property="Background" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Foreground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="Margin" Value="4"/>
+                <Setter Property="IconHeight" Value="18"/>
+                <Setter Property="IconWidth" Value="18"/>
+                <Setter Property="Margin" Value="4,0"/>
                 <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -87,6 +80,8 @@
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="Margin" Value="4"/>
+                <Setter Property="MinHeight" Value="27"/>
+                <Setter Property="MinWidth" Value="128"/>
                 <Setter Property="MouseOverBackground" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="MouseOverForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -118,6 +113,8 @@
                 <Setter Property="ButtonPressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="MinHeight" Value="27"/>
+                <Setter Property="MinWidth" Value="64"/>
                 <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -125,6 +122,7 @@
                 <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="SelectedTextBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
             </Style>
 
         </ResourceDictionary>
@@ -149,6 +147,154 @@
                     Style="{StaticResource Conf_TextBlockStyle.Header1}"
                     Text="RichTextBoxEx"/>
 
+                <WrapPanel
+                    Orientation="Horizontal">
+
+                    <StackPanel
+                        Margin="0,0,8,8"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Font Family"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontsCollection}"
+                            Margin="0"
+                            MinWidth="192"
+                            SelectedItem="{Binding EditorFontFamilyInfo}"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="0,0,8,8"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Font Size"/>
+
+                        <controlsex:UpDownTextBoxEx
+                            MaxValue="{Binding EditorFontSizeMax}"
+                            MinValue="{Binding EditorFontSizeMin}"
+                            Text="{Binding TextFormatting.FontSize}"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="0,0,8,8"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom">
+
+                        <controlsex:ButtonEx
+                            IconKind="FormatStrikethrough"
+                            IsChecked="{Binding TextFormatting.TextDecorationBaseline, Mode=TwoWay}"
+                            IsPressable="True"/>
+
+                        <controlsex:ButtonEx
+                            IconKind="FormatOverline"
+                            IsChecked="{Binding TextFormatting.TextDecorationOverLine, Mode=TwoWay}"
+                            IsPressable="True"/>
+
+                        <controlsex:ButtonEx
+                            IconKind="FormatStrikethroughVariant"
+                            IsChecked="{Binding TextFormatting.TextDecorationStrikethrough, Mode=TwoWay}"
+                            IsPressable="True"/>
+
+                        <controlsex:ButtonEx
+                            IconKind="FormatUnderline"
+                            IsChecked="{Binding TextFormatting.TextDecorationUnderline, Mode=TwoWay}"
+                            IsPressable="True"/>
+
+                        <controlsex:ButtonEx
+                            IconKind="FormatColorText"
+                            Click="FontColorButtonEx_Click">
+
+                            <Grid
+                                Background="{Binding TextFormatting.FontColor}">
+
+                                <TextBlock
+                                    Foreground="{Binding TextFormatting.FontColor,Converter={StaticResource ContrastSolidColorBrushConverter}}"
+                                    Margin="4,0"
+                                    Text="Text color"/>
+
+                            </Grid>
+                            
+                        </controlsex:ButtonEx>
+
+                        <controlsex:ButtonEx
+                            IconKind="FormatColorFill"
+                            Click="FontBackgroundButtonEx_Click">
+
+                            <Grid
+                                Background="{Binding TextFormatting.FontBackground}">
+
+                                <TextBlock
+                                    Foreground="{Binding TextFormatting.FontBackground,Converter={StaticResource ContrastSolidColorBrushConverter}}"
+                                    Margin="4,0"
+                                    Text="Fill color"/>
+
+                            </Grid>
+
+                        </controlsex:ButtonEx>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="0,0,8,8"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Font Style"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontStylesCollection}"
+                            Margin="0"
+                            SelectedItem="{Binding TextFormatting.FontStyle}"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="0,0,8,8"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Font Weight"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding FontWeightsCollection}"
+                            Margin="0"
+                            SelectedItem="{Binding TextFormatting.FontWeight}"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Margin="0,0,8,8"
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            Style="{StaticResource Conf_TextBlockStyle.Content}"
+                            Text="Text Alignment"/>
+
+                        <controlsex:ComboBoxEx
+                            ItemsSource="{Binding TextAlignmentsCollection}"
+                            Margin="0"
+                            SelectedItem="{Binding TextFormatting.TextAlignment}"/>
+
+                    </StackPanel>
+
+                    <controlsex:ButtonEx
+                        Content="Paragraph"
+                        IconKind="FormatParagraph"
+                        Margin="0,0,8,8"
+                        Padding="4,4,8,4"
+                        VerticalAlignment="Bottom"
+                        Click="ParagraphFormattingButtonEx_Click"/>
+
+                </WrapPanel>
+
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Example of RichTextBox component."/>
@@ -161,141 +307,6 @@
                 VerticalAlignment="Stretch"
                 EasyTextManager="{Binding EasyTextManager}"/>
 
-        </Grid>
-
-        <Grid
-            HorizontalAlignment="Right">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel
-                Grid.Column="0"
-                Orientation="Horizontal"
-                VerticalAlignment="Top">
-
-                <controlsex:ButtonEx
-                    Content="Format"
-                    IconKind="FormatFont"
-                    Margin="8"
-                    Click="FontFormatButtonEx_Click"/>
-
-            </StackPanel>
-
-            <Grid
-                x:Name="fontFormatGrid"
-                Grid.Column="1"
-                Margin="0,0,-256,0"
-                Width="256">
-
-                <Border
-                    Background="{Binding Configuration.BackgroundColorBrush}"
-                    BorderBrush="{Binding Configuration.AccentColorBrush}"
-                    BorderThickness="1"
-                    CornerRadius="4"
-                    Margin="0,8,8,8">
-
-                    <controlsex:ScrollViewerEx
-                        Padding="4">
-
-                        <StackPanel
-                            Orientation="Vertical">
-
-                            <TextBlock
-                                Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font face:"/>
-
-                            <controlsex:ComboBoxEx
-                                ItemsSource="{Binding FontsCollection}"
-                                Margin="0,0,0,4"
-                                SelectedItem="{Binding EditorFontFamilyInfo}"/>
-
-                            <TextBlock
-                                Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font size:"/>
-
-                            <controlsex:UpDownTextBoxEx
-                                Margin="0,0,0,4"
-                                MaxValue="{Binding EditorFontSizeMax}"
-                                MinValue="{Binding EditorFontSizeMin}"
-                                Text="{Binding EditorFontSize}"/>
-
-                            <TextBlock
-                                Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font style:"/>
-
-                            <controlsex:ComboBoxEx
-                                ItemsSource="{Binding FontStylesCollection}"
-                                Margin="0,0,0,4"
-                                SelectedItem="{Binding EditorFontStyle}"/>
-
-                            <TextBlock
-                                Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Font weight:"/>
-
-                            <controlsex:ComboBoxEx
-                                ItemsSource="{Binding FontWeightsCollection}"
-                                Margin="0,0,0,4"
-                                SelectedItem="{Binding EditorFontWeight}"/>
-
-                            <TextBlock
-                                Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Text alignment:"/>
-
-                            <controlsex:ComboBoxEx
-                                ItemsSource="{Binding TextAlignmentsCollection}"
-                                Margin="0,0,0,4"
-                                SelectedItem="{Binding EditorTextAlignment}"/>
-
-                            <TextBlock
-                                Style="{StaticResource Conf_TextBlockStyle.Content}"
-                                Text="Decorations:"/>
-
-                            <Grid
-                                Margin="0,0,0,4">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <controlsex:ButtonEx
-                                    Grid.Column="0"
-                                    IconKind="FormatStrikethrough"
-                                    IsChecked="{Binding EditorTextDecorBaseline, Mode=TwoWay}"
-                                    IsPressable="True"/>
-
-                                <controlsex:ButtonEx
-                                    Grid.Column="1"
-                                    IconKind="FormatOverline"
-                                    IsChecked="{Binding EditorTextDecorOverLine, Mode=TwoWay}"
-                                    IsPressable="True"/>
-
-                                <controlsex:ButtonEx
-                                    Grid.Column="2"
-                                    IconKind="FormatStrikethroughVariant"
-                                    IsChecked="{Binding EditorTextDecorStrikethrough, Mode=TwoWay}"
-                                    IsPressable="True"/>
-
-                                <controlsex:ButtonEx
-                                    Grid.Column="3"
-                                    IconKind="FormatUnderline"
-                                    IsChecked="{Binding EditorTextDecorUnderline, Mode=TwoWay}"
-                                    IsPressable="True"/>
-
-                            </Grid>
-
-                        </StackPanel>
-
-                    </controlsex:ScrollViewerEx>
-                </Border>
-
-            </Grid>
         </Grid>
 
     </Grid>

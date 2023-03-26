@@ -21,6 +21,7 @@
 
         <controlsex:ColorsPaletteEx
             x:Name="colorsPalette"
+            AllowTransparent="{Binding AllowTransparent}"
             BorderBrush="{x:Null}"
             BorderThickness="0"
             ColorSelectionChanged="OnColorSelectionChanged"

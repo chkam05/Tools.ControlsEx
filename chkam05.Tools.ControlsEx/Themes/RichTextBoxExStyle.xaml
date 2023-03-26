@@ -62,12 +62,16 @@
             
             <!-- Mouse Over. -->
             <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{Binding MouseOverBackgroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+                <Setter Property="Foreground" TargetName="PART_ContentHost" Value="{Binding MouseOverForegroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
             </Trigger>
 
             <!-- Keyboard Focused. -->
             <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{Binding SelectedInactiveBackgroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="{Binding SelectedInactiveBorderBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+                <Setter Property="Foreground" TargetName="PART_ContentHost" Value="{Binding SelectedInactiveForegroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
             </Trigger>
             
         </ControlTemplate.Triggers>

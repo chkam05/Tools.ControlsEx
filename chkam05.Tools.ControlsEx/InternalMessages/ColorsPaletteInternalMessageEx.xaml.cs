@@ -26,6 +26,12 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
         //  DEPENDENCY PROPERTIES
 
+        public static readonly DependencyProperty AllowTransparentProperty = DependencyProperty.Register(
+            nameof(AllowTransparent),
+            typeof(bool),
+            typeof(ColorsPaletteInternalMessageEx),
+            new PropertyMetadata(false));
+
         public static readonly DependencyProperty ColorsHistoryProperty = DependencyProperty.Register(
             nameof(ColorsHistory),
             typeof(ObservableCollection<ColorPaletteItem>),
@@ -58,6 +64,16 @@ namespace chkam05.Tools.ControlsEx.InternalMessages
 
 
         //  VARIABLES
+
+        public bool AllowTransparent
+        {
+            get => (bool)GetValue(AllowTransparentProperty);
+            set
+            {
+                SetValue(AllowTransparentProperty, value);
+                OnPropertyChanged(nameof(AllowTransparent));
+            }
+        }
 
         public ObservableCollection<ColorPaletteItem> ColorsHistory
         {

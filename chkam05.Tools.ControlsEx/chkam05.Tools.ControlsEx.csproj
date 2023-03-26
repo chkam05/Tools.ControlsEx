@@ -87,6 +87,7 @@
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\IntToStringConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Data\EasyRichParagraphProperties.cs" />
     <Compile Include="Data\EasyRichTextFormatting.cs" />
     <Compile Include="Data\FontFamilyInfo.cs" />
     <Compile Include="Converters\WindowExButtonCornerRadiusConverter.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Utilities\FontUtilities.cs" />
     <Compile Include="Utilities\MathUtilitiesEx.cs" />
     <Compile Include="Utilities\TextBoxExValidator.cs" />
+    <Compile Include="Utilities\TextDecorationsHelper.cs" />
     <Compile Include="Utilities\UpDownTextBoxExValidator.cs" />
     <Compile Include="WindowsEx\BaseWindowEx.cs" />
     <Compile Include="WindowsEx\WindowEx.cs" />

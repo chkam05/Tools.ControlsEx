@@ -1,4 +1,5 @@
-﻿using chkam05.Tools.ControlsEx.Static;
+﻿using chkam05.Tools.ControlsEx.Properties;
+using chkam05.Tools.ControlsEx.Static;
 using chkam05.Tools.ControlsEx.Utilities;
 using System;
 using System.Collections.Generic;
@@ -19,17 +20,41 @@ namespace chkam05.Tools.ControlsEx
 
         #region Appearance Colors Properties
 
+        public static readonly DependencyProperty MouseOverBackgroundBrushProperty = DependencyProperty.Register(
+            nameof(MouseOverBackgroundBrush),
+            typeof(Brush),
+            typeof(RichTextBoxEx),
+            new PropertyMetadata(SystemColors.WindowBrush));
+
         public static readonly DependencyProperty MouseOverBorderBrushProperty = DependencyProperty.Register(
             nameof(MouseOverBorderBrush),
             typeof(Brush),
             typeof(RichTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
 
+        public static readonly DependencyProperty MouseOverForegroundBrushProperty = DependencyProperty.Register(
+            nameof(MouseOverForegroundBrush),
+            typeof(Brush),
+            typeof(RichTextBoxEx),
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Black)));
+
+        public static readonly DependencyProperty SelectedInactiveBackgroundBrushProperty = DependencyProperty.Register(
+            nameof(SelectedInactiveBackgroundBrush),
+            typeof(Brush),
+            typeof(RichTextBoxEx),
+            new PropertyMetadata(SystemColors.WindowBrush));
+        
         public static readonly DependencyProperty SelectedInactiveBorderBrushProperty = DependencyProperty.Register(
             nameof(SelectedInactiveBorderBrush),
             typeof(Brush),
             typeof(RichTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_SELECTED_INACTIVE)));
+
+        public static readonly DependencyProperty SelectedInactiveForegroundBrushProperty = DependencyProperty.Register(
+            nameof(SelectedInactiveForegroundBrush),
+            typeof(Brush),
+            typeof(RichTextBoxEx),
+            new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Black)));
 
         public static readonly DependencyProperty SelectedTextBackgroundProperty = DependencyProperty.Register(
             nameof(SelectedTextBackground),
@@ -101,6 +126,16 @@ namespace chkam05.Tools.ControlsEx
 
         #region Appearance Colors
 
+        public Brush MouseOverBackgroundBrush
+        {
+            get => (Brush)GetValue(MouseOverBackgroundBrushProperty);
+            set
+            {
+                SetValue(MouseOverBackgroundBrushProperty, value);
+                OnPropertyChanged(nameof(MouseOverBackgroundBrush));
+            }
+        }
+        
         public Brush MouseOverBorderBrush
         {
             get => (Brush)GetValue(MouseOverBorderBrushProperty);
@@ -108,6 +143,26 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(MouseOverBorderBrushProperty, value);
                 OnPropertyChanged(nameof(MouseOverBorderBrush));
+            }
+        }
+        
+        public Brush MouseOverForegroundBrush
+        {
+            get => (Brush)GetValue(MouseOverForegroundBrushProperty);
+            set
+            {
+                SetValue(MouseOverForegroundBrushProperty, value);
+                OnPropertyChanged(nameof(MouseOverForegroundBrush));
+            }
+        }
+
+        public Brush SelectedInactiveBackgroundBrush
+        {
+            get => (Brush)GetValue(SelectedInactiveBackgroundBrushProperty);
+            set
+            {
+                SetValue(SelectedInactiveBackgroundBrushProperty, value);
+                OnPropertyChanged(nameof(SelectedInactiveBackgroundBrush));
             }
         }
 
@@ -118,6 +173,16 @@ namespace chkam05.Tools.ControlsEx
             {
                 SetValue(SelectedInactiveBorderBrushProperty, value);
                 OnPropertyChanged(nameof(SelectedInactiveBorderBrush));
+            }
+        }
+
+        public Brush SelectedInactiveForegroundBrush
+        {
+            get => (Brush)GetValue(SelectedInactiveForegroundBrushProperty);
+            set
+            {
+                SetValue(SelectedInactiveForegroundBrushProperty, value);
+                OnPropertyChanged(nameof(SelectedInactiveForegroundBrush));
             }
         }
 

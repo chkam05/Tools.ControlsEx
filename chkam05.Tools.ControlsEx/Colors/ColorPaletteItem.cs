@@ -43,7 +43,7 @@ namespace chkam05.Tools.ControlsEx.Colors
 
         public string Name
         {
-            get => _name;
+            get => _name ?? ColorCode;
             set
             {
                 _name = value;

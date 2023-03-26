@@ -11,6 +11,7 @@ namespace chkam05.Tools.ControlsEx.Colors
 
         //  CONST
 
+        public static readonly ColorPaletteItem Transparent = new ColorPaletteItem(System.Windows.Media.Colors.Transparent, "Transparent");
         public static readonly ColorPaletteItem GoldYellow = new ColorPaletteItem("#FFB900", "Gold Yellow");
         public static readonly ColorPaletteItem Gold = new ColorPaletteItem("#FF8C00", "Gold");
         public static readonly ColorPaletteItem BrightOrange = new ColorPaletteItem("#F7630C", "Bright Orange");

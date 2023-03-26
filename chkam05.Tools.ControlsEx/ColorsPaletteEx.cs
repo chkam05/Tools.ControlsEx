@@ -106,6 +106,12 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion Item Properties
 
+        public static readonly DependencyProperty AllowTransparentProperty = DependencyProperty.Register(
+            nameof(AllowTransparent),
+            typeof(bool),
+            typeof(ColorsPaletteEx),
+            new PropertyMetadata(false, new PropertyChangedCallback(OnAllowTransparentPropertyChanged)));
+
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
@@ -290,6 +296,16 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion Item
 
+        public bool AllowTransparent
+        {
+            get => (bool)GetValue(AllowTransparentProperty);
+            set
+            {
+                SetValue(AllowTransparentProperty, value);
+                OnPropertyChanged(nameof(AllowTransparent));
+            }
+        }
+
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
@@ -390,7 +406,7 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> ColorsPaletteEx class constructor. </summary>
         public ColorsPaletteEx()
         {
-            Colors = new ObservableCollection<ColorPaletteItem>(ColorsPaletteItems.Colors);
+            UpdateColorsList();
             ColorsHistory = new ObservableCollection<ColorPaletteItem>()
             {
                 ColorsPaletteItems.Blue,
@@ -464,7 +480,7 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="colorPaletteItem"> ColorPaletteItem to add. </param>
         public void AddColorToHistory(ColorPaletteItem colorPaletteItem)
         {
-            if (colorPaletteItem != null && colorPaletteItem.Color != System.Windows.Media.Colors.Transparent)
+            if (colorPaletteItem != null)
             {
                 if (ColorsHistory.Any(c => c == colorPaletteItem))
                 {
@@ -570,6 +586,16 @@ namespace chkam05.Tools.ControlsEx
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after updating allow transparency property. </summary>
+        /// <param name="o"> Dependency object. </param>
+        /// <param name="e"> Dependency Property Changed Event Arguments. </param>
+        protected static void OnAllowTransparentPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var instance = o as ColorsPaletteEx;
+            instance.UpdateColorsList();
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Method invoked after changing lyrics collection. </summary>
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Notify Collection Changed Event Arguments. </param>
@@ -648,6 +674,22 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion TEMPLATE METHODS
+
+        #region UPDATE METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update colors list. </summary>
+        private void UpdateColorsList()
+        {
+            var colors = new List<ColorPaletteItem>(ColorsPaletteItems.Colors);
+
+            if (AllowTransparent)
+                colors.Insert(0, ColorsPaletteItems.Transparent);
+
+            Colors = new ObservableCollection<ColorPaletteItem>(colors);
+        }
+
+        #endregion UPDATE METHODS
 
     }
 }

@@ -23,6 +23,7 @@ namespace: _chkam05.Tools.ControlsEx_
 | Thickness        | ColorItemPadding                     | Color item padding (space between color and color item border). |
 | double           | ColorItemWidth                       | Color item width. |
 |||
+| bool             | AllowTransparent                     | Allow to select transparent color (no color). |
 | ObservableCollection<[ColorPaletteItem](ColorPaletteItem.md)> | Colors         | Collection of colors available to select in palette. |
 | ObservableCollection<[ColorPaletteItem](ColorPaletteItem.md)> | ColorsHistory  | Collection of last selected colors in palette. |
 | bool             | ColorsHistoryEnabled                 | Show list of last selected colors. |
