@@ -9,6 +9,7 @@ namespace: _chkam05.Tools.ControlsEx.InternalMessages_
 
 | Type                                   | Name                 | Description |
 |:---------------------------------------|:---------------------|:------------|
+| bool                                   | AllowTransparent     | Allow to select transparent color (no color). |
 | ObservableCollection<[ColorPaletteItem](ColorPaletteItem.md)> | ColorsHistory | Observable collection of previously selected colors. |
 | bool                                   | ColorsHistoryEnabled | Enable showing previously selected colors. |
 | int                                    | ColorsHistoryCount   | Max count of previously selected colors. |

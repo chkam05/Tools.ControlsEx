@@ -43,10 +43,18 @@ Delegate for [BaseInternalMessageEx](BaseInternalMessageEx.md) component.
 | object | sender         | Object that invoked event. |
 | [InternalMessageHideEventArgs](InternalMessageHideEventArgs.md)  | e | Event arguments. |
 
-- **TextModifiedEventHandler**  
-Delegate for [TextBoxEx](TextBoxEx.md) component.
+- **UpDownDoubleModifiedEventHandler**  
+Delegate for [UpDownDoubleTextBoxEx](UpDownDoubleTextBoxEx.md) component.
 
 | Type   | Parameter Name | Description |
 |:-------|:---------------|:------------|
 | object | sender         | Object that invoked event. |
-| [TextModifiedEventArgs](TextModifiedEventArgs.md) | e | Event arguments. |
+| [UpDownDoubleModifiedEventArgs](UpDownDoubleModifiedEventArgs.md) | e | Event arguments. |
+
+- **UpDownLongModifiedEventHandler**  
+Delegate for [UpDownLongTextBoxEx](UpDownLongTextBoxEx.md) component.
+
+| Type   | Parameter Name | Description |
+|:-------|:---------------|:------------|
+| object | sender         | Object that invoked event. |
+| [UpDownLongModifiedEventArgs](UpDownLongModifiedEventArgs.md) | e | Event arguments. |
