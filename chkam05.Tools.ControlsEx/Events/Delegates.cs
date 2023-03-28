@@ -51,6 +51,17 @@ namespace chkam05.Tools.ControlsEx.Events
         /// <param name="sender"> Object that invoked method. </param>
         /// <param name="e"> Text Modified Event Arguments. </param>
         public delegate void TextModifiedEventHandler(object sender, TextModifiedEventArgs e);
-        
+
+        /// <summary> Method invoked after modifying up down double value. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Up Down Double Modified Event Arguments. </param>
+        public delegate void UpDownDoubleModifiedEventHandler(object sender, UpDownDoubleModifiedEventArgs e);
+
+
+        /// <summary> Method invoked after modifying up down long value. </summary>
+        /// <param name="sender"> Object that invoked method. </param>
+        /// <param name="e"> Up Down Long Modified Event Arguments. </param>
+        public delegate void UpDownLongModifiedEventHandler(object sender, UpDownLongModifiedEventArgs e);
+
     }
 }

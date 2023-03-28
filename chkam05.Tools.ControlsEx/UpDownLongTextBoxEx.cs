@@ -1,26 +1,24 @@
 ﻿using chkam05.Tools.ControlsEx.Static;
-using chkam05.Tools.ControlsEx.Utilities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Windows.Foundation.Metadata;
 using static chkam05.Tools.ControlsEx.Events.Delegates;
-
 
 namespace chkam05.Tools.ControlsEx
 {
-    [Obsolete("Old component, please use UpDownDoubleTextBoxEx and UpDownLongTextBoxEx instead.")]
-    public class UpDownTextBoxEx : TextBox, INotifyPropertyChanged
+    public class UpDownLongTextBoxEx : TextBox, INotifyPropertyChanged
     {
 
         //  CONST
 
         protected readonly static double BUTTON_HEIGHT = 12d;
         protected readonly static double BUTTON_WIDTH = 12d;
-        protected readonly static double MAX_VALUE = 100d;
-        protected readonly static double MIN_VALUE = 0d;
 
 
         //  DEPENDENCY PROPERTIES
@@ -30,97 +28,97 @@ namespace chkam05.Tools.ControlsEx
         public static readonly DependencyProperty ButtonBackgroundProperty = DependencyProperty.Register(
             nameof(ButtonBackground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(Brushes.Transparent));
 
         public static readonly DependencyProperty ButtonBorderBrushProperty = DependencyProperty.Register(
             nameof(ButtonBorderBrush),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(Brushes.Transparent));
 
         public static readonly DependencyProperty ButtonForegroundProperty = DependencyProperty.Register(
             nameof(ButtonForeground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
         public static readonly DependencyProperty ButtonMouseOverBackgroundProperty = DependencyProperty.Register(
             nameof(ButtonMouseOverBackground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
         public static readonly DependencyProperty ButtonMouseOverBorderBrushProperty = DependencyProperty.Register(
             nameof(ButtonMouseOverBorderBrush),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR)));
 
         public static readonly DependencyProperty ButtonMouseOverForegroundProperty = DependencyProperty.Register(
             nameof(ButtonMouseOverForeground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
         public static readonly DependencyProperty ButtonPressedBackgroundProperty = DependencyProperty.Register(
             nameof(ButtonPressedBackground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
-        
+
         public static readonly DependencyProperty ButtonPressedBorderBrushProperty = DependencyProperty.Register(
             nameof(ButtonPressedBorderBrush),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
 
         public static readonly DependencyProperty ButtonPressedForegroundProperty = DependencyProperty.Register(
             nameof(ButtonPressedForeground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
         public static readonly DependencyProperty MouseOverBackgroundProperty = DependencyProperty.Register(
             nameof(MouseOverBackground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
 
         public static readonly DependencyProperty MouseOverBorderBrushProperty = DependencyProperty.Register(
             nameof(MouseOverBorderBrush),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
 
         public static readonly DependencyProperty MouseOverForegroundProperty = DependencyProperty.Register(
             nameof(MouseOverForeground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
         public static readonly DependencyProperty SelectedBackgroundProperty = DependencyProperty.Register(
             nameof(SelectedBackground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(System.Windows.Media.Colors.Transparent)));
 
         public static readonly DependencyProperty SelectedBorderBrushProperty = DependencyProperty.Register(
             nameof(SelectedBorderBrush),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_PRESSED)));
 
         public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.Register(
             nameof(SelectedForeground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.FOREGROUND_COLOR)));
 
         public static readonly DependencyProperty SelectedTextBackgroundProperty = DependencyProperty.Register(
             nameof(SelectedTextBackground),
             typeof(Brush),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new SolidColorBrush(StaticResources.ACCENT_COLOR_MOUSE_OVER)));
 
         #endregion Appearance Colors Properties
@@ -130,66 +128,67 @@ namespace chkam05.Tools.ControlsEx
         public static readonly DependencyProperty ButtonBorderThicknessProperty = DependencyProperty.Register(
             nameof(ButtonBorderThickness),
             typeof(Thickness),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(new Thickness(0)));
 
         public static readonly DependencyProperty ButtonHeightProperty = DependencyProperty.Register(
             nameof(ButtonHeight),
             typeof(double),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(BUTTON_HEIGHT));
 
         public static readonly DependencyProperty ButtonWidthProperty = DependencyProperty.Register(
             nameof(ButtonWidth),
             typeof(double),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(BUTTON_WIDTH));
 
         #endregion Buttons Properties
 
-        public static readonly DependencyProperty ConversionTypeProperty = DependencyProperty.Register(
-            nameof(ConversionType),
-            typeof(UpDownTextBoxConversionType),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(UpDownTextBoxConversionType.Decimal));
-
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
             nameof(CornerRadius),
             typeof(CornerRadius),
-            typeof(UpDownTextBoxEx),
+            typeof(UpDownLongTextBoxEx),
             new PropertyMetadata(StaticResources.DEFAULT_CORNER_RADIUS));
 
         public static readonly DependencyProperty MaxValueProperty = DependencyProperty.Register(
             nameof(MaxValue),
-            typeof(double),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(MAX_VALUE));
+            typeof(long),
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(long.MaxValue));
 
         public static readonly DependencyProperty MinValueProperty = DependencyProperty.Register(
             nameof(MinValue),
-            typeof(double),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(MIN_VALUE));
+            typeof(long),
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(long.MinValue));
 
         public static readonly DependencyProperty TickProperty = DependencyProperty.Register(
             nameof(Tick),
-            typeof(double),
-            typeof(UpDownTextBoxEx),
-            new PropertyMetadata(1d));
+            typeof(long),
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(1L));
+
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
+            nameof(Value),
+            typeof(long),
+            typeof(UpDownLongTextBoxEx),
+            new PropertyMetadata(0L, new PropertyChangedCallback(OnValuePropertyChanged)));
 
 
         //  EVENTS
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public event TextModifiedEventHandler TextModified;
+        public event UpDownLongModifiedEventHandler ValueModified;
 
 
         //  VARIABLES
 
-        protected bool _focused = false;
-        protected bool _lockUpdate = false;
-        protected bool _textChanged = false;
-        internal UpDownTextBoxExValidator _validator;
+        private string _correctValue = 0L.ToString();
+        private bool _focused = false;
+        private bool _lockUpdate = false;
+        private bool _lockUpdateValue = false;
+        private bool _textChanged = false;
 
 
         //  GETTERS & SETTERS
@@ -205,7 +204,7 @@ namespace chkam05.Tools.ControlsEx
                 OnPropertyChanged(nameof(ButtonBackground));
             }
         }
-        
+
         public Brush ButtonBorderBrush
         {
             get => (Brush)GetValue(ButtonBorderBrushProperty);
@@ -235,7 +234,7 @@ namespace chkam05.Tools.ControlsEx
                 OnPropertyChanged(nameof(ButtonMouseOverBackground));
             }
         }
-        
+
         public Brush ButtonMouseOverBorderBrush
         {
             get => (Brush)GetValue(ButtonMouseOverBorderBrushProperty);
@@ -392,22 +391,6 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion Buttons
 
-        public virtual UpDownTextBoxConversionType ConversionType
-        {
-            get => (UpDownTextBoxConversionType)GetValue(ConversionTypeProperty);
-            set
-            {
-                SetValue(ConversionTypeProperty, value);
-                OnPropertyChanged(nameof(ConversionType));
-
-                if (_validator != null)
-                {
-                    _validator.SetConversionType(value, Text);
-                    Text = _validator.PreviousCorrectValue;
-                }
-            }
-        }
-
         public CornerRadius CornerRadius
         {
             get => (CornerRadius)GetValue(CornerRadiusProperty);
@@ -418,33 +401,57 @@ namespace chkam05.Tools.ControlsEx
             }
         }
 
-        public double MaxValue
+        public long MaxValue
         {
-            get => (double)GetValue(MaxValueProperty);
+            get => (long)GetValue(MaxValueProperty);
             set
             {
-                SetValue(MaxValueProperty, Math.Max(0, value));
+                SetValue(MaxValueProperty, Math.Max(MinValue, value));
                 OnPropertyChanged(nameof(MaxValue));
             }
         }
 
-        public double MinValue
+        public long MinValue
         {
-            get => (double)GetValue(MinValueProperty);
+            get => (long)GetValue(MinValueProperty);
             set
             {
-                SetValue(MinValueProperty, Math.Max(0, value));
+                SetValue(MinValueProperty, Math.Min(MaxValue, value));
                 OnPropertyChanged(nameof(MinValue));
             }
         }
 
-        public double Tick
+        public long Tick
         {
-            get => (double)GetValue(TickProperty);
+            get => (long)GetValue(TickProperty);
             set
             {
                 SetValue(TickProperty, Math.Max(0, value));
                 OnPropertyChanged(nameof(Tick));
+            }
+        }
+
+        public new string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set
+            {
+                SetValue(TextProperty, value);
+                OnPropertyChanged(nameof(Text));
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+
+        public long Value
+        {
+            get
+            {
+                return (long)GetValue(ValueProperty);
+            }
+            set
+            {
+                SetValue(ValueProperty, Math.Min(MaxValue, Math.Max(MinValue, value)));
+                OnPropertyChanged(nameof(Value));
             }
         }
 
@@ -454,22 +461,19 @@ namespace chkam05.Tools.ControlsEx
         #region CLASS METHODS
 
         //  --------------------------------------------------------------------------------
-        /// <summary> UpDownTextBoxEx class constructor. </summary>
-        public UpDownTextBoxEx()
+        /// <summary> UpDownLongTextBoxEx class constructor. </summary>
+        public UpDownLongTextBoxEx() : base()
         {
             //  Initialize events.
             Loaded += OnLoaded;
-
-            //  Initialize modules.
-            _validator = new UpDownTextBoxExValidator();
         }
 
         //  --------------------------------------------------------------------------------
-        /// <summary> Static UpDownTextBoxEx class constructor. </summary>
-        static UpDownTextBoxEx()
+        /// <summary> Static UpDownLongTextBoxEx class constructor. </summary>
+        static UpDownLongTextBoxEx()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(UpDownTextBoxEx),
-                new FrameworkPropertyMetadata(typeof(UpDownTextBoxEx)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(UpDownLongTextBoxEx),
+                new FrameworkPropertyMetadata(typeof(UpDownLongTextBoxEx)));
         }
 
         #endregion CLASS METHODS
@@ -482,19 +486,49 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="e"> Routed Event Arguments. </param>
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (ConversionType != _validator.ConversionType)
+            if (Text != Value.ToString())
             {
-                _validator.SetConversionType(ConversionType, Text);
-
-                if (Text != _validator.PreviousCorrectValue)
-                {
-                    _lockUpdate = true;
-                    Text = _validator.PreviousCorrectValue;
-                }
+                _lockUpdate = true;
+                long value = Math.Min(MaxValue, Math.Max(MinValue, Value));
+                _correctValue = value.ToString();
+                Text = _correctValue;
             }
         }
 
         #endregion COMPONENT METHODS
+
+        #region CONVERSION METHODS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Try covert value to numeric. </summary>
+        /// <param name="value"> Value to convert. </param>
+        /// <param name="resultValue"> Converted value as text. </param>
+        /// <param name="editMode"> Converting in edit mode. </param>
+        /// <returns> True - conversion successed; False - otherwise. </returns>
+        private bool TryConvertValue(string value, out string resultValue, bool editMode = false)
+        {
+            if (editMode && (string.IsNullOrEmpty(value) || value == "-"))
+            {
+                resultValue = value;
+                return true;
+            }
+
+            bool canConvert = long.TryParse(value, out long _);
+
+            if (canConvert)
+            {
+                resultValue = value;
+                _correctValue = value;
+            }
+            else
+            {
+                resultValue = _correctValue;
+            }
+            
+            return canConvert;
+        }
+
+        #endregion CONVERSION METHODS
 
         #region INTERACTION METHODS
 
@@ -518,11 +552,14 @@ namespace chkam05.Tools.ControlsEx
             {
                 _textChanged = false;
 
-                if (!_validator.TryConvertValue(Text, out string correctText))
+                if (!TryConvertValue(Text, out string correctText))
                 {
                     _lockUpdate = true;
                     Text = correctText;
                 }
+
+                _lockUpdateValue = true;
+                Value = long.Parse(Text);
             }
 
             base.OnLostFocus(e);
@@ -539,30 +576,44 @@ namespace chkam05.Tools.ControlsEx
                 {
                     _textChanged = true;
 
-                    if (!_validator.CanConvertValue(Text, out string correctValue, true))
+                    if (!TryConvertValue(Text, out string _correctValue, true))
                     {
                         int carretPosition = SelectionStart;
                         int textLength = Text.Length;
-                        int textLengthDiff = Math.Max(0, textLength - correctValue.Length);
+                        int textLengthDiff = Math.Max(0, textLength - _correctValue.Length);
 
                         _lockUpdate = true;
-                        Text = correctValue;
-                        SelectionStart = Math.Max(0, Math.Min(carretPosition - textLengthDiff, correctValue.Length));
+                        Text = _correctValue;
+                        SelectionStart = Math.Max(0, Math.Min(carretPosition - textLengthDiff, _correctValue.Length));
                     }
                 }
-                else if (!_validator.TryConvertValue(Text, out string correctText))
+                else if (!TryConvertValue(Text, out string correctText))
                 {
                     _lockUpdate = true;
                     Text = correctText;
                 }
+
+                _lockUpdateValue = true;
+                Value = long.Parse(Text);
             }
             else
             {
                 _lockUpdate = false;
             }
 
-            TextModified?.Invoke(this, new Events.TextModifiedEventArgs(Text, _validator.PreviousText, _focused));
+            OnTextModifiedInvoke();
+
             base.OnTextChanged(e);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Method invoked after changing text. </summary>
+        private void OnTextModifiedInvoke()
+        {
+            ValueModified?.Invoke(this, new Events.UpDownLongModifiedEventArgs(
+                long.TryParse(Text, out long value) ? value : 0L,
+                long.TryParse(_correctValue, out long corrValue) ? corrValue : 0L,
+                _focused));
         }
 
         //  --------------------------------------------------------------------------------
@@ -576,25 +627,13 @@ namespace chkam05.Tools.ControlsEx
             if (notFocused)
                 _focused = true;
 
-            switch (ConversionType)
+            if (long.TryParse(Text, out long lValue))
             {
-                case UpDownTextBoxConversionType.FloatingPoint:
-                    if (double.TryParse(Text, out double dValue))
-                    {
-                        _lockUpdate = true;
-                        Text = Math.Min(dValue + Tick, Math.Min(double.MaxValue, MaxValue)).ToString();
-                    }
-                    break;
-
-                case UpDownTextBoxConversionType.Decimal:
-                    if (long.TryParse(Text, out long lValue))
-                    {
-                        _lockUpdate = true;
-                        Text = Math.Min(lValue + (long)Tick, Math.Min(long.MaxValue, (long)MaxValue)).ToString();
-                    }
-                    break;
-                default:
-                    break;
+                _lockUpdate = true;
+                _lockUpdateValue = true;
+                long value = Math.Min(lValue + Tick, Math.Min(long.MaxValue, MaxValue));
+                Text = value.ToString();
+                Value = value;
             }
 
             if (notFocused)
@@ -612,25 +651,13 @@ namespace chkam05.Tools.ControlsEx
             if (notFocused)
                 _focused = true;
 
-            switch (ConversionType)
+            if (long.TryParse(Text, out long lValue))
             {
-                case UpDownTextBoxConversionType.FloatingPoint:
-                    if (double.TryParse(Text, out double dValue))
-                    {
-                        _lockUpdate = true;
-                        Text = Math.Max(dValue - Tick, Math.Max(double.MinValue, MinValue)).ToString();
-                    }
-                    break;
-
-                case UpDownTextBoxConversionType.Decimal:
-                    if (long.TryParse(Text, out long lValue))
-                    {
-                        _lockUpdate = true;
-                        Text = Math.Max(lValue - (long)Tick, Math.Max(long.MinValue, (long)MinValue)).ToString();
-                    }
-                    break;
-                default:
-                    break;
+                _lockUpdate = true;
+                _lockUpdateValue = true;
+                long value = Math.Max(lValue - Tick, Math.Max(long.MinValue, MinValue));
+                Text = value.ToString();
+                Value = value;
             }
 
             if (notFocused)
@@ -650,6 +677,24 @@ namespace chkam05.Tools.ControlsEx
 
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        //  --------------------------------------------------------------------------------
+        private static void OnValuePropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            var upDown = o as UpDownLongTextBoxEx;
+
+            if (upDown != null)
+            {
+                if (!upDown._lockUpdateValue)
+                {
+                    upDown._lockUpdate = true;
+                    upDown.Text = e.NewValue.ToString();
+                }
+
+                upDown._lockUpdateValue = false;
+                upDown.OnPropertyChanged(nameof(Value));
+            }
         }
 
         #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS

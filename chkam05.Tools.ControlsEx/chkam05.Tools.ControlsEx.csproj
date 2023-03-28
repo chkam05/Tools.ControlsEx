@@ -106,6 +106,8 @@
     <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\InternalMessageHideEventArgs.cs" />
     <Compile Include="Events\TextModifiedEventArgs.cs" />
+    <Compile Include="Events\UpDownDoubleModifiedEventArgs.cs" />
+    <Compile Include="Events\UpDownLongModifiedEventArgs.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="Indicators\BaseIndicatorEx.cs" />
     <Compile Include="Indicators\CircleSmoothIndicatorEx.cs" />
@@ -173,6 +175,8 @@
     <Compile Include="TextBoxEx.cs" />
     <Compile Include="TreeViewEx.cs" />
     <Compile Include="TreeViewItemEx.cs" />
+    <Compile Include="UpDownDoubleTextBoxEx.cs" />
+    <Compile Include="UpDownLongTextBoxEx.cs" />
     <Compile Include="UpDownTextBoxEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\ControlsHelper.cs" />
@@ -358,6 +362,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\TreeViewItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\UpDownDoubleTextBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\UpDownLongTextBoxExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

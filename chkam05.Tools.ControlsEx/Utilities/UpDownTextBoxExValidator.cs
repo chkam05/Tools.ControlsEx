@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace chkam05.Tools.ControlsEx.Utilities
 {
+    [Obsolete("Old component class used in UpDownTextBoxEx, please use UpDownDoubleTextBoxEx and UpDownLongTextBoxEx instead.")]
     internal class UpDownTextBoxExValidator
     {
 
