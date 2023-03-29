@@ -87,6 +87,9 @@
     <Compile Include="Converters\SliderTrackBarMarginConverter.cs" />
     <Compile Include="Converters\IntToStringConverter.cs" />
     <Compile Include="Converters\SwitcherCheckMarkConverter.cs" />
+    <Compile Include="Data\EasyRichParagraphProperties.cs" />
+    <Compile Include="Data\EasyRichTextFormatting.cs" />
+    <Compile Include="Data\FontFamilyInfo.cs" />
     <Compile Include="Converters\WindowExButtonCornerRadiusConverter.cs" />
     <Compile Include="Converters\WindowExTitleBarCornerRadiusConverter.cs" />
     <Compile Include="Data\InternalMessageButtons.cs" />
@@ -98,10 +101,13 @@
     <Compile Include="Events\ColorSelectorInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\ColorsPaletteSelectionChangedEventArgs.cs" />
     <Compile Include="Events\Delegates.cs" />
+    <Compile Include="Events\EasyRichTextSelectionChanged.cs" />
     <Compile Include="Events\FilesSelectorInternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\InternalMessageCloseEventArgs.cs" />
     <Compile Include="Events\InternalMessageHideEventArgs.cs" />
     <Compile Include="Events\TextModifiedEventArgs.cs" />
+    <Compile Include="Events\UpDownDoubleModifiedEventArgs.cs" />
+    <Compile Include="Events\UpDownLongModifiedEventArgs.cs" />
     <Compile Include="ExpanderEx.cs" />
     <Compile Include="Indicators\BaseIndicatorEx.cs" />
     <Compile Include="Indicators\CircleSmoothIndicatorEx.cs" />
@@ -149,6 +155,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RichTextBoxEx.cs" />
     <Compile Include="ScrollBarEx.cs" />
     <Compile Include="ScrollViewerEx.cs" />
     <Compile Include="SliderEx.cs" />
@@ -168,12 +175,17 @@
     <Compile Include="TextBoxEx.cs" />
     <Compile Include="TreeViewEx.cs" />
     <Compile Include="TreeViewItemEx.cs" />
+    <Compile Include="UpDownDoubleTextBoxEx.cs" />
+    <Compile Include="UpDownLongTextBoxEx.cs" />
     <Compile Include="UpDownTextBoxEx.cs" />
     <Compile Include="Utilities\ColorsUtilities.cs" />
     <Compile Include="Utilities\ControlsHelper.cs" />
     <Compile Include="Utilities\DispatcherInvokerEx.cs" />
+    <Compile Include="Utilities\EasyRichTextManager.cs" />
+    <Compile Include="Utilities\FontUtilities.cs" />
     <Compile Include="Utilities\MathUtilitiesEx.cs" />
     <Compile Include="Utilities\TextBoxExValidator.cs" />
+    <Compile Include="Utilities\TextDecorationsHelper.cs" />
     <Compile Include="Utilities\UpDownTextBoxExValidator.cs" />
     <Compile Include="WindowsEx\BaseWindowEx.cs" />
     <Compile Include="WindowsEx\WindowEx.cs" />
@@ -309,6 +321,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\RichTextBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\ScrollBarExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -346,6 +362,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\TreeViewItemExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\UpDownDoubleTextBoxExStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\UpDownLongTextBoxExStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

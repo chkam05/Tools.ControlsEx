@@ -7,6 +7,7 @@ namespace: _chkam05.Tools.ControlsEx.Colors_
 
 | Type                                    | Name               | Description |
 |:----------------------------------------|:-------------------|:------------|
+| [ColorPaletteItem](ColorPaletteItem.md) | Transparent        | #FFFFFFFF   |
 | [ColorPaletteItem](ColorPaletteItem.md) | GoldYellow         | #FFB900     |
 | [ColorPaletteItem](ColorPaletteItem.md) | Gold               | #FF8C00     |
 | [ColorPaletteItem](ColorPaletteItem.md) | BrightOrange       | #F7630C     |

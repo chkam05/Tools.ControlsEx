@@ -26,6 +26,8 @@ namespace: _chkam05.Tools.ControlsEx_
 | double       | IconWidth            | Icon width. |
 |||
 | CornerRadius | CornerRadius         | Button corner radius. |
+| bool         | IsChecked            | Identifies if it's pressed or not in IsPressable mode. |
+| bool         | IsPressable          | Allow to use button as check box. |
 | [ContentSide](ContentSide.md) | ContentSide | Button content side in relation of Icon. |
 
 ### Additional Constructors:

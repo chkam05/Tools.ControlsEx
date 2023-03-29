@@ -1,0 +1,118 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:chkam05.Tools.ControlsEx">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <RelativeSource x:Key="RelativeSelfRichTextBoxEx" Mode="FindAncestor" AncestorType="{x:Type local:RichTextBoxEx}"/>
+
+    <Style x:Key="RichTextBoxEx.HyperlinkStyle" TargetType="{x:Type Hyperlink}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+        <Style.Triggers>
+            
+            <!-- Mouse Over. -->
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="{Binding HyperlinkForeground, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+            </Trigger>
+            
+            <!-- Disabled. -->
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{Binding HyperlinkDisabledForeground, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+            </Trigger>
+            
+            <!-- Enabled. -->
+            <Trigger Property="IsEnabled" Value="true">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+            
+        </Style.Triggers>
+    </Style>
+
+    <SolidColorBrush x:Key="RichTextBoxEx.Border" Color="#FF0078D7"/>
+
+    <ControlTemplate x:Key="RichTextBoxEx.TextBoxBase.ControlTemplate" TargetType="{x:Type TextBoxBase}">
+        <Border
+            x:Name="border"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{Binding CornerRadius, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"
+            Padding="1"
+            SnapsToDevicePixels="True">
+            
+            <local:ScrollViewerEx
+                x:Name="PART_ContentHost"
+                Focusable="false"
+                HorizontalScrollBarVisibility="Auto"
+                Padding="{TemplateBinding Padding}"
+                VerticalScrollBarVisibility="Auto"/>
+            
+        </Border>
+        
+        <ControlTemplate.Triggers>
+            
+            <!-- Disabled. -->
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+            </Trigger>
+            
+            <!-- Mouse Over. -->
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{Binding MouseOverBackgroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding MouseOverBorderBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+                <Setter Property="Foreground" TargetName="PART_ContentHost" Value="{Binding MouseOverForegroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+            </Trigger>
+
+            <!-- Keyboard Focused. -->
+            <Trigger Property="IsKeyboardFocused" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{Binding SelectedInactiveBackgroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding SelectedInactiveBorderBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+                <Setter Property="Foreground" TargetName="PART_ContentHost" Value="{Binding SelectedInactiveForegroundBrush, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+            </Trigger>
+            
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="RichTextBoxEx.TextBoxBaseStyle" TargetType="{x:Type TextBoxBase}">
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource RichTextBoxEx.Border}"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template" Value="{StaticResource RichTextBoxEx.TextBoxBase.ControlTemplate}"/>
+
+        <Style.Triggers>
+
+            <!-- Inactive selection. -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                    <Condition Property="IsSelectionActive" Value="false"/>
+                </MultiTrigger.Conditions>
+
+                <Setter Property="SelectionBrush" Value="{Binding SelectedTextBackground, RelativeSource={StaticResource RelativeSelfRichTextBoxEx}}"/>
+            </MultiTrigger>
+            
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RichTextBoxExStyle" BasedOn="{StaticResource RichTextBoxEx.TextBoxBaseStyle}" TargetType="{x:Type RichTextBox}">
+        <Style.Resources>
+            <Style x:Key="{x:Type FlowDocument}" TargetType="{x:Type FlowDocument}">
+                <Setter Property="OverridesDefaultStyle" Value="true"/>
+            </Style>
+            <Style x:Key="{x:Type Hyperlink}" BasedOn="{StaticResource RichTextBoxEx.HyperlinkStyle}" TargetType="{x:Type Hyperlink}"/>
+        </Style.Resources>
+        <Setter Property="MinWidth" Value="10"/>
+    </Style>
+
+</ResourceDictionary>

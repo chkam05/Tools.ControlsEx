@@ -97,6 +97,14 @@
                 <Setter Property="TextBlock.Foreground" TargetName="packIcon" Value="{Binding PressedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
             </Trigger>
 
+            <!-- Is Permanently Pressed. -->
+            <Trigger Property="IsChecked" Value="true">
+                <Setter Property="Background" TargetName="border" Value="{Binding PressedBackground, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding PressedBorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
+                <Setter Property="Foreground" TargetName="packIcon" Value="{Binding PressedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
+                <Setter Property="TextBlock.Foreground" TargetName="packIcon" Value="{Binding PressedForeground, RelativeSource={RelativeSource AncestorType={x:Type local:ButtonEx}}}"/>
+            </Trigger>
+
             <!-- Is Disabled. -->
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Opacity" TargetName="border" Value="0.56"/>

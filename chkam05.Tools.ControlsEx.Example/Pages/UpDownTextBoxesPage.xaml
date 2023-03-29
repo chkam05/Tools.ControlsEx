@@ -32,6 +32,10 @@
                 <Setter Property="ScrollBarThumbBorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+            </Style>
+
             <Style x:Key="Conf_TextBlockStyle.Header1" BasedOn="{StaticResource TextBlockStyle.Header1}" TargetType="{x:Type TextBlock}">
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
@@ -39,11 +43,41 @@
             <Style x:Key="Conf_TextBlockStyle.Content" BasedOn="{StaticResource TextBlockStyle.Content}" TargetType="{x:Type TextBlock}">
                 <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
-            
-            <Style TargetType="{x:Type controlsex:UpDownTextBoxEx}">
+
+            <Style TargetType="{x:Type controlsex:TextBlockEx}">
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.BorderToolbarColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="Margin" Value="0,0,8,0"/>
+                <Setter Property="MinWidth" Value="64"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:UpDownDoubleTextBoxEx}">
                 <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
-                <Setter Property="ButtonBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonPressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonPressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedTextBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Width" Value="192"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:UpDownLongTextBoxEx}">
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -87,18 +121,97 @@
                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Decimal values (long)."/>
 
-                <controlsex:UpDownTextBoxEx
-                    ConversionType="Decimal"
-                    Text="10"/>
+                <Grid
+                    Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <controlsex:UpDownLongTextBoxEx
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Margin="0,0,8,0"
+                        Value="{Binding LongValue, Mode=TwoWay}"
+                        ValueModified="UpDownLongTextBoxEx_ValueModified"/>
+
+                    <TextBlock
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Margin="0,0,8,4"
+                        Text="Binding:"/>
+
+                    <controlsex:TextBlockEx
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="{Binding LongValue, Mode=OneWay}"/>
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Margin="0,0,0,4"
+                        Text="Event result:"/>
+
+                    <controlsex:TextBlockEx
+                        x:Name="longTextBlockEx"
+                        Grid.Column="2"
+                        Grid.Row="1"/>
+
+                </Grid>
 
                 <TextBlock
                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                     Text="Floating poing values (double)."/>
 
-                <controlsex:UpDownTextBoxEx
-                    ConversionType="FloatingPoint"
-                    Text="20"
-                    Tick="0.1"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <controlsex:UpDownDoubleTextBoxEx
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Margin="0,0,8,0"
+                        Tick="0.1"
+                        Value="{Binding DoubleValue, Mode=TwoWay}"
+                        ValueModified="UpDownDoubleTextBoxEx_ValueModified"/>
+
+                    <TextBlock
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Margin="0,0,8,4"
+                        Text="Binding:"/>
+
+                    <controlsex:TextBlockEx
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="{Binding DoubleValue, Mode=OneWay}"/>
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Margin="0,0,0,4"
+                        Text="Event result:"/>
+
+                    <controlsex:TextBlockEx
+                        x:Name="doubleTextBlockEx"
+                        Grid.Column="2"
+                        Grid.Row="1"/>
+
+                </Grid>
 
             </StackPanel>
 

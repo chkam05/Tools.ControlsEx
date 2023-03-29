@@ -29,6 +29,32 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         public Configuration Configuration { get; private set; }
 
+        private double _doubleValue = 0d;
+        private long _longValue = 0L;
+
+
+        //  GETTERS & SETTERS
+
+        public double DoubleValue
+        {
+            get => _doubleValue;
+            set
+            {
+                _doubleValue = value;
+                OnPropertyChanged(nameof(DoubleValue));
+            }
+        }
+
+        public long LongValue
+        {
+            get => _longValue;
+            set
+            {
+                _longValue = value;
+                OnPropertyChanged(nameof(LongValue));
+            }
+        }
+
 
         //  METHODS
 
@@ -47,6 +73,22 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
 
         #endregion CLASS METHODS
 
+        #region INTERACTION METHODS
+
+        //  --------------------------------------------------------------------------------
+        private void UpDownLongTextBoxEx_ValueModified(object sender, Events.UpDownLongModifiedEventArgs e)
+        {
+            longTextBlockEx.Text = e.NewValue.ToString();
+        }
+
+        //  --------------------------------------------------------------------------------
+        private void UpDownDoubleTextBoxEx_ValueModified(object sender, Events.UpDownDoubleModifiedEventArgs e)
+        {
+            doubleTextBlockEx.Text = e.NewValue.ToString();
+        }
+
+        #endregion INTERACTION METHODS
+
         #region NOTIFY PROPERTIES CHANGED INTERFACE METHODS
 
         //  --------------------------------------------------------------------------------
@@ -61,6 +103,6 @@ namespace chkam05.Tools.ControlsEx.Example.Pages
         }
 
         #endregion NOTIFY PROPERTIES CHANGED INTERFACE METHODS
-        
+
     }
 }

@@ -18,6 +18,7 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 - **[MarqueeTextBlockEx](Doc/MarqueeTextBlockEx.md)** 
 - **[MenuEx](Doc/MenuEx.md)** 
   - **[MenuItemEx](Doc/MenuItemEx.md)** 
+- **[RichTextBoxEx](Doc/RichTextBoxEx.md)** 
 - **[ScrollBarEx](Doc/ScrollBarEx.md)** 
 - **[ScrollViewerEx](Doc/ScrollViewerEx.md)** 
 - **[SliderEx](Doc/SliderEx.md)** 
@@ -28,7 +29,9 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 - **[TextBoxEx](Doc/TextBoxEx.md)** 
 - **[TreeViewEx](Doc/TreeViewEx.md)** 
   - **[TreeViewItemEx](Doc/TreeViewItemEx.md)** 
-- **[UpDownTextBoxEx](Doc/UpDownTextBoxEx.md)** 
+- **[UpDownDoubleTextBoxEx](Doc/UpDownDoubleTextBoxEx.md)** 
+- **[UpDownLongTextBoxEx](Doc/UpDownLongTextBoxEx.md)** 
+- **[UpDownTextBoxEx](Doc/UpDownTextBoxEx.md)** _obsolete_
 
 ## Internal Messages:
 
@@ -61,6 +64,9 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 - **[AHSLColor](Doc/AHSLColor.md)**  
 - **[ColorPaletteItem](Doc/ColorPaletteItem.md)** 
 - **[ColorsPaletteItems](Doc/ColorsPaletteItems.md)** 
+- **[EasyRichTextFormatting](Doc/EasyRichTextFormatting.md)** 
+- **[EasyRichParagraphProperties](Doc/EasyRichParagraphProperties.md)** 
+- **[FontFamilyInfo](Doc/FontFamilyInfo.md)** 
 - **[InternalMessageFileItem](Doc/InternalMessageFileItem.md)** 
 - **[InternalMessageFileTreeItem](Doc/InternalMessageFileTreeItem.md)** 
 - **[InternalMessageFileType](Doc/InternalMessageFileType.md)** 
@@ -80,11 +86,14 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 ## Events Arguments:
 
 - **[ColorsPaletteSelectionChangedEventArgs](Doc/ColorsPaletteSelectionChangedEventArgs.md)** 
+- **[EasyRichTextSelectionChangedEventArgs](Doc/EasyRichTextSelectionChangedEventArgs.md)** 
 - **[InternalMessageCloseEventArgs](Doc/InternalMessageCloseEventArgs.md)** 
   - **[ColorSelectorInternalMessageCloseEventArgs](Doc/ColorSelectorInternalMessageCloseEventArgs.md)** 
   - **[FilesSelectorInternalMessageCloseEventArgs](Doc/FilesSelectorInternalMessageCloseEventArgs.md)** 
 - **[InternalMessageHideEventArgs](Doc/InternalMessageHideEventArgs.md)** 
 - **[TextModifiedEventArgs](Doc/TextModifiedEventArgs.md)** 
+- **[UpDownDoubleModifiedEventArgs](Doc/UpDownDoubleModifiedEventArgs.md)** 
+- **[UpDownLongModifiedEventArgs](Doc/UpDownLongModifiedEventArgs.md)** 
 
 ## Tools:
 
@@ -92,7 +101,10 @@ Nuget Package: [chkam05.Tools.ControlsEx](https://www.nuget.org/packages/chkam05
 - **[ControlsHelper](Doc/ControlsHelper.md)** 
 - **[Delegates](Doc/Delegates.md)** 
 - **[DispatcherInvokerEx](Doc/DispatcherInvokerEx.md)** 
+- **[EasyRichTextManager](Doc/EasyRichTextManager.md)** 
+- **[FontUtilities](Doc/FontUtilities.md)** 
 - **[MathUtilitiesEx](Doc/MathUtilitiesEx.md)** 
+- **[TextDecorationsHelper](Doc/TextDecorationsHelper.md)** 
 
 # Related repositories 
 

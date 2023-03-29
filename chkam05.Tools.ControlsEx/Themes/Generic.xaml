@@ -22,6 +22,7 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MarqueeTextBlockExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/MenuItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/RichTextBoxExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollBarExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/ScrollViewerExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/SliderExStyle.xaml"/>
@@ -32,6 +33,8 @@
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TextBoxExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/TreeViewItemExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownDoubleTextBoxExStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownLongTextBoxExStyle.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/UpDownTextBoxExStyle.xaml"/>
 
         <!-- INDICATORS -->
@@ -79,6 +82,8 @@
     <Style BasedOn="{StaticResource MenuExStyle}" TargetType="{x:Type local:MenuEx}"/>
     
     <Style BasedOn="{StaticResource MenuItemExStyle}" TargetType="{x:Type local:MenuItemEx}"/>
+
+    <Style BasedOn="{StaticResource RichTextBoxExStyle}" TargetType="{x:Type local:RichTextBoxEx}"/>
     
     <Style BasedOn="{StaticResource ScrollBarExStyle}" TargetType="{x:Type local:ScrollBarEx}"/>
     
@@ -100,6 +105,10 @@
 
     <Style BasedOn="{StaticResource TreeViewItemExStyle}" TargetType="{x:Type local:TreeViewItemEx}"/>
 
+    <Style BasedOn="{StaticResource UpDownDoubleTextBoxExStyle}" TargetType="{x:Type local:UpDownDoubleTextBoxEx}"/>
+
+    <Style BasedOn="{StaticResource UpDownLongTextBoxExStyle}" TargetType="{x:Type local:UpDownLongTextBoxEx}"/>
+    
     <Style BasedOn="{StaticResource UpDownTextBoxExStyle}" TargetType="{x:Type local:UpDownTextBoxEx}"/>
 
     <!-- INDICATORS -->
