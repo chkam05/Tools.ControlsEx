@@ -5,15 +5,21 @@ namespace: _chkam05.Tools.ControlsEx.Colors_
 
 ### Attributes:
 
-| Type   | Name      | Description |
-|:-------|:----------|:------------|
-|  |  |  |
+| Type       | Name         | Description |
+|:-----------|:-------------|:------------|
+| FontFamily | FontFamily   | Font family. |
+| string     | Name         | Font family name. |
+| string     | SubName      | Font family sub name. |
+| bool       | IsCustomFont | Specifies whether the font is loaded from an external file. |
 
 ### Constructors:
 
-| Type   | Parameter Name | Description |
-|:-------|:---------------|:------------|
-|  |  |  |
+- Empty constructor.  
+
+| Type       | Name         | Description |
+|:-----------|:-------------|:------------|
+| FontFamily | fontFamily   | Font family. |
+| bool       | isAppFont    | Is font loade from an external file (font used only in app not system-wide). |
 
 ### Events:
 
@@ -23,9 +29,9 @@ namespace: _chkam05.Tools.ControlsEx.Colors_
 
 ### Overrided methods and operators:
 
-| Name               | Description |
-|:-------------------|:------------|
-|  |  |
+| Name     | Description |
+|:---------|:------------|
+| ToString | Returns font name and subname for view in list or dropdown. |
 
 ### Methods:
 

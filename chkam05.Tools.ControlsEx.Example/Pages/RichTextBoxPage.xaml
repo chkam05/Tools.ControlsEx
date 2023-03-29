@@ -102,10 +102,9 @@
                 <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
-            <Style TargetType="{x:Type controlsex:UpDownTextBoxEx}">
+            <Style TargetType="{x:Type controlsex:UpDownDoubleTextBoxEx}">
                 <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
-                <Setter Property="ButtonBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -174,7 +173,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Content}"
                             Text="Font Size"/>
 
-                        <controlsex:UpDownTextBoxEx
+                        <controlsex:UpDownDoubleTextBoxEx
                             MaxValue="{Binding EditorFontSizeMax}"
                             MinValue="{Binding EditorFontSizeMin}"
                             Text="{Binding TextFormatting.FontSize}"/>

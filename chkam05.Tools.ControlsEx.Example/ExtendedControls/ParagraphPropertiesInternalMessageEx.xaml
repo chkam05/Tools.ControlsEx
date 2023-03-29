@@ -127,10 +127,31 @@
                 <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
             </Style>
 
-            <Style TargetType="{x:Type controlsex:UpDownTextBoxEx}">
+            <Style TargetType="{x:Type controlsex:UpDownDoubleTextBoxEx}">
                 <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
-                <Setter Property="ButtonBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonPressedBackground" Value="{Binding Configuration.AccentPressedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="ButtonPressedForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="Foreground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="MinHeight" Value="27"/>
+                <Setter Property="MinWidth" Value="64"/>
+                <Setter Property="MouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverBorderBrush" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="MouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBackground" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedBorderBrush" Value="{Binding Configuration.AccentSelectedColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedForeground" Value="{Binding Configuration.ForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="SelectedTextBackground" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="{x:Type controlsex:UpDownLongTextBoxEx}">
+                <Setter Property="Background" Value="{Binding Configuration.BackgroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Configuration.AccentColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonMouseOverBackground" Value="{Binding Configuration.AccentMouseOverColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
                 <Setter Property="ButtonMouseOverForeground" Value="{Binding Configuration.AccentForegroundColorBrush, RelativeSource={StaticResource RelativeSelf}}"/>
@@ -217,8 +238,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Header2}"
                             Text="Font Size"/>
 
-                        <controlsex:UpDownTextBoxEx
-                            ConversionType="FloatingPoint"
+                        <controlsex:UpDownDoubleTextBoxEx
                             Margin="0,0,0,16"
                             MaxValue="{Binding EditorFontSizeMax}"
                             MinValue="{Binding EditorFontSizeMin}"
@@ -375,8 +395,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Left"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorBorderThicknessLeft}"/>
@@ -391,8 +410,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Top"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorBorderThicknessTop}"/>
@@ -407,8 +425,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Right"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorBorderThicknessRight}"/>
@@ -423,8 +440,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Bottom"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorBorderThicknessBottom}"/>
@@ -483,8 +499,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Content}"
                             Text="Line height"/>
 
-                        <controlsex:UpDownTextBoxEx
-                            ConversionType="FloatingPoint"
+                        <controlsex:UpDownDoubleTextBoxEx
                             Margin="0,0,0,8"
                             MinValue="0"
                             Text="{Binding EasyRichParagraphProperties.LineHeight}"/>
@@ -507,8 +522,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Left"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorMarginLeft}"/>
@@ -523,8 +537,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Top"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorMarginTop}"/>
@@ -539,8 +552,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Right"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorMarginRight}"/>
@@ -555,8 +567,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Bottom"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorMarginBottom}"/>
@@ -583,8 +594,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Left"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorPaddingLeft}"/>
@@ -599,8 +609,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Top"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorPaddingTop}"/>
@@ -615,8 +624,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Right"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorPaddingRight}"/>
@@ -631,8 +639,7 @@
                                     Style="{StaticResource Conf_TextBlockStyle.Content}"
                                     Text="Bottom"/>
 
-                                <controlsex:UpDownTextBoxEx
-                                    ConversionType="FloatingPoint"
+                                <controlsex:UpDownDoubleTextBoxEx
                                     MaxValue="8"
                                     MinValue="0"
                                     Text="{Binding EditorPaddingBottom}"/>
@@ -645,8 +652,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Content}"
                             Text="First line indent"/>
 
-                        <controlsex:UpDownTextBoxEx
-                            ConversionType="FloatingPoint"
+                        <controlsex:UpDownDoubleTextBoxEx
                             Margin="0"
                             MinValue="0"
                             Text="{Binding EasyRichParagraphProperties.TextIndent}"/>
@@ -671,7 +677,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Content}"
                             Text="Alternative annotation form index."/>
 
-                        <controlsex:UpDownTextBoxEx
+                        <controlsex:UpDownLongTextBoxEx
                             Margin="0,0,0,8"
                             MinValue="0"
                             Text="{Binding EasyRichParagraphProperties.TypographyAnnotationAlternates}"/>
@@ -694,7 +700,7 @@
                             IsChecked="{Binding EasyRichParagraphProperties.TypographyCaseSensitiveForms}">
 
                             <TextBlock
-                                Text="They adjust glyph positions vertically to better fit capital letters."
+                                Text="Adjusting glyph positions vertically to better fit capital letters."
                                 TextWrapping="Wrap"
                                 VerticalAlignment="Center"/>
 
@@ -718,7 +724,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Content}"
                             Text="Context swing form index."/>
 
-                        <controlsex:UpDownTextBoxEx
+                        <controlsex:UpDownLongTextBoxEx
                             Margin="0,0,0,8"
                             MinValue="0"
                             Text="{Binding EasyRichParagraphProperties.TypographyContextualSwashes}"/>
@@ -826,7 +832,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Content}"
                             Text="Index of the standard swashes form."/>
 
-                        <controlsex:UpDownTextBoxEx
+                        <controlsex:UpDownLongTextBoxEx
                             Margin="0,0,0,8"
                             MinValue="0"
                             Text="{Binding EasyRichParagraphProperties.TypographyStandardSwashes}"/>
@@ -835,7 +841,7 @@
                             Style="{StaticResource Conf_TextBlockStyle.Content}"
                             Text="Index of an alternative stylistic form."/>
 
-                        <controlsex:UpDownTextBoxEx
+                        <controlsex:UpDownLongTextBoxEx
                             Margin="0,0,0,8"
                             MinValue="0"
                             Text="{Binding EasyRichParagraphProperties.TypographyStylisticAlternates}"/>
