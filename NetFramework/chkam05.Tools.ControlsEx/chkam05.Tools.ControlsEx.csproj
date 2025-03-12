@@ -96,6 +96,7 @@
     <Compile Include="Data\Enums\FileViewExColumnFieldType.cs" />
     <Compile Include="Data\Enums\FileViewExItemType.cs" />
     <Compile Include="Data\Enums\FileViewExViewType.cs" />
+    <Compile Include="Data\Enums\FrameExPageAction.cs" />
     <Compile Include="Data\Enums\GridViewExColumnType.cs" />
     <Compile Include="Data\Enums\HamburgerMenuExItemPosition.cs" />
     <Compile Include="Data\Enums\HamburgerMenuExItemType.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Data\Events\DirectoryViewerExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\FileViewerExDoubleClickEventArgs.cs" />
     <Compile Include="Data\Events\FileViewerExSelectionChangedEventArgs.cs" />
+    <Compile Include="Data\Events\FrameExPageChangedEventArgs.cs" />
     <Compile Include="Data\Events\HamburgerMenuExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />
