@@ -4,6 +4,8 @@
     xmlns:theme="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <x:Static x:Key="ThemeMgr" Member="theme:ThemeManager.Instance"/>
+
     <ControlTemplate x:Key="FrameEx.ControlTemplate" TargetType="{x:Type local:FrameEx}">
         <Border
             x:Name="border"
@@ -45,6 +47,7 @@
         <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template" Value="{StaticResource FrameEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
     </Style>
     

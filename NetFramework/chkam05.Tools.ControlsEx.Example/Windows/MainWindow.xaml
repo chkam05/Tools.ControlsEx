@@ -40,73 +40,15 @@
             IsExpanded="False"
             ItemsSource="{Binding HamburgerMenuExCollection}"
             ShowBackItem="True"
-            ShowHeaderItem="True"/>
+            ShowHeaderItem="True"
+            Width="244"/>
 
         <Grid
             Grid.Column="1">
 
-            <cex:ScrollViewerEx
-                Grid.Row="1"
-                HorizontalScrollBarVisibility="Disabled"
-                VerticalScrollBarVisibility="Auto">
-
-                <Grid>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel
-                        Grid.Column="0"
-                        HorizontalAlignment="Left"
-                        Margin="8"
-                        VerticalAlignment="Top">
-
-                        <cex:DirectoryViewerEx
-                            Height="360"/>
-
-                    </StackPanel>
-
-                    <StackPanel
-                        Grid.Column="1"
-                        Orientation="Vertical">
-
-                        <cex:FileViewerEx
-                            Height="400"
-                            Path="E:\"
-                            VerticalAlignment="Top"
-                            ViewType="Details"/>
-
-                        <cex:WideViewButtonEx
-                            IconKind="SettingsInputComponent"
-                            Title="Test"
-                            Description="Component Test">
-
-                            <cex:ComboBoxEx>
-                                <cex:ComboBoxItemEx Content="Item 1"/>
-                                <cex:ComboBoxItemEx Content="Item 2"/>
-                                <cex:ComboBoxItemEx Content="Item 3"/>
-                            </cex:ComboBoxEx>
-                            
-                        </cex:WideViewButtonEx>
-
-                        <cex:WideViewButtonEx
-                            IconKind="Box"
-                            Title="Test"
-                            Description="Empty Test"/>
-
-                        <cex:WideViewButtonEx
-                            IconKind="CallToAction"
-                            Title="Test"
-                            Description="Action Test"
-                            Click="WideViewButtonEx_Click"/>
-
-                    </StackPanel>
-
-                </Grid>
-
-            </cex:ScrollViewerEx>
+            <cex:FrameEx
+                x:Name="pagesNavigationContainer"
+                Pages="{Binding PagesCollection}"/>
 
         </Grid>
 

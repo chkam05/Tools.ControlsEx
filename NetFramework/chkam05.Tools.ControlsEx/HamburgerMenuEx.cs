@@ -279,7 +279,8 @@ namespace chkam05.Tools.ControlsEx
         {
             if (GetMinWidth() is double minWidth)
             {
-                expandedWidth = Width;
+                if (Width >= expandedWidth)
+                    expandedWidth = Width;
                 MinWidth = minWidth;
 
                 if (EnableExpandCollapseAnimation && enableAnimatedResize)
@@ -411,6 +412,8 @@ namespace chkam05.Tools.ControlsEx
                         InvokeWithAnimationResizeEnabled(() => IsExpanded = !IsExpanded);
 
                     SelectionChanged?.Invoke(this, new HamburgerMenuExSelectionChangedEventArgs(viewModel));
+                    viewModel.Action?.Invoke();
+
                     listViewEx.SelectedItem = null;
 
                     if (viewModel.ItemType != HamburgerMenuExItemType.Header && IsExpanded && CollapseOnSelect)

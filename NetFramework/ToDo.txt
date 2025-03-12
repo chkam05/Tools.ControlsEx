@@ -10,7 +10,7 @@ OVERRIDED COMPONENTS
 - [X] ContextMenuItemEx
 - [X] DatePickerEx
 - [X] ExpanderEx
-- [ ] FrameEx<T> where T : Page
+- [X] FrameEx
 - [X] GroupBox
 - [X] ListBoxEx
 - [X] ListBoxItemEx

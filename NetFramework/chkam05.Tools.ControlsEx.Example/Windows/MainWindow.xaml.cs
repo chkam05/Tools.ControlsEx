@@ -1,5 +1,6 @@
 ﻿using chkam05.Tools.ControlsEx.Data.Collections;
 using chkam05.Tools.ControlsEx.Example.Data;
+using chkam05.Tools.ControlsEx.Interfaces;
 using chkam05.Tools.ControlsEx.ViewModels;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -30,6 +31,10 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
             get => base.DataContext as MainWindowDataContext;
             set => base.DataContext = value;
         }
+        public IFrameEx<Page> PagesNavigationContainer
+        {
+            get => this.pagesNavigationContainer;
+        }
 
 
         //  METHODS
@@ -39,11 +44,8 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
             DataContext = new MainWindowDataContext();
 
             InitializeComponent();
-        }
 
-        private void WideViewButtonEx_Click(object sender, RoutedEventArgs e)
-        {
-
+            MainWindowDataContext.AssignPagesNavigationContainer(PagesNavigationContainer);
         }
     }
 }

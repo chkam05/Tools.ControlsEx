@@ -130,6 +130,7 @@
     <Compile Include="GeometryThumbEx.cs" />
     <Compile Include="GroupBoxEx.cs" />
     <Compile Include="HamburgerMenuEx.cs" />
+    <Compile Include="Interfaces\IFrameEx.cs" />
     <Compile Include="ListBoxEx.cs" />
     <Compile Include="ListBoxItemEx.cs" />
     <Compile Include="ListViewEx.cs" />

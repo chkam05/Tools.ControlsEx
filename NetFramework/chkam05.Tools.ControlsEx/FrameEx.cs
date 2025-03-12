@@ -1,6 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Data.Collections;
 using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Data.Events;
+using chkam05.Tools.ControlsEx.Interfaces;
 using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
 using chkam05.Tools.ControlsEx.Utilities.Interfaces;
@@ -21,7 +22,7 @@ using static MaterialDesignThemes.Wpf.Theme;
 
 namespace chkam05.Tools.ControlsEx
 {
-    public class FrameEx : Control
+    public class FrameEx : Control, IFrameEx<Page>
     {
 
         //  DEPENDENCY PROPERTIES
@@ -54,7 +55,7 @@ namespace chkam05.Tools.ControlsEx
             nameof(CurrentPageIndex),
             typeof(int),
             typeof(FrameEx),
-            new PropertyMetadata(0, CurrentPageIndexPropertyChangedCallback));
+            new PropertyMetadata(-1, CurrentPageIndexPropertyChangedCallback));
 
         public static readonly DependencyProperty ForegroundInactiveProperty = DependencyProperty.Register(
             nameof(ForegroundInactive),
@@ -288,8 +289,12 @@ namespace chkam05.Tools.ControlsEx
             {
                 CurrentPageIndex = Pages.IndexOf(page);
                 CurrentPage = page;
-                frame.Content = page;
-                FrameExPageLoaded?.Invoke(this, new FrameExPageChangedEventArgs(page, FrameExPageAction.Loaded));
+
+                if (frame != null)
+                {
+                    frame.Content = page;
+                    FrameExPageLoaded?.Invoke(this, new FrameExPageChangedEventArgs(page, FrameExPageAction.Loaded));
+                }
             });
         }
 
@@ -433,6 +438,12 @@ namespace chkam05.Tools.ControlsEx
             if (frame != null)
             {
                 frame.Navigated += OnFrameNavigated;
+
+                if (CurrentPage != null && CurrentPageIndex >= 0)
+                {
+                    frame.Content = CurrentPage;
+                    FrameExPageLoaded?.Invoke(this, new FrameExPageChangedEventArgs(CurrentPage, FrameExPageAction.Loaded));
+                }
             }
         }
 

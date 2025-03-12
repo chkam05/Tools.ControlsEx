@@ -141,6 +141,22 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Get default back item. </summary>
+        /// <returns> Default back item. </returns>
+        public HamburgerMenuExItem GetBackItem()
+        {
+            return this.FirstOrDefault(i => i.ItemType == HamburgerMenuExItemType.Back);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get default header item. </summary>
+        /// <returns> Default header item. </returns>
+        public HamburgerMenuExItem GetHeaderItem()
+        {
+            return this.FirstOrDefault(i => i.ItemType == HamburgerMenuExItemType.Header);
+        }
+
+        //  --------------------------------------------------------------------------------
         /// <summary> Inserts an item at the specified index. </summary>
         /// <param name="index"> The zero-based index at which the item should be inserted. </param>
         /// <param name="item"> The item to insert. </param>
