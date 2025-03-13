@@ -5,12 +5,35 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:cexThm="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800"
     Title="Settings">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WideViewButtonEx.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
+
+            <Style BasedOn="{StaticResource WideViewButtonExStyle}" TargetType="{x:Type cex:WideViewButtonEx}">
+                <Setter Property="ContentMinWidth" Value="192"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.Background>
+        <Binding Path="DataContext.ThemeBackground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
+    </Page.Background>
+
+    <Page.Foreground>
+        <Binding Path="DataContext.ThemeForeground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
+    </Page.Foreground>
 
     <Grid>
 
@@ -20,23 +43,23 @@
         </Grid.RowDefinitions>
 
         <Border
-            BorderThickness="1"
-            CornerRadius="4"
+            BorderThickness="0"
             Grid.Row="0"
-            Margin="2"
             Padding="8">
 
             <StackPanel
                 Orientation="Horizontal">
 
                 <materialDesign:PackIcon
-                    Height="24"
+                    Height="28"
                     Kind="GearOutline"
-                    Width="24"/>
+                    Width="28"
+                    VerticalAlignment="Center"/>
 
                 <TextBlock
+                    FontSize="18"
                     FontWeight="SemiBold"
-                    Margin="4,0,0,0"
+                    Margin="8,0,0,0"
                     Text="{Binding Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}"
                     VerticalAlignment="Center"/>
 
@@ -44,7 +67,38 @@
         </Border>
 
         <cex:ScrollViewerEx
-            Grid.Row="1">
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Disabled">
+
+            <StackPanel
+                Orientation="Vertical">
+
+                <cex:WideViewButtonEx
+                    Description="Application theme"
+                    IconKind="StyleOutline"
+                    Title="Theme">
+
+                    <cex:ComboBoxEx/>
+
+                </cex:WideViewButtonEx>
+
+                <cex:WideViewButtonEx
+                    Description="Application appearance color"
+                    IconKind="PaletteOutline"
+                    Title="Accent Color">
+
+                    <cex:ComboBoxEx/>
+
+                </cex:WideViewButtonEx>
+
+                <cex:ColorPaletteEx
+                    Background="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"
+                    BorderBrush="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"
+                    BorderThickness="1"
+                    Margin="4,2"
+                    Padding="8"/>
+
+            </StackPanel>
 
         </cex:ScrollViewerEx>
     </Grid>

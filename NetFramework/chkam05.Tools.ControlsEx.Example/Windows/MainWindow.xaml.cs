@@ -39,6 +39,11 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
 
         //  METHODS
 
+        #region CONSTRUCTORS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> MainWindow class constructors. </summary>
+        /// <param name="args"> Application parameters passed via CLI. </param>
         public MainWindow(object args)
         {
             DataContext = new MainWindowDataContext();
@@ -47,5 +52,7 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
 
             MainWindowDataContext.AssignPagesNavigationContainer(PagesNavigationContainer);
         }
+
+        #endregion CONSTRUCTORS
     }
 }

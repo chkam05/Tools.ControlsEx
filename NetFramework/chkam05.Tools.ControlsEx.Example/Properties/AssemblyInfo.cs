@@ -7,13 +7,13 @@ using System.Windows;
 // Ogólne informacje o zestawie są kontrolowane poprzez następujący 
 // zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
 // powiązane z zestawem.
-[assembly: AssemblyTitle("chkam05.Tools.ControlsEx.Example")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("WPF ControlsEx Library Demo Application")]
+[assembly: AssemblyDescription("Demo application for extended controls for .NetFramework Windows Presentation Foundation")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("chkam05.Tools.ControlsEx.Example")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Kamil Karpiński")]
+[assembly: AssemblyProduct("WPF ControlsEx Library Demo Application")]
+[assembly: AssemblyCopyright("Copyright © Kamil Karpiński 2024")]
+[assembly: AssemblyTrademark("chkam05")]
 [assembly: AssemblyCulture("")]
 
 // Ustawienie elementu ComVisible na wartość false sprawia, że typy w tym zestawie są niewidoczne
@@ -50,3 +50,4 @@ using System.Windows;
 //
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en-US")]

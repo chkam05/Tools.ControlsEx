@@ -1,6 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Data.Collections;
 using chkam05.Tools.ControlsEx.Data.Enums;
 using chkam05.Tools.ControlsEx.Example.Pages;
+using chkam05.Tools.ControlsEx.Example.Utilities;
 using chkam05.Tools.ControlsEx.Interfaces;
 using chkam05.Tools.ControlsEx.ViewModels;
 using MaterialDesignThemes.Wpf;

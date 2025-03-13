@@ -66,6 +66,7 @@
                 ItemContainerStyle="{TemplateBinding ItemsStyle}"
                 ItemTemplate="{StaticResource ColorPaletteEx.DataTemplate}"
                 ItemsSource="{TemplateBinding ItemsSource}"
+                Padding="{TemplateBinding Padding}"
                 ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
                 ScrollViewer.VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
                 ScrollViewerStyle="{TemplateBinding ScrollViewerStyle}"

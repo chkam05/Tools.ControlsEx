@@ -5,12 +5,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:cexThm="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:views="clr-namespace:chkam05.Tools.ControlsEx.Example.Views"
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800"
     Title="Informations">
+
+    <Page.Resources>
+        <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
+    </Page.Resources>
+
+    <Page.Background>
+        <Binding Path="DataContext.ThemeBackground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
+    </Page.Background>
+
+    <Page.Foreground>
+        <Binding Path="DataContext.ThemeForeground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
+    </Page.Foreground>
 
     <Grid>
 
@@ -20,23 +34,23 @@
         </Grid.RowDefinitions>
 
         <Border
-            BorderThickness="1"
-            CornerRadius="4"
+            BorderThickness="0"
             Grid.Row="0"
-            Margin="2"
             Padding="8">
 
             <StackPanel
                 Orientation="Horizontal">
 
                 <materialDesign:PackIcon
-                    Height="24"
+                    Height="28"
                     Kind="InfoOutline"
-                    Width="24"/>
+                    Width="28"
+                    VerticalAlignment="Center"/>
 
                 <TextBlock
+                    FontSize="18"
                     FontWeight="SemiBold"
-                    Margin="4,0,0,0"
+                    Margin="8,0,0,0"
                     Text="{Binding Title, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}}}"
                     VerticalAlignment="Center"/>
 
@@ -52,18 +66,21 @@
 
                 <TextBlock
                     FontSize="18"
-                    FontWeight="SemiBold">
-                    ControlsEx 3.0
-                </TextBlock>
+                    FontWeight="SemiBold"
+                    Text="Demo Application:"/>
 
-                <TextBlock>
-                    by Kamil Karpiński ak chkam05.
-                </TextBlock>
+                <views:AssemblyView
+                    DataContext="{Binding AppAssemblyInfo}"
+                    Margin="0,8,0,16"/>
 
                 <TextBlock
-                    Margin="0,4,0,0">
-                    This is demo application to show and test new ControlsEx 3.0 components.
-                </TextBlock>
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Text="ControlsEx Library:"/>
+
+                <views:AssemblyView
+                    DataContext="{Binding LibAssemblyInfo}"
+                    Margin="0,8,0,16"/>
 
             </StackPanel>
 

@@ -41,7 +41,7 @@
             ItemsSource="{Binding HamburgerMenuExCollection}"
             ShowBackItem="True"
             ShowHeaderItem="True"
-            Width="244"/>
+            Width="192"/>
 
         <Grid
             Grid.Column="1">
