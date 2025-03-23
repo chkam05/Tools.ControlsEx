@@ -125,6 +125,8 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         {
             HamburgerMenuExCollection = new HamburgerMenuExCollection()
             {
+                new HamburgerMenuExItem("Back", "Go to previous page", PackIconKind.ArrowLeft,
+                    BackHamburgerMenuExItemAction),
                 new HamburgerMenuExItem("Components", "Component testing", PackIconKind.CubeOutline,
                     ComponentsHamburgerMenuExItemAction),
                 new HamburgerMenuExItem("Settings", "Application settings.", PackIconKind.GearOutline,
@@ -132,11 +134,6 @@ namespace chkam05.Tools.ControlsEx.Example.Data
                 new HamburgerMenuExItem("Info", "Application information.", PackIconKind.InfoCircleOutline,
                     InfoHamburgerMenuExItemAction, HamburgerMenuExItemPosition.Bottom)
             };
-
-            var backItem = HamburgerMenuExCollection.GetBackItem();
-
-            if (backItem != null)
-                backItem.Action += BackHamburgerMenuExItemAction;
         }
 
         //  --------------------------------------------------------------------------------

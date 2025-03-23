@@ -24,19 +24,10 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
             ItemType = HamburgerMenuExItemType.Header,
         };
 
-        private readonly HamburgerMenuExItem backItemPlaceholder = new HamburgerMenuExItem()
-        {
-            Title = "Back",
-            Description = "Go to previous page",
-            IconKind = PackIconKind.ArrowLeft,
-            ItemType = HamburgerMenuExItemType.Back,
-        };
-
 
         //  VARIABLES
 
         private bool showHeaderItem;
-        private bool showBackItem;
 
 
         //  GETTERS & SETTERS
@@ -54,19 +45,6 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
             }
         }
 
-        public bool ShowBackItem
-        {
-            get => showBackItem;
-            set
-            {
-                if (showBackItem != value)
-                {
-                    showBackItem = value;
-                    UpdateStaticItems();
-                }
-            }
-        }
-
 
         //  METHODS
 
@@ -75,35 +53,29 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  --------------------------------------------------------------------------------
         /// <summary> HamburgerMenuExCollection class constructor. </summary>
         /// <param name="showHeaderItem"> Determines whether to show the "Header" placeholder. </param>
-        /// <param name="showBackItem"> Determines whether to show the "Back" placeholder. </param>
-        public HamburgerMenuExCollection(bool showHeaderItem = true, bool showBackItem = false)
+        public HamburgerMenuExCollection(bool showHeaderItem = true)
         {
             ShowHeaderItem = showHeaderItem;
-            ShowBackItem = showBackItem;
         }
 
         //  --------------------------------------------------------------------------------
         /// <summary> HamburgerMenuExCollection class constructor. </summary>
         /// <param name="collection"> The collection whose elements are copied to the new collection. </param>
         /// <param name="showHeaderItem"> Determines whether to show the "Header" placeholder. </param>
-        /// <param name="showBackItem"> Determines whether to show the "Back" placeholder. </param>
-        public HamburgerMenuExCollection(IEnumerable<HamburgerMenuExItem> collection, bool showHeaderItem = true, bool showBackItem = false)
+        public HamburgerMenuExCollection(IEnumerable<HamburgerMenuExItem> collection, bool showHeaderItem = true)
         {
             AddRange(collection);
             ShowHeaderItem = showHeaderItem;
-            ShowBackItem = showBackItem;
         }
 
         //  --------------------------------------------------------------------------------
         /// <summary> HamburgerMenuExCollection class constructor. </summary>
         /// <param name="collection"> The list whose elements are initially contained in the collection. </param>
         /// <param name="showHeaderItem"> Determines whether to show the "Header" placeholder. </param>
-        /// <param name="showBackItem"> Determines whether to show the "Back" placeholder. </param>
-        public HamburgerMenuExCollection(List<HamburgerMenuExItem> list, bool showAddItem = false)
+        public HamburgerMenuExCollection(List<HamburgerMenuExItem> list, bool showHeaderItem = true)
         {
             AddRange(list);
             ShowHeaderItem = showHeaderItem;
-            ShowBackItem = showBackItem;
         }
 
         #endregion CONSTRUCTORS
@@ -135,25 +107,6 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
 
             if (ShowHeaderItem)
                 base.Add(headerItemPlaceholder);
-
-            if (ShowBackItem)
-                base.Add(backItemPlaceholder);
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Get default back item. </summary>
-        /// <returns> Default back item. </returns>
-        public HamburgerMenuExItem GetBackItem()
-        {
-            return this.FirstOrDefault(i => i.ItemType == HamburgerMenuExItemType.Back);
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Get default header item. </summary>
-        /// <returns> Default header item. </returns>
-        public HamburgerMenuExItem GetHeaderItem()
-        {
-            return this.FirstOrDefault(i => i.ItemType == HamburgerMenuExItemType.Header);
         }
 
         //  --------------------------------------------------------------------------------
@@ -162,11 +115,9 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <param name="item"> The item to insert. </param>
         protected override void InsertItem(int index, HamburgerMenuExItem item)
         {
-            if (item.Equals(headerItemPlaceholder) || item.Equals(backItemPlaceholder))
+            if (item.Equals(headerItemPlaceholder))
                 base.InsertItem(index, item);
-            else if (ShowHeaderItem && ShowBackItem && index < 2)
-                base.InsertItem(2, item);
-            else if ((ShowHeaderItem || ShowBackItem) && index < 1)
+            else if (ShowHeaderItem && index < 1)
                 base.InsertItem(1, item);
             else
                 base.InsertItem(index, item);
@@ -177,7 +128,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <param name="item"> The item to remove. </param>
         public new void Remove(HamburgerMenuExItem item)
         {
-            if (item.ItemType != HamburgerMenuExItemType.Header && item.ItemType != HamburgerMenuExItemType.Back)
+            if (item.ItemType != HamburgerMenuExItemType.Header)
                 base.Remove(item);
         }
 
@@ -186,10 +137,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         /// <param name="index"> The zero-based index of the item to remove. </param>
         protected override void RemoveItem(int index)
         {
-            if (ShowHeaderItem && ShowBackItem && index < 2)
-                return;
-
-            if ((ShowHeaderItem || ShowBackItem) && index < 1)
+            if (ShowHeaderItem && index < 1)
                 return;
 
             base.RemoveItem(index);
@@ -213,19 +161,6 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
             {
                 if (Contains(headerItemPlaceholder))
                     base.Remove(headerItemPlaceholder);
-            }
-
-            if (showBackItem)
-            {
-                var index = showHeaderItem ? 1 : 0;
-
-                if (!Contains(backItemPlaceholder))
-                    base.Insert(index, backItemPlaceholder);
-            }
-            else
-            {
-                if (Contains(backItemPlaceholder))
-                    base.Remove(backItemPlaceholder);
             }
         }
 

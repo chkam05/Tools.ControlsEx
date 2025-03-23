@@ -9,7 +9,6 @@ namespace chkam05.Tools.ControlsEx.Data.Enums
     public enum HamburgerMenuExItemType
     {
         Header,
-        Back,
         Regular
     }
 }

@@ -39,7 +39,6 @@
             Grid.Column="0"
             IsExpanded="False"
             ItemsSource="{Binding HamburgerMenuExCollection}"
-            ShowBackItem="True"
             ShowHeaderItem="True"
             Width="192"/>
 

@@ -89,12 +89,6 @@ namespace chkam05.Tools.ControlsEx
             typeof(HamburgerMenuEx),
             new PropertyMetadata(GetGenericHamburgerMenuItemExStyle()));
 
-        public static readonly DependencyProperty ShowBackItemProperty = DependencyProperty.Register(
-            nameof(ShowBackItem),
-            typeof(bool),
-            typeof(HamburgerMenuEx),
-            new PropertyMetadata(false, ShowBackItemPropertyChangeCallback));
-
         public static readonly DependencyProperty ShowHeaderItemProperty = DependencyProperty.Register(
             nameof(ShowHeaderItem),
             typeof(bool),
@@ -194,12 +188,6 @@ namespace chkam05.Tools.ControlsEx
         {
             get => (Style)GetValue(ItemsStyleProperty);
             set => SetValue(ItemsStyleProperty, value);
-        }
-
-        public bool ShowBackItem
-        {
-            get => (bool)GetValue(ShowBackItemProperty);
-            set => SetValue(ShowBackItemProperty, value);
         }
 
         public bool ShowHeaderItem
@@ -390,7 +378,6 @@ namespace chkam05.Tools.ControlsEx
         private void OnCollectionUpdate()
         {
             ItemsSource.ShowHeaderItem = ShowHeaderItem;
-            ItemsSource.ShowBackItem = ShowBackItem;
             ConfigureSeparator();
         }
 
@@ -426,16 +413,15 @@ namespace chkam05.Tools.ControlsEx
         /// <summary> Updates the ShowHeaderItem and ShowBackItem parameters of the ItemsSource collection. </summary>
         /// <param name="showHeaderItem"> ShowHeaderItem parameter. </param>
         /// <param name="showHeaderItem"> ShowBackItem parameter. </param>
-        private void UpdateItemsSourceWithStaticItems(bool? showHeaderItem = null, bool? showBackItem = null)
+        private void UpdateItemsSourceWithStaticItems(bool? showHeaderItem = null)
         {
             if (ItemsSource == null)
             {
-                ItemsSource = new HamburgerMenuExCollection(showHeaderItem ?? true, showBackItem ?? false);
+                ItemsSource = new HamburgerMenuExCollection(showHeaderItem ?? true);
             }
             else
             {
                 ItemsSource.ShowHeaderItem = showHeaderItem ?? ItemsSource.ShowHeaderItem;
-                ItemsSource.ShowBackItem = showBackItem ?? ItemsSource.ShowBackItem;
             }
         }
 
@@ -475,18 +461,6 @@ namespace chkam05.Tools.ControlsEx
                 else
                     hamburgerMenuEx.ItemsSource = new HamburgerMenuExCollection();
             }
-        }
-
-        //  --------------------------------------------------------------------------------
-        /// <summary> Invoked when ShowBackItem property changes. </summary>
-        /// <param name="d"> Dependency object from which event has been invoked. </param>
-        /// <param name="e"> Dependency property changed event arguments. </param>
-        private static void ShowBackItemPropertyChangeCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var hamburgerMenuEx = d as HamburgerMenuEx;
-
-            if (hamburgerMenuEx != null && e.NewValue is bool newValue)
-                hamburgerMenuEx.UpdateItemsSourceWithStaticItems(showBackItem: newValue);
         }
 
         //  --------------------------------------------------------------------------------
