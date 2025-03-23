@@ -48,7 +48,7 @@
 
             <cex:FrameEx
                 x:Name="pagesNavigationContainer"
-                Pages="{Binding PagesCollection}"/>
+                NavigationService="{Binding NavigationService}"/>
 
         </Grid>
 

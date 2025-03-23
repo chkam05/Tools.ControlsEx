@@ -87,9 +87,11 @@
     <Compile Include="Data\Collections\ColorPaletteExCollection.cs" />
     <Compile Include="Data\Collections\DirectoryViewExCollection.cs" />
     <Compile Include="Data\Collections\FileViewExCollection.cs" />
-    <Compile Include="Data\Collections\FrameExPagesCollection.cs" />
+    <Compile Include="Data\Collections\FrameNavigationServiceEx.cs" />
     <Compile Include="Data\Collections\HamburgerMenuExCollection.cs" />
     <Compile Include="Data\Collections\GridViewExColumnConfigCollection.cs" />
+    <Compile Include="Data\Collections\IFrameExPagesCollection.cs" />
+    <Compile Include="Data\Collections\IFrameNavigationServiceEx.cs" />
     <Compile Include="Data\Enums\CalendarExHeaderPosition.cs" />
     <Compile Include="Data\Enums\CheckMarkTypeIcon.cs" />
     <Compile Include="Data\Enums\DirectoryViewExItemType.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Data\Enums\FileViewExItemType.cs" />
     <Compile Include="Data\Enums\FileViewExViewType.cs" />
     <Compile Include="Data\Enums\FrameExPageAction.cs" />
+    <Compile Include="Data\Enums\FrameNavigationServiceExRemovePolicy.cs" />
     <Compile Include="Data\Enums\GridViewExColumnType.cs" />
     <Compile Include="Data\Enums\HamburgerMenuExItemPosition.cs" />
     <Compile Include="Data\Enums\HamburgerMenuExItemType.cs" />
@@ -106,7 +109,7 @@
     <Compile Include="Data\Events\DirectoryViewerExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\FileViewerExDoubleClickEventArgs.cs" />
     <Compile Include="Data\Events\FileViewerExSelectionChangedEventArgs.cs" />
-    <Compile Include="Data\Events\FrameExPageChangedEventArgs.cs" />
+    <Compile Include="Data\Events\FrameNavigationServiceExPageLoadedEventArgs.cs" />
     <Compile Include="Data\Events\HamburgerMenuExSelectionChangedEventArgs.cs" />
     <Compile Include="Data\Events\TextChangedEventArgsEx.cs" />
     <Compile Include="Data\Events\UpDownDoubleValueChangedEventArgsEx.cs" />

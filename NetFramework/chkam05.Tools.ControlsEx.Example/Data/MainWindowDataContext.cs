@@ -20,8 +20,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         //  VARIABLES
 
         private HamburgerMenuExCollection hamburgerMenuExItemsCollection;
-        private FrameExPagesCollection<Page> pagesCollection;
-        private IFrameEx<Page> pagesNavigationContainer;
+        private FrameNavigationServiceEx<Page> navigationService;
 
 
         //  GETTERS & SETTERS
@@ -32,10 +31,10 @@ namespace chkam05.Tools.ControlsEx.Example.Data
             set => UpdateProperty(ref hamburgerMenuExItemsCollection, value);
         }
 
-        public FrameExPagesCollection<Page> PagesCollection
+        public FrameNavigationServiceEx<Page> NavigationService
         {
-            get => pagesCollection;
-            set => UpdateProperty(ref pagesCollection, value);
+            get => navigationService;
+            set => UpdateProperty(ref navigationService, value);
         }
 
 
@@ -58,9 +57,9 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         //  --------------------------------------------------------------------------------
         private void BackHamburgerMenuExItemAction()
         {
-            if (pagesNavigationContainer.CanGoBack)
+            if (navigationService.CanGoBack)
             {
-                pagesNavigationContainer.GoBack();
+                navigationService.GoBack();
                 RemoveForwardPages();
             }
         }
@@ -71,9 +70,9 @@ namespace chkam05.Tools.ControlsEx.Example.Data
             var componentsPage = GetPageByType(typeof(ComponentsPage));
 
             if (componentsPage != null)
-                pagesNavigationContainer.GoToPage(componentsPage);
+                navigationService.LoadPage(componentsPage);
             else
-                pagesNavigationContainer.LoadPage(new ComponentsPage());
+                navigationService.AddAndLoad(new ComponentsPage());
         }
 
         //  --------------------------------------------------------------------------------
@@ -82,9 +81,9 @@ namespace chkam05.Tools.ControlsEx.Example.Data
             var settingsPage = GetPageByType(typeof(SettingsPage));
 
             if (settingsPage != null)
-                pagesNavigationContainer.GoToPage(settingsPage);
+                navigationService.LoadPage(settingsPage);
             else
-                pagesNavigationContainer.LoadPage(new SettingsPage());
+                navigationService.AddAndLoad(new SettingsPage());
         }
 
         //  --------------------------------------------------------------------------------
@@ -93,9 +92,9 @@ namespace chkam05.Tools.ControlsEx.Example.Data
             var infoPage = GetPageByType(typeof(InfoPage));
 
             if (infoPage != null)
-                pagesNavigationContainer.GoToPage(infoPage);
+                navigationService.LoadPage(infoPage);
             else
-                pagesNavigationContainer.LoadPage(new InfoPage());
+                navigationService.AddAndLoad(new InfoPage());
         }
 
         #endregion ACTIONS
@@ -105,28 +104,21 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         //  --------------------------------------------------------------------------------
         private Page GetPageByType(Type pageType)
         {
-            return pagesCollection.FirstOrDefault(p => p.GetType() == pageType);
+            return navigationService.FirstOrDefault(p => p.GetType() == pageType);
         }
 
         //  --------------------------------------------------------------------------------
         private void RemoveForwardPages()
         {
-            var currentIndex = pagesNavigationContainer.CurrentPageIndex;
+            var currentIndex = navigationService.CurrentPageIndex;
 
-            for (int i = pagesCollection.Count - 1; i > currentIndex; i--)
-                pagesCollection.RemoveAt(i);
+            for (int i = navigationService.Count - 1; i > currentIndex; i--)
+                navigationService.RemoveAt(i);
         }
 
         #endregion PAGES MANAGEMENT
 
         #region SETUP
-
-        //  --------------------------------------------------------------------------------
-        public void AssignPagesNavigationContainer(IFrameEx<Page> pagesNavigationContainer)
-        {
-            this.pagesNavigationContainer = pagesNavigationContainer;
-            this.pagesNavigationContainer.GoToPage(0);
-        }
 
         //  --------------------------------------------------------------------------------
         private void SetupHamburgerMenuExCollection()
@@ -150,10 +142,12 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         //  --------------------------------------------------------------------------------
         private void SetupPagesCollection()
         {
-            pagesCollection = new FrameExPagesCollection<Page>()
+            navigationService = new FrameNavigationServiceEx<Page>()
             {
                 new InfoPage()
             };
+
+            navigationService.LoadPage(0);
         }
 
         #endregion SETUP

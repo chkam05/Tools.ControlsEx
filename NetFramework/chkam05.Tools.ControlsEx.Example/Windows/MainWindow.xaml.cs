@@ -31,10 +31,6 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
             get => base.DataContext as MainWindowDataContext;
             set => base.DataContext = value;
         }
-        public IFrameEx<Page> PagesNavigationContainer
-        {
-            get => this.pagesNavigationContainer;
-        }
 
 
         //  METHODS
@@ -49,8 +45,6 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
             DataContext = new MainWindowDataContext();
 
             InitializeComponent();
-
-            MainWindowDataContext.AssignPagesNavigationContainer(PagesNavigationContainer);
         }
 
         #endregion CONSTRUCTORS
