@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace chkam05.Tools.ControlsEx.Data.Theme
 {
-    public class ThemeManager
+    public class ThemeManager : BaseViewModel
     {
 
         //  VARIABLES
@@ -36,6 +36,11 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
         public ThemeDataModel DataContext
         {
             get => dataContext;
+            set
+            {
+                UpdateProperty(ref dataContext, value);
+                dataContext.Refresh();
+            }
         }
 
 

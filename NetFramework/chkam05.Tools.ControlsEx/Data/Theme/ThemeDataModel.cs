@@ -1,6 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
 using chkam05.Tools.ControlsEx.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
     {
 
         //  VARIABLES
+
+        private bool initialized = false;
 
         private Color appearanceColor = ColorsResources.DefaultAccentColor;
         private Brush accentBackground;
@@ -73,72 +76,84 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
             }
         }
 
+        [JsonIgnore]
         public Brush AccentBackground
         {
             get => accentBackground;
             set => UpdateProperty(ref accentBackground, value);
         }
 
+        [JsonIgnore]
         public Brush AccentBackgroundMouseOver
         {
             get => accentBackgroundMouseOver;
             set => UpdateProperty(ref accentBackgroundMouseOver, value);
         }
 
+        [JsonIgnore]
         public Brush AccentBackgroundPressed
         {
             get => accentBackgroundPressed;
             set => UpdateProperty(ref accentBackgroundPressed, value);
         }
 
+        [JsonIgnore]
         public Brush AccentBackgroundSelected
         {
             get => accentBackgroundSelected;
             set => UpdateProperty(ref accentBackgroundSelected, value);
         }
 
+        [JsonIgnore]
         public Brush AccentBorderBrush
         {
             get => accentBorderBrush;
             set => UpdateProperty(ref accentBorderBrush, value);
         }
 
+        [JsonIgnore]
         public Brush AccentBorderBrushMouseOver
         {
             get => accentBorderBrushMouseOver;
             set => UpdateProperty(ref accentBorderBrushMouseOver, value);
         }
 
+        [JsonIgnore]
         public Brush AccentBorderBrushPressed
         {
             get => accentBorderBrushPressed;
             set => UpdateProperty(ref accentBorderBrushPressed, value);
         }
 
+        [JsonIgnore]
         public Brush AccentBorderBrushSelected
         {
             get => accentBorderBrushSelected;
             set => UpdateProperty(ref accentBorderBrushSelected, value);
         }
 
+        [JsonIgnore]
         public Brush AccentForeground
         {
             get => accentForeground;
             set => UpdateProperty(ref accentForeground, value);
         }
 
+        [JsonIgnore]
         public Brush AccentForegroundMouseOver
         {
             get => accentForegroundMouseOver;
             set => UpdateProperty(ref accentForegroundMouseOver, value);
         }
 
+        [JsonIgnore]
         public Brush AccentForegroundPressed
         {
             get => accentForegroundPressed;
             set => UpdateProperty(ref accentForegroundPressed, value);
         }
 
+        [JsonIgnore]
         public Brush AccentForegroundSelected
         {
             get => accentForegroundSelected;
@@ -175,18 +190,21 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
             }
         }
 
+        [JsonIgnore]
         public Brush BackgroundInactive
         {
             get => backgroundInactive;
             set => UpdateProperty(ref backgroundInactive, value);
         }
 
+        [JsonIgnore]
         public Brush BorderBrushInactive
         {
             get => borderBrushInactive;
             set => UpdateProperty(ref borderBrushInactive, value);
         }
 
+        [JsonIgnore]
         public Brush ForegroundInactive
         {
             get => foregroundInactive;
@@ -232,54 +250,63 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
             }
         }
 
+        [JsonIgnore]
         public Brush ThemeBackground
         {
             get => themeBackground;
             set => UpdateProperty(ref themeBackground, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeBackgroundMouseOver
         {
             get => themeBackgroundMouseOver;
             set => UpdateProperty(ref themeBackgroundMouseOver, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeBackgroundPressed
         {
             get => themeBackgroundPressed;
             set => UpdateProperty(ref themeBackgroundPressed, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeBackgroundSelected
         {
             get => themeBackgroundSelected;
             set => UpdateProperty(ref themeBackgroundSelected, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeBackgroundShade
         {
             get => themeBackgroundShade;
             set => UpdateProperty(ref themeBackgroundShade, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeForeground
         {
             get => themeForeground;
             set => UpdateProperty(ref themeForeground, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeForegroundMouseOver
         {
             get => themeForegroundMouseOver;
             set => UpdateProperty(ref themeForegroundMouseOver, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeForegroundPressed
         {
             get => themeForegroundPressed;
             set => UpdateProperty(ref themeForegroundPressed, value);
         }
 
+        [JsonIgnore]
         public Brush ThemeForegroundSelected
         {
             get => themeForegroundSelected;
@@ -343,8 +370,39 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
 
         //  --------------------------------------------------------------------------------
         /// <summary> Appearance data model class constructor. </summary>
-        public ThemeDataModel()
+        public ThemeDataModel(
+            Color? appearanceColor = null,
+            int? accentMouseOverColorFactor = null,
+            int? accentPressedColorFactor = null,
+            int? accentSelectedColorFactor = null,
+            bool? enableIndependentAccentConfig = null,
+            bool? enableIndependentThemeConfig = null,
+            int? inactiveColorFactor = null,
+            double? opacityInactive = null,
+            ThemeType? themeType = null,
+            int? themeInactiveColorFactor = null,
+            int? themeMouseOverColorFactor = null,
+            int? themePressedColorFactor = null,
+            int? themeSelectedColorFactor = null,
+            bool? useSystemColorInsteadOfApplication = null)
         {
+            AppearanceColor = appearanceColor ?? ColorsResources.DefaultAccentColor;
+            AccentMouseOverColorFactor = accentMouseOverColorFactor ?? -15;
+            AccentPressedColorFactor = accentPressedColorFactor ?? 10;
+            AccentSelectedColorFactor = accentSelectedColorFactor ?? 5;
+            EnableIndependentAccentConfig = enableIndependentAccentConfig ?? false;
+            EnableIndependentThemeConfig = enableIndependentThemeConfig ?? false;
+            InactiveColorFactor = inactiveColorFactor ?? 37;
+            OpacityInactive = opacityInactive ?? 0.56d;
+            ThemeType = themeType ?? ThemeType.Dark;
+            ThemeInactiveColorFactor = themeInactiveColorFactor ?? 37;
+            ThemeMouseOverColorFactor = themeMouseOverColorFactor ?? 50;
+            ThemePressedColorFactor = themePressedColorFactor ?? 17;
+            ThemeSelectedColorFactor = themeSelectedColorFactor ?? 34;
+            UseSystemColorInsteadOfApplication = useSystemColorInsteadOfApplication ?? true;
+
+            initialized = true;
+
             Refresh();
         }
 
@@ -366,6 +424,9 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
         private void UpdateAppearanceBrushes(Color color)
         {
             if (enableIndependentAccentConfig)
+                return;
+
+            if (!initialized)
                 return;
 
             var ahslColor = AHSLColor.FromColor(color);
@@ -399,12 +460,15 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
             if (enableIndependentThemeConfig)
                 return;
 
+            if (!initialized)
+                return;
+
             Color background;
             Color foreground;
             Color shade;
 
             ThemeType localThemeType = themeType == ThemeType.System
-                ? SystemThemeManager.GetTheme(UseSystemColorInsteadOfApplication)
+                ? SystemThemeManager.GetTheme(useSystemColorInsteadOfApplication)
                 : themeType;
 
             switch (localThemeType)

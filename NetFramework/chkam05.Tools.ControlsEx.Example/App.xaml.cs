@@ -1,5 +1,6 @@
 ﻿using chkam05.Tools.ControlsEx.Data;
 using chkam05.Tools.ControlsEx.Data.Theme;
+using chkam05.Tools.ControlsEx.Example.Data.Settings;
 using chkam05.Tools.ControlsEx.Example.Windows;
 using chkam05.Tools.ControlsEx.Resources;
 using chkam05.Tools.ControlsEx.Utilities;
@@ -19,7 +20,7 @@ namespace chkam05.Tools.ControlsEx.Example
 
         //  VARIABLES
 
-        public ThemeManager ThemeManager { get; private set; }
+        public SettingsManager SettingsManager { get; private set; }
 
 
         //  METHODS
@@ -30,9 +31,7 @@ namespace chkam05.Tools.ControlsEx.Example
         /// <summary> App class constructor. </summary>
         public App() : base()
         {
-            ThemeManager = ThemeManager.Instance;
-            this.ThemeManager.DataContext.AppearanceColor = ColorsResources.Peaty.Color;
-            //this.ThemeManager.DataContext.AppearanceColor = ColorsResources.BrickRed.Color;
+            SettingsManager = SettingsManager.Instance;
         }
 
         #endregion CONSTRUCTORS
@@ -66,7 +65,7 @@ namespace chkam05.Tools.ControlsEx.Example
         /// <param name="e"> Exit event arguments. </param>
         protected override void OnExit(ExitEventArgs e)
         {
-            //
+            SettingsManager.SaveSettings();
         }
 
         #endregion APPLICATION

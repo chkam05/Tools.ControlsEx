@@ -1,5 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Data.Collections;
 using chkam05.Tools.ControlsEx.Example.Data;
+using chkam05.Tools.ControlsEx.Example.Data.Settings;
+using chkam05.Tools.ControlsEx.Example.Utilities;
 using chkam05.Tools.ControlsEx.Interfaces;
 using chkam05.Tools.ControlsEx.ViewModels;
 using MaterialDesignThemes.Wpf;
@@ -45,8 +47,53 @@ namespace chkam05.Tools.ControlsEx.Example.Windows
             DataContext = new MainWindowDataContext();
 
             InitializeComponent();
+            LoadSettings();
         }
 
         #endregion CONSTRUCTORS
+
+        #region EVENTS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked during window closing. </summary>
+        /// <param name="sender"> Object that invoked the method. </param>
+        /// <param name="e"> Cancel event arguments. </param>
+        private void WindowClosing(object sender, CancelEventArgs e)
+        {
+            SaveSettings();
+        }
+
+        #endregion EVENTS
+
+        #region SETUP
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Load window settings. </summary>
+        private void LoadSettings()
+        {
+            var settings = SettingsManager.Instance.Settings.Window;
+
+            Left = settings.Left;
+            Top = settings.Top;
+            Width = settings.Width;
+            Height = settings.Height;
+
+            ScreenUtilities.FixWindowPosition(this);
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Save window settings. </summary>
+        private void SaveSettings()
+        {
+            var settings = SettingsManager.Instance.Settings.Window;
+
+            settings.Left = Left;
+            settings.Top = Top;
+            settings.Width = Width;
+            settings.Height = Height;
+        }
+
+        #endregion SETUP
+
     }
 }

@@ -18,5 +18,9 @@ namespace chkam05.Tools.ControlsEx.Example.Resources
         public const string ASSEMBLY_TYPE_NAME_WIN_APP = "Windows Application";
         public const string ASSEMBLY_TYPE_REF_FORMS_NAME = "System.Windows.Forms";
         public const string ASSEMBLY_TYPE_REF_WPF_NAME = "PresentationCore";
+
+        public const string SETTINGS_FILE_NAME = "Settings.json";
+
+        public static readonly Encoding SETTINGS_FILE_ENCODING = Encoding.UTF8;
     }
 }
