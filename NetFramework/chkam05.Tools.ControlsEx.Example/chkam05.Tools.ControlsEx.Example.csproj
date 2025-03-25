@@ -73,9 +73,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Converters\ThemeTypeNameConverter.cs" />
     <Compile Include="Data\AssemblyInfoContext.cs" />
     <Compile Include="Data\InfoPageDataContext.cs" />
     <Compile Include="Data\MainWindowDataContext.cs" />
+    <Compile Include="Data\SettingsPageDataContext.cs" />
     <Compile Include="Data\Settings\SettingsDataContext.cs" />
     <Compile Include="Data\Settings\SettingsManager.cs" />
     <Compile Include="Data\Settings\SettingsWindow.cs" />

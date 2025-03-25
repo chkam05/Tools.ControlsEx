@@ -33,7 +33,7 @@
             
             <materialDesign:PackIcon
                 x:Name="addPackIcon"
-                Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ListViewItemEx}}}"
+                Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ColorPaletteEx}}}"
                 Height="Auto"
                 HorizontalAlignment="Stretch"
                 Kind="PlusThick"

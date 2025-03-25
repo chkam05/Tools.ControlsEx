@@ -5,9 +5,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:cexConv="clr-namespace:chkam05.Tools.ControlsEx.Converters;assembly=chkam05.Tools.ControlsEx"
     xmlns:cexThm="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme;assembly=chkam05.Tools.ControlsEx"
+    xmlns:conv="clr-namespace:chkam05.Tools.ControlsEx.Example.Converters"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:settings="clr-namespace:chkam05.Tools.ControlsEx.Example.Data.Settings"
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -20,10 +23,22 @@
             </ResourceDictionary.MergedDictionaries>
 
             <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
+            <x:Static x:Key="SettingsMgr" Member="settings:SettingsManager.Instance"/>
+
+            <cexConv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <conv:ThemeTypeNameConverter x:Key="ThemeTypeNameConverter"/>
 
             <Style BasedOn="{StaticResource WideViewButtonExStyle}" TargetType="{x:Type cex:WideViewButtonEx}">
+                <Setter Property="Background" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+                <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
                 <Setter Property="ContentMinWidth" Value="192"/>
+                <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
             </Style>
+
+            <DataTemplate x:Key="ThemeTypeDataTemplate">
+                <TextBlock
+                    Text="{Binding Converter={StaticResource ThemeTypeNameConverter}}"/>
+            </DataTemplate>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -78,26 +93,77 @@
                     IconKind="StyleOutline"
                     Title="Theme">
 
-                    <cex:ComboBoxEx/>
+                    <cex:ComboBoxEx
+                        ItemsSource="{Binding ThemeTypesCollection}"
+                        ItemTemplate="{StaticResource ThemeTypeDataTemplate}"
+                        SelectedItem="{Binding Settings.Theme.ThemeType, Mode=TwoWay, Source={StaticResource SettingsMgr}}"/>
 
                 </cex:WideViewButtonEx>
 
                 <cex:WideViewButtonEx
-                    Description="Application appearance color"
+                    Description="Use system theme instead of application theme"
                     IconKind="PaletteOutline"
-                    Title="Accent Color">
+                    Title="Theme source">
 
-                    <cex:ComboBoxEx/>
+                    <cex:CheckBoxEx
+                        CheckMarkTypeIcon="Inline"
+                        IsChecked="{Binding Settings.Theme.UseSystemColorInsteadOfApplication, Mode=TwoWay, Source={StaticResource SettingsMgr}}"
+                        HorizontalAlignment="Right"/>
 
                 </cex:WideViewButtonEx>
 
-                <cex:ColorPaletteEx
-                    Background="{Binding DataContext.AccentBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"
-                    BorderBrush="{Binding DataContext.AccentBorderBrush, Mode=OneWay, Source={StaticResource ThemeMgr}}"
-                    BorderThickness="1"
-                    Margin="4,2"
-                    Padding="8"/>
+                <cex:WideViewButtonEx
+                    Description="Use system accent color"
+                    IconKind="PaletteOutline"
+                    Title="Accent Color">
 
+                    <cex:CheckBoxEx
+                        CheckMarkTypeIcon="Inline"
+                        IsChecked="{Binding Settings.Theme.UseSystemAccentColors, Mode=TwoWay, Source={StaticResource SettingsMgr}}"
+                        HorizontalAlignment="Right"/>
+
+                </cex:WideViewButtonEx>
+
+                <Border
+                    Background="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"
+                    BorderBrush="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"
+                    CornerRadius="4"
+                    Margin="4,2"
+                    Padding="8"
+                    Visibility="{Binding Settings.Theme.UseSystemAccentColors, Mode=OneWay, Source={StaticResource SettingsMgr}, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static cexConv:BoolToVisibilityConverter.INVERT_PARAM}}">
+
+                    <StackPanel
+                        Orientation="Vertical">
+
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Margin="0,0,0,2"
+                            Text="Recently used colors:"/>
+
+                        <cex:ColorPaletteEx
+                            Background="Transparent"
+                            BorderBrush="{x:Null}"
+                            BorderThickness="0"
+                            Height="Auto"
+                            ItemsSource="{Binding Settings.UsedColorsCollection, Mode=OneWay, Source={StaticResource SettingsMgr}}"
+                            MinHeight="0"
+                            SelectedItem="{Binding SelectedUsedColorItem, Mode=TwoWay}"/>
+
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Margin="0,4,0,2"
+                            Text="Color palette:"/>
+                        
+                        <cex:ColorPaletteEx
+                            Background="Transparent"
+                            BorderBrush="{x:Null}"
+                            BorderThickness="0"
+                            ItemsSource="{Binding ColorsCollection}"
+                            SelectedItem="{Binding SelectedColorItem, Mode=TwoWay}"/>
+
+                    </StackPanel>
+
+                </Border>
             </StackPanel>
 
         </cex:ScrollViewerEx>

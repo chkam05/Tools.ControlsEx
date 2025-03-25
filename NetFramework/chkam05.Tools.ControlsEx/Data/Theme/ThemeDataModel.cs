@@ -61,6 +61,7 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
         private int themePressedColorFactor = 17;
         private int themeSelectedColorFactor = 34;
 
+        private bool useSystemAccentColor = false;
         private bool useSystemColorInsteadOfApplication = false;
 
 
@@ -353,6 +354,16 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
             }
         }
 
+        public bool UseSystemAccentColors
+        {
+            get => useSystemAccentColor;
+            set
+            {
+                UpdateProperty(ref useSystemAccentColor, value);
+                UpdateAppearanceBrushes(appearanceColor);
+            }
+        }
+
         public bool UseSystemColorInsteadOfApplication
         {
             get => useSystemColorInsteadOfApplication;
@@ -429,19 +440,21 @@ namespace chkam05.Tools.ControlsEx.Data.Theme
             if (!initialized)
                 return;
 
-            var ahslColor = AHSLColor.FromColor(color);
-            var foreground = ColorsUtilities.GetForegroundColorDependingOnBackground(color);
+            var definitiveColor = useSystemAccentColor ? SystemThemeManager.GetAccentColor() : color;
+
+            var ahslColor = AHSLColor.FromColor(definitiveColor);
+            var foreground = ColorsUtilities.GetForegroundColorDependingOnBackground(definitiveColor);
 
             var mouseOver = ColorsUtilities.UpdateColor(ahslColor, l: ahslColor.L - accentMouseOverColorFactor).ToColor();
             var pressed = ColorsUtilities.UpdateColor(ahslColor, l: ahslColor.L - accentPressedColorFactor).ToColor();
             var selected = ColorsUtilities.UpdateColor(ahslColor, l: ahslColor.L - accentSelectedColorFactor).ToColor();
 
-            AccentBackground = new SolidColorBrush(color);
+            AccentBackground = new SolidColorBrush(definitiveColor);
             AccentBackgroundMouseOver = new SolidColorBrush(mouseOver);
             AccentBackgroundPressed = new SolidColorBrush(pressed);
             AccentBackgroundSelected = new SolidColorBrush(selected);
 
-            AccentBorderBrush = new SolidColorBrush(color);
+            AccentBorderBrush = new SolidColorBrush(definitiveColor);
             AccentBorderBrushMouseOver = new SolidColorBrush(mouseOver);
             AccentBorderBrushPressed = new SolidColorBrush(pressed);
             AccentBorderBrushSelected = new SolidColorBrush(selected);

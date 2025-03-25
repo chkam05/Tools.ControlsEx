@@ -2,6 +2,7 @@
 using chkam05.Tools.ControlsEx.Example.Resources;
 using chkam05.Tools.ControlsEx.Example.Utilities;
 using chkam05.Tools.ControlsEx.ViewModels;
+using MaterialDesignThemes.Wpf;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,31 @@ namespace chkam05.Tools.ControlsEx.Example.Data.Settings
         }
 
         #endregion CONSTRUCTORS
+
+        #region DATA MANAGEMENT
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Add color to used colors. </summary>
+        /// <param name="newUsedColorItem"> New used color. </param>
+        public void AddUsedColor(ColorPaletteExItem newUsedColorItem)
+        {
+            var currentItem = Settings.UsedColorsCollection.FirstOrDefault(i => i.ColorCode == newUsedColorItem.ColorCode);
+
+            if (currentItem != null)
+            {
+                Settings.UsedColorsCollection.Remove(currentItem);
+                Settings.UsedColorsCollection.Insert(0, currentItem);
+            }
+            else
+            {
+                Settings.UsedColorsCollection.RemoveAt(Settings.UsedColorsCollection.Count - 1);
+                Settings.UsedColorsCollection.Insert(0, newUsedColorItem);
+            }
+
+            Settings.Theme.AppearanceColor = newUsedColorItem.Color;
+        }
+
+        #endregion DATA MANAGEMENT
 
         #region LOAD & SAVE
 

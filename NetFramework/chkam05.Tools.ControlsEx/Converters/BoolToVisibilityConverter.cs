@@ -12,6 +12,11 @@ namespace chkam05.Tools.ControlsEx.Converters
     public class BoolToVisibilityConverter : IValueConverter
     {
 
+        //  CONST
+
+        public const string INVERT_PARAM = "invert";
+
+
         //  METHODS
 
         //  --------------------------------------------------------------------------------
@@ -27,12 +32,27 @@ namespace chkam05.Tools.ControlsEx.Converters
             {
                 var param = parameter as string;
 
-                if ((bool)boolValue)
-                    return Visibility.Visible;
-                else if (!string.IsNullOrEmpty(param) && param.ToLower() == Visibility.Hidden.ToString().ToLower())
-                    return Visibility.Hidden;
+                if (!string.IsNullOrEmpty(param) && param.ToLower().Contains(INVERT_PARAM))
+                {
+                    if ((bool)boolValue)
+                    {
+                        if (param.ToLower().Contains(Visibility.Hidden.ToString().ToLower()))
+                            return Visibility.Hidden;
+                        else
+                            return Visibility.Collapsed;
+                    }
+                    else
+                        return Visibility.Visible;
+                }
                 else
-                    return Visibility.Collapsed;
+                {
+                    if ((bool)boolValue)
+                        return Visibility.Visible;
+                    else if (!string.IsNullOrEmpty(param) && param.ToLower().Contains(Visibility.Hidden.ToString().ToLower()))
+                        return Visibility.Hidden;
+                    else
+                        return Visibility.Collapsed;
+                }
             }
 
             return Visibility.Collapsed;
@@ -49,15 +69,18 @@ namespace chkam05.Tools.ControlsEx.Converters
         {
             if (value is Visibility visibility)
             {
+                var param = parameter as string;
+                var inverted = !string.IsNullOrEmpty(param) && param.ToLower().Contains(INVERT_PARAM);
+
                 switch (visibility)
                 {
                     case Visibility.Visible:
-                        return true;
+                        return inverted ? false : true;
 
                     case Visibility.Collapsed:
                     case Visibility.Hidden:
                     default:
-                        return false;
+                        return inverted ? true : false;
                 }
             }
 

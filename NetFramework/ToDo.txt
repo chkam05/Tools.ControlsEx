@@ -69,6 +69,9 @@ INTERNAL MESSAGES
 ------------------------------------------------------------
 TESTING APP
 ------------------------------------------------------------
+- [X] InfoPage
+- [X] SettingsPage
+
 - [ ] ButtonEx
 - [ ] ButtonExWithIcon
 - [ ] CalendarEx
@@ -102,5 +105,5 @@ TESTING APP
 - [ ] WindowEx (with show and close button in app)
 - [ ] WindowTitleBarEx
 
-0/32
+2/34
 ------------------------------------------------------------

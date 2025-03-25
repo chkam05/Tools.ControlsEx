@@ -202,6 +202,8 @@ namespace chkam05.Tools.ControlsEx
 
                     if (ShowAddItem && viewModel.IsAddItem)
                         listViewEx.SelectedItem = null;
+
+                    SelectedItem = viewModel;
                 }
             }
         }

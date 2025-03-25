@@ -1,5 +1,6 @@
 ﻿using chkam05.Tools.ControlsEx.Data;
 using chkam05.Tools.ControlsEx.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace chkam05.Tools.ControlsEx.ViewModels
 
         //  GETTERS & SETTERS
 
+        [JsonIgnore]
         public SolidColorBrush Brush
         {
             get => brush;
@@ -51,11 +53,13 @@ namespace chkam05.Tools.ControlsEx.ViewModels
             }
         }
 
+        [JsonIgnore]
         public string ColorCode
         {
             get => ColorsUtilities.ConvertColorToHexString(color);
         }
 
+        [JsonIgnore]
         public bool IsAddItem
         {
             get => isAddItem;
@@ -94,6 +98,7 @@ namespace chkam05.Tools.ControlsEx.ViewModels
         /// <summary> ColorPaletteExItem class constructor. </summary>
         /// <param name="color"> RGB color model. </param>
         /// <param name="name"> Color name. </param>
+        [JsonConstructor]
         public ColorPaletteExItem(Color color, string name)
         {
             Color = color;

@@ -1,4 +1,5 @@
 ﻿using chkam05.Tools.ControlsEx.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,7 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
 
         //  VARIABLES
 
-        private bool showAddItem;
+        private bool showAddItem = false;
 
 
         //  GETTERS & SETTERS
@@ -44,6 +45,13 @@ namespace chkam05.Tools.ControlsEx.Data.Collections
         //  METHODS
 
         #region CONSTRUCTORS
+
+        //  --------------------------------------------------------------------------------
+        [JsonConstructor]
+        public ColorPaletteExCollection()
+        {
+
+        }
 
         //  --------------------------------------------------------------------------------
         /// <summary> ColorPaletteExCollection class constructor. </summary>
