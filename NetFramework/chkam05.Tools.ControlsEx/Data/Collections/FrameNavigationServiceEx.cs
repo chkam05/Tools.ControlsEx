@@ -16,8 +16,7 @@ using System.Windows.Controls;
 
 namespace chkam05.Tools.ControlsEx.Data.Collections
 {
-    public class FrameNavigationServiceEx<T> : ObservableCollection<T>, IFrameExPagesCollection<T>, 
-        IFrameNavigationServiceEx<T>, INotifyPropertyChanged where T : Page
+    public class FrameNavigationServiceEx<T> : ObservableCollection<T>, IFrameNavigationServiceEx<T>, INotifyPropertyChanged where T : Page
     {
 
         //  DELEGATES

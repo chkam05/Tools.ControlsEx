@@ -55,11 +55,17 @@ namespace chkam05.Tools.ControlsEx
             typeof(WideViewButtonEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorPressed)));
 
-        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
-            nameof(CornerRadius),
-            typeof(CornerRadius),
+        public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
+            nameof(Command),
+            typeof(ICommand),
             typeof(WideViewButtonEx),
-            new PropertyMetadata(new CornerRadius(4)));
+            new PropertyMetadata(null, CommandPropertyChangedCallback));
+
+        public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
+            nameof(CommandParameter),
+            typeof(object),
+            typeof(WideViewButtonEx),
+            new PropertyMetadata(null));
 
         public static readonly DependencyProperty ContentMarginProperty = DependencyProperty.Register(
             nameof(ContentMargin),
@@ -72,6 +78,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(double),
             typeof(WideViewButtonEx),
             new PropertyMetadata(128d));
+
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(
+            nameof(CornerRadius),
+            typeof(CornerRadius),
+            typeof(WideViewButtonEx),
+            new PropertyMetadata(new CornerRadius(4)));
 
         public static readonly DependencyProperty DescriptionProperty = DependencyProperty.Register(
             nameof(Description),
@@ -155,19 +167,19 @@ namespace chkam05.Tools.ControlsEx
             add
             {
                 click += value;
-                IsClickAssigned = true;
+                UpdateIsClickAssigned(click);
             }
             remove
             {
-                click += value;
-                IsClickAssigned = click != null;
+                click -= value;
+                UpdateIsClickAssigned(click);
             }
         }
 
 
         //  VARIABLES
 
-        private bool IsActionable => Content == null && click != null;
+        private bool IsActionable => Content == null && (click != null || Command != null);
 
 
         //  GETTERS & SETTERS
@@ -206,6 +218,18 @@ namespace chkam05.Tools.ControlsEx
         {
             get => (Brush)GetValue(BorderBrushPressedProperty);
             set => SetValue(BorderBrushPressedProperty, value);
+        }
+
+        public ICommand Command
+        {
+            get => (ICommand)GetValue(CommandProperty);
+            set => SetValue(CommandProperty, value);
+        }
+
+        public object CommandParameter
+        {
+            get => GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
         }
 
         public Thickness ContentMargin
@@ -313,6 +337,20 @@ namespace chkam05.Tools.ControlsEx
 
         #endregion CONSTRUCTORS
 
+        #region COMMANDS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invokes binded command. </summary>
+        protected virtual void InvokeCommand()
+        {
+            if (Command != null && Command.CanExecute(CommandParameter))
+            {
+                Command.Execute(CommandParameter);
+            }
+        }
+
+        #endregion COMMANDS
+
         #region CONTROL
 
         //  --------------------------------------------------------------------------------
@@ -343,6 +381,7 @@ namespace chkam05.Tools.ControlsEx
                     ReleaseMouseCapture();
                     VisualStateManager.GoToState(this, "Normal", true);
                     OnClick();
+                    InvokeCommand();
                 }
             }
 
@@ -383,6 +422,40 @@ namespace chkam05.Tools.ControlsEx
         }
 
         #endregion CONTROL
+
+        #region PROPERTIES CHANGED CALLBACKS
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Invoked when Command property changes. </summary>
+        /// <param name="d"> Dependency object from which event has been invoked. </param>
+        /// <param name="e"> Dependency property changed event arguments. </param>
+        private static void CommandPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is WideViewButtonEx wideViewButtonEx)
+                wideViewButtonEx.UpdateIsClickAssigned(e.NewValue as ICommand);
+        }
+
+        #endregion PROPERTIES CHANGED CALLBACKS
+
+        #region PROPERTIES UPDATE
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update IsClickAssigned property value. </summary>
+        /// <param name="newClickEvent"> New click event handler value. </param>
+        private void UpdateIsClickAssigned(RoutedEventHandler newClickEvent)
+        {
+            IsClickAssigned = newClickEvent != null || Command != null;
+        }
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Update IsClickAssigned property value. </summary>
+        /// <param name="newCommand"> New command value. </param>
+        private void UpdateIsClickAssigned(ICommand newCommand)
+        {
+            IsClickAssigned = click != null || newCommand != null;
+        }
+
+        #endregion PROPERTIES UPDATE
 
     }
 }

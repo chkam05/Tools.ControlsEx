@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace chkam05.Tools.ControlsEx.Data.Collections
 {
-    public interface IFrameNavigationServiceEx<T> where T : Page
+    public interface IFrameNavigationServiceEx<T> : IFrameExPagesCollection<T> where T : Page
     {
 
         //  GETTERS & SETTERS

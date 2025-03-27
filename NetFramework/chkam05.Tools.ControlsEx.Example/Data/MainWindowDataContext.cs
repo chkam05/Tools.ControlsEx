@@ -55,6 +55,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         #region ACTIONS
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Back HamburgerMenuEx item action method. </summary>
         private void BackHamburgerMenuExItemAction()
         {
             if (navigationService.CanGoBack)
@@ -65,6 +66,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Components HamburgerMenuEx item action method. </summary>
         private void ComponentsHamburgerMenuExItemAction()
         {
             var componentsPage = GetPageByType(typeof(ComponentsPage));
@@ -72,10 +74,11 @@ namespace chkam05.Tools.ControlsEx.Example.Data
             if (componentsPage != null)
                 navigationService.LoadPage(componentsPage);
             else
-                navigationService.AddAndLoad(new ComponentsPage());
+                navigationService.AddAndLoad(new ComponentsPage(NavigationService));
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Settings HamburgerMenuEx item action method. </summary>
         private void SettingsHamburgerMenuExItemAction()
         {
             var settingsPage = GetPageByType(typeof(SettingsPage));
@@ -87,6 +90,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Info HamburgerMenuEx item action method. </summary>
         private void InfoHamburgerMenuExItemAction()
         {
             var infoPage = GetPageByType(typeof(InfoPage));
@@ -121,6 +125,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         #region SETUP
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Setup HamburgerMenuEx items collection. </summary>
         private void SetupHamburgerMenuExCollection()
         {
             HamburgerMenuExCollection = new HamburgerMenuExCollection()
@@ -137,6 +142,7 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Setup pages collection. </summary>
         private void SetupPagesCollection()
         {
             navigationService = new FrameNavigationServiceEx<Page>()

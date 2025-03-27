@@ -8,13 +8,25 @@
     xmlns:cexThm="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-    mc:Ignorable="d" 
-    d:DesignHeight="450"
+    mc:Ignorable="d"
     d:DesignWidth="800"
     Title="Components">
 
     <Page.Resources>
-        <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WideViewButtonEx.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
+
+            <Style BasedOn="{StaticResource WideViewButtonExStyle}" TargetType="{x:Type cex:WideViewButtonEx}">
+                <Setter Property="Background" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+                <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+                <Setter Property="ContentMinWidth" Value="192"/>
+                <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+            </Style>
+        </ResourceDictionary>
     </Page.Resources>
 
     <Page.Background>
@@ -57,8 +69,217 @@
         </Border>
 
         <cex:ScrollViewerEx
-            Grid.Row="1">
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Disabled">
 
+            <StackPanel
+                Orientation="Vertical">
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ButtonExButtonCommand}"
+                    Description="ButtonEx component demo/test"
+                    IconKind="GestureTapButton"
+                    Title="ButtonEx"/>
+                
+                <cex:WideViewButtonEx
+                    Command="{Binding ButtonExWithIconButtonCommand}"
+                    Description="ButtonEx with icon component demo/test"
+                    IconKind="GestureTapButton"
+                    Title="ButtonExWithIcon"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding CalendarExButtonCommand}"
+                    Description="CalendarEx component demo/test"
+                    IconKind="CalendarMonthOutline"
+                    Title="CalendarEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding CheckBoxExButtonCommand}"
+                    Description="CheckBoxEx component demo/test"
+                    IconKind="CheckboxMarkedOutline"
+                    Title="CheckBoxEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ColorPaletteExButtonCommand}"
+                    Description="ColorPaletteEx component demo/test"
+                    IconKind="PaletteSwatchOutline"
+                    Title="ColorPaletteEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ColorPaletteExButtonCommand}"
+                    Description="ColorPaletteEx component demo/test"
+                    IconKind="PaletteOutline"
+                    Title="ColorPaletteEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ColorPickerExButtonCommand}"
+                    Description="ColorPickerEx component demo/test"
+                    IconKind="Colorize"
+                    Title="ColorPickerEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ComboBoxExButtonCommand}"
+                    Description="ComboBoxEx along with ComboBoxItemEx components demo/test"
+                    IconKind="FormSelect"
+                    Title="ComboBoxEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ContextMenuExButtonCommand}"
+                    Description="ContextMenuEx along with ContextMenuItemEx components demo/test"
+                    IconKind="FormDropdown"
+                    Title="ContextMenuEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding DatePickerExButtonCommand}"
+                    Description="DatePickerEx component demo/test"
+                    IconKind="CalendarAdd"
+                    Title="DatePickerEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding DirectoryViewerExAndFileViewerExButtonCommand}"
+                    Description="DirectoryViewerEx &amp; FileViewerEx components demo/test"
+                    IconKind="FolderOutline"
+                    Title="DirectoryViewerEx &amp; FileViewerEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ExpanderExButtonCommand}"
+                    Description="ExpanderEx component demo/test"
+                    IconKind="ArrowExpandDown"
+                    Title="ExpanderEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding GroupBoxButtonCommand}"
+                    Description="GroupBox component demo/test"
+                    IconKind="Group"
+                    Title="GroupBox"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding HamburgerMenuExButtonCommand}"
+                    Description="HamburgerMenuEx component demo/test"
+                    IconKind="Menu"
+                    Title="HamburgerMenuEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ListBoxExButtonCommand}"
+                    Description="ListBoxEx along with ListBoxItemEx components demo/test"
+                    IconKind="FormatListBulletedSquare"
+                    Title="ListBoxEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ListViewExButtonCommand}"
+                    Description="ListViewEx along with ListViewItemEx components demo/test"
+                    IconKind="ViewList"
+                    Title="ListViewEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding GridViewExButtonCommand}"
+                    Description="ListViewEx along with ListViewItemEx components demo/test in GridViewMode"
+                    IconKind="Table"
+                    Title="GridViewEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding MenuExButtonCommand}"
+                    Description="MenuEx along with MenuItemEx components demo/test"
+                    IconKind="FormDropdown"
+                    Title="MenuEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ProgressBarExButtonCommand}"
+                    Description="ProgressBarEx component demo/test"
+                    IconKind="Loading"
+                    Title="ProgressBarEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding RadioButtonExButtonCommand}"
+                    Description="RadioButtonEx component demo/test"
+                    IconKind="RadioButtonChecked"
+                    Title="RadioButtonEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding RepeatButtonExButtonCommand}"
+                    Description="RepeatButtonEx component demo/test"
+                    IconKind="GestureTapButton"
+                    Title="RepeatButtonEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding RichTextBoxExButtonCommand}"
+                    Description="RichTextBoxEx component demo/test"
+                    IconKind="TextBoxOutline"
+                    Title="RichTextBoxEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ScrollBarExButtonCommand}"
+                    Description="ScrollBarEx component demo/test"
+                    IconKind="PanVertical"
+                    Title="ScrollBarEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding SliderExButtonCommand}"
+                    Description="SliderEx component demo/test"
+                    IconKind="TuneVariant"
+                    Title="SliderEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding TabControlExButtonCommand}"
+                    Description="TabControlEx component demo/test"
+                    IconKind="Tab"
+                    Title="TabControlEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding TextBoxExButtonCommand}"
+                    Description="TextBoxEx component demo/test"
+                    IconKind="FormTextbox"
+                    Title="TextBoxEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ToggleButtonExButtonCommand}"
+                    Description="ToggleButtonEx component demo/test"
+                    IconKind="GestureTapButton"
+                    Title="ToggleButtonEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding ToggleExButtonCommand}"
+                    Description="ToggleEx component demo/test"
+                    IconKind="ToggleSwitchOutline"
+                    Title="ToggleEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding TreeViewExButtonCommand}"
+                    Description="TreeViewEx along with TreeViewItemEx components demo/test"
+                    IconKind="FileTreeOutline"
+                    Title="TreeViewEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding UpDownDoubleExButtonCommand}"
+                    Description="UpDownDoubleEx component demo/test"
+                    IconKind="ChevronUpDown"
+                    Title="UpDownDoubleEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding UpDownLongExButtonCommand}"
+                    Description="UpDownLongEx component demo/test"
+                    IconKind="ChevronUpDown"
+                    Title="UpDownLongEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding WideViewButtonExButtonCommand}"
+                    Description="WideViewButtonEx component demo/test"
+                    IconKind="ViewSequential"
+                    Title="WideViewButtonEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding WindowExButtonCommand}"
+                    Description="WindowEx component demo/test"
+                    IconKind="ApplicationOutline"
+                    Title="WindowEx"/>
+
+                <cex:WideViewButtonEx
+                    Command="{Binding WindowTitleBarExButtonCommand}"
+                    Description="WindowTitleBarEx component demo/test"
+                    IconKind="ApplicationOutline"
+                    Title="WindowTitleBarEx"/>
+
+            </StackPanel>
         </cex:ScrollViewerEx>
     </Grid>
 </Page>
