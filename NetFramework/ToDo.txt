@@ -108,11 +108,38 @@ TESTING APP
 2/34
 ------------------------------------------------------------
 
-BaseDemoDataContext
-- Background + MouseOver + Pressed + Selected + Inactive
-- BorderBrush + MouseOver + Pressed + Selected + Inactive
-- BorderThickness
-- CornerRadius
-- Enabled
-- Foreground + MouseOver + Pressed + Selected + Inactive
-- OpacityInactive
+InternalMessagesContainer <- InternalMessagesService <- IInternalMessagesService
+
+Methods:
+- LoadMessage(message)
+- CloseMessage() ~ current message
+
+Events:
+- OnMessageLoad
+
+------------------------------------------------------------
+
+InternalMessage
+
+- IconKind
+- Title
+- Message
+- Buttons
+- ShowCloseIcon -> Cancel
+
+Events:
+- OnClose
+
+Methods:
+- Close(Message, object arg)
+
+------------------------------------------------------------
+
+InternalMessageButton (collection for DataContext) <- InternalMessageResult
+- OK
+- Yes
+- No
+- Cancel
+- Retry
+- Abort
+- UnknownResult
