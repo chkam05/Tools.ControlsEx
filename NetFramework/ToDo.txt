@@ -107,3 +107,12 @@ TESTING APP
 
 2/34
 ------------------------------------------------------------
+
+BaseDemoDataContext
+- Background + MouseOver + Pressed + Selected + Inactive
+- BorderBrush + MouseOver + Pressed + Selected + Inactive
+- BorderThickness
+- CornerRadius
+- Enabled
+- Foreground + MouseOver + Pressed + Selected + Inactive
+- OpacityInactive

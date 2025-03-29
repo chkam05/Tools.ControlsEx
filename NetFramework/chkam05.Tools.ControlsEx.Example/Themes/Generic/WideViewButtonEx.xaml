@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
+    xmlns:cexThm="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme;assembly=chkam05.Tools.ControlsEx"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WideViewButtonEx.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
+
+    <Style x:Key="GenericWideViewButtonExStyle" BasedOn="{StaticResource WideViewButtonExStyle}" TargetType="{x:Type cex:WideViewButtonEx}">
+        <Setter Property="Background" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="ContentMinWidth" Value="192"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Padding" Value="8"/>
+    </Style>
+    
+</ResourceDictionary>

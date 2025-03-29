@@ -14,12 +14,13 @@
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Style="{DynamicResource GenericPageStyle}"
     Title="Settings">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WideViewButtonEx.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx.Example;component/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
@@ -28,27 +29,11 @@
             <cexConv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <conv:ThemeTypeNameConverter x:Key="ThemeTypeNameConverter"/>
 
-            <Style BasedOn="{StaticResource WideViewButtonExStyle}" TargetType="{x:Type cex:WideViewButtonEx}">
-                <Setter Property="Background" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-                <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-                <Setter Property="ContentMinWidth" Value="192"/>
-                <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-            </Style>
-
             <DataTemplate x:Key="ThemeTypeDataTemplate">
-                <TextBlock
-                    Text="{Binding Converter={StaticResource ThemeTypeNameConverter}}"/>
+                <TextBlock Text="{Binding Converter={StaticResource ThemeTypeNameConverter}}"/>
             </DataTemplate>
         </ResourceDictionary>
     </Page.Resources>
-
-    <Page.Background>
-        <Binding Path="DataContext.ThemeBackground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
-    </Page.Background>
-
-    <Page.Foreground>
-        <Binding Path="DataContext.ThemeForeground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
-    </Page.Foreground>
 
     <Grid>
 

@@ -1,5 +1,7 @@
 ﻿using chkam05.Tools.ControlsEx.Data.Collections;
 using chkam05.Tools.ControlsEx.Example.Commands;
+using chkam05.Tools.ControlsEx.Example.Pages;
+using chkam05.Tools.ControlsEx.Example.Pages.Components;
 using chkam05.Tools.ControlsEx.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace chkam05.Tools.ControlsEx.Example.Data
 {
@@ -275,7 +278,12 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         /// <param name="obj"> Command action parameter. </param>
         private void ButtonExButtonCommandAction(object obj)
         {
-            //
+            var componentsPage = GetPageByType(typeof(ButtonExComponentPage));
+
+            if (componentsPage != null)
+                navigationService.LoadPage(componentsPage);
+            else
+                navigationService.AddAndLoad(new ButtonExComponentPage());
         }
 
         //  --------------------------------------------------------------------------------
@@ -535,6 +543,19 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         }
 
         #endregion COMMANDS
+
+        #region PAGES MANAGEMENT
+
+        //  --------------------------------------------------------------------------------
+        /// <summary> Get loaded page by type. </summary>
+        /// <param name="pageType"> Page type to get. </param>
+        /// <returns> Loaded page with specified type or null. </returns>
+        private Page GetPageByType(Type pageType)
+        {
+            return (navigationService as FrameNavigationServiceEx<Page>)?.FirstOrDefault(p => p.GetType() == pageType);
+        }
+
+        #endregion PAGES MANAGEMENT
 
         #region SETUP
 

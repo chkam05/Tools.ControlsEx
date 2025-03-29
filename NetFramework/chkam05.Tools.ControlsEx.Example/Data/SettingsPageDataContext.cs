@@ -106,6 +106,8 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Sets new SelectedColorItem property item and triggers a property changed notification event. </summary>
+        /// <param name="item"> Item to set. </param>
         private void UpdateSelectedColorItemProperty(ColorPaletteExItem item)
         {
             if (item == null)
@@ -118,6 +120,8 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Sets new SelectedUsedColorItem property item and triggers a property changed notification event. </summary>
+        /// <param name="item"> Item to set. </param>
         private void UpdateSelectedUsedColorItemProperty(ColorPaletteExItem item)
         {
             if (item == null)

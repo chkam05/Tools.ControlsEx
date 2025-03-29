@@ -5,7 +5,11 @@
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example">
     
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx.Example;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
     
 </Application>

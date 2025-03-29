@@ -106,12 +106,16 @@ namespace chkam05.Tools.ControlsEx.Example.Data
         #region PAGES MANAGEMENT
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Get loaded page by type. </summary>
+        /// <param name="pageType"> Page type to get. </param>
+        /// <returns> Loaded page with specified type or null. </returns>
         private Page GetPageByType(Type pageType)
         {
             return navigationService.FirstOrDefault(p => p.GetType() == pageType);
         }
 
         //  --------------------------------------------------------------------------------
+        /// <summary> Remove all forward pages from current loaded page. </summary>
         private void RemoveForwardPages()
         {
             var currentIndex = navigationService.CurrentPageIndex;

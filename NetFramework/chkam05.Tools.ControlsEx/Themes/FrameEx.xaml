@@ -46,6 +46,7 @@
         <Setter Property="BorderBrush" Value="{x:Null}"/>
         <Setter Property="BorderBrushInactive" Value="{Binding DataContext.BackgroundInactive, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Template" Value="{StaticResource FrameEx.ControlTemplate}"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>

@@ -109,6 +109,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(WideViewButtonEx),
             new PropertyMetadata(new SolidColorBrush(ColorsResources.DefaultAccentColorForeground)));
 
+        public static readonly DependencyProperty IconHeightProperty = DependencyProperty.Register(
+            nameof(IconHeight),
+            typeof(double),
+            typeof(WideViewButtonEx),
+            new PropertyMetadata(28d));
+
         public static readonly DependencyProperty IconKindProperty = DependencyProperty.Register(
             nameof(IconKind),
             typeof(PackIconKind),
@@ -120,6 +126,12 @@ namespace chkam05.Tools.ControlsEx
             typeof(Thickness),
             typeof(WideViewButtonEx),
             new PropertyMetadata(new Thickness(4)));
+
+        public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register(
+            nameof(IconWidth),
+            typeof(double),
+            typeof(WideViewButtonEx),
+            new PropertyMetadata(28d));
 
         public static readonly DependencyProperty IsClickAssignedProperty = DependencyProperty.Register(
             nameof(IsClickAssigned),
@@ -274,6 +286,12 @@ namespace chkam05.Tools.ControlsEx
             set => SetValue(ForegroundPressedProperty, value);
         }
 
+        public double IconHeight
+        {
+            get => (double)GetValue(IconHeightProperty);
+            set => SetValue(IconHeightProperty, value);
+        }
+
         public PackIconKind IconKind
         {
             get => (PackIconKind)GetValue(IconKindProperty);
@@ -284,6 +302,12 @@ namespace chkam05.Tools.ControlsEx
         {
             get => (Thickness)GetValue(IconMarginProperty);
             set => SetValue(IconMarginProperty, value);
+        }
+
+        public double IconWidth
+        {
+            get => (double)GetValue(IconWidthProperty);
+            set => SetValue(IconWidthProperty, value);
         }
 
         public bool IsClickAssigned

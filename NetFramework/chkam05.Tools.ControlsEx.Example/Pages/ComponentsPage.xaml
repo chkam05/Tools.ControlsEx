@@ -5,37 +5,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
-    xmlns:cexThm="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d"
     d:DesignWidth="800"
+    Style="{DynamicResource GenericPageStyle}"
     Title="Components">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx;component/Themes/WideViewButtonEx.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx.Example;component/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
-
-            <Style BasedOn="{StaticResource WideViewButtonExStyle}" TargetType="{x:Type cex:WideViewButtonEx}">
-                <Setter Property="Background" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-                <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackgroundShade, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-                <Setter Property="ContentMinWidth" Value="192"/>
-                <Setter Property="Foreground" Value="{Binding DataContext.ThemeForeground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-            </Style>
         </ResourceDictionary>
     </Page.Resources>
-
-    <Page.Background>
-        <Binding Path="DataContext.ThemeBackground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
-    </Page.Background>
-
-    <Page.Foreground>
-        <Binding Path="DataContext.ThemeForeground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
-    </Page.Foreground>
 
     <Grid>
 

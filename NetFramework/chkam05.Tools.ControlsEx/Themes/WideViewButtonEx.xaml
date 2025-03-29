@@ -29,12 +29,12 @@
                 <materialDesign:PackIcon
                     x:Name="packIcon"
                     Grid.Column="0"
-                    Height="Auto"
-                    HorizontalAlignment="Stretch"
+                    Height="{TemplateBinding IconHeight}"
+                    HorizontalAlignment="Center"
                     Kind="{TemplateBinding IconKind}"
                     Margin="{TemplateBinding IconMargin}"
-                    Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                    VerticalAlignment="Stretch"/>
+                    Width="{TemplateBinding IconWidth}"
+                    VerticalAlignment="Center"/>
 
                 <StackPanel
                     Grid.Column="1"

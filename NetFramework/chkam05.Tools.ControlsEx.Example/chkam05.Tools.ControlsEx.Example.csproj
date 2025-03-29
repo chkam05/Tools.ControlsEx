@@ -77,6 +77,10 @@
     <Compile Include="Converters\ThemeTypeNameConverter.cs" />
     <Compile Include="Data\AssemblyInfoContext.cs" />
     <Compile Include="Data\ComponentsPageDataContext.cs" />
+    <Compile Include="Data\Components\BaseDemoDataContext.cs" />
+    <Compile Include="Data\Components\ButtonExComponentDataContext.cs" />
+    <Compile Include="Data\Enums\Directions.cs" />
+    <Compile Include="Data\Enums\DirectionsDiagonal.cs" />
     <Compile Include="Data\InfoPageDataContext.cs" />
     <Compile Include="Data\MainWindowDataContext.cs" />
     <Compile Include="Data\SettingsPageDataContext.cs" />
@@ -85,6 +89,9 @@
     <Compile Include="Data\Settings\SettingsWindow.cs" />
     <Compile Include="Pages\ComponentsPage.xaml.cs">
       <DependentUpon>ComponentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Components\ButtonExComponentPage.xaml.cs">
+      <DependentUpon>ButtonExComponentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\InfoPage.xaml.cs">
       <DependentUpon>InfoPage.xaml</DependentUpon>
@@ -110,11 +117,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Components\ButtonExComponentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\InfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic\WideViewButtonEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,9 +183,7 @@
       <Name>chkam05.Tools.ControlsEx</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Components\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

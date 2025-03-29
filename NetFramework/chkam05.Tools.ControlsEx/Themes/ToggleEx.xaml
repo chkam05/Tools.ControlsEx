@@ -41,13 +41,13 @@
                 <materialDesign:PackIcon
                     x:Name="toggleIcon"
                     Foreground="{TemplateBinding ToggleBrush}"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Stretch"
                     Kind="{Binding ToggleType,
                         Mode=OneWay,
                         RelativeSource={RelativeSource AncestorType={x:Type local:ToggleEx}},
                         Converter={StaticResource ToggleTypePackIconConverter}}"
                     Margin="0,0,2,0"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Stretch">
 
                     <materialDesign:PackIcon.Height>
                         <MultiBinding
@@ -121,8 +121,8 @@
     </ControlTemplate>
 
     <Style x:Key="ToggleExStyle" TargetType="{x:Type local:ToggleEx}">
-        <Setter Property="Background" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
-        <Setter Property="BorderBrush" Value="{Binding DataContext.ThemeBackground, Mode=OneWay, Source={StaticResource ThemeMgr}}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>

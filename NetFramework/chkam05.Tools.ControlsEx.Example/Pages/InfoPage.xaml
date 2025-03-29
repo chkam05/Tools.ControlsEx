@@ -5,26 +5,22 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:cex="clr-namespace:chkam05.Tools.ControlsEx;assembly=chkam05.Tools.ControlsEx"
-    xmlns:cexThm="clr-namespace:chkam05.Tools.ControlsEx.Data.Theme;assembly=chkam05.Tools.ControlsEx"
     xmlns:local="clr-namespace:chkam05.Tools.ControlsEx.Example.Pages"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:views="clr-namespace:chkam05.Tools.ControlsEx.Example.Views"
     mc:Ignorable="d" 
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Style="{DynamicResource GenericPageStyle}"
     Title="Informations">
 
     <Page.Resources>
-        <x:Static x:Key="ThemeMgr" Member="cexThm:ThemeManager.Instance"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/chkam05.Tools.ControlsEx.Example;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
-
-    <Page.Background>
-        <Binding Path="DataContext.ThemeBackground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
-    </Page.Background>
-
-    <Page.Foreground>
-        <Binding Path="DataContext.ThemeForeground" Mode="OneWay" Source="{StaticResource ThemeMgr}"/>
-    </Page.Foreground>
 
     <Grid>
 

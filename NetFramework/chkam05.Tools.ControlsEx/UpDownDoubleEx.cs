@@ -224,6 +224,9 @@ namespace chkam05.Tools.ControlsEx
         /// <param name="newValue"> New value. </param>
         protected override void LockTextBoxValueUpdate(string newValue)
         {
+            if (textBox == null)
+                return;
+
             lockUpdate = true;
             textBox.Text = newValue;
             lockUpdate = false;
